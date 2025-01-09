@@ -1,24 +1,31 @@
 # STARKLA Say It Right, Learn It Bright – Meet Your AI Agent!
 
-<img src="https://github.com/STARKLAOrg/Frontend/blob/main/src/assets/photo_2025-01-07_22-19-24.jpg" alt="STARKLA" width="300"/>
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/STARKLAOrg/Frontend/blob/main/src/assets/photo_2025-01-07_22-19-24.jpg" alt="STARKLA" width="300">
+    </td>
+    <td>
+      <h2>What is STARKLA?</h2>
+      <p>Our name represents our core values and mission:</p>
+      <h3>STARK</h3>
+      <ul>
+        <li><strong>Smart</strong>: Intelligent adaptive learning system</li>
+        <li><strong>Technology</strong>: Cutting-edge AI and blockchain integration</li>
+        <li><strong>Advanced</strong>: State-of-the-art language processing</li>
+        <li><strong>Reliable</strong>: Consistent and trustworthy platform</li>
+        <li><strong>Knowledge</strong>: Focus on comprehensive learning</li>
+      </ul>
+      <h3>LA (Learning Assistant)</h3>
+      <ul>
+        <li><strong>Language</strong>: Multi-language support and cultural understanding</li>
+        <li><strong>Agent</strong>: AI-powered personal tutor and guide</li>
+      </ul>
+      <p>Together, <strong>STARKLA</strong> embodies a revolutionary approach to language learning, combining the power of Starknet blockchain technology with intelligent, personalized education.</p>
+    </td>
+  </tr>
+</table>
 
-
-
-## What is STARKLA?  
-Our name represents our core values and mission:  
-
-### **STARK**  
-- **Smart**: Intelligent adaptive learning system  
-- **Technology**: Cutting-edge AI and blockchain integration  
-- **Advanced**: State-of-the-art language processing  
-- **Reliable**: Consistent and trustworthy platform  
-- **Knowledge**: Focus on comprehensive learning  
-
-### **LA (Learning Assistant)**  
-- **Language**: Multi-language support and cultural understanding  
-- **Agent**: AI-powered personal tutor and guide  
-
-Together, **STARKLA** embodies a revolutionary approach to language learning, combining the power of Starknet blockchain technology with intelligent, personalized education.
 
 ---
 
