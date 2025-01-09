@@ -1,5 +1,4 @@
-# STARKLA (Personalized Virtual Tutor)  
-**Say It Right, Learn It Bright – Meet Your AI Agent!**
+# STARKLA Say It Right, Learn It Bright – Meet Your AI Agent!
 
 ## What is STARKLA?  
 Our name represents our core values and mission:  
