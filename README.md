@@ -1,30 +1,5 @@
 # STARKLA Say It Right, Learn It Bright – Meet Your AI Agent!
 
-<div style="display: flex; align-items: center; gap: 20px;">
-
-<img src="https://github.com/STARKLAOrg/Frontend/blob/main/src/assets/photo_2025-01-07_22-19-24.jpg" alt="STARKLA" width="200"/>
-
-<div>
-  <h2>What is STARKLA?</h2>
-  <p>Our name represents our core values and mission:</p>
-  <h3>STARK</h3>
-  <ul>
-    <li><strong>Smart</strong>: Intelligent adaptive learning system</li>
-    <li><strong>Technology</strong>: Cutting-edge AI and blockchain integration</li>
-    <li><strong>Advanced</strong>: State-of-the-art language processing</li>
-    <li><strong>Reliable</strong>: Consistent and trustworthy platform</li>
-    <li><strong>Knowledge</strong>: Focus on comprehensive learning</li>
-  </ul>
-  <h3>LA (Learning Assistant)</h3>
-  <ul>
-    <li><strong>Language</strong>: Multi-language support and cultural understanding</li>
-    <li><strong>Agent</strong>: AI-powered personal tutor and guide</li>
-  </ul>
-  <p>Together, <strong>STARKLA</strong> embodies a revolutionary approach to language learning, combining the power of Starknet blockchain technology with intelligent, personalized education.</p>
-</div>
-
-</div>
-
 <img src="https://github.com/STARKLAOrg/Frontend/blob/main/src/assets/photo_2025-01-07_22-19-24.jpg" alt="STARKLA" width="300"/>
 
 
