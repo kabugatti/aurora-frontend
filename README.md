@@ -1,5 +1,8 @@
 # STARKLA Say It Right, Learn It Bright – Meet Your AI Agent!
 
+![STARKLA](https://github.com/STARKLAOrg/Frontend/blob/main/src/assets/photo_2025-01-07_22-19-24.jpg)
+
+
 ## What is STARKLA?  
 Our name represents our core values and mission:  
 
