@@ -27,7 +27,7 @@
 </table>
 
 
----
+
 
 ## Introduction  
 STARKLA is an innovative AI-powered language learning platform that combines personalized tutoring, blockchain technology, and advanced language processing to create an engaging and effective learning experience.
