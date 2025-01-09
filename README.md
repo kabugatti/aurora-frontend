@@ -59,3 +59,27 @@ STARKLA serves as your dedicated AI Agent for language learning, offering a comp
 - **Expanded industry content**
 - **Advanced blockchain features**
 - **Extended platform support**
+
+# Start `starkla-learning`  -  Installation and Usage Guide
+## Prerequisites
+- Install [Node.js](https://nodejs.org/) (16.x or later).
+
+## Steps
+
+1. **Clone and Navigate**  
+   ```bash
+   git clone <repository-url>
+   cd starkla-learning
+
+
+
+## 2. Install Dependencies
+
+Make sure you have all the necessary dependencies installed before proceeding.
+
+## Start Development Server
+
+To start the development server, run the following command:
+
+```bash
+npm run dev
