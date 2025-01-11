@@ -1,6 +1,5 @@
-// src/App.jsx
 import React from 'react';
-import LearningContent from './pages/LearningContent';  // Adjust this path based on your structure
+import LearningContent from './pages/LearningContent';  
 
 function App() {
   return <LearningContent />;
