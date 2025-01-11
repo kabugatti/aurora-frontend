@@ -1,9 +1,9 @@
 import React from 'react';
-import Sidebar from './../components/layout/Sidebar'; // Ruta de tu componente Sidebar
-import CertificationBanner from './../components/certification/CertificationBanner'; // Ruta de tu componente CertificationBanner
-import LearningModule from './../components/certification/LearningModule'; // Ruta de tu componente LearningModule
-import learningModuleImg from "../assets/learning_module.png"; // Imagen para los módulos
-import certificationBanner from "../assets/certification_banner.png"; // Imagen para banner
+import Sidebar from './../components/layout/Sidebar'; 
+import CertificationBanner from './../components/certification/CertificationBanner'; 
+import LearningModule from './../components/certification/LearningModule'; 
+import learningModuleImg from "../assets/learning_module.png"; 
+import certificationBanner from "../assets/certification_banner.png"; 
 
 const Certification = () => {
   const learningModules = [
@@ -41,7 +41,7 @@ const Certification = () => {
         <CertificationBanner
           title="A1 Certification"
           subtitle="Lorem Ipsum dolor sit ammet ister ejec"
-          backgroundImage={certificationBanner} // Puedes cambiar esto por otra imagen
+          backgroundImage={certificationBanner} 
           className="mb-6"
         />
 
