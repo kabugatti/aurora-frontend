@@ -1,12 +1,11 @@
 import React from 'react';
-import { BookOpen, BarChart2, Users, Settings, Folder, Award } from 'lucide-react';
+import { BookOpen, BarChart2, Users, Settings, Folder, Award, MessageSquare } from 'lucide-react';
 
 const Sidebar = () => {
   const topNavItems = [
     { 
       icon: <BookOpen className="w-5 h-5" />, 
       label: 'Learning content',
-      isSelected: true,
       subItems: [
         { icon: <Folder className="w-5 h-5" />, label: 'Categories' },
         { icon: <Award className="w-5 h-5" />, label: 'Certifications Obtained' }
@@ -36,11 +35,7 @@ const Sidebar = () => {
           {topNavItems.map((item, index) => (
             <div key={index} className="flex flex-col gap-1">
               <button
-                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors
-                  ${item.isSelected 
-                    ? 'bg-blue-600 text-white' 
-                    : 'text-gray-600 hover:bg-blue-50'
-                  }`}
+                className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors text-gray-600 hover:bg-blue-50"
                 onClick={() => console.log(`Clicked ${item.label}`)}
               >
                 {item.icon}
@@ -64,7 +59,17 @@ const Sidebar = () => {
           ))}
         </nav>
 
-        <div className="mt-auto">
+        <div className="mt-auto space-y-3">
+          {/* Talk with Starkla Button */}
+          <button
+            className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm"
+            onClick={() => console.log('Opening Starkla chat')}
+          >
+            <MessageSquare className="w-5 h-5" />
+            <span className="text-sm font-medium">Talk with Starkla</span>
+          </button>
+
+          {/* Settings Button */}
           <button
             className="flex items-center gap-3 px-3 py-2 w-full text-left text-gray-600 hover:bg-blue-50 rounded-lg transition-colors"
             onClick={() => console.log('Clicked Settings')}
