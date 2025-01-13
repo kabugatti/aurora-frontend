@@ -11,7 +11,7 @@ const StarklaChat = () => {
         <div className="w-full px-6 py-2 flex items-center border-b border-gray-100">
           {/* Left: Profile Section */}
           <div className="flex items-center gap-4">
-            <div className="w-32 h-32 rounded-full overflow-hidden">
+            <div className="w-64 h-64 rounded-full overflow-hidden">
               <img 
                 src={starklaImage} 
                 alt="Starkla Profile"
