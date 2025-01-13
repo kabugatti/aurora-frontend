@@ -7,10 +7,11 @@ const StarklaChat = () => {
   return (
     <MainLayout>
       <div className="flex flex-col bg-white w-full">
-        <div className="w-full px-6 py-4 flex items-center">
+        {/* Header */}
+        <div className="w-full px-6 py-2 flex items-center border-b border-gray-100">
           {/* Left: Profile Section */}
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full overflow-hidden">
+            <div className="w-32 h-32 rounded-full overflow-hidden">
               <img 
                 src={starklaImage} 
                 alt="Starkla Profile"
@@ -43,14 +44,14 @@ const StarklaChat = () => {
           </div>
         </div>
 
-        {/* Main Content Area */}
-        <div className="flex-1 px-6 py-4 min-h-[400px]">
+        {/* Main Content Area - Removed min-height and flex-1 */}
+        <div className="px-6 py-4 w-full">
           {/* Chat content will go here */}
         </div>
 
         {/* Bottom Controls */}
         <div className="w-full border-t border-gray-100 px-6 py-4">
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center w-full">
             <button
               className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
@@ -58,7 +59,7 @@ const StarklaChat = () => {
               <span>Start learning</span>
             </button>
 
-            <div className="flex-1 relative">
+            <div className="flex-1 relative w-full">
               <input
                 type="text"
                 placeholder="Write something related to the topic"
