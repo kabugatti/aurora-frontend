@@ -1,4 +1,5 @@
 
+
 const CertificationBanner = ({ 
     title = "A1 Certification",
     subtitle = "Lorem Ipsum dolor sit ammet ister ejec",

@@ -2,7 +2,11 @@ import React from 'react';
 import LearningContent from './pages/LearningContent';  
 
 function App() {
-  return <LearningContent />;
+  return <LearningContent />
+          
+  
+  ;
+
 }
 
 export default App;
