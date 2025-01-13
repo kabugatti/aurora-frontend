@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, BarChart2, Users, Settings, Folder } from 'lucide-react';
+import { BookOpen, BarChart2, Users, Settings, Folder, Award } from 'lucide-react';
 
 const Sidebar = () => {
   const topNavItems = [
@@ -8,7 +8,8 @@ const Sidebar = () => {
       label: 'Learning content',
       isSelected: true,
       subItems: [
-        { icon: <Folder className="w-5 h-5" />, label: 'Categories' }
+        { icon: <Folder className="w-5 h-5" />, label: 'Categories' },
+        { icon: <Award className="w-5 h-5" />, label: 'Certifications Obtained' }
       ]
     },
     { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics' },

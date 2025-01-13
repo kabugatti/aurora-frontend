@@ -1,4 +1,4 @@
-// src/components/layout/MainLayout.jsx
+
 import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
