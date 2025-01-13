@@ -1,4 +1,3 @@
-// src/components/certification/CertificationCard.jsx
 import React from 'react';
 
 const CertificationCard = ({ title, description, variant = 'blue' }) => {
