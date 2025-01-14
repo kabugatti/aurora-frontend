@@ -9,14 +9,17 @@ import Categories from './pages/Categories';
 import Analytics from './pages/Analytics';
 import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
+import WalletConnection from './pages/WalletConnection';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <Router>
       <MainLayout>
         <Routes>
-          <Route path="/" element={<LearningContent />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/learning-content" element={<LearningContent />} />
+          <Route path="/wallet-connection" element={<WalletConnection />} />
           <Route path="/certifications-obtained" element={<CertificationsObtained />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/analytics" element={<Analytics />} />

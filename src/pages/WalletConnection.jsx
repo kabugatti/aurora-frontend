@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Brain } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import starklaImage from '../assets/starkla.jpg';
 
-const WalletConnection = ({ onWalletConnect, isConnected }) => {
-  const [isConnecting, setIsConnecting] = useState(false);
+const WalletConnection = () => {
   const navigate = useNavigate();
 
-  const connectWallet = async () => {
+  const connectWallet = () => {
+    // Simulating wallet connection: Redirect directly to the Learning Content page
+    // Commented out the actual wallet connection logic for now
+    /*
     setIsConnecting(true);
     try {
       // Check if Starknet is available in the browser
@@ -18,13 +20,13 @@ const WalletConnection = ({ onWalletConnect, isConnected }) => {
 
       // Request wallet connection
       await window.starknet.enable();
-      
+
       // Get the connected account
       const account = await window.starknet.account;
-      
+
       if (account) {
         onWalletConnect(true);
-        navigate('/');  // Redirect to homepage after successful connection
+        navigate('/learning-content'); // Redirect to Learning Content after successful connection
       }
     } catch (error) {
       console.error('Error connecting wallet:', error);
@@ -32,14 +34,11 @@ const WalletConnection = ({ onWalletConnect, isConnected }) => {
     } finally {
       setIsConnecting(false);
     }
-  };
+    */
 
-  // If already connected, redirect to home
-  React.useEffect(() => {
-    if (isConnected) {
-      navigate('/');
-    }
-  }, [isConnected, navigate]);
+    // For now, redirect to the Learning Content page without connecting the wallet
+    navigate('/learning-content');
+  };
 
   return (
     <div className="min-h-screen bg-blue-600 flex items-center justify-center p-4">
@@ -52,15 +51,14 @@ const WalletConnection = ({ onWalletConnect, isConnected }) => {
           </div>
           
           <p className="text-blue-100 text-lg max-w-md">
-            Welcome to STARKLA - your AI-powered English learning companion. Connect your wallet to start your personalized learning journey.
+            Welcome to STARKLA - your AI-powered English learning companion. Click the button below to start your personalized learning journey.
           </p>
           
           <button 
             onClick={connectWallet}
-            disabled={isConnecting}
-            className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
           >
-            {isConnecting ? 'Connecting...' : 'Connect Wallet'}
+            Connect Wallet
           </button>
         </div>
 

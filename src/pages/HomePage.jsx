@@ -28,7 +28,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    navigate('/learning');
+    navigate('/wallet-connection');
   };
 
   return (
