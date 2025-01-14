@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BookOpen, BarChart2, Users, Settings, Folder, Award, MessageSquare } from 'lucide-react';
 
 const Sidebar = () => {
   const location = useLocation();
+  const [clickedButton, setClickedButton] = useState(null);
+
+  const handleButtonClick = (label) => {
+    setClickedButton(label);
+    console.log(`Clicked ${label}`);
+  };
 
   const topNavItems = [
-    { 
-      icon: <BookOpen className="w-5 h-5" />, 
+    {
+      icon: <BookOpen className="w-5 h-5" />,
       label: 'Learning content',
       path: '/learning-content',
       subItems: [
@@ -26,7 +32,7 @@ const Sidebar = () => {
         <div className="flex items-center gap-3 mb-8">
           <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z" stroke="#71717A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z" stroke="#71717A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </div>
           <div>
@@ -43,6 +49,7 @@ const Sidebar = () => {
                 className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
                   location.pathname === item.path ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
                 }`}
+                onClick={() => handleButtonClick(item.label)}
               >
                 {item.icon}
                 <span className="text-sm font-medium">{item.label}</span>
@@ -56,6 +63,7 @@ const Sidebar = () => {
                       className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ml-2 ${
                         location.pathname === subItem.path ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
                       }`}
+                      onClick={() => handleButtonClick(subItem.label)}
                     >
                       {subItem.icon}
                       <span className="text-sm font-medium">{subItem.label}</span>

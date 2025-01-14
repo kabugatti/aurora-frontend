@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import { useNavigate } from "react-router-dom"; 
 
-const CertificationCard = ({ title, description, variant = 'blue' }) => {
+const CertificationCard = ({ title, description, variant = "blue", onClick }) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden">
-      <div className={`h-32 ${variant === 'pink' ? 'bg-pink-400' : 'bg-blue-600'} relative p-4`}>
+      <div className={`h-32 ${variant === "pink" ? "bg-pink-400" : "bg-blue-600"} relative p-4`}>
         <svg className="w-full h-full" viewBox="0 0 400 160" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Stars and decorative elements */}
           <circle cx="30" cy="30" r="4" fill="#FFF" opacity="0.6" />
@@ -24,7 +25,10 @@ const CertificationCard = ({ title, description, variant = 'blue' }) => {
       <div className="p-4">
         <h3 className="font-medium text-gray-900 mb-2">{title}</h3>
         <p className="text-gray-500 text-sm mb-4">{description}</p>
-        <button className="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+        <button
+          className="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+          onClick={onClick}
+        >
           Start learning
         </button>
       </div>
@@ -33,37 +37,45 @@ const CertificationCard = ({ title, description, variant = 'blue' }) => {
 };
 
 const LearningContent = () => {
+  const navigate = useNavigate(); 
+
   const certifications = [
     {
-      title: 'A1 Certification',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      variant: 'blue'
+      title: "A1 Certification",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      variant: "blue",
+      link: "/certification-content",
     },
     {
-      title: 'C1 Certification',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      variant: 'blue'
+      title: "C1 Certification",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      variant: "blue",
+      link: "/certification-content",
     },
     {
-      title: 'C2 Certification',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      variant: 'pink'
+      title: "C2 Certification",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      variant: "pink",
+      link: "/certification-content",
     },
     {
-      title: 'B2 Certification',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      variant: 'pink'
+      title: "B2 Certification",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      variant: "pink",
+      link: "/certification-content",
     },
     {
-      title: 'C1 Certification',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      variant: 'blue'
+      title: "C1 Certification",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      variant: "blue",
+      link: "/certification-content",
     },
     {
-      title: 'C2 Certification',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      variant: 'pink'
-    }
+      title: "C2 Certification",
+      description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      variant: "pink",
+      link: "/certification-content",
+    },
   ];
 
   return (
@@ -78,6 +90,7 @@ const LearningContent = () => {
                 title={cert.title}
                 description={cert.description}
                 variant={cert.variant}
+                onClick={() => navigate(cert.link, { state: { title: cert.title, description: cert.description } })}
               />
             ))}
           </div>
