@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react'; 
 import { BookOpen, BarChart2, Users, Settings, Folder, Award, MessageSquare } from 'lucide-react';
 
 const Sidebar = () => {
+  const [clickedButton, setClickedButton] = useState(null); 
+
+  const handleButtonClick = (label) => { 
+    setClickedButton(label);
+    console.log(`Clicked ${label}`);
+  };
+
   const topNavItems = [
     { 
       icon: <BookOpen className="w-5 h-5" />, 
@@ -35,8 +42,12 @@ const Sidebar = () => {
           {topNavItems.map((item, index) => (
             <div key={index} className="flex flex-col gap-1">
               <button
-                className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors text-gray-600 hover:bg-blue-50"
-                onClick={() => console.log(`Clicked ${item.label}`)}
+                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
+                  clickedButton === item.label
+                    ? "bg-blue-600 text-white"
+                    : "text-gray-600 hover:bg-blue-50"
+                }`} 
+                onClick={() => handleButtonClick(item.label)} 
               >
                 {item.icon}
                 <span className="text-sm font-medium">{item.label}</span>
@@ -46,8 +57,12 @@ const Sidebar = () => {
                   {item.subItems.map((subItem, subIndex) => (
                     <button
                       key={subIndex}
-                      className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ml-2 text-gray-600 hover:bg-blue-50"
-                      onClick={() => console.log(`Clicked ${subItem.label}`)}
+                      className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ml-2 ${
+                        clickedButton === subItem.label
+                          ? "bg-blue-600 text-white"
+                          : "text-gray-600 hover:bg-blue-50"
+                      }`} 
+                      onClick={() => handleButtonClick(subItem.label)} 
                     >
                       {subItem.icon}
                       <span className="text-sm font-medium">{subItem.label}</span>
