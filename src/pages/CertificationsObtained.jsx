@@ -1,5 +1,4 @@
 import React from 'react';
-import MainLayout from '../components/layout/MainLayout';
 import { FileText } from 'lucide-react';
 
 const CertificationCard = ({ title, description, variant = 'pink' }) => {

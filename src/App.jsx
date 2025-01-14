@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainLayout from './components/layout/MainLayout'; // Asegúrate de que la ruta sea correcta
+import MainLayout from './components/layout/MainLayout';
 import LearningContent from './pages/LearningContent';
 import CertificationsObtained from './pages/CertificationsObtained';
 import SettingsPage from './pages/SettingsPage';
