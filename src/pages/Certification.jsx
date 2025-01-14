@@ -1,5 +1,4 @@
 import React from 'react';
-import Sidebar from './../components/layout/Sidebar'; 
 import CertificationBanner from './../components/certification/CertificationBanner'; 
 import LearningModule from './../components/certification/LearningModule'; 
 import learningModuleImg from "../assets/learning_module.png"; 
@@ -32,9 +31,6 @@ const Certification = () => {
 
   return (
     <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
-
       {/* Main Content */}
       <div className="flex-1 p-6">
         {/* Banner */}

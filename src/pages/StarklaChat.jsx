@@ -1,11 +1,9 @@
 import React from 'react';
 import { Mic, ChevronLeft, ChevronRight, LightbulbIcon } from 'lucide-react';
-import MainLayout from '../components/layout/MainLayout';
 import starklaImage from '../assets/starkla.jpg';
 
 const StarklaChat = () => {
   return (
-    <MainLayout>
       <div className="flex flex-col bg-white w-full">
         {/* Header */}
         <div className="w-full px-6 py-2 flex items-center border-b border-gray-100">
@@ -75,7 +73,6 @@ const StarklaChat = () => {
           </div>
         </div>
       </div>
-    </MainLayout>
   );
 };
 

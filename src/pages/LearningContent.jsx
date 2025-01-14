@@ -1,5 +1,4 @@
 import React from 'react';
-import MainLayout from '../components/layout/MainLayout';
 
 const CertificationCard = ({ title, description, variant = 'blue' }) => {
   return (
@@ -68,7 +67,6 @@ const LearningContent = () => {
   ];
 
   return (
-    <MainLayout>
       <div className="space-y-6">
         <h1 className="text-2xl font-semibold text-gray-900">Learning content</h1>
         <div>
@@ -85,7 +83,6 @@ const LearningContent = () => {
           </div>
         </div>
       </div>
-    </MainLayout>
   );
 };
 

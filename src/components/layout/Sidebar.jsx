@@ -1,18 +1,22 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { BookOpen, BarChart2, Users, Settings, Folder, Award, MessageSquare } from 'lucide-react';
 
 const Sidebar = () => {
+  const location = useLocation();
+
   const topNavItems = [
     { 
       icon: <BookOpen className="w-5 h-5" />, 
       label: 'Learning content',
+      path: '/learning-content',
       subItems: [
-        { icon: <Folder className="w-5 h-5" />, label: 'Categories' },
-        { icon: <Award className="w-5 h-5" />, label: 'Certifications Obtained' }
+        { icon: <Folder className="w-5 h-5" />, label: 'Categories', path: '/categories' },
+        { icon: <Award className="w-5 h-5" />, label: 'Certifications Obtained', path: '/certifications-obtained' }
       ]
     },
-    { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics' },
-    { icon: <Users className="w-5 h-5" />, label: 'People' }
+    { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics', path: '/analytics' },
+    { icon: <Users className="w-5 h-5" />, label: 'People', path: '/starkla-chat' }
   ];
 
   return (
@@ -34,24 +38,28 @@ const Sidebar = () => {
         <nav className="flex flex-col gap-1 flex-1">
           {topNavItems.map((item, index) => (
             <div key={index} className="flex flex-col gap-1">
-              <button
-                className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors text-gray-600 hover:bg-blue-50"
-                onClick={() => console.log(`Clicked ${item.label}`)}
+              <Link
+                to={item.path}
+                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
+                  location.pathname === item.path ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
+                }`}
               >
                 {item.icon}
                 <span className="text-sm font-medium">{item.label}</span>
-              </button>
+              </Link>
               {item.subItems && (
                 <div>
                   {item.subItems.map((subItem, subIndex) => (
-                    <button
+                    <Link
                       key={subIndex}
-                      className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ml-2 text-gray-600 hover:bg-blue-50"
-                      onClick={() => console.log(`Clicked ${subItem.label}`)}
+                      to={subItem.path}
+                      className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ml-2 ${
+                        location.pathname === subItem.path ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
+                      }`}
                     >
                       {subItem.icon}
                       <span className="text-sm font-medium">{subItem.label}</span>
-                    </button>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -60,23 +68,25 @@ const Sidebar = () => {
         </nav>
 
         <div className="mt-auto space-y-3">
-          {/* Talk with Starkla Button */}
-          <button
-            className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm"
-            onClick={() => console.log('Opening Starkla chat')}
+          <Link
+            to="/starkla-chat"
+            className={`flex items-center gap-3 px-4 py-2.5 w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm ${
+              location.pathname === '/starkla-chat' ? 'ring-2 ring-blue-600' : ''
+            }`}
           >
             <MessageSquare className="w-5 h-5" />
             <span className="text-sm font-medium">Talk with Starkla</span>
-          </button>
+          </Link>
 
-          {/* Settings Button */}
-          <button
-            className="flex items-center gap-3 px-3 py-2 w-full text-left text-gray-600 hover:bg-blue-50 rounded-lg transition-colors"
-            onClick={() => console.log('Clicked Settings')}
+          <Link
+            to="/settings"
+            className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
+              location.pathname === '/settings' ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
+            }`}
           >
             <Settings className="w-5 h-5" />
             <span className="text-sm font-medium">Settings</span>
-          </button>
+          </Link>
         </div>
       </div>
     </div>
