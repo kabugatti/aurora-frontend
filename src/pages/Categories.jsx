@@ -124,9 +124,9 @@ const MainLayout = ({ children }) => {
   );
 };
 
-const CategoryCard = ({ title, modules, color, icon }) => {
+const CategoryCard = ({ title, modules, color, icon, imageSrc }) => {
   return (
-    <div className={`${color} rounded-xl overflow-hidden h-48 transition-transform hover:scale-105 cursor-pointer`}>
+    <div className={`${color} rounded-xl overflow-hidden h-48 transition-transform hover:scale-105 cursor-pointer relative`}>
       <div className="p-6 h-full flex flex-col justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
@@ -140,6 +140,14 @@ const CategoryCard = ({ title, modules, color, icon }) => {
           <p className="text-white/80 text-sm">{modules} Modules</p>
         </div>
       </div>
+      {/* Image */}
+      {imageSrc && (
+        <img
+          src={imageSrc}
+          alt={`${title} Illustration`}
+          className="absolute bottom-2 right-2 w-20 h-35 object-contain pointer-events-none"
+        />
+      )}
     </div>
   );
 };
@@ -149,39 +157,45 @@ const CategoriesPage = () => {
     {
       title: 'Grammar',
       modules: 2,
-      color: 'bg-rose-600',
-      icon: <BookOpen className="w-6 h-6" />
+      color: 'bg-blue-600',
+      icon: <BookOpen className="w-6 h-6" />,
+      imageSrc: '/src/assets/cat1.png',
     },
     {
       title: 'Listening',
       modules: 2,
       color: 'bg-blue-600',
-      icon: <MessagesSquare className="w-6 h-6" />
+      icon: <MessagesSquare className="w-6 h-6" />,
+      imageSrc: '/src/assets/cat2.png',
     },
     {
       title: 'Speaking',
       modules: 2,
-      color: 'bg-orange-500',
-      icon: <Mic className="w-6 h-6" />
+      color: 'bg-blue-600',
+      icon: <Mic className="w-6 h-6" />,
+      imageSrc: '/src/assets/cat3.png',
     },
     {
       title: 'Interviews',
       modules: 2,
-      color: 'bg-rose-600',
-      icon: <Users className="w-6 h-6" />
+      color: 'bg-blue-600',
+      icon: <Users className="w-6 h-6" />,
+      imageSrc: '/src/assets/cat1.png',
     },
     {
       title: 'Words',
       modules: 2,
       color: 'bg-blue-600',
-      icon: <Layout className="w-6 h-6" />
+      icon: <Layout className="w-6 h-6" />,
+      imageSrc: '/src/assets/cat2.png',
     },
     {
       title: 'Games',
       modules: 2,
-      color: 'bg-orange-500',
-      icon: <Gamepad2 className="w-6 h-6" />
-    }
+      color: 'bg-blue-600',
+      icon: <Gamepad2 className="w-6 h-6" />,
+      imageSrc: '/src/assets/cat3.png',
+    },
   ];
 
   return (
@@ -197,6 +211,7 @@ const CategoriesPage = () => {
                 modules={category.modules}
                 color={category.color}
                 icon={category.icon}
+                imageSrc={category.imageSrc} // Pasando la imagen personalizada
               />
             ))}
           </div>

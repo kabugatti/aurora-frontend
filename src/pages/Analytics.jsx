@@ -63,9 +63,16 @@ const ProgressBar = ({ value, label }) => (
   </div>
 );
 
-const CourseCard = ({ title, description, slides, icon }) => (
+const CourseCard = ({ title, description, slides, imageSrc }) => (
   <div className="p-4 bg-white rounded-lg border flex items-start gap-4">
-    <img src={icon} alt="" className="w-12 h-12 rounded" />
+    {/* Image */}
+    {imageSrc && (
+      <img
+        src={imageSrc}
+        alt={`${title} Image`}
+        className="w-16 h-20 rounded object-cover"
+      />
+    )}
     <div className="flex-1">
       <h3 className="font-medium text-gray-900">{title}</h3>
       <p className="text-sm text-gray-500 mt-1">{description}</p>
@@ -73,6 +80,7 @@ const CourseCard = ({ title, description, slides, icon }) => (
     </div>
   </div>
 );
+
 
 // Updated Sidebar component from the first file
 const Sidebar = () => {
@@ -266,15 +274,15 @@ const AnalyticsContent = () => {
         <div className="grid grid-cols-2 gap-4">
           <CourseCard
             title="Operating Systems"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            description="Learn the fundamentals of operating systems."
             slides="10"
-            icon="/api/placeholder/48/48"
+            imageSrc="/src/assets/operating_systems.png" 
           />
           <CourseCard
             title="Basis of computer"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            description="Explore the basics of computer systems."
             slides="10"
-            icon="/api/placeholder/48/48"
+            imageSrc="/src/assets/learning_module.png" 
           />
         </div>
       </div>
