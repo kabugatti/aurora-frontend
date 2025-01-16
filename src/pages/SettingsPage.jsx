@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Bell, Globe, Shield, Moon, Mail, Settings2, Database, Network, Lock } from 'lucide-react';
-import MainLayout from '../components/layout/MainLayout';
 
 const SettingsPage = () => {
   const [notifications, setNotifications] = useState(true);
@@ -164,7 +163,6 @@ const SettingsPage = () => {
   ];
 
   return (
-    <MainLayout>
       <div className="min-h-screen bg-gray-50 flex flex-col">
         <div className="flex-1 flex flex-col items-center">
           <div className="w-full max-w-4xl px-4 py-8">
@@ -207,7 +205,6 @@ const SettingsPage = () => {
           </div>
         </div>
       </div>
-    </MainLayout>
   );
 };
 

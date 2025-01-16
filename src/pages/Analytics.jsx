@@ -27,6 +27,7 @@ const SimpleLineChart = ({ data }) => {
   }, '');
 
   return (
+    
     <svg width="300" height="150" className="w-full">
       <path
         d={path}
@@ -299,9 +300,8 @@ const MainLayout = ({ children }) => {
 // Main Analytics Component
 const Analytics = () => {
   return (
-    <MainLayout>
       <AnalyticsContent />
-    </MainLayout>
+
   );
 };
 

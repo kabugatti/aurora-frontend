@@ -1,6 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Importa useNavigate para redirección
-import MainLayout from "../components/layout/MainLayout";
+import { useNavigate } from "react-router-dom"; 
 
 const CertificationCard = ({ title, description, variant = "blue", onClick }) => {
   return (
@@ -28,7 +27,7 @@ const CertificationCard = ({ title, description, variant = "blue", onClick }) =>
         <p className="text-gray-500 text-sm mb-4">{description}</p>
         <button
           className="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
-          onClick={onClick} // Asigna la función de clic
+          onClick={onClick}
         >
           Start learning
         </button>
@@ -38,7 +37,7 @@ const CertificationCard = ({ title, description, variant = "blue", onClick }) =>
 };
 
 const LearningContent = () => {
-  const navigate = useNavigate(); // Hook para redirección
+  const navigate = useNavigate(); 
 
   const certifications = [
     {
@@ -80,7 +79,6 @@ const LearningContent = () => {
   ];
 
   return (
-    <MainLayout>
       <div className="space-y-6">
         <h1 className="text-2xl font-semibold text-gray-900">Learning content</h1>
         <div>
@@ -98,7 +96,6 @@ const LearningContent = () => {
           </div>
         </div>
       </div>
-    </MainLayout>
   );
 };
 
