@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Sidebar from "./../components/layout/Sidebar";
 import CertificationBanner from "./../components/certification/CertificationBanner";
 import LearningCard from "./../components/certification/LearningCard";
 import learningModuleImg from "../assets/learning_module.png";
@@ -40,8 +39,6 @@ const CertificationContent = () => {
 
   return (
     <div className="flex">
-      {/* Sidebar */}
-      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 p-6">
