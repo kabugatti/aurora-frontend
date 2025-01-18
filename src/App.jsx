@@ -4,7 +4,7 @@ import MainLayout from './components/layout/MainLayout';
 import LearningContent from './pages/LearningContent';
 import CertificationsObtained from './pages/CertificationsObtained';
 import SettingsPage from './pages/SettingsPage';
-import StarklaChat from './pages/StarklaChat';
+import StarklaChat from './pages/StarklaChat/StarklaChat'; 
 import Categories from './pages/Categories';
 import Analytics from './pages/Analytics';
 import CertificationContent from './pages/CertificationContent';
