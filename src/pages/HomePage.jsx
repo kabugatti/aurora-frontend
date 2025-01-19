@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Brain, BookOpen, MessageSquare, Award, BarChart2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import StarklaIcon from '../assets/S-icon.jpg';
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -38,7 +39,11 @@ const HomePage = () => {
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center gap-2">
-              <Brain className="w-8 h-8 text-blue-600" />
+              <img
+                src={StarklaIcon}
+                alt="Starkla Icon"
+                className="w-8 h-8 object-contain rounded-full"
+              />
               <span className="text-xl font-semibold text-gray-900">STARKLA</span>
             </div>
           </div>
