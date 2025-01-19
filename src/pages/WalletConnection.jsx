@@ -1,43 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Brain } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import starklaImage from '../assets/starkla.jpg';
 
 const WalletConnection = () => {
   const navigate = useNavigate();
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [error, setError] = useState(null);
 
-  const connectWallet = () => {
-    // Simulating wallet connection: Redirect directly to the Learning Content page
-    // Commented out the actual wallet connection logic for now
-    /*
+  const checkWalletInstalled = () => {
+    return typeof window.starknet !== 'undefined';
+  };
+
+  const connectWallet = async () => {
     setIsConnecting(true);
+    setError(null);
+
     try {
-      // Check if Starknet is available in the browser
-      if (!window.starknet) {
-        alert('Please install a Starknet wallet extension');
-        return;
+      // Check if Starknet is available
+      if (!checkWalletInstalled()) {
+        throw new Error('Please install a Starknet wallet extension (like ArgentX or Braavos)');
       }
 
       // Request wallet connection
-      await window.starknet.enable();
+      const starknet = await window.starknet.enable();
 
       // Get the connected account
       const account = await window.starknet.account;
-
-      if (account) {
-        onWalletConnect(true);
-        navigate('/learning-content'); // Redirect to Learning Content after successful connection
+      
+      if (!account) {
+        throw new Error('No account selected in wallet');
       }
+
+      // Store the wallet address in localStorage (optional)
+      localStorage.setItem('walletAddress', account.address);
+
+      // Navigate to learning content
+      navigate('/learning-content');
+      
     } catch (error) {
       console.error('Error connecting wallet:', error);
-      alert('Failed to connect wallet. Please try again.');
+      setError(error.message || 'Failed to connect wallet. Please try again.');
     } finally {
       setIsConnecting(false);
     }
-    */
-
-    // For now, redirect to the Learning Content page without connecting the wallet
-    navigate('/learning-content');
   };
 
   return (
@@ -51,14 +57,30 @@ const WalletConnection = () => {
           </div>
           
           <p className="text-blue-100 text-lg max-w-md">
-            Welcome to STARKLA - your AI-powered English learning companion. Click the button below to start your personalized learning journey.
+            Welcome to STARKLA - your AI-powered English learning companion. Connect your Starknet wallet to start your personalized learning journey.
           </p>
+          
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+              {error}
+            </div>
+          )}
           
           <button 
             onClick={connectWallet}
-            className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
+            disabled={isConnecting}
+            className={`bg-white text-blue-600 px-6 py-3 rounded-lg font-medium 
+              hover:bg-blue-50 transition-colors inline-flex items-center gap-2
+              ${isConnecting ? 'opacity-75 cursor-not-allowed' : ''}`}
           >
-            Connect Wallet
+            {isConnecting ? (
+              <>
+                <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                Connecting...
+              </>
+            ) : (
+              'Connect Wallet'
+            )}
           </button>
         </div>
 
