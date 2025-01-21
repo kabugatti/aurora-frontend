@@ -51,42 +51,42 @@ const LearningContent = () => {
 
   const certifications = [
     {
-      title: "A1 Certification",
+      title: "Level A1 ",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       variant: "blue",
       imageSrc: "/src/assets/certification_banner.png",
       link: "/certification-content",
     },
     {
-      title: "C1 Certification",
+      title: "Level A2",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       variant: "blue",
       imageSrc: "/src/assets/certification_banner_2.png",
       link: "/certification-content",
     },
     {
-      title: "C2 Certification",
+      title: "Level B1",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       variant: "pink",
       imageSrc: "/src/assets/certification_banner.png",
       link: "/certification-content",
     },
     {
-      title: "B2 Certification",
+      title: "Level B2",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       variant: "pink",
       imageSrc: "/src/assets/certification_banner_2.png",
       link: "/certification-content",
     },
     {
-      title: "C1 Certification",
+      title: "Level C1",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       variant: "blue",
       imageSrc: "/src/assets/certification_banner.png",
       link: "/certification-content",
     },
     {
-      title: "C2 Certification",
+      title: "Level C2",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       variant: "pink",
       imageSrc: "/src/assets/certification_banner_2.png",

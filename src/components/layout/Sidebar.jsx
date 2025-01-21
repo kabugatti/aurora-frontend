@@ -1,28 +1,41 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, BarChart2, Users, Settings, Folder, Award, MessageSquare } from 'lucide-react';
+import { 
+  BookOpen, 
+  BarChart2, 
+  Users, 
+  Settings, 
+  MessageSquare,
+  FileText,
+  Headphones,
+  MessageCircle,
+  GraduationCap,
+  Book,
+  ChevronDown,
+  ChevronRight,
+  Gamepad
+} from 'lucide-react';
 
 const Sidebar = () => {
-  const location = useLocation();
-  const [clickedButton, setClickedButton] = useState(null);
+  const [currentPage, setCurrentPage] = useState('home');
+  const [level, setLevel] = useState('Choose Your Level');
+  const [isLearningExpanded, setIsLearningExpanded] = useState(false);
 
-  const handleButtonClick = (label) => {
-    setClickedButton(label);
-    console.log(`Clicked ${label}`);
+  const handleNavClick = (page) => {
+    setCurrentPage(page);
   };
 
+  const categories = [
+    { icon: <Book className="w-5 h-5" />, label: 'Grammar' },
+    { icon: <GraduationCap className="w-5 h-5" />, label: 'Vocabulary' },
+    { icon: <MessageCircle className="w-5 h-5" />, label: 'Speaking' },
+    { icon: <Headphones className="w-5 h-5" />, label: 'Listening' },
+    { icon: <FileText className="w-5 h-5" />, label: 'Reading' },
+    { icon: <Gamepad className="w-5 h-5" />, label: 'Games' }
+  ];
+
   const topNavItems = [
-    {
-      icon: <BookOpen className="w-5 h-5" />,
-      label: 'Learning content',
-      path: '/learning-content',
-      subItems: [
-        { icon: <Folder className="w-5 h-5" />, label: 'Categories', path: '/categories' },
-        { icon: <Award className="w-5 h-5" />, label: 'Certifications Obtained', path: '/certifications-obtained' }
-      ]
-    },
-    { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics', path: '/analytics' },
-    { icon: <Users className="w-5 h-5" />, label: 'People', path: '/starkla-chat' }
+    { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics', page: 'analytics' },
+    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'people' }
   ];
 
   return (
@@ -41,60 +54,96 @@ const Sidebar = () => {
           </div>
         </div>
 
-        <nav className="flex flex-col gap-1 flex-1">
-          {topNavItems.map((item, index) => (
-            <div key={index} className="flex flex-col gap-1">
-              <Link
-                to={item.path}
-                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
-                  location.pathname === item.path ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
-                }`}
-                onClick={() => handleButtonClick(item.label)}
-              >
-                {item.icon}
-                <span className="text-sm font-medium">{item.label}</span>
-              </Link>
-              {item.subItems && (
-                <div>
-                  {item.subItems.map((subItem, subIndex) => (
-                    <Link
-                      key={subIndex}
-                      to={subItem.path}
-                      className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ml-2 ${
-                        location.pathname === subItem.path ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
-                      }`}
-                      onClick={() => handleButtonClick(subItem.label)}
-                    >
-                      {subItem.icon}
-                      <span className="text-sm font-medium">{subItem.label}</span>
-                    </Link>
-                  ))}
-                </div>
+        <nav className="flex flex-col gap-2 flex-1">
+          {/* Learning Content Accordion */}
+          <div className="mb-2">
+            <button
+              onClick={() => setIsLearningExpanded(!isLearningExpanded)}
+              className="flex items-center justify-between w-full px-3 py-2 rounded-lg transition-colors hover:bg-gray-50"
+            >
+              <div className="flex items-center gap-3">
+                <BookOpen className="w-5 h-5 text-gray-700" />
+                <span className="text-sm font-medium text-gray-700">Learning content</span>
+              </div>
+              {isLearningExpanded ? (
+                <ChevronDown className="w-4 h-4 text-gray-500" />
+              ) : (
+                <ChevronRight className="w-4 h-4 text-gray-500" />
               )}
-            </div>
+            </button>
+
+            {/* Expandable Content */}
+            {isLearningExpanded && (
+              <div className="mt-2 ml-2">
+                {/* Level Selection */}
+                <div className="px-3 mb-4">
+                  <h2 className="text-xs font-semibold mb-2 text-gray-600">LEVEL</h2>
+                  <select 
+                    value={level}
+                    onChange={(e) => setLevel(e.target.value)}
+                    className="w-full bg-white text-gray-900 p-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option>Choose Your Level</option>
+                    <option>A1</option>
+                    <option>A2</option>
+                    <option>B1</option>
+                    <option>B2</option>
+                    <option>C1</option>
+                    <option>C2</option>
+                  </select>
+                </div>
+
+                {/* Categories */}
+                <div className="px-3">
+                  <h2 className="text-xs font-semibold mb-2 text-gray-600">CATEGORIES</h2>
+                  <div className="flex flex-col gap-1">
+                    {categories.map((item, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
+                        className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
+                      >
+                        <span className="text-gray-600">{item.icon}</span>
+                        <span className="text-sm text-gray-700">{item.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Other Navigation Items */}
+          {topNavItems.map((item, index) => (
+            <button
+              key={index}
+              onClick={() => handleNavClick(item.page)}
+              className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
+                currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
+              }`}
+            >
+              <span className="text-gray-600">{item.icon}</span>
+              <span className="text-sm font-medium text-gray-700">{item.label}</span>
+            </button>
           ))}
         </nav>
 
         <div className="mt-auto space-y-3">
-          <Link
-            to="/starkla-chat"
-            className={`flex items-center gap-3 px-4 py-2.5 w-full text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-sm ${
-              location.pathname === '/starkla-chat' ? 'ring-2 ring-blue-600' : ''
-            }`}
+          <button
+            onClick={() => handleNavClick('starkla')}
+            className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
           >
             <MessageSquare className="w-5 h-5" />
             <span className="text-sm font-medium">Talk with Starkla</span>
-          </Link>
+          </button>
 
-          <Link
-            to="/settings"
-            className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
-              location.pathname === '/settings' ? 'bg-blue-50 text-blue-600' : 'text-gray-600 hover:bg-blue-50'
-            }`}
+          <button
+            onClick={() => handleNavClick('settings')}
+            className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
           >
-            <Settings className="w-5 h-5" />
-            <span className="text-sm font-medium">Settings</span>
-          </Link>
+            <Settings className="w-5 h-5 text-gray-600" />
+            <span className="text-sm font-medium text-gray-700">Settings</span>
+          </button>
         </div>
       </div>
     </div>
