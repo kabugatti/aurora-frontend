@@ -11,6 +11,7 @@ import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
+import PracticeSystem from './pages/PracticeSystem';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/starkla-chat" element={<StarklaChat />} />
           <Route path="/certification-content" element={<CertificationContent />} />
           <Route path="/module-details" element={<ModuleDetails />} />
+          <Route path='/practiceSystem' element={<PracticeSystem/>}/>
         </Routes>
       </MainLayout>
     </Router>
