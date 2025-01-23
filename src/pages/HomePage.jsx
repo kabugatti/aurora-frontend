@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Brain, BookOpen, MessageSquare, Award, BarChart2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import StarklaIcon from '../assets/S-icon.jpg';
+import Footer from '../components/layout/Footer';
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -154,18 +155,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Brain className="w-6 h-6" />
-              <span className="text-white font-semibold">STARKLA</span>
-            </div>
-            <p className="text-sm">© 2025 STARKLA. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
