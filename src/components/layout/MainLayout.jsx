@@ -5,7 +5,7 @@ import Header from './Header';
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen w-screen">
       <Sidebar />
       <div className="flex flex-col flex-1">
         <Header />

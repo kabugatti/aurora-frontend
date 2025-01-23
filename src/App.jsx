@@ -11,6 +11,9 @@ import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
+import GamePanel from './pages/Games/GamePanel';
+import DifficultySelector from './pages/Games/memory-card/DifficultySelector';
+import GameBoard from './pages/Games/memory-card/GameBoard';
 
 function App() {
   return (
@@ -27,6 +30,9 @@ function App() {
           <Route path="/starkla-chat" element={<StarklaChat />} />
           <Route path="/certification-content" element={<CertificationContent />} />
           <Route path="/module-details" element={<ModuleDetails />} />
+          <Route path="/games" element={<GamePanel />} />
+          <Route path="/games/memory-card" element={<DifficultySelector />} />
+          <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
         </Routes>
       </MainLayout>
     </Router>
