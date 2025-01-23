@@ -83,17 +83,15 @@ const GameBoard = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Link to="/games/memory-card" className="text-primary hover:text-primary-dark mb-8 inline-flex items-center">
+    <div className="container mx-auto px-4">
+      <Link to="/games/memory-card" className="text-primary hover:text-primary-dark mb-0 inline-flex items-center">
         <svg className="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
         Back to Levels
       </Link>
 
-      <h1 className="text-3xl font-bold text-center mb-8 text-primary">Memory Card Game</h1>
-
-      <div className="flex justify-between mb-8">
+      <div className="flex justify-between mb-2 max-w-md mx-auto">
         <div className="text-lg flex items-center text-primary">
           <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM13 7h-2v6l4.5 2.7.7-1.2-3.2-1.9V7z"/>
@@ -108,7 +106,7 @@ const GameBoard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3 md:gap-4 max-w-7xl mx-auto">
+      <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 max-w-md mx-auto">
         {cards.map((card) => (
           <FlipCard
             key={card.id}
