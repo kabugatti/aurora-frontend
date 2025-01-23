@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LEVELS } from './../../Games/data/memoryLevels';
+import { LEVELS } from '../data/memoryLevels';
 
 const DifficultySelector = () => {
   return (

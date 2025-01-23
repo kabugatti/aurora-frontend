@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import GameModal from './GameModal';
-import { LEVELS } from './../../Games/data/memoryLevels';
+import { LEVELS } from '../data/memoryLevels';
 import FlipCard from './FlipCard';
 
 const getRandomPairs = (cards, numPairs = 8) => {

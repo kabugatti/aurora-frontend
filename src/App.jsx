@@ -11,9 +11,9 @@ import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
-import GamePanel from './pages/Games/GamePanel';
-import DifficultySelector from './pages/Games/memory-card/DifficultySelector';
-import GameBoard from './pages/Games/memory-card/GameBoard';
+import GamePanel from './pages/GamePanel';
+import DifficultySelector from './components/Games/memory-card/DifficultySelector';
+import GameBoard from './components/Games/memory-card/GameBoard';
 
 function App() {
   return (
