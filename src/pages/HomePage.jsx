@@ -155,7 +155,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      <Footer />
     </div>
   );
 };
