@@ -11,7 +11,7 @@ import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
-import WordMatching from './pages/Games/WorldMatching';
+import WordMatching from './pages/Games/WordMatching';
 
 function App() {
   return (
