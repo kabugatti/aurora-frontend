@@ -9,23 +9,23 @@ const FlipCard = ({ card, onCardClick, disabled }) => {
   };
 
   return (
-    <div className="aspect-square [perspective:1000px]" onClick={handleClick}>
+    <div className="aspect-square [perspective:1000px] cursor-pointer w-full max-w-[150px] mx-auto" onClick={handleClick}>
       <div
         className={`relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] ${
           card.flipped ? "[transform:rotateY(180deg)]" : ""
         }`}
       >
         <div className="absolute inset-0">
-          <div className="h-full w-full rounded-xl bg-primary flex items-center justify-center text-white text-4xl">
+          <div className="h-full w-full rounded-xl bg-primary flex items-center justify-center text-white text-2xl sm:text-3xl md:text-4xl">
             ?
           </div>
         </div>
         <div className="absolute inset-0 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-          <div className="h-full w-full rounded-xl bg-white flex items-center justify-center">
+          <div className="h-full w-full rounded-xl bg-white flex items-center justify-center p-2">
             {card.type === 'text' ? (
-              <span className="text-2xl font-bold">{card.value}</span>
+              <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-center">{card.value}</span>
             ) : (
-              <span className="text-5xl">{card.value}</span>
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl">{card.value}</span>
             )}
           </div>
         </div>

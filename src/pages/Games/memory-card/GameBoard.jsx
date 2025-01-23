@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import FlipCard from './FlipCard';
+
 import GameModal from './GameModal';
 import { LEVELS } from './../../Games/data/memoryLevels';
+import FlipCard from './FlipCard';
 
 const getRandomPairs = (cards, numPairs = 8) => {
   const textCards = cards.filter(card => card.type === 'text');
@@ -13,7 +14,7 @@ const getRandomPairs = (cards, numPairs = 8) => {
     const imageCard = cards.find(card => 
       card.type === 'image' && card.imageId === textCard.imageId
     );
-    return [textCard, imageCard];
+    return imageCard ? [textCard, imageCard] : [];
   });
   
   return selectedPairs.sort(() => Math.random() - 0.5);
@@ -28,7 +29,7 @@ const GameBoard = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const levelCards = LEVELS[levelId.toUpperCase()].cards;
+    const levelCards = LEVELS[levelId.toUpperCase()]?.cards || [];
     const randomPairs = getRandomPairs(levelCards);
     setCards(randomPairs);
     setMoves(0);
@@ -107,7 +108,7 @@ const GameBoard = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-2 sm:gap-3 md:gap-4 max-w-7xl mx-auto">
         {cards.map((card) => (
           <FlipCard
             key={card.id}
@@ -122,7 +123,7 @@ const GameBoard = () => {
         <GameModal
           moves={moves}
           onPlayAgain={() => {
-            const randomPairs = getRandomPairs(LEVELS[levelId.toUpperCase()].cards);
+            const randomPairs = getRandomPairs(LEVELS[levelId.toUpperCase()]?.cards || []);
             setCards(randomPairs);
             setMoves(0);
             setMatches(0);
