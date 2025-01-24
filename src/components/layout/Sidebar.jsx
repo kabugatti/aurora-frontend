@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   BookOpen, 
   BarChart2, 
@@ -12,7 +13,8 @@ import {
   Book,
   ChevronDown,
   ChevronRight,
-  Gamepad
+  Gamepad,
+  ShieldQuestion
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -20,8 +22,11 @@ const Sidebar = () => {
   const [level, setLevel] = useState('Choose Your Level');
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
 
+  const navigate=useNavigate()
+
   const handleNavClick = (page) => {
     setCurrentPage(page);
+    navigate(`/${page}`)
   };
 
   const categories = [
@@ -35,7 +40,9 @@ const Sidebar = () => {
 
   const topNavItems = [
     { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics', page: 'analytics' },
-    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'people' }
+    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'people' },
+    {icon:  <ShieldQuestion className="w-5 h-5"/>, label:"Questions", page:"practiceSystem"}
+
   ];
 
   return (

@@ -5,6 +5,9 @@ const QuestionsSection = ({question}) => {
     
     const [selectedAnswer, setSelectedAnswer] = useState(null);
 
+    const handleAnswerSelect = (index) => {
+        setSelectedAnswer(index);
+    };
     const answers = question.options;
   
 

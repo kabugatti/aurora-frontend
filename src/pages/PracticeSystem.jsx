@@ -137,6 +137,138 @@ const PracticeSystem = () => {
       ],
       correctAnswer: 0,
     },
+    {
+        "number": 13,
+        "question": "What is Skarnet, and what is its primary purpose?",
+        "options": [
+          "Skarnet is a collection of lightweight, modular Unix software for system administration and development.", // Correct
+          "Skarnet is a blockchain platform for decentralized applications.",
+          "Skarnet is a programming language for web development.",
+          "Skarnet is a cloud computing service provider."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 14,
+        "question": "What is `s6`, and why is it significant in the Skarnet ecosystem?",
+        "options": [
+          "s6 is a process supervision suite designed to manage Unix services and daemons.", // Correct
+          "s6 is a cryptocurrency wallet for storing Ethereum.",
+          "s6 is a web server for hosting static websites.",
+          "s6 is a programming language for smart contracts."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 15,
+        "question": "What is `execline`, and how does it differ from traditional shell scripting?",
+        "options": [
+          "execline is a lightweight scripting language that avoids subshells and is optimized for process orchestration.", // Correct
+          "execline is a web framework for building dynamic websites.",
+          "execline is a database management system for relational databases.",
+          "execline is a version control system for software development."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 16,
+        "question": "What is `skalibs`, and what role does it play in Skarnet software?",
+        "options": [
+          "skalibs is a C library providing low-level utilities and abstractions used by other Skarnet tools.", // Correct
+          "skalibs is a JavaScript framework for front-end development.",
+          "skalibs is a machine learning library for Python.",
+          "skalibs is a distributed file storage system."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 17,
+        "question": "What is the philosophy behind Skarnet's design?",
+        "options": [
+          "Skarnet emphasizes modularity, simplicity, and adherence to Unix principles.", // Correct
+          "Skarnet focuses on creating monolithic, all-in-one solutions.",
+          "Skarnet prioritizes graphical user interfaces over command-line tools.",
+          "Skarnet is designed for Windows-based systems only."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 18,
+        "question": "What is the purpose of `s6-rc`, a tool in the Skarnet suite?",
+        "options": [
+          "s6-rc is a service manager that handles dependencies and initialization of services.", // Correct
+          "s6-rc is a compiler for C programs.",
+          "s6-rc is a network monitoring tool.",
+          "s6-rc is a package manager for Linux distributions."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 19,
+        "question": "What is the primary use case for `s6-log`?",
+        "options": [
+          "s6-log is a logging daemon designed for efficient and reliable log management.", // Correct
+          "s6-log is a tool for analyzing cryptocurrency transactions.",
+          "s6-log is a web analytics platform.",
+          "s6-log is a database query optimization tool."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 20,
+        "question": "What is the relationship between `s6` and `s6-rc`?",
+        "options": [
+          "s6-rc builds on top of s6 to provide service dependency management and initialization.", // Correct
+          "s6-rc is a competitor to s6 and provides similar functionality.",
+          "s6-rc is a deprecated version of s6.",
+          "s6-rc is unrelated to s6 and serves a completely different purpose."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 21,
+        "question": "What is the purpose of `s6-svscan` in the Skarnet ecosystem?",
+        "options": [
+          "s6-svscan is a process supervisor that monitors and manages service directories.", // Correct
+          "s6-svscan is a tool for scanning network ports.",
+          "s6-svscan is a file synchronization utility.",
+          "s6-svscan is a compiler for shell scripts."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 22,
+        "question": "What is the significance of `s6-ipcserver`?",
+        "options": [
+          "s6-ipcserver is a tool for creating and managing inter-process communication (IPC) channels.", // Correct
+          "s6-ipcserver is a web server for hosting dynamic websites.",
+          "s6-ipcserver is a database replication tool.",
+          "s6-ipcserver is a cryptocurrency mining software."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 23,
+        "question": "What is the role of `s6-fdholderd` in Skarnet?",
+        "options": [
+          "s6-fdholderd is a daemon that manages file descriptor passing between processes.", // Correct
+          "s6-fdholderd is a tool for managing firewall rules.",
+          "s6-fdholderd is a web application framework.",
+          "s6-fdholderd is a distributed computing platform."
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "number": 24,
+        "question": "What is the primary advantage of using Skarnet tools over traditional Unix utilities?",
+        "options": [
+          "Skarnet tools are lightweight, modular, and designed for modern Unix system administration.", // Correct
+          "Skarnet tools are easier to use for beginners than traditional Unix utilities.",
+          "Skarnet tools are designed exclusively for Windows systems.",
+          "Skarnet tools are focused on graphical user interfaces rather than command-line interfaces."
+        ],
+        "correctAnswer": 0
+      }
   ];
  
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -144,16 +276,20 @@ const PracticeSystem = () => {
   const handleNextQuestion=()=>{
      if(currentQuestion < web3Questions.length-1){
         setCurrentQuestion(currentQuestion +1)
+     }else{
+        setCurrentQuestion(1)
      }
   }
 
   const handleBackQuestion=()=>{
     if(currentQuestion > 0){
         setCurrentQuestion(currentQuestion -1)
+    }else{
+        setCurrentQuestion(web3Questions.length-1)
     }
   }
   return (
-    <div className="md:w-[1200px]">
+    <div className="md:w-[1200px] mx-auto px-4">
       <TopHeaders />
       <QuestionsSection question={web3Questions[currentQuestion]} />
       <div className="mt-5 flex items-center justify-between w-full">
