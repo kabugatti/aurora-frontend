@@ -12,6 +12,9 @@ import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
 import PracticeSystem from './pages/PracticeSystem';
+import GamePanel from './pages/GamePanel';
+import DifficultySelector from './components/Games/memory-card/DifficultySelector';
+import GameBoard from './components/Games/memory-card/GameBoard';
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
           <Route path="/certification-content" element={<CertificationContent />} />
           <Route path="/module-details" element={<ModuleDetails />} />
           <Route path='/practiceSystem' element={<PracticeSystem/>}/>
+          <Route path="/games" element={<GamePanel />} />
+          <Route path="/games/memory-card" element={<DifficultySelector />} />
+          <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
         </Routes>
       </MainLayout>
     </Router>
