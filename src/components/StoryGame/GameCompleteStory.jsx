@@ -3,7 +3,6 @@ import { DndProvider, useDrag, useDrop } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { FaArrowLeft, FaSyncAlt } from "react-icons/fa";
 import { AiFillTrophy } from "react-icons/ai";
-import "./GameCompleteStory.css";
 
 const GameCompleteStory = ({
   storyText,
@@ -57,19 +56,23 @@ const GameCompleteStory = ({
           />
         );
       }
-      return <span key={index}>{part} </span>;
+      return <span key={index} className="text-lg">{part} </span>;
     });
   };
 
+  const isWordUsed = (word) => answers.includes(word);
+
   if (completed) {
     return (
-      <div className="game-completed">
-        <AiFillTrophy className="trophy-icon" />
-        <h2>Story Completed!</h2>
-        <p>Your Score: {score}/{correctAnswers.length}</p>
-        <button className="play-again-button" onClick={restartGame}>
-          <FaSyncAlt className="button-icon" />
-          Play Again
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 rounded-lg shadow-lg">
+        <AiFillTrophy className="text-yellow-500 text-6xl mb-4" />
+        <h2 className="text-2xl font-bold mb-2">Story Completed!</h2>
+        <p className="text-lg text-gray-700">Your Score: {score}/{correctAnswers.length}</p>
+        <button
+          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center gap-2 transform transition-transform active:scale-95"
+          onClick={restartGame}
+        >
+          <FaSyncAlt /> Play Again
         </button>
       </div>
     );
@@ -77,33 +80,53 @@ const GameCompleteStory = ({
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div className="game-complete-story">
-        <button className="go-back-icon" onClick={onGoBack}>
+      <div className="relative p-6 bg-white min-h-screen flex flex-col items-center rounded-lg shadow-lg">
+        <button
+          className="absolute top-4 left-4 text-blue-500 hover:text-blue-700"
+          onClick={onGoBack}
+        >
           <FaArrowLeft />
         </button>
-        <h2 className="title">Complete the Story</h2>
-        <p className="subtitle">Drag and drop the words to complete the story</p>
-        <div className="story-text">{renderStoryText()}</div>
-        <div className="word-options">
-          {wordOptions.map((word, index) => (
-            <DraggableWord key={index} word={word} />
-          ))}
+        <h2 className="text-2xl font-bold mb-4">Complete the Story</h2>
+        <p className="text-gray-600 mb-6">Drag and drop the words to complete the story</p>
+        <div className="bg-gray-100 p-4 rounded shadow-md mb-6 w-full max-w-2xl text-center">
+          <div className="flex flex-wrap justify-center gap-2">
+            {renderStoryText()}
+          </div>
         </div>
-        <button className="restart-icon" onClick={restartGame}>
-          <FaSyncAlt />
-        </button>
+        <div className="flex items-center gap-4 justify-center">
+          <div className="flex flex-wrap gap-4">
+            {wordOptions.map((word, index) => (
+              <DraggableWord key={index} word={word} disabled={isWordUsed(word)} />
+            ))}
+          </div>
+          <button
+            className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-300 transition-transform transform active:scale-95"
+            onClick={restartGame}
+          >
+            <FaSyncAlt className="text-xl" />
+          </button>
+        </div>
       </div>
     </DndProvider>
   );
 };
 
-const DraggableWord = ({ word }) => {
+const DraggableWord = ({ word, disabled }) => {
   const [, drag] = useDrag(() => ({
     type: "word",
     item: { word },
+    canDrag: !disabled,
   }));
   return (
-    <div ref={drag} className="draggable-word">
+    <div
+      ref={!disabled ? drag : null}
+      className={`px-4 py-2 rounded shadow-md w-24 text-center ${
+        disabled
+          ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+          : "bg-blue-500 text-white hover:bg-blue-600 cursor-pointer"
+      }`}
+    >
       {word}
     </div>
   );
@@ -115,7 +138,10 @@ const DropZone = ({ index, word, onDrop }) => {
     drop: (item) => onDrop(index, item.word),
   }));
   return (
-    <div ref={drop} className="drop-zone">
+    <div
+      ref={drop}
+      className="px-4 py-2 border-2 border-dashed border-gray-300 rounded text-center min-w-[100px] h-10 flex items-center justify-center bg-white"
+    >
       {word || "________"}
     </div>
   );
