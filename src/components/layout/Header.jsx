@@ -12,7 +12,7 @@ const Header = () => {
     <header className="h-16 border-b border-gray-200 bg-white px-6">
       <div className="flex items-center justify-between h-full">
         {/* Search Section */}
-        <div className="relative w-96">
+        <div className="left-1/2 transform -translate-x-1/2 relative w-96">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
@@ -40,7 +40,6 @@ const Header = () => {
             className="flex items-center gap-2 px-3 py-2 text-left rounded-lg transition-colors hover:bg-gray-50"
           >
             <Settings className="w-5 h-5 text-gray-600" />
-            <span className="text-sm font-medium text-gray-700">Settings</span>
           </button>
         </div>
       </div>
