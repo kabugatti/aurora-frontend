@@ -45,7 +45,7 @@ const Sidebar = () => {
     <div className="w-64 min-h-screen bg-white border-r border-gray-200">
       <div className="p-4 flex flex-col h-full">
         {/* Profile Section */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8 p-2">
           <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
             <svg
               width="24"
@@ -63,7 +63,7 @@ const Sidebar = () => {
               />
             </svg>
           </div>
-          <div>
+          <div className="flex flex-col">
             <h2 className="font-medium text-sm text-gray-900">Diego Duarte</h2>
             <p className="text-sm text-gray-500">Student</p>
           </div>
