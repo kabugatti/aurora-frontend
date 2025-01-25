@@ -5,7 +5,7 @@ import { MdOutlineAccessTime } from "react-icons/md";
 
 
 
-const TopHeaders = () => {
+const TopHeaders = ({currentQuestion,totalQuestion}) => {
   return (
     <div className="flex w-full  sm:w-full md:w-[80%] lg:w-[70%] justify-between">
       {/* current question */}
@@ -15,7 +15,7 @@ const TopHeaders = () => {
           </div>
           <div className="ml-5">
               <h2 className="text-sm">Current Question</h2>
-              <span className="font-bold text-lg">15 of 25</span>
+              <span className="font-bold text-lg">{currentQuestion +1} of <span>{totalQuestion}</span></span>
           </div>
       </div>
 

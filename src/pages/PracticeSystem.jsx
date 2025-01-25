@@ -24,7 +24,7 @@ const PracticeSystem = () => {
   }
   return (
     <div className="md:w-[1200px] mx-auto px-4">
-      {!isQuizFinished && <TopHeaders />}
+      {!isQuizFinished && <TopHeaders currentQuestion={currentQuestion} totalQuestion={web3Questions.length}/>}
       
       {isQuizFinished ? (
         // Display congratulatory message when the quiz is finished
@@ -36,7 +36,7 @@ const PracticeSystem = () => {
             You have successfully finished your quiz.
           </p>
         </div>
-      ): <QuestionsSection question={web3Questions[currentQuestion]} />}
+      ): <QuestionsSection  question={web3Questions[currentQuestion]} />}
      
       {!isQuizFinished && <div className="mt-5 flex items-center justify-between w-full">
         {/* Back Button */}
