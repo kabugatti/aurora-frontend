@@ -24,7 +24,8 @@ const PracticeSystem = () => {
   }
   return (
     <div className="md:w-[1200px] mx-auto px-4">
-      <TopHeaders />
+      {!isQuizFinished && <TopHeaders />}
+      
       {isQuizFinished ? (
         // Display congratulatory message when the quiz is finished
         <div className="text-center py-10 w-full mt-28">
