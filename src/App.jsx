@@ -4,7 +4,7 @@ import MainLayout from './components/layout/MainLayout';
 import LearningContent from './pages/LearningContent';
 import CertificationsObtained from './pages/CertificationsObtained';
 import SettingsPage from './pages/SettingsPage';
-import StarklaChat from './pages/StarklaChat/StarklaChat'; 
+import StarklaChat from './pages/StarklaChat/StarklaChat';
 import Categories from './pages/Categories';
 import Analytics from './pages/Analytics';
 import CertificationContent from './pages/CertificationContent';
@@ -14,7 +14,13 @@ import HomePage from './pages/HomePage';
 import GamePanel from './pages/GamePanel';
 import DifficultySelector from './components/Games/memory-card/DifficultySelector';
 import GameBoard from './components/Games/memory-card/GameBoard';
-
+import GrammarContent from "./pages/GrammarContent";
+import VocabularyPage from './pages/VocabularyContent';
+import SpeakingPage from './pages/SpeakinContent';
+import ListeningPage from './pages/ListeningContent';
+import ReadingContent from "./pages/ReadingContent";
+import CommunityInteractionPage from './pages/Community';
+import AIAssistant from './components/ai/AIAssistant';
 function App() {
   return (
     <Router>
@@ -33,6 +39,13 @@ function App() {
           <Route path="/games" element={<GamePanel />} />
           <Route path="/games/memory-card" element={<DifficultySelector />} />
           <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
+          <Route path="/grammar" element={<GrammarContent />} />
+          <Route path='/vocabulary' element={<VocabularyPage />} />
+          <Route path='/speaking' element={<SpeakingPage />} />
+          <Route path='/listening' element={<ListeningPage />} />
+          <Route path='/reading' element={<ReadingContent />} />
+          <Route path='/community' element={<CommunityInteractionPage />} />
+          <Route path='starkla' element={<AIAssistant />} />
         </Routes>
       </MainLayout>
     </Router>

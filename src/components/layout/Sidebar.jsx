@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { 
-  BookOpen, 
-  BarChart2, 
-  Users, 
-  Settings, 
+import {
+  BookOpen,
+  BarChart2,
+  Users,
+  Settings,
   MessageSquare,
   FileText,
   Headphones,
@@ -14,14 +14,16 @@ import {
   ChevronRight,
   Gamepad
 } from 'lucide-react';
-
+import { useNavigate } from 'react-router-dom';
 const Sidebar = () => {
-  const [currentPage, setCurrentPage] = useState('home');
+  const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState();
   const [level, setLevel] = useState('Choose Your Level');
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
 
   const handleNavClick = (page) => {
     setCurrentPage(page);
+    navigate(`/${page}`);
   };
 
   const categories = [
@@ -35,7 +37,7 @@ const Sidebar = () => {
 
   const topNavItems = [
     { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics', page: 'analytics' },
-    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'people' }
+    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'community' }
   ];
 
   return (
@@ -78,7 +80,7 @@ const Sidebar = () => {
                 {/* Level Selection */}
                 <div className="px-3 mb-4">
                   <h2 className="text-xs font-semibold mb-2 text-gray-600">LEVEL</h2>
-                  <select 
+                  <select
                     value={level}
                     onChange={(e) => setLevel(e.target.value)}
                     className="w-full bg-white text-gray-900 p-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
@@ -100,7 +102,7 @@ const Sidebar = () => {
                     {categories.map((item, index) => (
                       <button
                         key={index}
-                        onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
+                        onClick={() => handleNavClick(`${item.label.toLowerCase()}`)}
                         className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
                       >
                         <span className="text-gray-600">{item.icon}</span>
@@ -118,9 +120,8 @@ const Sidebar = () => {
             <button
               key={index}
               onClick={() => handleNavClick(item.page)}
-              className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
-                currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
-              }`}
+              className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
+                }`}
             >
               <span className="text-gray-600">{item.icon}</span>
               <span className="text-sm font-medium text-gray-700">{item.label}</span>
