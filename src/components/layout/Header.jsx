@@ -1,7 +1,13 @@
-import React from 'react';
-import { Bell, Search } from 'lucide-react';
+import React, { useState } from "react";
+import { Bell, Search, Settings } from "lucide-react";
 
 const Header = () => {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  const handleNavClick = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <header className="h-16 border-b border-gray-200 bg-white px-6">
       <div className="flex items-center justify-between h-full">
@@ -17,14 +23,26 @@ const Header = () => {
           />
         </div>
 
-        {/* Notification Button */}
-        <button 
-          className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
-          onClick={() => console.log('Notifications clicked')}
-        >
-          <Bell className="h-6 w-6" />
-          <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></span>
-        </button>
+        {/* Navigation Section */}
+        <div className="flex items-center space-x-4">
+          {/* Notification Button */}
+          <button
+            className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
+            onClick={() => console.log("Notifications clicked")}
+          >
+            <Bell className="h-6 w-6" />
+            <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></span>
+          </button>
+
+          {/* Settings Button */}
+          <button
+            onClick={() => handleNavClick("settings")}
+            className="flex items-center gap-2 px-3 py-2 text-left rounded-lg transition-colors hover:bg-gray-50"
+          >
+            <Settings className="w-5 h-5 text-gray-600" />
+            <span className="text-sm font-medium text-gray-700">Settings</span>
+          </button>
+        </div>
       </div>
     </header>
   );
