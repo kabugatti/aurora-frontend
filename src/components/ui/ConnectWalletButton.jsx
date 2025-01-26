@@ -1,6 +1,7 @@
 import React from 'react';
 import { Wallet } from 'lucide-react';
 import { useWallet } from './WalletContext';
+import { truncateAddress } from '../utils/helpers'; // Importamos desde helpers
 
 const ConnectWalletButton = () => {
   const { address, connectWallet, disconnectWallet } = useWallet();
@@ -14,10 +15,6 @@ const ConnectWalletButton = () => {
       <span>{address ? truncateAddress(address) : 'Connect Wallet'}</span>
     </button>
   );
-};
-
-const truncateAddress = (address) => {
-  return `${address.slice(0, 6)}...${address.slice(-4)}`;
 };
 
 export default ConnectWalletButton;
