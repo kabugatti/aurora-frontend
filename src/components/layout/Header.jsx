@@ -1,7 +1,14 @@
 import React from 'react';
 import { Bell, Search } from 'lucide-react';
+import ConnectWalletButton from '../ui/ConnectWalletButton'; // Importamos el nuevo componente
 
 const Header = () => {
+  // Función para manejar la conexión de la billetera
+  const handleConnectWallet = () => {
+    console.log('Connect Wallet clicked');
+    // Aquí integrarás la lógica de conexión con StarkNet Kit o tu biblioteca preferida
+  };
+
   return (
     <header className="h-16 border-b border-gray-200 bg-white px-6">
       <div className="flex items-center justify-between h-full">
@@ -17,14 +24,20 @@ const Header = () => {
           />
         </div>
 
-        {/* Notification Button */}
-        <button 
-          className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
-          onClick={() => console.log('Notifications clicked')}
-        >
-          <Bell className="h-6 w-6" />
-          <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></span>
-        </button>
+        {/* Right Section: Notification and Connect Wallet */}
+        <div className="flex items-center space-x-4">
+          {/* Notification Button */}
+          <button
+            className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
+            onClick={() => console.log('Notifications clicked')}
+          >
+            <Bell className="h-6 w-6" />
+            <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></span>
+          </button>
+
+          {/* Connect Wallet Button */}
+          <ConnectWalletButton onClick={handleConnectWallet} />
+        </div>
       </div>
     </header>
   );
