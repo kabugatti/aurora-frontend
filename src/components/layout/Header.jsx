@@ -1,8 +1,8 @@
 import React from 'react';
 import { Bell, Search } from 'lucide-react';
-import ConnectWalletButton from './ConnectWalletButton';
-import { useWallet } from '../context/WalletContext';
-import { truncateAddress } from '../utils/helpers';
+import ConnectWalletButton from '../ui/ConnectWalletButton';
+import { useWallet } from '../../context/WalletContext';
+import { truncateAddress } from '../../utils/helpers';
 
 const Header = () => {
   const { address } = useWallet();

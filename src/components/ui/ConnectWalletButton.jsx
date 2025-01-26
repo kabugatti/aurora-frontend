@@ -1,7 +1,7 @@
 import React from 'react';
 import { Wallet } from 'lucide-react';
-import { useWallet } from './WalletContext';
-import { truncateAddress } from '../utils/helpers'; // Importamos desde helpers
+import { useWallet } from '../../context/WalletContext'; 
+import { truncateAddress } from '../../utils/helpers';
 
 const ConnectWalletButton = () => {
   const { address, connectWallet, disconnectWallet } = useWallet();
