@@ -7,14 +7,21 @@ export const WalletProvider = ({ children }) => {
   const [address, setAddress] = useState('');
   const [wallet, setWallet] = useState(null);
 
-  // Automatic connection on page load
+  // Conexión automática al cargar la app
   useEffect(() => {
     const autoConnect = async () => {
-      const { wallet: connectedWallet } = await connect({ modalMode: "neverAsk" });
-      
-      if (connectedWallet?.isConnected) {
-        setWallet(connectedWallet);
-        setAddress(connectedWallet.selectedAddress);
+      try {
+        const { wallet: connectedWallet } = await connect({ 
+          modalMode: "neverAsk",
+          dappName: "StarkLa"  // Añade nombre de tu dApp
+        });
+        
+        if (connectedWallet?.isConnected) {
+          setWallet(connectedWallet);
+          setAddress(connectedWallet.selectedAddress);
+        }
+      } catch (error) {
+        console.error("Auto-connect error:", error);
       }
     };
     
@@ -22,18 +29,30 @@ export const WalletProvider = ({ children }) => {
   }, []);
 
   const connectWallet = async () => {
-    const { wallet: newWallet } = await connect();
-    
-    if (newWallet) {
-      setWallet(newWallet);
-      setAddress(newWallet.selectedAddress);
+    try {
+      const { wallet: newWallet } = await connect({
+        modalMode: "alwaysAsk",  // Modal siempre visible
+        dappName: "StarkLa",     // Nombre de tu dApp
+        modalTheme: "light"      // Tema del modal
+      });
+      
+      if (newWallet) {
+        setWallet(newWallet);
+        setAddress(newWallet.selectedAddress);
+      }
+    } catch (error) {
+      console.error("Connection error:", error);
     }
   };
 
   const disconnectWallet = async () => {
-    await disconnect({ clearLastWallet: true });
-    setWallet(null);
-    setAddress('');
+    try {
+      await disconnect({ clearLastWallet: true });
+      setWallet(null);
+      setAddress('');
+    } catch (error) {
+      console.error("Disconnection error:", error);
+    }
   };
 
   return (
