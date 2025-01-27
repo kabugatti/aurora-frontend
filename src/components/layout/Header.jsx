@@ -70,7 +70,7 @@ const Header = () => {
         {/* Notification Button */}
         <button
           className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
-          onClick={() => console.log('Notifications clicked')}
+          onClick={() => { navigate('/notification') }}
         >
           <Bell className="h-6 w-6" />
           <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></span>

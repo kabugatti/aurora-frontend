@@ -21,6 +21,7 @@ import ListeningPage from './pages/ListeningContent';
 import ReadingContent from "./pages/ReadingContent";
 import CommunityInteractionPage from './pages/Community';
 import AIAssistant from './components/ai/AIAssistant';
+import Notification from './pages/Notification';
 function App() {
   return (
     <Router>
@@ -45,7 +46,8 @@ function App() {
           <Route path='/listening' element={<ListeningPage />} />
           <Route path='/reading' element={<ReadingContent />} />
           <Route path='/community' element={<CommunityInteractionPage />} />
-          <Route path='starkla' element={<AIAssistant />} />
+          <Route path='/starkla' element={<AIAssistant />} />
+          <Route path='/notification' element={<Notification />} />
         </Routes>
       </MainLayout>
     </Router>
