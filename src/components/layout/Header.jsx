@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bell, Search } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [showFiltered, setShowFiltered] = useState(false);
+  const Options = [
+    'grammar',
+    'vocabulary',
+    'speaking',
+    'listening',
+    'reading',
+    'games'
+  ]
+  const handleChange = (e) => {
+    setShowFiltered(true);
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(e.target.value);
+    const filteredOptionsinArray = Options.filter((eachOption) => eachOption.includes(query));//if the filtered content includes it will return in an array or else empty array will be returned
+    console.log(filteredOptionsinArray);
+    setFilteredOptions(filteredOptionsinArray);
+  }
+
+
   return (
     <header className="h-16 border-b border-gray-200 bg-white px-6">
       <div className="flex items-center justify-between h-full">
@@ -14,11 +37,38 @@ const Header = () => {
             type="text"
             placeholder="Search..."
             className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            value={searchQuery}
+            onChange={(e) => handleChange(e)}
+
           />
+          {showFiltered && (
+            <div className="absolute top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-md cursor-pointer z-10">
+              {searchQuery.length > 0 ? (
+                filteredOptions.length > 0 ? (
+                  filteredOptions.map((option, index) => (
+                    <div
+                      className="px-4 py-2 text-gray-500 hover:bg-gray-100"
+                      key={index}
+                      onClick={() => {
+                        setSearchQuery(option);
+                        navigate(`/${option}`);
+                        setShowFiltered(false);
+                      }}
+                    >
+                      {option}
+                    </div>
+                  ))
+                ) : (
+                  <div className="px-4 py-2 text-gray-500">No Search Result</div>
+                )
+              ) : null}
+            </div>
+          )}
+
         </div>
 
         {/* Notification Button */}
-        <button 
+        <button
           className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
           onClick={() => console.log('Notifications clicked')}
         >

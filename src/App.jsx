@@ -16,7 +16,7 @@ import DifficultySelector from './components/Games/memory-card/DifficultySelecto
 import GameBoard from './components/Games/memory-card/GameBoard';
 import GrammarContent from "./pages/GrammarContent";
 import VocabularyPage from './pages/VocabularyContent';
-import SpeakingPage from './pages/SpeakinContent';
+import SpeakingPage from './pages/SpeakingContent';
 import ListeningPage from './pages/ListeningContent';
 import ReadingContent from "./pages/ReadingContent";
 import CommunityInteractionPage from './pages/Community';
