@@ -27,12 +27,12 @@ const Sidebar = () => {
   };
 
   const categories = [
-    { icon: <Book className="w-5 h-5" />, label: 'Grammar' },
-    { icon: <GraduationCap className="w-5 h-5" />, label: 'Vocabulary' },
-    { icon: <MessageCircle className="w-5 h-5" />, label: 'Speaking' },
-    { icon: <Headphones className="w-5 h-5" />, label: 'Listening' },
-    { icon: <FileText className="w-5 h-5" />, label: 'Reading' },
-    { icon: <Gamepad className="w-5 h-5" />, label: 'Games' }
+    { icon: <Book className="w-5 h-5" />, label: 'Grammar', page: 'grammar' },
+    { icon: <GraduationCap className="w-5 h-5" />, label: 'Vocabulary', page: 'vocabulary' },
+    { icon: <MessageCircle className="w-5 h-5" />, label: 'Speaking', page: 'speaking' },
+    { icon: <Headphones className="w-5 h-5" />, label: 'Listening', page: 'listening' },
+    { icon: <FileText className="w-5 h-5" />, label: 'Reading', page: 'reading' },
+    { icon: <Gamepad className="w-5 h-5" />, label: 'Games', page: 'games' }
   ];
 
   const topNavItems = [
@@ -102,11 +102,13 @@ const Sidebar = () => {
                     {categories.map((item, index) => (
                       <button
                         key={index}
-                        onClick={() => handleNavClick(`${item.label.toLowerCase()}`)}
-                        className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
+                        onClick={() => handleNavClick(item.page)}
+                        className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
+                          }`}
+                        aria-label={item.label}
                       >
-                        <span className="text-gray-600">{item.icon}</span>
                         <span className="text-sm text-gray-700">{item.label}</span>
+                        <span className="text-gray-600">{item.icon}</span>
                       </button>
                     ))}
                   </div>
@@ -122,9 +124,10 @@ const Sidebar = () => {
               onClick={() => handleNavClick(item.page)}
               className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
                 }`}
+              aria-label={item.label}
             >
-              <span className="text-gray-600">{item.icon}</span>
               <span className="text-sm font-medium text-gray-700">{item.label}</span>
+              <span className="text-gray-600">{item.icon}</span>
             </button>
           ))}
         </nav>

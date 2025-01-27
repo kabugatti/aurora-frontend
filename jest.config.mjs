@@ -1,0 +1,10 @@
+// jest.config.mjs
+/** @type {import('jest').Config} */
+
+export default {
+  transform: {
+    "^.+\\.jsx?$": "babel-jest",
+  },
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
+  extensionsToTreatAsEsm: [".jsx"], // Treat only .jsx as ESM explicitly
+};
