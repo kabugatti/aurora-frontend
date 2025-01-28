@@ -10,8 +10,13 @@ const PracticeSystem = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isQuizFinished, setIsQuizFinished] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [scorePercentage, setScorePercentage] = useState(0);
+
+  
 
   const [score, setScore] = useState(0);
+
+
 
   const handleNextQuestion = (selectedAnswer) => {
   
@@ -25,6 +30,8 @@ const PracticeSystem = () => {
     } else {
       setIsQuizFinished(true); 
     }
+   setScorePercentage(((score / web3Questions.length) * 100).toFixed(2))
+
   };
 
   const handleBackQuestion = () => {
@@ -49,6 +56,7 @@ const PracticeSystem = () => {
         <TopHeaders
           currentQuestion={currentQuestion}
           totalQuestion={web3Questions.length}
+          scorePercentage={scorePercentage}
         />
       )}
 
