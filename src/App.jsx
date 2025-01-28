@@ -10,6 +10,11 @@ import Analytics from './pages/Analytics';
 import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
 import HomePage from './pages/HomePage';
+
+import StoryGame from './pages/StoryGame';
+
+import WordMatching from './pages/Games/WordMatching';
+
 import GamePanel from './pages/GamePanel';
 import DifficultySelector from './components/Games/memory-card/DifficultySelector';
 import GameBoard from './components/Games/memory-card/GameBoard';
@@ -28,6 +33,11 @@ function App() {
           <Route path="/starkla-chat" element={<StarklaChat />} />
           <Route path="/certification-content" element={<CertificationContent />} />
           <Route path="/module-details" element={<ModuleDetails />} />
+
+          <Route path="/story-game" element={<StoryGame />} />
+
+          <Route path="/games/word-matching/" element={<WordMatching/>}/>
+
           <Route path="/games" element={<GamePanel />} />
           <Route path="/games/memory-card" element={<DifficultySelector />} />
           <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
