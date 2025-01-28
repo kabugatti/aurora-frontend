@@ -14,16 +14,15 @@ import {
   ChevronRight,
   Gamepad
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+
 const Sidebar = () => {
-  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState();
   const [level, setLevel] = useState('Choose Your Level');
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
 
   const handleNavClick = (page) => {
     setCurrentPage(page);
-    navigate(`/${page}`);
   };
 
   const categories = [
@@ -106,8 +105,9 @@ const Sidebar = () => {
                         className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
                           }`}
                         aria-label={item.label}
+                        data-testid={`category-container-${item.label}`}
                       >
-                        <span className="text-sm text-gray-700">{item.label}</span>
+                        <NavLink to={item.page} data-testid={`category-link-${item.label}`} className="text-black" >{item.label}</NavLink>
                         <span className="text-gray-600">{item.icon}</span>
                       </button>
                     ))}
@@ -125,8 +125,9 @@ const Sidebar = () => {
               className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
                 }`}
               aria-label={item.label}
+              data-testid={`item-container-${item.label}`}
             >
-              <span className="text-sm font-medium text-gray-700">{item.label}</span>
+              <NavLink to={item.page} data-testid={`item-link-${item.label}`} className="text-black">{item.label}</NavLink>
               <span className="text-gray-600">{item.icon}</span>
             </button>
           ))}

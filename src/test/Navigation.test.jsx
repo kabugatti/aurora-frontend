@@ -1,124 +1,85 @@
 /**
  * @jest-environment jsdom
  */
-
 test('use jsdom in this test file', () => {
     const element = document.createElement('div');
     expect(element).not.toBeNull();
 });
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/layout/Sidebar";
-// Mock the useNavigate hook from react-router-dom
-jest.mock("react-router-dom", () => ({
-    useNavigate: jest.fn(),
-}));
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Sidebar from '../components/layout/Sidebar';
+import { BrowserRouter } from 'react-router-dom';
+import userEvent from '@testing-library/user-event';
 
-describe("Sidebar Component", () => {
+test('renders all category buttons with correct links', () => {
     const categories = [
-        { label: "Grammar" },
-        { label: "Vocabulary" },
-        { label: "Speaking" },
-        { label: "Listening" },
-        { label: "Reading" },
-        { label: "Games" }
+        { label: 'Grammar', page: '/grammar' },
+        { label: 'Vocabulary', page: '/vocabulary' },
+        { label: 'Speaking', page: '/speaking' },
+        { label: 'Listening', page: '/listening' },
+        { label: 'Reading', page: '/reading' },
+        { label: 'Games', page: '/games' },
     ];
-
     const topNavItems = [
-        { label: "Analytics" },
-        { label: "Community" }
-    ];
+        { label: "Analytics", page: "/analytics" },
+        { label: "Community", page: "/community" }
+    ]
+    render(<Sidebar />, { wrapper: BrowserRouter })
+    expect(screen.getByText("Diego Duarte")).toBeInTheDocument();
+    expect(screen.getByText("Student")).toBeInTheDocument();
 
-    it("renders sidebar with navigation buttons", () => {
-        render(<Sidebar categories={categories} topNavItems={topNavItems} />);
+    // Expand accordion or ensure categories are rendered
+    expect(screen.queryByText("LEVEL")).toBeNull();
+    const accordionButton = screen.getByText('Learning content');
+    fireEvent.click(accordionButton);
+    expect(screen.getByText("LEVEL")).toBeInTheDocument();
 
-        // Verify the presence of profile section
-        expect(screen.getByText("Diego Duarte")).toBeInTheDocument();
-        expect(screen.getByText("Student")).toBeInTheDocument();
-
-
-        // Check that all top navigation buttons are rendered
-        topNavItems.forEach((item) => {
-            const button = screen.getByText(item.label);
-            expect(button).toBeInTheDocument();
-        });
-        // Check that all categories buttons are rendered
-        // categories.forEach((category) => {
-        //     const button = screen.getByText(category.label);
-        //     expect(button).toBeInTheDocument();
-        // });
-        categories.forEach((category) => {
-            expect(categories).toContain(category)
-        })
-
-        // Check the Talk with Starkla button
-        expect(screen.getByText("Talk with Starkla")).toBeInTheDocument();
+    // Verify each category button and link
+    categories.forEach((category) => {
+        const button = screen.getByTestId(`category-container-${category.label}`);
+        const link = screen.getByTestId(`category-link-${category.label}`);
+        expect(button).toBeInTheDocument();
+        expect(link).toBeInTheDocument();
+        expect(link).toHaveAttribute('href', category.page); // Verify the link
     });
-
-    it("expands learning content when clicked", () => {
-        render(<Sidebar categories={categories} topNavItems={topNavItems} />);
-
-        // Initially, the learning content should not be expanded
-        expect(screen.queryByText("LEVEL")).toBeNull();
-
-        // Simulate click on "Learning content" button to expand
-        fireEvent.click(screen.getByText("Learning content"));
-
-        // Now the LEVEL section should be visible
-        expect(screen.getByText("LEVEL")).toBeInTheDocument();
+    topNavItems.forEach((item) => {
+        const itembutton = screen.getByTestId(`item-container-${item.label}`);
+        const itemlink = screen.getByTestId(`item-link-${item.label}`);
+        expect(itembutton).toBeInTheDocument();
+        expect(itemlink).toBeInTheDocument();
+        expect(itemlink).toHaveAttribute('href', item.page); // Verify the link
     });
+    expect(screen.getByText("Talk with Starkla")).toBeInTheDocument();
 
-    it("navigates to the correct page when a category button is clicked", () => {
-        const navigate = jest.fn();
-        useNavigate.mockReturnValue(navigate);
+    expect(screen.getByText("Settings")).toBeInTheDocument();
 
-        render(<Sidebar categories={categories} topNavItems={topNavItems} />);
-        // Simulate clicking the "Grammar" button
-        fireEvent.click(screen.toBe("Grammar"));
-        expect(navigate).toHaveBeenCalledWith("/grammar");
-
-        // Simulate clicking the "Community" button
-        fireEvent.click(screen.getByText("Vocabulary"));
-        expect(navigate).toHaveBeenCalledWith("/vocabulary");
-    });
-
-    it("navigates to the correct page when top nav buttons are clicked", () => {
-        const navigate = jest.fn();
-        useNavigate.mockReturnValue(navigate);
-
-        render(<Sidebar categories={categories} topNavItems={topNavItems} />);
-
-        // Simulate clicking the "Analytics" button
-        fireEvent.click(screen.getByText("Analytics"));
-        expect(navigate).toHaveBeenCalledWith("/analytics");
-
-        // Simulate clicking the "Community" button
-        fireEvent.click(screen.getByText("Community"));
-        expect(navigate).toHaveBeenCalledWith("/community");
-    });
-
-    it("navigates to the Starkla chat when clicked", () => {
-        const navigate = jest.fn();
-        useNavigate.mockReturnValue(navigate);
-
-        render(<Sidebar categories={categories} topNavItems={topNavItems} />);
-
-        // Simulate clicking the "Talk with Starkla" button
-        fireEvent.click(screen.getByText("Talk with Starkla"));
-        expect(navigate).toHaveBeenCalledWith("/starkla");
-    });
-
-    it("navigates to the settings page when clicked", () => {
-        const navigate = jest.fn();
-        useNavigate.mockReturnValue(navigate);
-
-        render(<Sidebar categories={categories} topNavItems={topNavItems} />);
-
-        // Simulate clicking the "Settings" button
-        fireEvent.click(screen.getByText("Settings"));
-        expect(navigate).toHaveBeenCalledWith("/settings");
-    });
-    // This will log the DOM to help you identify the structure
 });
-
+test("navigates to the correct page when a particular button is clicked", async () => {
+    const categories = [
+        { label: 'Grammar', page: '/grammar' },
+        { label: 'Vocabulary', page: '/vocabulary' },
+        { label: 'Speaking', page: '/speaking' },
+        { label: 'Listening', page: '/listening' },
+        { label: 'Reading', page: '/reading' },
+        { label: 'Games', page: '/games' },
+    ];
+    const topNavItems = [
+        { label: "Analytics", page: "/analytics" },
+        { label: "Community", page: "/community" }
+    ]
+    render(<Sidebar />, { wrapper: BrowserRouter })
+    const user = userEvent.setup();
+    // Expand accordion or ensure categories are rendered
+    expect(screen.queryByText("LEVEL")).toBeNull();
+    const accordionButton = screen.getByText('Learning content');
+    fireEvent.click(accordionButton);
+    expect(screen.getByText("LEVEL")).toBeInTheDocument();
+    for (const category of categories) {
+        await user.click(screen.getByTestId(`category-link-${category.label}`));
+        expect(window.location.pathname).toBe(category.page);  // Check if the URL changed
+    }
+    for (const item of topNavItems) {
+        await user.click(screen.getByTestId(`item-link-${item.label}`));
+        expect(window.location.pathname).toBe(item.page);  // Check if the URL changed
+    }
+});

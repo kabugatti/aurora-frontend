@@ -7,4 +7,5 @@ export default {
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   extensionsToTreatAsEsm: [".jsx"], // Treat only .jsx as ESM explicitly
+  testEnvironment: "jest-environment-jsdom",
 };
