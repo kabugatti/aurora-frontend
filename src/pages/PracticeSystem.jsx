@@ -63,7 +63,6 @@ const PracticeSystem = () => {
             <span className="border-2 border-green-500 rounded-lg p-2 ml-2">
               {score} / {web3Questions.length}
             </span>
-            .
           </p>
           {/* replay and back button */}
           <div className="flex flex-row items-center">
