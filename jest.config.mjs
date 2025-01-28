@@ -8,4 +8,7 @@ export default {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   extensionsToTreatAsEsm: [".jsx"], // Treat only .jsx as ESM explicitly
   testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js",
+  },
 };

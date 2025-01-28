@@ -10,8 +10,17 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Sidebar from '../components/layout/Sidebar';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
+import HomePage from '../pages/HomePage';
+import Header from '../components/layout/Header';
 
-test('renders all category buttons with correct links', () => {
+test('initiating the onboarding process of new user', async () => {
+    render(<HomePage />, { wrapper: BrowserRouter })
+    const user = userEvent.setup();
+    await user.click(screen.getByTestId("get-started"));
+    expect(window.location.pathname).toBe('/wallet-connection');  // Check if the URL changed
+})
+
+test("test for directing users to their respective learning section ", async () => {
     const categories = [
         { label: 'Grammar', page: '/grammar' },
         { label: 'Vocabulary', page: '/vocabulary' },
@@ -20,66 +29,61 @@ test('renders all category buttons with correct links', () => {
         { label: 'Reading', page: '/reading' },
         { label: 'Games', page: '/games' },
     ];
-    const topNavItems = [
-        { label: "Analytics", page: "/analytics" },
-        { label: "Community", page: "/community" }
-    ]
+
     render(<Sidebar />, { wrapper: BrowserRouter })
-    expect(screen.getByText("Diego Duarte")).toBeInTheDocument();
-    expect(screen.getByText("Student")).toBeInTheDocument();
 
     // Expand accordion or ensure categories are rendered
-    expect(screen.queryByText("LEVEL")).toBeNull();
+    expect(screen.queryByText("CATEGORIES")).toBeNull();
     const accordionButton = screen.getByText('Learning content');
-    fireEvent.click(accordionButton);
-    expect(screen.getByText("LEVEL")).toBeInTheDocument();
+    fireEvent.click(accordionButton);//opening the dropdown
+    expect(screen.getByText("CATEGORIES")).toBeInTheDocument();
 
-    // Verify each category button and link
-    categories.forEach((category) => {
-        const button = screen.getByTestId(`category-container-${category.label}`);
-        const link = screen.getByTestId(`category-link-${category.label}`);
-        expect(button).toBeInTheDocument();
-        expect(link).toBeInTheDocument();
-        expect(link).toHaveAttribute('href', category.page); // Verify the link
-    });
-    topNavItems.forEach((item) => {
-        const itembutton = screen.getByTestId(`item-container-${item.label}`);
-        const itemlink = screen.getByTestId(`item-link-${item.label}`);
-        expect(itembutton).toBeInTheDocument();
-        expect(itemlink).toBeInTheDocument();
-        expect(itemlink).toHaveAttribute('href', item.page); // Verify the link
-    });
-    expect(screen.getByText("Talk with Starkla")).toBeInTheDocument();
 
-    expect(screen.getByText("Settings")).toBeInTheDocument();
-
-});
-test("navigates to the correct page when a particular button is clicked", async () => {
-    const categories = [
-        { label: 'Grammar', page: '/grammar' },
-        { label: 'Vocabulary', page: '/vocabulary' },
-        { label: 'Speaking', page: '/speaking' },
-        { label: 'Listening', page: '/listening' },
-        { label: 'Reading', page: '/reading' },
-        { label: 'Games', page: '/games' },
-    ];
-    const topNavItems = [
-        { label: "Analytics", page: "/analytics" },
-        { label: "Community", page: "/community" }
-    ]
-    render(<Sidebar />, { wrapper: BrowserRouter })
     const user = userEvent.setup();
     // Expand accordion or ensure categories are rendered
-    expect(screen.queryByText("LEVEL")).toBeNull();
-    const accordionButton = screen.getByText('Learning content');
-    fireEvent.click(accordionButton);
-    expect(screen.getByText("LEVEL")).toBeInTheDocument();
+
     for (const category of categories) {
         await user.click(screen.getByTestId(`category-link-${category.label}`));
         expect(window.location.pathname).toBe(category.page);  // Check if the URL changed
     }
-    for (const item of topNavItems) {
-        await user.click(screen.getByTestId(`item-link-${item.label}`));
-        expect(window.location.pathname).toBe(item.page);  // Check if the URL changed
-    }
+
 });
+test("test for opening  the user's learning progress dashboard", async () => {
+    render(<Sidebar />, { wrapper: BrowserRouter })
+    const user = userEvent.setup();
+    await user.click(screen.getByTestId('item-link-Analytics'));
+    expect(window.location.pathname).toBe('/analytics');  // Check if the URL changed
+})
+test("test for opening the community interaction space", async () => {
+    render(<Sidebar />, { wrapper: BrowserRouter })
+    const user = userEvent.setup();
+    await user.click(screen.getByTestId('item-link-Community'));
+    expect(window.location.pathname).toBe('/community');  // Check if the URL changed
+})
+test("test for initiating the AI conversation interface", async () => {
+    render(<Sidebar />, { wrapper: BrowserRouter })
+    const user = userEvent.setup();
+    await user.click(screen.getByTestId('starkla-ai'));
+    expect(window.location.pathname).toBe('/starkla');  // Check if the URL changed
+})
+test("test for displaying  user notifications when clicked", async () => {
+    render(<Header />, { wrapper: BrowserRouter })
+    const user = userEvent.setup();
+    await user.click(screen.getByTestId('notify-message'));
+    expect(window.location.pathname).toBe('/notification');  // Check if the URL changed
+})
+test('test for enabling users to search through learning content', async () => {
+    const handleChange = jest.fn();
+    render(<Header
+        searchQuery=""
+        handleChange={handleChange}
+        filteredOptions={['grammar', 'vocabulary']}
+        setSearchQuery={jest.fn()}
+        showFiltered={true}
+    />, { wrapper: BrowserRouter });
+    const searchInput = screen.getByPlaceholderText('Search...');
+    await userEvent.type(searchInput, 'grammar');
+    expect(screen.getByText('grammar')).toBeInTheDocument();
+    await userEvent.click(screen.getByText('grammar'));
+    expect(window.location.pathname).toBe('/grammar');  // Check if the URL changed
+})

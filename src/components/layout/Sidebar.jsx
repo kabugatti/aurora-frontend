@@ -99,17 +99,19 @@ const Sidebar = () => {
                   <h2 className="text-xs font-semibold mb-2 text-gray-600">CATEGORIES</h2>
                   <div className="flex flex-col gap-1">
                     {categories.map((item, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleNavClick(item.page)}
-                        className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
-                          }`}
-                        aria-label={item.label}
-                        data-testid={`category-container-${item.label}`}
-                      >
-                        <NavLink to={item.page} data-testid={`category-link-${item.label}`} className="text-black" >{item.label}</NavLink>
-                        <span className="text-gray-600">{item.icon}</span>
-                      </button>
+                      <NavLink key={index} to={item.page} data-testid={`category-link-${item.label}`} className="text-black" >
+                        <button
+
+                          onClick={() => handleNavClick(item.page)}
+                          className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
+                            }`}
+                          aria-label={item.label}
+                          data-testid={`category-container-${item.label}`}
+                        >
+                          {item.label}
+                          <span className="text-gray-600">{item.icon}</span>
+                        </button>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -119,36 +121,41 @@ const Sidebar = () => {
 
           {/* Other Navigation Items */}
           {topNavItems.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => handleNavClick(item.page)}
-              className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
-                }`}
-              aria-label={item.label}
-              data-testid={`item-container-${item.label}`}
-            >
-              <NavLink to={item.page} data-testid={`item-link-${item.label}`} className="text-black">{item.label}</NavLink>
-              <span className="text-gray-600">{item.icon}</span>
-            </button>
+            <NavLink key={index} to={item.page} data-testid={`item-link-${item.label}`} className="text-black">
+              <button
+
+                onClick={() => handleNavClick(item.page)}
+                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
+                  }`}
+                aria-label={item.label}
+                data-testid={`item-container-${item.label}`}
+              >
+                {item.label}
+                <span className="text-gray-600">{item.icon}</span>
+              </button>
+            </NavLink>
           ))}
         </nav>
 
         <div className="mt-auto space-y-3">
-          <button
-            onClick={() => handleNavClick('starkla')}
-            className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
-          >
-            <MessageSquare className="w-5 h-5" />
-            <span className="text-sm font-medium">Talk with Starkla</span>
-          </button>
-
-          <button
-            onClick={() => handleNavClick('settings')}
-            className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
-          >
-            <Settings className="w-5 h-5 text-gray-600" />
-            <span className="text-sm font-medium text-gray-700">Settings</span>
-          </button>
+          <NavLink data-testid="starkla-ai" className="text-sm font-medium text-white" to="starkla">
+            <button
+              onClick={() => handleNavClick('starkla')}
+              className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+            >
+              <MessageSquare className="w-5 h-5" />
+              Talk with Starkla
+            </button>
+          </NavLink>
+          <NavLink to="settings" className="text-sm font-medium text-gray-700">
+            <button
+              onClick={() => handleNavClick('settings')}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
+            >
+              <Settings className="w-5 h-5 text-gray-600" />
+              Settings
+            </button>
+          </NavLink >
         </div>
       </div>
     </div>

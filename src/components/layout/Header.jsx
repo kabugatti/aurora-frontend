@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Bell, Search } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -70,10 +70,10 @@ const Header = () => {
         {/* Notification Button */}
         <button
           className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
-          onClick={() => { navigate('/notification') }}
+
         >
           <Bell className="h-6 w-6" />
-          <span className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></span>
+          <NavLink to="notification" data-testid="notify-message" className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></NavLink >
         </button>
       </div>
     </header>
