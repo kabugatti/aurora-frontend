@@ -11,6 +11,7 @@ import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
+import PracticeSystem from './pages/PracticeSystem';
 import StoryGame from './pages/StoryGame';
 import WordMatching from './pages/Games/WordMatching';
 import GamePanel from './pages/GamePanel';
@@ -39,7 +40,11 @@ function App() {
           <Route path="/starkla-chat" element={<StarklaChat />} />
           <Route path="/certification-content" element={<CertificationContent />} />
           <Route path="/module-details" element={<ModuleDetails />} />
+
+          <Route path='/practiceSystem' element={<PracticeSystem/>}/>
+
           <Route path="/notifications" element={<Notifications />} />
+
           <Route path="/story-game" element={<StoryGame />} />
           <Route path="/games/word-matching/" element={<WordMatching />} />
           <Route path="/games" element={<GamePanel />} />
