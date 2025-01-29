@@ -1,6 +1,9 @@
-import { useState } from "react";
-import { Bell, Search, Settings } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Bell, Search, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import ConnectWalletButton from '../ui/ConnectWalletButton';
+import { useWallet } from '../../context/WalletContext';
+import { truncateAddress } from '../../utils/helpers';
 
 const mockNotifications = [
   {
@@ -27,7 +30,8 @@ const mockNotifications = [
 ];
 
 const Header = () => {
-  const [setCurrentPage] = useState("home");
+  const { address } = useWallet();
+  const [currentPage, setCurrentPage] = useState('home');
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [notifications, setNotifications] = useState(mockNotifications);
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +51,6 @@ const Header = () => {
   return (
     <header className="h-16 border-b border-gray-200 bg-white px-6">
       <div className="flex items-center justify-between h-full">
-        {/* Search Section */}
         <div className="relative left-1/2 transform -translate-x-1/2 w-96">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
@@ -59,12 +62,17 @@ const Header = () => {
           />
         </div>
 
-        {/* Navigation Section */}
         <div className="flex items-center space-x-4 relative">
-          {/* Notification Button */}
+          {address && (
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <span>Connected as:</span>
+              <span className="font-medium">{truncateAddress(address)}</span>
+            </div>
+          )}
+
           <div
             className="relative"
-            onMouseEnter={() => setActiveTooltip("notifications")}
+            onMouseEnter={() => setActiveTooltip('notifications')}
             onMouseLeave={() => setActiveTooltip(null)}
           >
             <button
@@ -111,24 +119,25 @@ const Header = () => {
             )}
           </div>
 
-          {/* Settings Button */}
           <div
             className="relative"
-            onMouseEnter={() => setActiveTooltip("settings")}
+            onMouseEnter={() => setActiveTooltip('settings')}
             onMouseLeave={() => setActiveTooltip(null)}
           >
             <button
-              onClick={() => handleNavClick("settings")}
+              onClick={() => handleNavClick('settings')}
               className="flex items-center gap-2 px-3 py-2 text-left rounded-lg transition-colors hover:bg-gray-50"
             >
               <Settings className="w-5 h-5 text-gray-600" />
             </button>
-            {activeTooltip === "settings" && (
+            {activeTooltip === 'settings' && (
               <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white text-xs px-2 py-2 rounded-md">
                 Settings
               </div>
             )}
           </div>
+
+          <ConnectWalletButton />
         </div>
       </div>
     </header>
