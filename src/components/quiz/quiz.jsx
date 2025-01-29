@@ -67,11 +67,11 @@ export default function Quiz({ questions }) {
             <div
               className="h-full bg-blue-500 transition-all"
               style={{
-                width: `${((currentQuestion + 1) / questions.length) * 100}%`,
+                width: `${((currentQuestion) / questions.length) * 100}%`,
               }}
             ></div>
           </div>
-          <h2 className="text-xl font-bold mb-4">
+          <h2 className="text-xl font-bold mb-4 text-black">
             {questions[currentQuestion].question}
           </h2>
           {questions[currentQuestion].options.map((option, index) => (
@@ -104,6 +104,12 @@ export default function Quiz({ questions }) {
           {selectedAnswer &&
             selectedAnswer !== questions[currentQuestion].answer && (
               <div className="mt-2 p-2 bg-red-100 text-red-400 rounded-lg">
+                {questions[currentQuestion].feedback}
+              </div>
+            )}
+          {selectedAnswer &&
+            selectedAnswer == questions[currentQuestion].answer && (
+              <div className="mt-2 p-2 bg-green-100 text-green-500 rounded-lg">
                 {questions[currentQuestion].feedback}
               </div>
             )}
