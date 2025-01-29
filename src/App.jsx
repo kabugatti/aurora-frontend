@@ -17,6 +17,12 @@ import WordMatching from './pages/Games/WordMatching';
 import GamePanel from './pages/GamePanel';
 import DifficultySelector from './components/Games/memory-card/DifficultySelector';
 import GameBoard from './components/Games/memory-card/GameBoard';
+import GrammarContent from "./pages/GrammarContent";
+import VocabularyPage from './pages/VocabularyContent';
+import SpeakingPage from './pages/SpeakingContent';
+import ListeningPage from './pages/ListeningContent';
+import ReadingContent from "./pages/ReadingContent";
+import CommunityInteractionPage from './pages/Community';
 import Notifications from './pages/Notifications';
 
 function App() {
@@ -44,6 +50,13 @@ function App() {
           <Route path="/games" element={<GamePanel />} />
           <Route path="/games/memory-card" element={<DifficultySelector />} />
           <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
+          <Route path="/grammar" element={<GrammarContent />} />
+          <Route path='/vocabulary' element={<VocabularyPage />} />
+          <Route path='/speaking' element={<SpeakingPage />} />
+          <Route path='/listening' element={<ListeningPage />} />
+          <Route path='/reading' element={<ReadingContent />} />
+          <Route path='/people' element={<CommunityInteractionPage />} />
+
         </Routes>
       </MainLayout>
     </Router>
