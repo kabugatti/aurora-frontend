@@ -41,19 +41,22 @@ export default function Quiz({ questions }) {
           <p className="text-2xl mt-2 font-bold text-[#4184F3]">
             Score: {Math.round((score / questions.length) * 100)}%
           </p>
-            <p className="text-gray-500 text-lg mt-2">
+          <p className="text-gray-500 text-lg mt-2">
             You got {score} out of {questions.length} questions right.
-            </p>
+          </p>
           <div className="flex justify-center gap-4">
             <button
               onClick={handleRestart}
               className="mt-4 py-2 px-4 bg-blue-500 flex items-center text-white rounded-lg hover:bg-blue-600"
             >
-              <Home  className="mr-2"/>
+              <RefreshCw className="mr-2" />
               Try Again
             </button>
-            <Link to="/" className="mt-4 py-2 px-4 bg-gray-500 flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white">
-              <RefreshCw  className="mr-2"/>
+            <Link
+              to="/"
+              className="mt-4 py-2 px-4 bg-gray-500 flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white"
+            >
+              <Home className="mr-2" />
               Return Home
             </Link>
           </div>
