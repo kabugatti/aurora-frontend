@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { CheckCircle, XCircle, } from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+import { CheckCircle, XCircle, RefreshCw, Home } from "lucide-react";
 
 const questions = [
   {
@@ -43,11 +44,36 @@ export default function Quiz() {
     }
   };
 
+  const handleRestart = () => {
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setScore(0);
+    setShowResults(false);
+  };
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       {showResults ? (
-        <></>
+        <div className="text-center">
+          <h2 className="text-2xl font-bold">Quiz Completed!</h2>
+          <p className="text-xl mt-2">
+            Score: {Math.round((score / questions.length) * 100)}%
+          </p>
+          <button
+            onClick={handleRestart}
+            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+          >
+            <Home />
+            Try Again
+          </button>
+          <Link
+            href="/"
+            className="mt-4 ml-2 px-4 py-2 bg-gray-500 text-white rounded-lg"
+          >
+            <RefreshCw />
+            Return Home
+          </Link>
+        </div>
       ) : (
         <div>
           <div className="relative w-full h-3 bg-gray-300 rounded-full overflow-hidden mb-4">
