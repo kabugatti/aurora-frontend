@@ -101,6 +101,12 @@ export default function Quiz({ questions }) {
                 )}
             </button>
           ))}
+          {selectedAnswer &&
+            selectedAnswer !== questions[currentQuestion].answer && (
+              <div className="mt-2 p-2 bg-red-100 text-red-400 rounded-lg">
+                {questions[currentQuestion].feedback}
+              </div>
+            )}
           <button
             onClick={handleNext}
             className="mt-4 w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
