@@ -35,7 +35,7 @@ const NotificationCenter = () => {
   });
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded shadow-md">
+    <div className="w-full h-screen p-6 bg-white">
       <h2 className="text-xl font-bold mb-4">Notifications</h2>
       <div className="flex space-x-4 mb-4">
         <button
