@@ -4,7 +4,7 @@ import MainLayout from './components/layout/MainLayout';
 import LearningContent from './pages/LearningContent';
 import CertificationsObtained from './pages/CertificationsObtained';
 import SettingsPage from './pages/SettingsPage';
-import StarklaChat from './pages/StarklaChat/StarklaChat'; 
+import StarklaChat from './pages/StarklaChat/StarklaChat';
 import Categories from './pages/Categories';
 import Analytics from './pages/Analytics';
 import CertificationContent from './pages/CertificationContent';
@@ -12,13 +12,12 @@ import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
 import PracticeSystem from './pages/PracticeSystem';
-
 import StoryGame from './pages/StoryGame';
 import WordMatching from './pages/Games/WordMatching';
-
 import GamePanel from './pages/GamePanel';
 import DifficultySelector from './components/Games/memory-card/DifficultySelector';
 import GameBoard from './components/Games/memory-card/GameBoard';
+import Notifications from './pages/Notifications';
 
 function App() {
   return (
@@ -38,10 +37,10 @@ function App() {
 
           <Route path='/practiceSystem' element={<PracticeSystem/>}/>
 
+          <Route path="/notifications" element={<Notifications />} />
+
           <Route path="/story-game" element={<StoryGame />} />
-
-          <Route path="/games/word-matching/" element={<WordMatching/>}/>
-
+          <Route path="/games/word-matching/" element={<WordMatching />} />
           <Route path="/games" element={<GamePanel />} />
           <Route path="/games/memory-card" element={<DifficultySelector />} />
           <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
