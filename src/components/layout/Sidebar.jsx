@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   BookOpen,
   BarChart2,
   Users,
+  Settings,
   MessageSquare,
   FileText,
   Headphones,
@@ -11,12 +13,12 @@ import {
   Book,
   ChevronDown,
   ChevronRight,
-  Gamepad,
-} from "lucide-react";
+  Gamepad
+} from 'lucide-react';
 
 const Sidebar = () => {
-  const [currentPage, setCurrentPage] = useState("home");
-  const [level, setLevel] = useState("Choose Your Level");
+  const [currentPage, setCurrentPage] = useState('home');
+  const [level, setLevel] = useState('Choose Your Level');
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
 
   const handleNavClick = (page) => {
@@ -24,21 +26,17 @@ const Sidebar = () => {
   };
 
   const categories = [
-    { icon: <Book className="w-5 h-5" />, label: "Grammar" },
-    { icon: <GraduationCap className="w-5 h-5" />, label: "Vocabulary" },
-    { icon: <MessageCircle className="w-5 h-5" />, label: "Speaking" },
-    { icon: <Headphones className="w-5 h-5" />, label: "Listening" },
-    { icon: <FileText className="w-5 h-5" />, label: "Reading" },
-    { icon: <Gamepad className="w-5 h-5" />, label: "Games" },
+    { icon: <Book className="w-5 h-5" />, label: 'Grammar' },
+    { icon: <GraduationCap className="w-5 h-5" />, label: 'Vocabulary' },
+    { icon: <MessageCircle className="w-5 h-5" />, label: 'Speaking' },
+    { icon: <Headphones className="w-5 h-5" />, label: 'Listening' },
+    { icon: <FileText className="w-5 h-5" />, label: 'Reading' },
+    { icon: <Gamepad className="w-5 h-5" />, label: 'Games' }
   ];
 
   const topNavItems = [
-    {
-      icon: <BarChart2 className="w-5 h-5" />,
-      label: "Analytics",
-      page: "analytics",
-    },
-    { icon: <Users className="w-5 h-5" />, label: "Community", page: "people" },
+    { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics', page: 'analytics' },
+    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'people' }
   ];
 
   return (
@@ -94,9 +92,7 @@ const Sidebar = () => {
               <div className="mt-2 ml-2">
                 {/* Level Selection */}
                 <div className="px-3 mb-4">
-                  <h2 className="text-xs font-semibold mb-2 text-gray-600">
-                    LEVEL
-                  </h2>
+                  <h2 className="text-xs font-semibold mb-2 text-gray-600">LEVEL</h2>
                   <select
                     value={level}
                     onChange={(e) => setLevel(e.target.value)}
@@ -119,18 +115,16 @@ const Sidebar = () => {
                   </h2>
                   <div className="flex flex-col gap-1">
                     {categories.map((item, index) => (
-                      <button
-                        key={index}
-                        onClick={() =>
-                          handleNavClick(`category-${item.label.toLowerCase()}`)
-                        }
-                        className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
-                      >
-                        <span className="text-gray-600">{item.icon}</span>
-                        <span className="text-sm text-gray-700">
-                          {item.label}
-                        </span>
-                      </button>
+                      <NavLink key={index} to={item.label.toLowerCase()}>
+                        <button
+
+                          onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
+                          className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
+                        >
+                          <span className="text-gray-600">{item.icon}</span>
+                          <span className="text-sm text-gray-700">{item.label}</span>
+                        </button>
+                      </NavLink>
                     ))}
                   </div>
                 </div>
@@ -140,29 +134,39 @@ const Sidebar = () => {
 
           {/* Other Navigation Items */}
           {topNavItems.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => handleNavClick(item.page)}
-              className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
-                currentPage === item.page ? "bg-gray-50" : "hover:bg-gray-50"
-              }`}
-            >
-              <span className="text-gray-600">{item.icon}</span>
-              <span className="text-sm font-medium text-gray-700">
-                {item.label}
-              </span>
-            </button>
+            <NavLink key={index} to={item.page} >
+              <button
+
+                onClick={() => handleNavClick(item.page)}
+                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
+                  }`}
+              >
+                <span className="text-gray-600">{item.icon}</span>
+                <span className="text-sm font-medium text-gray-700">{item.label}</span>
+              </button>
+            </NavLink>
           ))}
         </nav>
 
         <div className="mt-auto space-y-3">
-          <button
-            onClick={() => handleNavClick("starkla")}
-            className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
-          >
-            <MessageSquare className="w-5 h-5" />
-            <span className="text-sm font-medium">Talk with Starkla</span>
-          </button>
+          <NavLink to="starkla-chat">
+            <button
+              onClick={() => handleNavClick('starkla-chat')}
+              className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+            >
+              <MessageSquare className="w-5 h-5" />
+              <span className="text-sm font-medium">Talk with Starkla</span>
+            </button>
+          </NavLink>
+          <NavLink to="settings">
+            <button
+              onClick={() => handleNavClick('settings')}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
+            >
+              <Settings className="w-5 h-5 text-gray-600" />
+              <span className="text-sm font-medium text-gray-700">Settings</span>
+            </button>
+          </NavLink>
         </div>
       </div>
     </div>
