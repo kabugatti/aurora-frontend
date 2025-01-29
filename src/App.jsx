@@ -4,12 +4,11 @@ import MainLayout from './components/layout/MainLayout';
 import LearningContent from './pages/LearningContent';
 import CertificationsObtained from './pages/CertificationsObtained';
 import SettingsPage from './pages/SettingsPage';
-import StarklaChat from './pages/StarklaChat/StarklaChat'; 
+import StarklaChat from './pages/StarklaChat/StarklaChat';
 import Categories from './pages/Categories';
 import Analytics from './pages/Analytics';
 import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
-import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
 
 import StoryGame from './pages/StoryGame';
@@ -27,7 +26,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/learning-content" element={<LearningContent />} />
-          <Route path="/wallet-connection" element={<WalletConnection />} />
           <Route path="/certifications-obtained" element={<CertificationsObtained />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/analytics" element={<Analytics />} />
