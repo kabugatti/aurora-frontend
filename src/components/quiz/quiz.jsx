@@ -1,26 +1,8 @@
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import { CheckCircle, XCircle, RefreshCw, Home } from "lucide-react";
 
-const questions = [
-  {
-    question: "What is the past tense of 'go'?",
-    options: ["goed", "gone", "going", "went"],
-    answer: "went",
-  },
-  {
-    question: "Which word is a noun?",
-    options: ["run", "happy", "house", "quickly"],
-    answer: "house",
-  },
-  {
-    question: "What is the plural of 'child'?",
-    options: ["childs", "childes", "children", "childern"],
-    answer: "children",
-  },
-];
-
-export default function Quiz() {
+export default function Quiz({ questions }) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
@@ -55,24 +37,26 @@ export default function Quiz() {
     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       {showResults ? (
         <div className="text-center">
-          <h2 className="text-2xl font-bold">Quiz Completed!</h2>
-          <p className="text-xl mt-2">
+          <h2 className="text-xl font-bold text-black">Quiz Completed!</h2>
+          <p className="text-2xl mt-2 font-bold text-[#4184F3]">
             Score: {Math.round((score / questions.length) * 100)}%
           </p>
-          <button
-            onClick={handleRestart}
-            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
-          >
-            <Home />
-            Try Again
-          </button>
-          <Link
-            href="/"
-            className="mt-4 ml-2 px-4 py-2 bg-gray-500 text-white rounded-lg"
-          >
-            <RefreshCw />
-            Return Home
-          </Link>
+            <p className="text-gray-500 text-lg mt-2">
+            You got {score} out of {questions.length} questions right.
+            </p>
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={handleRestart}
+              className="mt-4 py-2 px-4 bg-blue-500 flex items-center text-white rounded-lg hover:bg-blue-600"
+            >
+              <Home  className="mr-2"/>
+              Try Again
+            </button>
+            <Link to="/" className="mt-4 py-2 px-4 bg-gray-500 flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white">
+              <RefreshCw  className="mr-2"/>
+              Return Home
+            </Link>
+          </div>
         </div>
       ) : (
         <div>

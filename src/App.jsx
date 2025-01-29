@@ -19,6 +19,7 @@ import WordMatching from './pages/Games/WordMatching';
 import GamePanel from './pages/GamePanel';
 import DifficultySelector from './components/Games/memory-card/DifficultySelector';
 import GameBoard from './components/Games/memory-card/GameBoard';
+import Quiz from './pages/Quiz';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
           <Route path="/games" element={<GamePanel />} />
           <Route path="/games/memory-card" element={<DifficultySelector />} />
           <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
+          <Route path="/quiz" element={<Quiz/>}/>
         </Routes>
       </MainLayout>
     </Router>
