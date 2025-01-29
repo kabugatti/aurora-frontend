@@ -12,9 +12,7 @@ import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
 import StoryGame from './pages/StoryGame';
-
 import WordMatching from './pages/Games/WordMatching';
-
 import GamePanel from './pages/GamePanel';
 import DifficultySelector from './components/Games/memory-card/DifficultySelector';
 import GameBoard from './components/Games/memory-card/GameBoard';
@@ -24,7 +22,8 @@ import SpeakingPage from './pages/SpeakingContent';
 import ListeningPage from './pages/ListeningContent';
 import ReadingContent from "./pages/ReadingContent";
 import CommunityInteractionPage from './pages/Community';
-import Notification from './pages/Notification';
+import Notifications from './pages/Notifications';
+
 function App() {
   return (
     <Router>
@@ -40,6 +39,7 @@ function App() {
           <Route path="/starkla-chat" element={<StarklaChat />} />
           <Route path="/certification-content" element={<CertificationContent />} />
           <Route path="/module-details" element={<ModuleDetails />} />
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/story-game" element={<StoryGame />} />
           <Route path="/games/word-matching/" element={<WordMatching />} />
           <Route path="/games" element={<GamePanel />} />
@@ -51,8 +51,7 @@ function App() {
           <Route path='/listening' element={<ListeningPage />} />
           <Route path='/reading' element={<ReadingContent />} />
           <Route path='/people' element={<CommunityInteractionPage />} />
-          <Route path='/starkla-chat' element={<StarklaChat />} />
-          <Route path='/notification' element={<Notification />} />
+
         </Routes>
       </MainLayout>
     </Router>
