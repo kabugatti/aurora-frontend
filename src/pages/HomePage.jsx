@@ -1,8 +1,8 @@
 import React from 'react';
 import { ArrowRight, Brain, BookOpen, MessageSquare, Award, BarChart2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import StarklaIcon from '../assets/S-icon.jpg';
-import Footer from '../components/layout/Footer';
+
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -27,11 +27,8 @@ const BenefitItem = ({ title, description }) => (
 );
 
 const HomePage = () => {
-  const navigate = useNavigate();
 
-  const handleGetStarted = () => {
-    navigate('/wallet-connection');
-  };
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -61,10 +58,9 @@ const HomePage = () => {
             <h2 className="text-3xl font-bold text-white mb-8">
               Ready to Transform Your English Learning Journey?
             </h2>
-            <button 
-              onClick={handleGetStarted}
+            <button
               className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 hover:bg-opacity-90 transition-colors">
-              Get Started Now
+              <NavLink data-testid="get-started" to="wallet-connection"> Get Started Now</NavLink>
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
@@ -77,17 +73,17 @@ const HomePage = () => {
           Core Features
         </h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          <FeatureCard 
+          <FeatureCard
             icon={Brain}
             title="Personalized Learning"
             description="Our AI tutor adapts lessons to your level, providing custom exercises based on your progress and areas for improvement."
           />
-          <FeatureCard 
+          <FeatureCard
             icon={MessageSquare}
             title="Real Conversation Practice"
             description="Practice real-life scenarios with our AI, from job interviews to daily conversations, with instant pronunciation feedback."
           />
-          <FeatureCard 
+          <FeatureCard
             icon={Award}
             title="Smart Gamification"
             description="Earn tokens on Starknet blockchain for completing objectives, maintaining streaks, and mastering new skills."
@@ -103,29 +99,29 @@ const HomePage = () => {
           </h2>
           <div className="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
             <div className="space-y-8">
-              <BenefitItem 
+              <BenefitItem
                 title="Smart Adaptive System"
                 description="Our AI continuously analyzes your performance to provide the perfect learning curve."
               />
-              <BenefitItem 
+              <BenefitItem
                 title="Blockchain Integration"
                 description="Secure, transparent progress tracking and rewards through Starknet technology."
               />
-              <BenefitItem 
+              <BenefitItem
                 title="Comprehensive Assessment"
                 description="Get certified based on CEFR (A1-C2 levels) standards in reading, writing, speaking, and listening."
               />
             </div>
             <div className="space-y-8">
-              <BenefitItem 
+              <BenefitItem
                 title="Dynamic Content Generation"
                 description="Lessons tailored to your interests, from general conversation to specific fields like IT or healthcare."
               />
-              <BenefitItem 
+              <BenefitItem
                 title="Real-time Feedback"
                 description="Instant corrections and suggestions for pronunciation, grammar, and vocabulary improvement."
               />
-              <BenefitItem 
+              <BenefitItem
                 title="Multi-Device Access"
                 description="Seamlessly continue your learning journey across all your devices."
               />
@@ -142,11 +138,11 @@ const HomePage = () => {
               Your Personalized Virtual English Tutor
             </h1>
             <p className="text-xl text-gray-600 mb-8">
-              STARKLA combines cutting-edge AI with blockchain technology to deliver a revolutionary 
+              STARKLA combines cutting-edge AI with blockchain technology to deliver a revolutionary
               approach to language learning. Experience personalized tutoring that adapts to your needs.
             </p>
-            <button 
-              onClick={handleGetStarted}
+            <button
+
               className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
               Get Started
               <ArrowRight className="w-5 h-5" />

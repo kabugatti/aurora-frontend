@@ -9,15 +9,22 @@ import Categories from './pages/Categories';
 import Analytics from './pages/Analytics';
 import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
+import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
-
+import PracticeSystem from './pages/PracticeSystem';
 import StoryGame from './pages/StoryGame';
-
 import WordMatching from './pages/Games/WordMatching';
-
 import GamePanel from './pages/GamePanel';
 import DifficultySelector from './components/Games/memory-card/DifficultySelector';
 import GameBoard from './components/Games/memory-card/GameBoard';
+import Quiz from './pages/Quiz';
+import GrammarContent from "./pages/GrammarContent";
+import VocabularyPage from './pages/VocabularyContent';
+import SpeakingPage from './pages/SpeakingContent';
+import ListeningPage from './pages/ListeningContent';
+import ReadingContent from "./pages/ReadingContent";
+import CommunityInteractionPage from './pages/Community';
+import Notifications from './pages/Notifications';
 
 function App() {
   return (
@@ -26,6 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/learning-content" element={<LearningContent />} />
+          <Route path="/wallet-connection" element={<WalletConnection />} />
           <Route path="/certifications-obtained" element={<CertificationsObtained />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/analytics" element={<Analytics />} />
@@ -34,13 +42,22 @@ function App() {
           <Route path="/certification-content" element={<CertificationContent />} />
           <Route path="/module-details" element={<ModuleDetails />} />
 
+          <Route path='/practiceSystem' element={<PracticeSystem/>}/>
+
+          <Route path="/notifications" element={<Notifications />} />
+
           <Route path="/story-game" element={<StoryGame />} />
-
-          <Route path="/games/word-matching/" element={<WordMatching/>}/>
-
+          <Route path="/games/word-matching/" element={<WordMatching />} />
           <Route path="/games" element={<GamePanel />} />
           <Route path="/games/memory-card" element={<DifficultySelector />} />
           <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
+          <Route path="/quiz" element={<Quiz/>}/>
+          <Route path="/grammar" element={<GrammarContent />} />
+          <Route path='/vocabulary' element={<VocabularyPage />} />
+          <Route path='/speaking' element={<SpeakingPage />} />
+          <Route path='/listening' element={<ListeningPage />} />
+          <Route path='/reading' element={<ReadingContent />} />
+          <Route path='/people' element={<CommunityInteractionPage />} />
         </Routes>
       </MainLayout>
     </Router>
