@@ -14,10 +14,9 @@ import {
   ChevronRight,
   Gamepad
 } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
-  const [currentPage, setCurrentPage] = useState();
+  const [currentPage, setCurrentPage] = useState('home');
   const [level, setLevel] = useState('Choose Your Level');
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
 
@@ -26,30 +25,42 @@ const Sidebar = () => {
   };
 
   const categories = [
-    { icon: <Book className="w-5 h-5" />, label: 'Grammar', page: 'grammar' },
-    { icon: <GraduationCap className="w-5 h-5" />, label: 'Vocabulary', page: 'vocabulary' },
-    { icon: <MessageCircle className="w-5 h-5" />, label: 'Speaking', page: 'speaking' },
-    { icon: <Headphones className="w-5 h-5" />, label: 'Listening', page: 'listening' },
-    { icon: <FileText className="w-5 h-5" />, label: 'Reading', page: 'reading' },
-    { icon: <Gamepad className="w-5 h-5" />, label: 'Games', page: 'games' }
+    { icon: <Book className="w-5 h-5" />, label: 'Grammar' },
+    { icon: <GraduationCap className="w-5 h-5" />, label: 'Vocabulary' },
+    { icon: <MessageCircle className="w-5 h-5" />, label: 'Speaking' },
+    { icon: <Headphones className="w-5 h-5" />, label: 'Listening' },
+    { icon: <FileText className="w-5 h-5" />, label: 'Reading' },
+    { icon: <Gamepad className="w-5 h-5" />, label: 'Games' }
   ];
 
   const topNavItems = [
     { icon: <BarChart2 className="w-5 h-5" />, label: 'Analytics', page: 'analytics' },
-    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'community' }
+    { icon: <Users className="w-5 h-5" />, label: 'Community', page: 'people' }
   ];
 
   return (
     <div className="w-64 min-h-screen bg-white border-r border-gray-200">
       <div className="p-4 flex flex-col h-full">
         {/* Profile Section */}
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8 p-2">
           <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z" stroke="#71717A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20 21C20 19.6044 20 18.9067 19.8278 18.3389C19.44 17.0605 18.4395 16.06 17.1611 15.6722C16.5933 15.5 15.8956 15.5 14.5 15.5H9.5C8.10444 15.5 7.40665 15.5 6.83886 15.6722C5.56045 16.06 4.56004 17.0605 4.17224 18.3389C4 18.9067 4 19.6044 4 21M16.5 7.5C16.5 9.98528 14.4853 12 12 12C9.51472 12 7.5 9.98528 7.5 7.5C7.5 5.01472 9.51472 3 12 3C14.4853 3 16.5 5.01472 16.5 7.5Z"
+                stroke="#71717A"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
             </svg>
           </div>
-          <div>
+          <div className="flex flex-col">
             <h2 className="font-medium text-sm text-gray-900">Diego Duarte</h2>
             <p className="text-sm text-gray-500">Student</p>
           </div>
@@ -64,7 +75,9 @@ const Sidebar = () => {
             >
               <div className="flex items-center gap-3">
                 <BookOpen className="w-5 h-5 text-gray-700" />
-                <span className="text-sm font-medium text-gray-700">Learning content</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Learning content
+                </span>
               </div>
               {isLearningExpanded ? (
                 <ChevronDown className="w-4 h-4 text-gray-500" />
@@ -96,22 +109,19 @@ const Sidebar = () => {
 
                 {/* Categories */}
                 <div className="px-3">
-                  <h2 className="text-xs font-semibold mb-2 text-gray-600">CATEGORIES</h2>
+                  <h2 className="text-xs font-semibold mb-2 text-gray-600">
+                    CATEGORIES
+                  </h2>
                   <div className="flex flex-col gap-1">
                     {categories.map((item, index) => (
-                      <NavLink key={index} to={item.page} data-testid={`category-link-${item.label}`} className="text-black" >
-                        <button
-
-                          onClick={() => handleNavClick(item.page)}
-                          className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
-                            }`}
-                          aria-label={item.label}
-                          data-testid={`category-container-${item.label}`}
-                        >
-                          {item.label}
-                          <span className="text-gray-600">{item.icon}</span>
-                        </button>
-                      </NavLink>
+                      <button
+                        key={index}
+                        onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
+                        className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
+                      >
+                        <span className="text-gray-600">{item.icon}</span>
+                        <span className="text-sm text-gray-700">{item.label}</span>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -121,41 +131,34 @@ const Sidebar = () => {
 
           {/* Other Navigation Items */}
           {topNavItems.map((item, index) => (
-            <NavLink key={index} to={item.page} data-testid={`item-link-${item.label}`} className="text-black">
-              <button
-
-                onClick={() => handleNavClick(item.page)}
-                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
-                  }`}
-                aria-label={item.label}
-                data-testid={`item-container-${item.label}`}
-              >
-                {item.label}
-                <span className="text-gray-600">{item.icon}</span>
-              </button>
-            </NavLink>
+            <button
+              key={index}
+              onClick={() => handleNavClick(item.page)}
+              className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${currentPage === item.page ? 'bg-gray-50' : 'hover:bg-gray-50'
+                }`}
+            >
+              <span className="text-gray-600">{item.icon}</span>
+              <span className="text-sm font-medium text-gray-700">{item.label}</span>
+            </button>
           ))}
         </nav>
 
         <div className="mt-auto space-y-3">
-          <NavLink data-testid="starkla-ai" className="text-sm font-medium text-white" to="starkla">
-            <button
-              onClick={() => handleNavClick('starkla')}
-              className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
-            >
-              <MessageSquare className="w-5 h-5" />
-              Talk with Starkla
-            </button>
-          </NavLink>
-          <NavLink to="settings" className="text-sm font-medium text-gray-700">
-            <button
-              onClick={() => handleNavClick('settings')}
-              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
-            >
-              <Settings className="w-5 h-5 text-gray-600" />
-              Settings
-            </button>
-          </NavLink >
+          <button
+            onClick={() => handleNavClick('starkla')}
+            className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+          >
+            <MessageSquare className="w-5 h-5" />
+            <span className="text-sm font-medium">Talk with Starkla</span>
+          </button>
+
+          <button
+            onClick={() => handleNavClick('settings')}
+            className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
+          >
+            <Settings className="w-5 h-5 text-gray-600" />
+            <span className="text-sm font-medium text-gray-700">Settings</span>
+          </button>
         </div>
       </div>
     </div>

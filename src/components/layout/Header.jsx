@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Bell, Search } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
-
 const Header = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -23,7 +22,6 @@ const Header = () => {
     console.log(filteredOptionsinArray);
     setFilteredOptions(filteredOptionsinArray);
   }
-
 
   return (
     <header className="h-16 border-b border-gray-200 bg-white px-6">
