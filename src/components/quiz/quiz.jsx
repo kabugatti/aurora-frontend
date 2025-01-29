@@ -75,14 +75,14 @@ export default function Quiz({ questions }) {
             <button
               key={index}
               onClick={() => handleAnswer(option)}
-              className={`block w-full text-left px-4 py-2 mb-2 border rounded-lg ${
+              className={`block w-full text-left px-4 py-2 mb-2 border border-gray-200 text-black rounded-lg ${
                 selectedAnswer
                   ? option === questions[currentQuestion].answer
                     ? "bg-green-200 border-green-500"
                     : option === selectedAnswer
                     ? "bg-red-200 border-red-500"
-                    : "bg-gray-100"
-                  : "hover:bg-blue-100"
+                    : "bg-white"
+                  : "bg-white"
               }`}
               disabled={!!selectedAnswer}
             >
