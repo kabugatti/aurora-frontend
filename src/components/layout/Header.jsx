@@ -66,13 +66,13 @@ const Header = () => {
         </div>
 
         {/* Notification Button */}
-        <button
-          className="relative p-2 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100"
-
-        >
-          <Bell className="h-6 w-6" />
-          <NavLink to="notification" data-testid="notify-message" className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full"></NavLink >
-        </button>
+        <div className="relative p-4 mr-4  text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-100">
+          <NavLink to="notification" data-testid="notify-message" >
+            <div className="absolute top-1 right-1 h-2.5 w-2.5 bg-red-500 rounded-full">
+              <Bell className="h-6 w-6 " />
+            </div>
+          </NavLink >
+        </div>
       </div>
     </header>
   );
