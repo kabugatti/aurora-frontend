@@ -1,9 +1,9 @@
-import React from 'react';
-import { Brain } from 'lucide-react';
+import React from "react";
+import { Brain } from "lucide-react";
 
-const Footer = () => {
+const Footer = ({ customClass = "" }) => {
   return (
-    <footer className="bg-gray-900 text-gray-400 py-12">
+    <footer className={`bg-gray-900 text-gray-400 py-12 ${customClass}`}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">

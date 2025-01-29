@@ -29,13 +29,11 @@ const MainLayout = ({ children }) => {
         >
           {children}
         </main>
-        <footer
-          className={`bg-gray-900 text-gray-400 transition-all duration-1 ${
-            isSidebarOpen ? "lg:ml-64" : ""
-          }`}
-        >
-          <Footer />
-        </footer>
+        <Footer
+         customClass={`p-4 bg-gray-100 transition-all duration-100 ${
+          isSidebarOpen ? "lg:ml-64" : ""
+        }`}
+      />
       </div>
     </div>
   );
