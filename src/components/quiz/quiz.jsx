@@ -71,8 +71,13 @@ export default function Quiz({ questions }) {
               }}
             ></div>
           </div>
-          <h2 className="text-xl font-bold mb-4 text-black">
+          <h2 className="text-xl font-bold mb-4 text-black flex justify-between">
             {questions[currentQuestion].question}
+            <span className="text-blue-500">
+            {
+                (currentQuestion + 1) + "/" + questions.length
+            }
+            </span>
           </h2>
           {questions[currentQuestion].options.map((option, index) => (
             <button
