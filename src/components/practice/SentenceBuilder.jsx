@@ -155,29 +155,29 @@ const SentenceBuilder = () => {
   };
 
   const handleDrop = (word, sourceIndex, sourceType, targetIndex) => {
-    let newSentence;
+    let newSentence = [...sentence];
+    let newAvailableWords = [...availableWords];
     
     if (sourceType === 'available') {
-      setAvailableWords(prev => {
-        const newAvailable = [...prev];
-        newAvailable.splice(sourceIndex, 1);
-        return newAvailable;
-      });
       
-      newSentence = [...sentence];
-      if (newSentence[targetIndex]) {
-        setAvailableWords(prev => [...prev, newSentence[targetIndex]]);
+      const replacedWord = newSentence[targetIndex];
+      
+      if (replacedWord) {
+        newAvailableWords.push(replacedWord);
       }
+      
       newSentence[targetIndex] = word;
       
-    } else if (sourceType === 'sentence') {
-      newSentence = [...sentence];
+      newAvailableWords = newAvailableWords.filter(w => w !== word);
+    } 
+    else if (sourceType === 'sentence') {
       const temp = newSentence[targetIndex];
       newSentence[targetIndex] = newSentence[sourceIndex];
       newSentence[sourceIndex] = temp;
     }
     
     setSentence(newSentence);
+    setAvailableWords(newAvailableWords);
     
     const isCorrect = checkIfSentenceIsCorrect(newSentence);
     setIsCurrentSentenceCorrect(isCorrect);
@@ -186,8 +186,7 @@ const SentenceBuilder = () => {
       const newCompletedSentences = new Set(completedSentences);
       newCompletedSentences.add(currentSentenceIndex);
       setCompletedSentences(newCompletedSentences);
-      const newProgress = (newCompletedSentences.size / SENTENCES_DATA.length) * 100;
-      setProgress(newProgress);
+      setProgress((newCompletedSentences.size / SENTENCES_DATA.length) * 100);
     }
   };
 
