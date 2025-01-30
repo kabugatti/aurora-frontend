@@ -1,19 +1,39 @@
-
-import React from 'react';
-import Sidebar from './Sidebar';
-import Header from './Header';
-import Footer from './Footer';
+import React, { useState } from "react";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const MainLayout = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="flex h-screen w-screen">
-      <Sidebar />
+      {/* Sidebar */}
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={toggleSidebar}
+        headerHeight="64px"
+      />
+
+      {/* Main Content */}
       <div className="flex flex-col flex-1">
-        <Header />
-        <main className="flex-1 p-6 bg-gray-50 overflow-auto">
+        <Header onMenuClick={toggleSidebar} />
+        <main
+          className={`flex-1 p-6 bg-gray-50 overflow-auto transition-all duration-1 ${
+            isSidebarOpen ? "lg:ml-64" : ""
+          }`}
+        >
           {children}
         </main>
-        <Footer />
+        <Footer
+         customClass={`p-4 bg-gray-100 transition-all duration-100 ${
+          isSidebarOpen ? "lg:ml-64" : ""
+        }`}
+      />
       </div>
     </div>
   );

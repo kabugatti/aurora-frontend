@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Bell, Search, Settings } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import ConnectWalletButton from '../ui/ConnectWalletButton';
-import { useWallet } from '../../context/WalletContext';
-import { truncateAddress } from '../../utils/helpers';
+import React, { useState } from "react";
+import { Bell, Search, Settings,Menu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import ConnectWalletButton from "../ui/ConnectWalletButton";
+import { useWallet } from "../../context/WalletContext";
+import { truncateAddress } from "../../utils/helpers";
 
 const mockNotifications = [
   {
@@ -29,13 +29,13 @@ const mockNotifications = [
   },
 ];
 
-const Header = () => {
+const Header = ({ onMenuClick }) => {
   const { address } = useWallet();
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState("home");
   const [activeTooltip, setActiveTooltip] = useState(null);
   const [notifications, setNotifications] = useState(mockNotifications);
   const [isOpen, setIsOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [showFiltered, setShowFiltered] = useState(false);
   const unreadCount = notifications.filter((n) => !n.isRead).length;
@@ -46,8 +46,8 @@ const Header = () => {
     "speaking",
     "listening",
     "reading",
-    "games"
-  ]
+    "games",
+  ];
   const handleNavClick = (page) => {
     setCurrentPage(page);
     navigate(page);
@@ -62,13 +62,24 @@ const Header = () => {
     setShowFiltered(true);
     const query = e.target.value.toLowerCase();
     setSearchQuery(e.target.value);
-    const filteredOptionsinArray = Options.filter((eachOption) => eachOption.includes(query));//if the filtered content includes it will return in an array or else empty array will be returned
+    const filteredOptionsinArray = Options.filter((eachOption) =>
+      eachOption.includes(query)
+    ); //if the filtered content includes it will return in an array or else empty array will be returned
     setFilteredOptions(filteredOptionsinArray);
-  }
+  };
   return (
     <header className="h-16 border-b border-gray-200 bg-white px-6">
       <div className="flex items-center justify-between h-full">
-        <div className="relative left-1/2 transform -translate-x-1/2 w-96">
+        {/* Menu Button */} 
+        <button
+          className="p-2 text-gray-600 hover:text-gray-800 rounded-lg mr-4 hover:bg-gray-100"
+          onClick={onMenuClick}
+        >
+          <Menu className="h-6 w-6" />
+        </button>  
+
+        {/* Search Input */}
+        <div className="relative w-full max-w-xs sm:max-w-md lg:max-w-lg">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <Search className="h-5 w-5 text-gray-400" />
           </div>
@@ -78,7 +89,6 @@ const Header = () => {
             className="block w-full pl-10 pr-3 py-2 border border-gray-200 rounded-lg bg-gray-50 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             value={searchQuery}
             onChange={(e) => handleChange(e)}
-
           />
           {showFiltered && (
             <div className="absolute top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-md cursor-pointer z-10">
@@ -98,12 +108,13 @@ const Header = () => {
                     </div>
                   ))
                 ) : (
-                  <div className="px-4 py-2 text-gray-500">No Search Result</div>
+                  <div className="px-4 py-2 text-gray-500">
+                    No Search Result
+                  </div>
                 )
               ) : null}
             </div>
           )}
-
         </div>
 
         <div className="flex items-center space-x-4 relative">
@@ -116,7 +127,7 @@ const Header = () => {
 
           <div
             className="relative"
-            onMouseEnter={() => setActiveTooltip('notifications')}
+            onMouseEnter={() => setActiveTooltip("notifications")}
             onMouseLeave={() => setActiveTooltip(null)}
           >
             <button
@@ -143,8 +154,9 @@ const Header = () => {
                   notifications.map((notification) => (
                     <div
                       key={notification.id}
-                      className={`px-4 py-2 text-black ${notification.isRead ? "opacity-50" : "font-bold"
-                        }`}
+                      className={`px-4 py-2 text-black ${
+                        notification.isRead ? "opacity-50" : "font-bold"
+                      }`}
                       onClick={() => navigate("/notifications")}
                     >
                       <p>{notification.title}</p>
@@ -164,16 +176,16 @@ const Header = () => {
 
           <div
             className="relative"
-            onMouseEnter={() => setActiveTooltip('settings')}
+            onMouseEnter={() => setActiveTooltip("settings")}
             onMouseLeave={() => setActiveTooltip(null)}
           >
             <button
-              onClick={() => handleNavClick('settings')}
+              onClick={() => handleNavClick("settings")}
               className="flex items-center gap-2 px-3 py-2 text-left rounded-lg transition-colors hover:bg-gray-50"
             >
               <Settings className="w-5 h-5 text-gray-600" />
             </button>
-            {activeTooltip === 'settings' && (
+            {activeTooltip === "settings" && (
               <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-gray-500 text-white text-xs px-2 py-2 rounded-md">
                 Settings
               </div>
