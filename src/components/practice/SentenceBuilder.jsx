@@ -6,6 +6,29 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 
+const SENTENCES_DATA = [
+  {
+    sentence: "She enjoys reading books in the quiet library",
+    words: ["quiet", "She", "books", "reading", "library", "enjoys", "in", "the"],
+  },
+  {
+    sentence: "They will travel to Japan next summer vacation",
+    words: ["Japan", "will", "They", "vacation", "to", "travel", "next", "summer"],
+  },
+  {
+    sentence: "The cat sleeps peacefully on the warm sofa",
+    words: ["cat", "warm", "The", "peacefully", "sofa", "sleeps", "on", "the"],
+  },
+  {
+    sentence: "He is learning to play the electric guitar",
+    words: ["is", "electric", "He", "the", "learning", "guitar", "play", "to"],
+  },
+  {
+    sentence: "We had a great time at the concert",
+    words: ["time", "We", "concert", "great", "the", "had", "at", "a"],
+  },
+];
+
 const DraggableWord = ({ word, index, type, onWordReturn }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'word',
@@ -76,30 +99,64 @@ DropZone.propTypes = {
   onWordReturn: PropTypes.func.isRequired,
 };
 
+const INITIAL_TIME = 120;
+
 const SentenceBuilder = () => {
-  const [sentence, setSentence] = useState(Array(7).fill(''));
-  const [availableWords, setAvailableWords] = useState(['the', 'dog', 'chases', 'ball', 'in', 'park', 'the']);
-  const [correctSentence] = useState("The dog chases the ball in the park");
+  const [currentSentenceIndex, setCurrentSentenceIndex] = useState(0);
+  const [sentence, setSentence] = useState(Array(8).fill(''));
+  const [availableWords, setAvailableWords] = useState(SENTENCES_DATA[0].words);
   const [progress, setProgress] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(180);
+  const [isCurrentSentenceCorrect, setIsCurrentSentenceCorrect] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(120);
+  const [completedSentences, setCompletedSentences] = useState(new Set());
+  const [isTimerActive, setIsTimerActive] = useState(true);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+    let timer;
+    if (isTimerActive && timeLeft > 0) {
+      timer = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            setIsTimerActive(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+
+    return () => {
+      if (timer) {
+        clearInterval(timer);
+      }
+    };
+  }, [timeLeft, isTimerActive]);
+
+  const checkIfSentenceIsCorrect = (newSentence) => {
+    const userSentence = newSentence.filter(Boolean).join(' ');
+    const correctSentence = SENTENCES_DATA[currentSentenceIndex].sentence;
+    return userSentence.toLowerCase() === correctSentence.toLowerCase();
+  };
+
+  const resetForNewSentence = (sentenceIndex) => {
+    setSentence(Array(8).fill(''));
+    setAvailableWords(SENTENCES_DATA[sentenceIndex].words);
+    setIsCurrentSentenceCorrect(false);
+    setTimeLeft(INITIAL_TIME);
+  };
 
   const handleWordReturn = (word, index) => {
-    setSentence(prev => {
-      const newSentence = [...prev];
-      newSentence[index] = '';
-      setAvailableWords(prevWords => [...prevWords, word]);
-      return newSentence;
-    });
+    const newSentence = [...sentence];
+    newSentence[index] = '';
+    setSentence(newSentence);
+    setAvailableWords(prev => [...prev, word]);
+    setIsCurrentSentenceCorrect(false);
   };
 
   const handleDrop = (word, sourceIndex, sourceType, targetIndex) => {
+    let newSentence;
+    
     if (sourceType === 'available') {
       setAvailableWords(prev => {
         const newAvailable = [...prev];
@@ -107,35 +164,43 @@ const SentenceBuilder = () => {
         return newAvailable;
       });
       
-      setSentence(prev => {
-        const newSentence = [...prev];
-        if (newSentence[targetIndex]) {
-          setAvailableWords(available => [...available, newSentence[targetIndex]]);
-        }
-        newSentence[targetIndex] = word;
-        return newSentence;
-      });
+      newSentence = [...sentence];
+      if (newSentence[targetIndex]) {
+        setAvailableWords(prev => [...prev, newSentence[targetIndex]]);
+      }
+      newSentence[targetIndex] = word;
+      
     } else if (sourceType === 'sentence') {
-      setSentence(prev => {
-        const newSentence = [...prev];
-        const temp = newSentence[targetIndex];
-        newSentence[targetIndex] = newSentence[sourceIndex];
-        newSentence[sourceIndex] = temp;
-        return newSentence;
-      });
+      newSentence = [...sentence];
+      const temp = newSentence[targetIndex];
+      newSentence[targetIndex] = newSentence[sourceIndex];
+      newSentence[sourceIndex] = temp;
+    }
+    
+    setSentence(newSentence);
+    
+    const isCorrect = checkIfSentenceIsCorrect(newSentence);
+    setIsCurrentSentenceCorrect(isCorrect);
+    
+    if (isCorrect && !completedSentences.has(currentSentenceIndex)) {
+      const newCompletedSentences = new Set(completedSentences);
+      newCompletedSentences.add(currentSentenceIndex);
+      setCompletedSentences(newCompletedSentences);
+      const newProgress = (newCompletedSentences.size / SENTENCES_DATA.length) * 100;
+      setProgress(newProgress);
     }
   };
 
   const handleReset = () => {
-    setSentence(Array(7).fill(''));
-    setAvailableWords(['the', 'dog', 'chases', 'ball', 'in', 'park', 'the']);
-    setProgress(0);
+    resetForNewSentence(currentSentenceIndex);
   };
 
-  const checkAnswer = () => {
-    const userSentence = sentence.filter(Boolean).join(' ').toLowerCase();
-    const correct = correctSentence.toLowerCase();
-    setProgress(userSentence === correct ? 100 : 50);
+  const handleNextQuestion = () => {
+    if (currentSentenceIndex < SENTENCES_DATA.length - 1 && isCurrentSentenceCorrect) {
+      const nextIndex = currentSentenceIndex + 1;
+      setCurrentSentenceIndex(nextIndex);
+      resetForNewSentence(nextIndex);
+    }
   };
 
   const formatTime = (seconds) => {
@@ -150,16 +215,11 @@ const SentenceBuilder = () => {
         <CardHeader>
           <CardTitle>Sentence Builder</CardTitle>
           <div className="text-sm text-gray-500">
-            Exercise 5 of 10
+            Exercise {currentSentenceIndex + 1} of {SENTENCES_DATA.length}
           </div>
-          <Progress value={50} className="w-full h-2" />
+          <Progress value={progress} className="w-full h-2" />
         </CardHeader>
         <CardContent>
-          <div className="mb-6">
-            <p className="text-lg mb-2">Form a correct sentence using the following words:</p>
-            <p className="text-gray-600 italic">&ldquo;{correctSentence}&rdquo;</p>
-          </div>
-
           <div className="mb-6">
             <p className="mb-2 font-medium">Build your sentence here:</p>
             <div className="flex flex-wrap gap-2 p-4 bg-gray-50 rounded-lg min-h-[80px]">
@@ -176,7 +236,7 @@ const SentenceBuilder = () => {
           </div>
 
           <div className="mb-6">
-            <p className="mb-2 font-medium">Available words:</p>
+            <p className="text-lg mb-2">Available words:</p>
             <div className="flex flex-wrap gap-2 min-h-[50px] p-4 bg-gray-50 rounded-lg">
               {availableWords.map((word, index) => (
                 <DraggableWord 
@@ -186,34 +246,40 @@ const SentenceBuilder = () => {
                   type="available"
                 />
               ))}
-              {availableWords.length === 0 && (
-                <div className="w-full py-2 px-4 text-green-600 bg-green-50 rounded-lg border border-green-200">
-                  Correct! Well done!
-                </div>
-              )}
             </div>
           </div>
 
-          {progress > 0 && (
-            <div className="mb-4">
-              <Progress value={progress} className="w-full" />
-              <p className={`mt-2 text-center ${progress === 100 ? 'text-green-600' : 'text-yellow-600'}`}>
-                {progress === 100 ? 'Correct! Well done!' : 'Try again!'}
+          {isCurrentSentenceCorrect && (
+            <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+              <p className="text-green-600 text-center font-medium">
+                ¡Correct! Well done! 
+                {currentSentenceIndex < SENTENCES_DATA.length - 1 && 
+                  " Click 'Next Question' to continue."}
               </p>
             </div>
           )}
 
           <div className="flex justify-between items-center mt-6">
             <div className="flex gap-4">
-              <Button className="bg-blue-600"onClick={checkAnswer}>Check Answer</Button>
               <Button variant="outline" onClick={handleReset}>Reset</Button>
             </div>
             <div className="flex items-center gap-4">
-              <div className="text-sm text-gray-600">Score: {progress}%</div>
-              <div className="text-sm text-gray-600">Time Remaining: {formatTime(timeLeft)}</div>
+              <div className="text-sm text-gray-600">Progress: {progress}%</div>
+              <div className="text-sm text-gray-600">Time Left: {formatTime(timeLeft)}</div>
             </div>
           </div>
         </CardContent>
+        <div className='flex justify-center m-3'>
+          <Button 
+            className={`w-full rounded-lg ${
+              isCurrentSentenceCorrect ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400'
+            } text-white transition-colors`}
+            onClick={handleNextQuestion}
+            disabled={!isCurrentSentenceCorrect || currentSentenceIndex === SENTENCES_DATA.length - 1}
+          >
+            {currentSentenceIndex === SENTENCES_DATA.length - 1 ? 'Complete!' : 'Next Question'}
+          </Button>
+        </div>
       </Card>
     </DndProvider>
   );
