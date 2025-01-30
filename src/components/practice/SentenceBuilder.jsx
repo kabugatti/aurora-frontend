@@ -146,29 +146,23 @@ const SentenceBuilder = () => {
     setTimeLeft(INITIAL_TIME);
   };
 
-  const handleWordReturn = (word, index) => {
-    const newSentence = [...sentence];
-    newSentence[index] = '';
-    setSentence(newSentence);
-    setAvailableWords(prev => [...prev, word]);
-    setIsCurrentSentenceCorrect(false);
-  };
-
   const handleDrop = (word, sourceIndex, sourceType, targetIndex) => {
     let newSentence = [...sentence];
-    let newAvailableWords = [...availableWords];
+    
+    const originalWords = SENTENCES_DATA[currentSentenceIndex].words;
     
     if (sourceType === 'available') {
-      
       const replacedWord = newSentence[targetIndex];
-      
-      if (replacedWord) {
-        newAvailableWords.push(replacedWord);
-      }
       
       newSentence[targetIndex] = word;
       
-      newAvailableWords = newAvailableWords.filter(w => w !== word);
+      const newAvailableWords = originalWords.filter(w => 
+        w !== word && 
+        !newSentence.includes(w) || 
+        w === replacedWord
+      );
+      
+      setAvailableWords(newAvailableWords);
     } 
     else if (sourceType === 'sentence') {
       const temp = newSentence[targetIndex];
@@ -177,7 +171,6 @@ const SentenceBuilder = () => {
     }
     
     setSentence(newSentence);
-    setAvailableWords(newAvailableWords);
     
     const isCorrect = checkIfSentenceIsCorrect(newSentence);
     setIsCurrentSentenceCorrect(isCorrect);
@@ -188,6 +181,21 @@ const SentenceBuilder = () => {
       setCompletedSentences(newCompletedSentences);
       setProgress((newCompletedSentences.size / SENTENCES_DATA.length) * 100);
     }
+  };
+
+  const handleWordReturn = (word, index) => {
+    const newSentence = [...sentence];
+    newSentence[index] = '';
+    setSentence(newSentence);
+    
+    const originalWords = SENTENCES_DATA[currentSentenceIndex].words;
+    
+    const newAvailableWords = originalWords.filter(w => 
+      !newSentence.includes(w) || w === word
+    );
+    
+    setAvailableWords(newAvailableWords);
+    setIsCurrentSentenceCorrect(false);
   };
 
   const handleReset = () => {
