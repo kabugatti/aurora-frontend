@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './components/layout/MainLayout';
 import LearningContent from './pages/LearningContent';
@@ -25,6 +24,7 @@ import ListeningPage from './pages/ListeningContent';
 import ReadingContent from "./pages/ReadingContent";
 import CommunityInteractionPage from './pages/Community';
 import Notifications from './pages/Notifications';
+import SentenceBuilder from './components/practice/SentenceBuilder';
 
 function App() {
   return (
@@ -43,6 +43,7 @@ function App() {
           <Route path="/module-details" element={<ModuleDetails />} />
 
           <Route path='/practiceSystem' element={<PracticeSystem/>}/>
+          <Route path="/practice/sentence-builder" element={<SentenceBuilder />} />
 
           <Route path="/notifications" element={<Notifications />} />
 

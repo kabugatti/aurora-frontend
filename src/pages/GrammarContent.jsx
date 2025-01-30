@@ -69,6 +69,15 @@ const GrammarPage = () => {
                 <Link to="/quiz" className="bg-blue-500 hover:text-white hover:bg-blue-700 text-white px-4 py-2 rounded-xl">Start</Link>
               </CardHeader>
             </Card>
+            <Card key={grammarTopics.length+1} className="bg-gray-800 border-gray-700">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="flex items-center gap-3">
+                  <Book className="w-5 h-5 text-blue-400" />
+                  <span className="text-white">Practice 2</span>
+                </CardTitle>
+                <Link to="/practice/sentence-builder" className="bg-blue-500 hover:text-white hover:bg-blue-700 text-white px-4 py-2 rounded-xl">Start</Link>
+              </CardHeader>
+            </Card>
         </div>
 
         <Card className="bg-gray-800 border-gray-700">
