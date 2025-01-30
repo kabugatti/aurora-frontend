@@ -8,7 +8,7 @@ const ConnectWalletButton = () => {
 
   return (
     <button
-      className="flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-white hover:text-black border border-black transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+      className="flex items-center space-x-2 px-4 py-2 bg-bg-white text-black rounded-lg hover:bg-blue-600 hover:text-white border border-black transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
       onClick={address ? disconnectWallet : connectWallet}
     >
       <Wallet className="h-5 w-5" />
