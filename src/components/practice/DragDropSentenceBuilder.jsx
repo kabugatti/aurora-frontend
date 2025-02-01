@@ -19,19 +19,19 @@ const SENTENCES_DATA = [
     explanation: "This sentence uses the present perfect continuous tense.\n\n• Subject (I)\n• Auxiliary verbs (have been)\n• Main verb (working)\n• Time expression (all day)"
   },
   {
-    sentence: "They have been living here since 2010",
-    words: ["They", "have", "been", "living", "here", "since", "2010"].map(word => ({ id: uuidv4(), word })),
-    explanation: "This sentence uses the present perfect continuous tense.\n\n• Subject (They)\n• Auxiliary verbs (have been)\n• Main verb (living)\n• Time expression (since 2010)"
+    sentence: "They have been playing soccer since morning",
+    words: ["They", "have", "been", "playing", "soccer", "since", "morning"].map(word => ({ id: uuidv4(), word })),
+    explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (They)\n• Auxiliary verbs (have been)\n• Main verb (playing)\n• Time expression (since morning)"
   },
   {
-    sentence: "We have been waiting for the bus",
-    words: ["We", "have", "been", "waiting", "for", "the", "bus"].map(word => ({ id: uuidv4(), word })),
-    explanation: "This sentence uses the present perfect continuous tense.\n\n• Subject (We)\n• Auxiliary verbs (have been)\n• Main verb (waiting)\n• Time expression (for the bus)"
+    sentence: "We have been waiting for the bus for an hour",
+    words: ["We", "have", "been", "waiting", "for", "the", "bus", "for", "an", "hour"].map(word => ({ id: uuidv4(), word })),
+    explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (We)\n• Auxiliary verbs (have been)\n• Main verb (waiting)\n• Time expression (for an hour)"
   },
   {
-    sentence: "He has been playing football for an hour",
-    words: ["He", "has", "been", "playing", "football", "for", "an", "hour"].map(word => ({ id: uuidv4(), word })),
-    explanation: "This sentence uses the present perfect continuous tense.\n\n• Subject (He)\n• Auxiliary verbs (has been)\n• Main verb (playing)\n• Time expression (for an hour)"
+    sentence: "He has been reading that book all day",
+    words: ["He", "has", "been", "reading", "that", "book", "all", "day"].map(word => ({ id: uuidv4(), word })),
+    explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (He)\n• Auxiliary verbs (has been)\n• Main verb (reading)\n• Time expression (all day)"
   }
 ];
 
@@ -103,12 +103,16 @@ const DragDropSentenceBuilder = () => {
   const [isCheckEnabled, setIsCheckEnabled] = useState(false);
   const [showNext, setShowNext] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [resultsDisplayed, setResultsDisplayed] = useState(false);
+  const [isResetDisabled, setIsResetDisabled] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
   useEffect(() => {
     setSentence([]);
     setAvailableWords(shuffleArray([...SENTENCES_DATA[currentIndex].words]));
     setFeedback(null);
     setShowNext(false);
+    setIsResetDisabled(false);
   }, [currentIndex]);
 
   useEffect(() => {
@@ -133,7 +137,6 @@ const DragDropSentenceBuilder = () => {
       return wordToReturn ? [...prev, wordToReturn] : prev;
     });
     setFeedback(null);
-    setProgress(0);
     setShowNext(false);
   };
 
@@ -142,19 +145,23 @@ const DragDropSentenceBuilder = () => {
     const correctSentence = SENTENCES_DATA[currentIndex].sentence;
     if (userSentence === correctSentence) {
       setFeedback({ correct: true, message: SENTENCES_DATA[currentIndex].explanation });
-      setProgress(((currentIndex + 1) / SENTENCES_DATA.length) * 100);
+      setCorrectAnswers(correctAnswers + 1);
     } else {
       setFeedback({ correct: false, message: "Incorrect. Try again!" });
-      setProgress(0);
     }
-    setShowNext(true);
+    setProgress(((currentIndex + 1) / SENTENCES_DATA.length) * 100);
+    if (currentIndex === SENTENCES_DATA.length - 1) {
+      setShowResults(true);
+    } else {
+      setShowNext(true);
+    }
+    setIsResetDisabled(true);
   };
 
   const nextSentence = () => {
     if (currentIndex < SENTENCES_DATA.length - 1) {
       setCurrentIndex(currentIndex + 1);
-    } else {
-      setShowResults(true);
+      setIsResetDisabled(false);
     }
   };
 
@@ -162,20 +169,46 @@ const DragDropSentenceBuilder = () => {
     setSentence([]);
     setAvailableWords(shuffleArray([...SENTENCES_DATA[currentIndex].words]));
     setFeedback(null);
-    setProgress(0);
     setShowNext(false);
+    setShowResults(false);
+    setResultsDisplayed(false);
   };
 
   const handleShowResults = () => {
-    // Handle the logic to show results
-    console.log("Show Results");
+    setResultsDisplayed(true);
   };
+
+  if (resultsDisplayed) {
+    const percentage = (correctAnswers / SENTENCES_DATA.length) * 100;
+    return (
+      <DndProvider backend={HTML5Backend}>
+        <Card className="max-w-2xl mx-auto">
+        <CardHeader>
+        <CardTitle className="text-3xl text-center font-bold">Exercise Complete!</CardTitle>
+        </CardHeader>
+        <CardContent>
+        <p className="text-green-600 text-center font-extrabold text-6xl">{`${percentage}%`}</p>
+        <p className="mt-3 text-center">{`You got ${correctAnswers} out of ${SENTENCES_DATA.length} sentences correct!`}</p>
+        <div className="mt-3 flex justify-between w-full">
+          <Button variant="outline" onClick={() => setResultsDisplayed(false)}>Back</Button>
+          <Button>Main Menu</Button>
+        </div>
+        </CardContent>
+        </Card>
+      </DndProvider>
+    );
+  }
 
   return (
     <DndProvider backend={HTML5Backend}>
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
-          <CardTitle>Sentence Builder</CardTitle>
+          <div className="flex flex-row justify-between mb-3">
+            <CardTitle>Sentence Builder</CardTitle>
+            <div className="text-sm text-gray-500">
+              {currentIndex + 1} of {SENTENCES_DATA.length}
+            </div>
+          </div>
           <Progress value={progress} className="w-full h-2 bg-gray-200" />
         </CardHeader>
         <CardContent>
@@ -192,7 +225,14 @@ const DragDropSentenceBuilder = () => {
           {feedback && feedback.correct && (
             <div className="p-4 mt-4 border-l-4 border-green-500 bg-green-50 rounded-md text-green-700">
               <p className="font-semibold">✔ Grammar Explanation:</p>
-              <p className="mt-2">{feedback.message}</p>
+              <p className="mt-2"><strong>{feedback.message.split('\n\n')[0]}</strong></p>
+              <ul className="list-none">
+                {feedback.message.split('\n\n').slice(1).map((item, index) => (
+                  <li key={index}>
+                    <pre className="font-light">{item}</pre>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
           {feedback && !feedback.correct && (
@@ -201,9 +241,9 @@ const DragDropSentenceBuilder = () => {
             </div>
           )}
           <div className="flex justify-between mt-6">
-            <Button variant="outline" onClick={resetExercise}>Reset</Button>
-            <Button className="rounded-lg" disabled={!isCheckEnabled} onClick={showNext ? (showResults ? handleShowResults : nextSentence) : checkAnswer}>
-              {showNext ? (showResults ? 'Show Results' : 'Next') : 'Check Answer'}
+            <Button variant="outline" onClick={resetExercise} disabled={isResetDisabled}>Reset</Button>
+            <Button className="rounded-lg" disabled={!isCheckEnabled} onClick={showResults ? handleShowResults : (showNext ? nextSentence : checkAnswer)}>
+              {showResults ? 'Show Results' : (showNext ? 'Next' : 'Check Answer')}
             </Button>
           </div>
         </CardContent>
