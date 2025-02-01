@@ -35,6 +35,10 @@ const SENTENCES_DATA = [
   }
 ];
 
+const shuffleArray = (array) => {
+  return array.sort(() => Math.random() - 0.5);
+};
+
 const DraggableWord = ({ word, id }) => {
   const [{ isDragging }, drag] = useDrag({
     type: 'word',
@@ -93,7 +97,7 @@ DropZone.propTypes = {
 const DragDropSentenceBuilder = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sentence, setSentence] = useState([]);
-  const [availableWords, setAvailableWords] = useState([...SENTENCES_DATA[0].words]);
+  const [availableWords, setAvailableWords] = useState(shuffleArray([...SENTENCES_DATA[0].words]));
   const [progress, setProgress] = useState(0);
   const [feedback, setFeedback] = useState(null);
   const [isCheckEnabled, setIsCheckEnabled] = useState(false);
@@ -102,7 +106,7 @@ const DragDropSentenceBuilder = () => {
 
   useEffect(() => {
     setSentence([]);
-    setAvailableWords([...SENTENCES_DATA[currentIndex].words]);
+    setAvailableWords(shuffleArray([...SENTENCES_DATA[currentIndex].words]));
     setFeedback(null);
     setShowNext(false);
   }, [currentIndex]);
@@ -156,7 +160,7 @@ const DragDropSentenceBuilder = () => {
 
   const resetExercise = () => {
     setSentence([]);
-    setAvailableWords([...SENTENCES_DATA[currentIndex].words]);
+    setAvailableWords(shuffleArray([...SENTENCES_DATA[currentIndex].words]));
     setFeedback(null);
     setProgress(0);
     setShowNext(false);
@@ -172,7 +176,7 @@ const DragDropSentenceBuilder = () => {
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle>Sentence Builder</CardTitle>
-          <Progress value={progress} className="w-full h-2  bg-gray-200" />
+          <Progress value={progress} className="w-full h-2 bg-gray-200" />
         </CardHeader>
         <CardContent>
           <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
