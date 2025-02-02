@@ -67,148 +67,142 @@ const mockQuestions = [
 ];
 
 export default function FillInTheBlanksQuiz() {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [userAnswer, setUserAnswer] = useState("");
-  const [showHint, setShowHint] = useState(false);
-  const [isAnswered, setIsAnswered] = useState(false);
+  const [answers, setAnswers] = useState(mockQuestions.map(() => ""));
+  const [showHints, setShowHints] = useState(mockQuestions.map(() => false));
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
-  const [showResults, setShowResults] = useState(false);
 
-  const handleSubmit = () => {
-    if (!isAnswered) {
-      setIsAnswered(true);
-      if (userAnswer.toLowerCase() === mockQuestions[currentQuestion].answer.toLowerCase()) {
-        setScore(score + 1);
-      }
-    }
+  const handleAnswerChange = (index, value) => {
+    const newAnswers = [...answers];
+    newAnswers[index] = value;
+    setAnswers(newAnswers);
   };
 
-  const handleNext = () => {
-    if (currentQuestion < mockQuestions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1);
-      setUserAnswer("");
-      setIsAnswered(false);
-      setShowHint(false);
-    } else {
-      setShowResults(true);
+  const toggleHint = (index) => {
+    const newShowHints = [...showHints];
+    newShowHints[index] = !newShowHints[index];
+    setShowHints(newShowHints);
+  };
+
+  const handleSubmit = () => {
+    if (!isSubmitted) {
+      const correctAnswers = answers.reduce((count, answer, index) => {
+        return count + (answer.toLowerCase() === mockQuestions[index].answer.toLowerCase() ? 1 : 0);
+      }, 0);
+      setScore(correctAnswers);
+      setIsSubmitted(true);
     }
   };
 
   const handleRestart = () => {
-    setCurrentQuestion(0);
-    setUserAnswer("");
-    setIsAnswered(false);
-    setShowHint(false);
+    setAnswers(mockQuestions.map(() => ""));
+    setShowHints(mockQuestions.map(() => false));
+    setIsSubmitted(false);
     setScore(0);
-    setShowResults(false);
   };
 
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-      {showResults ? (
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-black">Quiz Completed!</h2>
-          <p className="text-3xl mt-4 font-bold text-[#4184F3]">
-            Score: {Math.round((score / mockQuestions.length) * 100)}%
-          </p>
-          <p className="text-gray-500 text-xl mt-2">
-            You got {score} out of {mockQuestions.length} questions right.
-          </p>
-          <div className="flex justify-center gap-4 mt-6">
-            <button
-              onClick={handleRestart}
-              className="py-2 px-6 bg-blue-500 flex items-center text-white rounded-lg hover:bg-blue-600"
-            >
-              <RefreshCw className="mr-2" />
-              Try Again
-            </button>
-            <Link
-              to="/"
-              className="py-2 px-6 bg-gray-500 flex items-center text-white rounded-lg hover:bg-gray-600"
-            >
-              <Home className="mr-2" />
-              Return Home
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <div className="relative w-full h-3 bg-gray-300 rounded-full overflow-hidden mb-6">
-            <div
-              className="h-full bg-blue-500 transition-all"
-              style={{
-                width: `${((currentQuestion) / mockQuestions.length) * 100}%`,
-              }}
-            ></div>
-          </div>
-
-          <h2 className="text-xl font-bold mb-6 text-black flex justify-between items-center">
-            <span>Question {currentQuestion + 1}</span>
-            <span className="text-blue-500">
-              {currentQuestion + 1}/{mockQuestions.length}
-            </span>
-          </h2>
-
-          <div className="mb-6">
-            <p className="text-lg text-black mb-4">{mockQuestions[currentQuestion].question}</p>
+      <div className="space-y-8">
+        {mockQuestions.map((question, index) => (
+          <div key={question.id} className="p-4 border border-gray-200 rounded-lg">
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-lg font-medium text-gray-900">
+                Question {index + 1}
+              </h3>
+              <button
+                onClick={() => toggleHint(index)}
+                className="px-3 py-1 bg-amber-500 text-white rounded-lg hover:bg-amber-600 flex items-center"
+              >
+                <HelpCircle className="w-4 h-4 mr-1" />
+                Hint
+              </button>
+            </div>
+            
+            <p className="text-gray-700 mb-3">{question.question}</p>
+            
+            {showHints[index] && (
+              <div className="mb-3 p-2 bg-amber-50 text-amber-800 rounded-lg">
+                <p className="text-sm">{question.hint}</p>
+              </div>
+            )}
+            
             <div className="flex gap-4">
               <input
                 type="text"
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
-                disabled={isAnswered}
+                value={answers[index]}
+                onChange={(e) => handleAnswerChange(index, e.target.value)}
+                disabled={isSubmitted}
                 placeholder="Type your answer here..."
-                className="flex-1 p-2 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
+                className="flex-1 p-2 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none bg-white text-gray-900 placeholder-gray-400"
               />
-              <button
-                onClick={() => setShowHint(!showHint)}
-                className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600"
-              >
-                <HelpCircle className="w-5 h-5" />
-              </button>
             </div>
+            
+            {isSubmitted && (
+              <div className={`mt-2 p-2 rounded-lg ${
+                answers[index].toLowerCase() === question.answer.toLowerCase()
+                  ? "bg-green-50 text-green-800"
+                  : "bg-red-50 text-red-800"
+              }`}>
+                <p className="text-sm">
+                  {answers[index].toLowerCase() === question.answer.toLowerCase()
+                    ? "Correct!"
+                    : `Incorrect. The correct answer is: ${question.answer}`}
+                </p>
+              </div>
+            )}
           </div>
+        ))}
+      </div>
 
-          {showHint && (
-            <div className="mb-4 p-3 bg-yellow-100 text-yellow-800 rounded-lg">
-              <p className="font-medium">Hint: {mockQuestions[currentQuestion].hint}</p>
-            </div>
-          )}
-
-          {isAnswered && (
-            <div className={`mb-4 p-3 rounded-lg ${
-              userAnswer.toLowerCase() === mockQuestions[currentQuestion].answer.toLowerCase()
-                ? "bg-green-100 text-green-800"
-                : "bg-red-100 text-red-800"
+      <div className="mt-8 border-t pt-6">
+        {isSubmitted ? (
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Quiz Results</h2>
+            <p className={`text-3xl font-bold mb-4 ${
+              score === mockQuestions.length
+                ? "text-emerald-600" // 100%
+                : score >= mockQuestions.length * 0.8
+                ? "text-green-600"   // 80-99%
+                : score >= mockQuestions.length * 0.6
+                ? "text-amber-600"   // 60-79%
+                : score >= mockQuestions.length * 0.4
+                ? "text-orange-600"  // 40-59%
+                : "text-red-600"     // Below 40%
             }`}>
-              <p className="font-medium">
-                {userAnswer.toLowerCase() === mockQuestions[currentQuestion].answer.toLowerCase()
-                  ? "Correct!"
-                  : `Incorrect. The correct answer is: ${mockQuestions[currentQuestion].answer}`}
-              </p>
+              Score: {Math.round((score / mockQuestions.length) * 100)}%
+            </p>
+            <p className="text-gray-500 text-xl mb-6">
+              You got {score} out of {mockQuestions.length} questions right.
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={handleRestart}
+                className="py-2 px-6 bg-blue-500 flex items-center text-white rounded-lg hover:bg-blue-600"
+              >
+                <RefreshCw className="mr-2" />
+                Try Again
+              </button>
+              <Link
+                to="/"
+                className="py-2 px-6 bg-gray-500 flex items-center text-white rounded-lg hover:bg-gray-600"
+              >
+                <Home className="mr-2" />
+                Return Home
+              </Link>
             </div>
-          )}
-
-          <div className="flex gap-4">
-            {!isAnswered && (
-              <button
-                onClick={handleSubmit}
-                className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-              >
-                Submit Answer
-              </button>
-            )}
-            {isAnswered && (
-              <button
-                onClick={handleNext}
-                className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-              >
-                {currentQuestion < mockQuestions.length - 1 ? "Next Question" : "Show Results"}
-              </button>
-            )}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="flex justify-center">
+            <button
+              onClick={handleSubmit}
+              className="py-2 px-8 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-lg font-medium"
+            >
+              Submit Quiz
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 } 
