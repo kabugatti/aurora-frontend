@@ -25,6 +25,7 @@ import ReadingContent from "./pages/ReadingContent";
 import CommunityInteractionPage from './pages/Community';
 import Notifications from './pages/Notifications';
 import SentenceBuilder from './components/practice/SentenceBuilder';
+import FillInTheBlanksQuizPage from './pages/FillInTheBlanksQuizPage';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
           <Route path="/games/memory-card" element={<DifficultySelector />} />
           <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
           <Route path="/quiz" element={<Quiz/>}/>
+          <Route path="/fill-in-the-blanks" element={<FillInTheBlanksQuizPage />} />
           <Route path="/grammar" element={<GrammarContent />} />
           <Route path='/vocabulary' element={<VocabularyPage />} />
           <Route path='/speaking' element={<SpeakingPage />} />
