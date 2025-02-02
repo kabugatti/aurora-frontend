@@ -10,7 +10,7 @@ import CertificationContent from './pages/CertificationContent';
 import ModuleDetails from './pages/ModuleDetails';
 import WalletConnection from './pages/WalletConnection';
 import HomePage from './pages/HomePage';
-import PracticeSystem from './pages/PracticeSystem';
+import PracticeSystem from './components/practice/DragDropSentenceBuilder';
 import StoryGame from './pages/StoryGame';
 import WordMatching from './pages/Games/WordMatching';
 import GamePanel from './pages/GamePanel';
@@ -44,7 +44,7 @@ function App() {
 
           <Route path='/practiceSystem' element={<PracticeSystem/>}/>
           <Route path="/practice/sentence-builder" element={<SentenceBuilder />} />
-
+          <Route path="/practice/drag-drop-sentence-builder" element={<PracticeSystem/>}/>
           <Route path="/notifications" element={<Notifications />} />
 
           <Route path="/story-game" element={<StoryGame />} />
