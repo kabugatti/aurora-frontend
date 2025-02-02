@@ -6,33 +6,33 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { v4 as uuidv4 } from 'uuid';
-
+import { useNavigate } from 'react-router-dom';
 const SENTENCES_DATA = [
   {
     sentence: "She has been studying for hours",
     words: ["She", "has", "been", "studying", "for", "hours"].map(word => ({ id: uuidv4(), word })),
     explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (She)\n• Auxiliary verbs (has been)\n• Main verb (studying)\n• Time expression (for hours)"
   },
-  {
-    sentence: "I have been working all day",
-    words: ["I", "have", "been", "working", "all", "day"].map(word => ({ id: uuidv4(), word })),
-    explanation: "This sentence uses the present perfect continuous tense.\n\n• Subject (I)\n• Auxiliary verbs (have been)\n• Main verb (working)\n• Time expression (all day)"
-  },
-  {
-    sentence: "They have been playing soccer since morning",
-    words: ["They", "have", "been", "playing", "soccer", "since", "morning"].map(word => ({ id: uuidv4(), word })),
-    explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (They)\n• Auxiliary verbs (have been)\n• Main verb (playing)\n• Time expression (since morning)"
-  },
-  {
-    sentence: "We have been waiting for the bus for an hour",
-    words: ["We", "have", "been", "waiting", "for", "the", "bus", "for", "an", "hour"].map(word => ({ id: uuidv4(), word })),
-    explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (We)\n• Auxiliary verbs (have been)\n• Main verb (waiting)\n• Time expression (for an hour)"
-  },
-  {
-    sentence: "He has been reading that book all day",
-    words: ["He", "has", "been", "reading", "that", "book", "all", "day"].map(word => ({ id: uuidv4(), word })),
-    explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (He)\n• Auxiliary verbs (has been)\n• Main verb (reading)\n• Time expression (all day)"
-  }
+  // {
+  //   sentence: "I have been working all day",
+  //   words: ["I", "have", "been", "working", "all", "day"].map(word => ({ id: uuidv4(), word })),
+  //   explanation: "This sentence uses the present perfect continuous tense.\n\n• Subject (I)\n• Auxiliary verbs (have been)\n• Main verb (working)\n• Time expression (all day)"
+  // },
+  // {
+  //   sentence: "They have been playing soccer since morning",
+  //   words: ["They", "have", "been", "playing", "soccer", "since", "morning"].map(word => ({ id: uuidv4(), word })),
+  //   explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (They)\n• Auxiliary verbs (have been)\n• Main verb (playing)\n• Time expression (since morning)"
+  // },
+  // {
+  //   sentence: "We have been waiting for the bus for an hour",
+  //   words: ["We", "have", "been", "waiting", "for", "the", "bus", "for", "an", "hour"].map(word => ({ id: uuidv4(), word })),
+  //   explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (We)\n• Auxiliary verbs (have been)\n• Main verb (waiting)\n• Time expression (for an hour)"
+  // },
+  // {
+  //   sentence: "He has been reading that book all day",
+  //   words: ["He", "has", "been", "reading", "that", "book", "all", "day"].map(word => ({ id: uuidv4(), word })),
+  //   explanation: "This sentence uses the present perfect continuous tense to describe an ongoing action.\n\n• Subject (He)\n• Auxiliary verbs (has been)\n• Main verb (reading)\n• Time expression (all day)"
+  // }
 ];
 
 const shuffleArray = (array) => {
@@ -95,6 +95,7 @@ DropZone.propTypes = {
 };
 
 const DragDropSentenceBuilder = () => {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sentence, setSentence] = useState([]);
   const [availableWords, setAvailableWords] = useState(shuffleArray([...SENTENCES_DATA[0].words]));
@@ -191,7 +192,9 @@ const DragDropSentenceBuilder = () => {
         <p className="mt-3 text-center">{`You got ${correctAnswers} out of ${SENTENCES_DATA.length} sentences correct!`}</p>
         <div className="mt-3 flex justify-between w-full">
           <Button variant="outline" onClick={() => setResultsDisplayed(false)}>Back</Button>
-          <Button>Main Menu</Button>
+          <Button className="rounded-lg" onClick={() => navigate('/')}>
+              Main Menu
+            </Button>
         </div>
         </CardContent>
         </Card>
