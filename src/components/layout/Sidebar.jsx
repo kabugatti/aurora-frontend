@@ -47,11 +47,6 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
       page: "analytics",
     },
     { icon: <Users className="w-5 h-5" />, label: "Community", page: "people" },
-    {
-      icon: <ShieldQuestion className="w-5 h-5" />,
-      label: "Questions",
-      page: "practiceSystem",
-    },
   ];
 
   return (
@@ -164,17 +159,6 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
             >
               <MessageSquare className="w-5 h-5" />
               <span className="text-sm font-medium">Talk with Starkla</span>
-            </button>
-          </NavLink>
-          <NavLink to="settings">
-            <button
-              onClick={() => handleNavClick("settings")}
-              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-gray-50"
-            >
-              <Settings className="w-5 h-5 text-gray-600" />
-              <span className="text-sm font-medium text-gray-700">
-                Settings
-              </span>
             </button>
           </NavLink>
         </div>
