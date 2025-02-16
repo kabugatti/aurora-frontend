@@ -1,31 +1,55 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainLayout from './components/layout/main-layout';
-import LearningContent from './pages/LearningContent';
-import CertificationsObtained from './pages/CertificationsObtained';
-import SettingsPage from './pages/SettingsPage';
-import StarklaChat from './pages/StarklaChat/StarklaChat';
-import Categories from './pages/Categories';
-import Analytics from './pages/Analytics';
-import CertificationContent from './pages/CertificationContent';
-import ModuleDetails from './pages/ModuleDetails';
-import WalletConnection from './pages/WalletConnection';
-import HomePage from './pages/HomePage';
-import PracticeSystem from './components/practices/exercises/drag-drop-sentence-builder';
-import StoryGame from './pages/StoryGame';
-import WordMatching from './pages/Games/WordMatching';
-import GamePanel from './pages/GamePanel';
-import DifficultySelector from './components/games/memory-card/difficulty-selector';
-import GameBoard from './components/games/memory-card/game-board';
-import Quiz from './pages/Quiz';
-import GrammarContent from "./pages/GrammarContent";
-import VocabularyPage from './pages/VocabularyContent';
-import SpeakingPage from './pages/SpeakingContent';
-import ListeningPage from './pages/ListeningContent';
-import ReadingContent from "./pages/ReadingContent";
-import CommunityInteractionPage from './pages/Community';
-import Notifications from './pages/Notifications';
-import SentenceBuilder from './components/practices/exercises/sentence-builder';
-import FillInTheBlanksQuizPage from './pages/FillInTheBlanksQuizPage';
+// 📦 External Libraries
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// 🏗️ Layout
+import MainLayout from "@/components/layout/main-layout";
+
+// 📚 Learning & Education
+import LearningContent from "@/pages/aurora-site/learning/learning-content";
+import VocabularyPage from "@/pages/aurora-site/learning/vocabulary-content";
+import SpeakingPage from "@/pages/aurora-site/learning/speaking-content";
+import ListeningPage from "@/pages/aurora-site/learning/listening-content";
+import ReadingContent from "@/pages/aurora-site/learning/reading-content";
+
+// 🎓 Certifications & Courses
+import CertificationsObtained from "@/pages/aurora-site/english-level/english-level-obtained";
+import CertificationContent from "@/pages/aurora-site/english-level/english-level-content";
+import ModuleDetails from "@/pages/aurora-site/modules/module-details";
+
+// ⚙️ System & Settings
+import SettingsPage from "@/pages/aurora-site/settings";
+import WalletConnection from "@/pages/aurora-site/wallet/wallet-connection";
+import Notifications from "@/pages/aurora-site/notifications";
+
+// 🌐 Community & Interaction
+import CommunityInteractionPage from "@/pages/aurora-site/community/community";
+import StarklaChat from "@/pages/aurora-site/aurora-chat";
+
+// 📊 Analytics & Categories
+import Categories from "@/pages/aurora-site/categories";
+import Analytics from "@/pages/aurora-site/analytics";
+
+// 🏠 Main Pages
+import HomePage from "@/pages/aurora-site/home";
+
+// 🧩 Games & Challenges
+import StoryGame from "@/pages/games/story-game";
+import WordMatching from "@/pages/games/word-matching";
+import GamePanel from "@/pages/games/game-panel";
+import DifficultySelector from "@/components/games/memory-card/difficulty-selector";
+import GameBoard from "@/components/games/memory-card/game-board";
+
+// 📝 Practices & Exercises
+import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
+import SentenceBuilder from "@/components/practices/exercises/sentence-builder";
+
+// 🧠 Quizzes
+import Quiz from "@/pages/aurora-site/quizzes/quiz";
+import FillInTheBlanksQuizPage from "@/pages/aurora-site/quizzes/fill-in-the-blanks-quiz";
+
+// 🏛️ Grammar & Language
+import GrammarContent from "@/pages/aurora-site/grammar-content";
+
 
 function App() {
   return (

@@ -1,8 +1,7 @@
-import React from 'react';
-import { ArrowRight, Brain, BookOpen, MessageSquare, Award, BarChart2 } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
-import StarklaIcon from '../assets/S-icon.jpg';
-
+import React from "react";
+import { ArrowRight, Brain, BookOpen, MessageSquare, Award, BarChart2 } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import StarklaIcon from "@/assets/S-icon.jpg";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">

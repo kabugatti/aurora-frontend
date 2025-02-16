@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Mic, ChevronLeft, ChevronRight, LightbulbIcon, FileIcon } from 'lucide-react';
 import ElizaBot from 'elizabot';
-import starklaImage from "../../assets/starkla.jpg";
-import styles from './StarklaChat.module.css'; 
+import starklaImage from "@/assets/starkla.jpg";
+import styles from './aurora-chat.module.css'; 
 
 const StarklaChat = () => {
   const [messages, setMessages] = useState([]);

@@ -10,7 +10,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Sidebar from '../components/layout/sidebar';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
-import HomePage from '../pages/HomePage';
+import HomePage from '../pages/aurora-site/home';
 import Header from '../components/layout/header';
 
 test('initiating the onboarding process of new user', async () => {

@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { Brain } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import starklaImage from '../assets/starkla.jpg';
+import React, { useState } from "react";
+import { Brain } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import starklaImage from "@/assets/starkla.jpg";
 
 const WalletConnection = () => {
   const navigate = useNavigate();

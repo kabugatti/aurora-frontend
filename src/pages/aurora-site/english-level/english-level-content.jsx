@@ -1,11 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import CertificationBanner from "../components/english-level/english-banner";
-import LearningCard from "../components/learning-path/learning-card";
-import learningModuleImg from "../assets/learning_module.png";
-import certificationBanner from "../assets/certification_banner.png";
-import software_arquitectureImg from "../assets/software_arquitecture.png";
-import operating_systemsImg from "../assets/operating_systems.png";
+import CertificationBanner from "@/components/english-level/english-banner";
+import LearningCard from "@/components/learning-path/learning-card";
+import learningModuleImg from "@/assets/learning_module.png";
+import certificationBanner from "@/assets/certification_banner.png";
+import softwarearquitectureImg from "@/assets/software_arquitecture.png";
+import operatingsystemsImg from "@/assets/operating_systems.png";
 
 const CertificationContent = () => {
   const location = useLocation();
@@ -26,14 +26,14 @@ const CertificationContent = () => {
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       slides: 10,
       tags: ["Basic", "Present"],
-      imageUrl: software_arquitectureImg,
+      imageUrl: softwarearquitectureImg,
     },
     {
       title: "Operating Systems",
       description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       slides: 10,
       tags: ["Basic", "Present"],
-      imageUrl: operating_systemsImg,
+      imageUrl: operatingsystemsImg,
     },
   ];
 
@@ -63,7 +63,7 @@ const CertificationContent = () => {
                     description: module.description,
                     slides: module.slides,
                     tags: module.tags,
-                    imageUrl: module.imageUrl, // Pasar la imagen al destino
+                    imageUrl: module.imageUrl,
                   },
                 })
               }

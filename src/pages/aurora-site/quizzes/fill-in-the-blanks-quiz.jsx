@@ -1,4 +1,4 @@
-import FillInTheBlanksQuiz from '../components/practices/quiz/fill-in-the-blanks-quiz';
+import FillInTheBlanksQuiz from "@/components/practices/quiz/fill-in-the-blanks-quiz";
 
 export default function FillInTheBlanksQuizPage() {
   return (
