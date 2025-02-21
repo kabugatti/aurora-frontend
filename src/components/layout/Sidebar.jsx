@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Gamepad,
   ShieldQuestion,
+  Home
 } from "lucide-react";
 import Logo from "../../assets/S-icon-Photoroom.png";
 
@@ -62,6 +63,23 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
           <img src={Logo} alt="Logo" className="w-12 h-auto" />
         </div>
         <nav className="flex flex-col gap-2 flex-1">
+          {/* Home Button */}
+
+          <NavLink to="/">
+              <button
+                onClick={() => handleNavClick("/")}
+                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
+                  currentPage === "/" ? "bg-gray-50" : "hover:bg-gray-50"
+                }`}
+              >
+                  <Home className="w-5 h-5 text-gray-600" />
+                <span className="text-sm font-medium text-gray-700">
+                  Home page
+                </span>
+              </button>
+            </NavLink>
+
+
           {/* Learning Content Accordion */}
           <div className="mb-2">
             <button
