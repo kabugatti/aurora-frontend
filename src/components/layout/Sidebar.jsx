@@ -74,7 +74,7 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
               >
                   <Home className="w-5 h-5 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Home page
+                  Home
                 </span>
               </button>
             </NavLink>
