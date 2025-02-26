@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Sidebar from "./sidebar";
-import Header from "./header";
-import Footer from "./footer";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const MainLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
