@@ -131,8 +131,8 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
             <NavLink key={index} to={item.page}>
               <button
                 onClick={() => handleNavClick(item.page)}
-            className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors  bg-blue-900 text-gray-100 hover:bg-gray-100 hover:text-blue-600 ${
-                  currentPage === item.page ? "bg-gray-50" : "hover:bg-gray-50"
+                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors active:bg-gray-100 active:text-blue-600  bg-blue-900 text-gray-100 hover:bg-gray-100 hover:text-blue-600 ${
+                  currentPage === item.page && "bg-gray-50 text-blue-600"
                 }`}
               >
                 <span className="">{item.icon}</span>
