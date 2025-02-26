@@ -12,8 +12,6 @@ import {
   MessageCircle,
   MessageSquare,
   Users,
-
-  ShieldQuestion,
   Home
 
 } from "lucide-react";
