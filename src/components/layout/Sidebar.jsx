@@ -6,14 +6,12 @@ import {
   ChevronRight,
   FileText,
   Gamepad,
-
   GraduationCap,
   Headphones,
+  Home,
   MessageCircle,
   MessageSquare,
   Users,
-  Home
-
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -65,25 +63,32 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
           {/* Home Button */}
 
           <NavLink to="/">
-              <button
-                onClick={() => handleNavClick("/")}
-                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
-                  currentPage === "/" ? "bg-gray-50" : "hover:bg-gray-50"
+            <button
+              onClick={() => handleNavClick("/")}
+              className={`flex items-center gap-3 hover:text-gray-800 px-3 py-2 w-full text-left rounded-lg transition-colors ${
+                currentPage === "/" ? "bg-gray-50  " : "hover:bg-gray-50 "
+              }`}
+            >
+              <Home
+                className={`w-5 h-5    ${
+                  currentPage === "/" ? "text-gray-800  " : "text-gray-200  "
                 }`}
+              />
+              <span
+                className={`text-sm font-medium text-gray-100  ${
+                  currentPage === "/" ? "text-gray-800  " : "text-gray-200  "
+}`}
               >
-                  <Home className="w-5 h-5 text-gray-600" />
-                <span className="text-sm font-medium text-gray-700">
-                  Home
-                </span>
-              </button>
-            </NavLink>
-
+                Home
+              </span>
+            </button>
+          </NavLink>
 
           {/* Learning Content Accordion */}
           <div className="mb-2">
             <button
               onClick={() => setIsLearningExpanded(!isLearningExpanded)}
-              className="flex items-center justify-between w-full px-3 py-2 bg-blue-900 text-gray-100 hover:bg-gray-100 hover:text-blue-600 rounded-lg transition-colors "
+              className="flex items-center justify-between w-full px-3 py-2 bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 rounded-lg transition-colors "
             >
               <div className="flex items-center gap-3">
                 <BookOpen className="w-5 h-5" />
@@ -133,7 +138,7 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
                               `category-${item.label.toLowerCase()}`
                             )
                           }
-                          className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg bg-blue-900 text-gray-100 hover:bg-gray-100 hover:text-blue-600 transition-colors "
+                      className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 transition-colors "
                         >
                           <span className="">{item.icon}</span>
                           <span className="text-sm ">{item.label}</span>
@@ -151,7 +156,7 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
             <NavLink key={index} to={item.page}>
               <button
                 onClick={() => handleNavClick(item.page)}
-                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors active:bg-gray-100 active:text-blue-600  bg-blue-900 text-gray-100 hover:bg-gray-100 hover:text-blue-600 ${
+                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors active:bg-gray-100 active:text-blue-600  bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 ${
                   currentPage === item.page && "bg-gray-50 text-blue-600"
                 }`}
               >

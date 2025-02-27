@@ -72,7 +72,7 @@ const Header = ({ onMenuClick }) => {
       <div className="flex items-center justify-between h-full">
         {/* Menu Button */}
         <button
-          className="p-2 text-gray-100 bg-blue-900  hover:text-blue-600 rounded-lg mr-4 hover:bg-gray-100"
+          className="p-2 text-gray-100 bg-blue-600  hover:text-blue-600 rounded-lg mr-4 hover:bg-gray-100"
           onClick={onMenuClick}
         >
           <Menu className="h-6 w-6" />
@@ -131,7 +131,7 @@ const Header = ({ onMenuClick }) => {
             onMouseLeave={() => setActiveTooltip(null)}
           >
             <button
-              className="relative p-2 text-gray-400 bg-blue-900 hover:text-blue-600 rounded-full hover:bg-gray-100  border-none "
+              className="relative p-2 text-gray-400 bg-blue-600 hover:text-blue-600 rounded-full hover:bg-gray-100  border-none "
               onClick={() => setIsOpen(!isOpen)}
             >
               <Bell className="h-6 w-6 text-gray-200 hover:text-blue-600" />
@@ -144,7 +144,7 @@ const Header = ({ onMenuClick }) => {
                 <div className="flex justify-between items-center px-4 py-2 border-b">
                   <span className="font-semibold">Notifications</span>
                   <button
-                    className="text-gray-200 bg-blue-900 text-sm"
+                    className="text-gray-200 bg-blue-600 text-sm"
                     onClick={markAllAsRead}
                   >
                     Mark all as read
@@ -181,12 +181,12 @@ const Header = ({ onMenuClick }) => {
           >
             <button
               onClick={() => handleNavClick("settings")}
-              className="flex bg-blue-900 items-center gap-2 px-3 py-2 text-left rounded-lg transition-colors hover:bg-gray-50"
+              className="flex bg-blue-600 items-center gap-2 px-3 py-2 text-left rounded-lg transition-colors hover:bg-gray-50"
             >
               <Settings className="w-5 h-5 text-gray-200 hover:text-blue-600" />
             </button>
             {activeTooltip === "settings" && (
-              <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white text-xs px-2 py-2 rounded-md">
+              <div className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 bg-blue-600 text-white text-xs px-2 py-2 rounded-md">
                 Settings
               </div>
             )}
