@@ -264,7 +264,7 @@ const AnalyticsContent = () => {
       <div className="bg-white p-4 rounded-lg border">
         <div className="flex justify-between items-center mb-4">
           <h2 className="font-medium">Latest results</h2>
-          <button className="text-gray-100 bg-blue-900 text-sm">See all</button>
+          <button className="text-gray-100 bg-blue-600 text-sm">See all</button>
         </div>
         <div className="space-y-4">
           <ProgressBar label="Unit 5 - Parts of the computer" value={50} />
@@ -277,11 +277,11 @@ const AnalyticsContent = () => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="font-medium">Continue classes</h2>
           <div className="flex gap-2">
-            <button className="text-gray-100 bg-blue-900 text-sm">
+            <button className="text-gray-100 bg-blue-600 text-sm">
               See all
             </button>
-            <button className="text-gray-100 bg-blue-900">&lt;</button>
-            <button className="text-gray-100 bg-blue-900">&gt;</button>
+            <button className="text-gray-100 bg-blue-600">&lt;</button>
+            <button className="text-gray-100 bg-blue-600">&gt;</button>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">

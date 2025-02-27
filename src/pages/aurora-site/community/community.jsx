@@ -59,7 +59,7 @@ const CommunityInteractionPage = () => {
               <CardFooter className="flex justify-center">
                 <Button
                   variant="outline"
-                  className="text-white bg-blue-900 border-blue-900 hover:bg-blue-400 hover:text-gray-900"
+                  className="text-white bg-blue-600 border-blue-600 hover:bg-blue-700 hover:text-gray-700"
                 >
                   {feature.buttonText}
                 </Button>
