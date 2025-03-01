@@ -65,19 +65,19 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
           <NavLink to="/">
             <button
               onClick={() => handleNavClick("/")}
-              className={`flex items-center gap-3 hover:text-gray-800 px-3 py-2 w-full text-left rounded-lg transition-colors ${
-                currentPage === "/" ? "bg-gray-50  " : "hover:bg-gray-50 "
+              className={`flex items-center gap-3 hover:text-blue-600 px-3 py-2 w-full text-left rounded-lg hover:transparent hover:border-blue-600 bg-blue-500  ${
+                currentPage === "/" ? "bg-transparent  " : "bg-blue-600 "
               }`}
             >
               <Home
                 className={`w-5 h-5    ${
-                  currentPage === "/" ? "text-gray-800  " : "text-gray-200  "
+                  currentPage === "/" ? "text-blue-800  " : "text-gray-200  "
                 }`}
               />
               <span
                 className={`text-sm font-medium text-gray-100  ${
-                  currentPage === "/" ? "text-gray-800  " : "text-gray-200  "
-}`}
+                  currentPage === "/" ? "text-blue-800  " : "text-gray-200  "
+                }`}
               >
                 Home
               </span>
@@ -138,7 +138,7 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
                               `category-${item.label.toLowerCase()}`
                             )
                           }
-                      className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 transition-colors "
+                          className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 transition-colors "
                         >
                           <span className="">{item.icon}</span>
                           <span className="text-sm ">{item.label}</span>
