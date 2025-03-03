@@ -9,11 +9,14 @@ import {
 import ElizaBot from "elizabot";
 import starklaImage from "@/assets/starkla.jpg";
 import styles from "./aurora-chat.module.css";
+import RenderFileUploadMessage from "./render-file-upload-message";
+import PreviewModal from "./file-preview-modal";
 
 const StarklaChat = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [previewMessage, setPreviewMessage] = useState(null);
 
   const eliza = new ElizaBot();
 
@@ -50,46 +53,37 @@ const StarklaChat = () => {
     const fileType = file.type.split("/")[0];
     const reader = new FileReader();
 
+    let message = {
+      type: "file",
+      fileType,
+      fileName: file.name,
+      isEliza: false,
+    };
+
     reader.onload = (event) => {
       const result = event.target.result;
 
       if (file.type === "application/pdf") {
         const blob = new Blob([result], { type: "application/pdf" });
         const url = URL.createObjectURL(blob);
-
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            type: "application",
-            content: url,
-            fileName: file.name,
-            isEliza: false,
-          },
-        ]);
-
-        // Optional: Cleanup URL when file is no longer needed
-        setTimeout(() => URL.revokeObjectURL(url), 10000);
-      } else if (fileType === "text") {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            type: "text",
-            content: result,
-            fileName: file.name,
-            isEliza: false,
-          },
-        ]);
+        message = {
+          ...message,
+          content: url,
+        };
       } else {
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            type: fileType,
-            content: result,
-            fileName: file.name,
-            isEliza: false,
-          },
-        ]);
+        message = {
+          ...message,
+          content: result,
+        };
       }
+
+      setPreviewMessage(message);
+    };
+
+    reader.onerror = () => {
+      // Handle errors during file reading
+      console.error("FileReader error occurred.");
+      // Optionally set some error message to the user
     };
 
     if (fileType === "image" || fileType === "audio") {
@@ -99,46 +93,52 @@ const StarklaChat = () => {
     } else if (fileType === "text") {
       reader.readAsText(file);
     } else {
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { type: "file", content: file.name, isEliza: false },
-      ]);
+      setPreviewMessage(message); // For types without content, directly preview fileName
     }
   };
 
-  const renderMessageContent = (message) => {
-    switch (message.type) {
-      case "image":
-        return (
-          <img
-            src={message.content}
-            alt={message.fileName}
-            className="object-cover w-32 h-32"
-          />
-        );
-      case "audio":
-        return <audio controls src={message.content} />;
-      case "text":
-        return (
-          <pre className="p-2 border-white border bg-white text-black max-h-24 max-w-[200px] overflow-scroll rounded">
-            {message.content}
-          </pre>
-        );
-      case "application":
-        if (message.fileName.endsWith(".pdf")) {
-          return (
-            <embed
-              src={message.content}
-              type="application/pdf"
-              className="w-full h-64"
-              alt={message.fileName}
-            />
-          );
-        }
-        return <span>{message.fileName}</span>;
-      default:
-        return <span>{message.fileName}</span>;
+  const handleSendFile = () => {
+    if (previewMessage) {
+      setMessages((prevMessages) => [...prevMessages, previewMessage]);
+
+      if (
+        previewMessage.content &&
+        previewMessage.content.startsWith("blob:")
+      ) {
+        setTimeout(() => URL.revokeObjectURL(previewMessage.content), 10000);
+      }
+
+      setPreviewMessage(null);
+
+      setIsTyping(true);
+
+      setTimeout(() => {
+        const elizaResponse = {
+          type: "text",
+          content: eliza.transform(inputText),
+          isEliza: true,
+        };
+
+        setMessages((prev) => [...prev, elizaResponse]);
+        setIsTyping(false);
+      }, 1500);
     }
+  };
+
+  const handleCancelPreview = () => {
+    if (
+      previewMessage &&
+      previewMessage.content &&
+      previewMessage.content.startsWith("blob:")
+    ) {
+      URL.revokeObjectURL(previewMessage.content); // Revoke URL if preview cancelled for PDFs
+    }
+    setPreviewMessage(null);
+  };
+
+  const handleChangeFile = () => {
+    handleCancelPreview();
+    setPreviewMessage(null);
   };
 
   return (
@@ -189,9 +189,18 @@ const StarklaChat = () => {
             key={index}
             className={`${styles.message} ${
               message.isEliza ? styles.messageEliza : styles.messageUser
-            } shadow-md p-4`}
+            } ${
+              message.type === "file" ? "!bg-transparent" : "shadow-md p-4"
+            }  max-w-40`}
           >
-            {renderMessageContent(message)}
+            {message.type === "file" ? (
+              <div className="flex items-center gap-1">
+                <FileIcon className="w-5 h-5 mb-auto text-blue-600" />
+                <RenderFileUploadMessage message={message} />
+              </div>
+            ) : (
+              <p className="break-all">{message.content}</p>
+            )}
           </div>
         ))}
 
@@ -228,11 +237,13 @@ const StarklaChat = () => {
             />
             <div className="absolute flex items-center gap-2 transform -translate-y-1/2 right-2 top-1/2">
               <label className="cursor-pointer p-1.5 text-blue-600 hover:bg-blue-50 rounded-full transition-colors">
-                <input
-                  type="file"
-                  className="hidden"
-                  onChange={handleFileUpload}
-                />
+                {!previewMessage && (
+                  <input
+                    type="file"
+                    className="hidden"
+                    onChange={handleFileUpload}
+                  />
+                )}
                 <FileIcon className="w-5 h-5" />
               </label>
               <button
@@ -245,6 +256,16 @@ const StarklaChat = () => {
           </div>
         </div>
       </div>
+
+      {/* File preview modal */}
+      {previewMessage && (
+        <PreviewModal
+          message={previewMessage}
+          onClose={handleCancelPreview}
+          onSend={handleSendFile}
+          onChangeFile={handleChangeFile}
+        />
+      )}
     </div>
   );
 };
