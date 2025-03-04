@@ -57,6 +57,7 @@ const StarklaChat = () => {
       type: "file",
       fileType,
       fileName: file.name,
+      fileSize: file.size,
       isEliza: false,
     };
 
@@ -195,7 +196,6 @@ const StarklaChat = () => {
           >
             {message.type === "file" ? (
               <div className="flex items-center gap-1">
-                <FileIcon className="w-5 h-5 mb-auto text-blue-600" />
                 <RenderFileUploadMessage message={message} />
               </div>
             ) : (
