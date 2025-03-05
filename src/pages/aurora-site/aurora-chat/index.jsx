@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import ElizaBot from 'elizabot';
+import auroraImage from "@/assets/aurora.jpg";
 import {
   Mic,
   ChevronLeft,
@@ -6,13 +8,11 @@ import {
   LightbulbIcon,
   FileIcon,
 } from "lucide-react";
-import ElizaBot from "elizabot";
-import starklaImage from "@/assets/starkla.jpg";
 import styles from "./aurora-chat.module.css";
 import RenderFileUploadMessage from "./render-file-upload-message";
 import PreviewModal from "./file-preview-modal";
 
-const StarklaChat = () => {
+const AuroraChat = () => {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -148,18 +148,16 @@ const StarklaChat = () => {
       <div className="flex items-center w-full px-6 py-2 border-b border-gray-100">
         {/* Left: Profile Section */}
         <div className="flex items-center gap-4">
-          <div className="w-16 h-16 overflow-hidden rounded-full">
-            <img
-              src={starklaImage}
-              alt="Starkla Profile"
-              className="object-cover w-full h-full"
+          <div className="w-16 h-16 rounded-full overflow-hidden">
+            <img 
+              src={auroraImage} 
+              alt="Aurora Profile"
+              className="w-full h-full object-cover"
             />
           </div>
           <div>
-            <h1 className="text-lg font-semibold text-gray-900">STARKLA</h1>
-            <h2 className="text-sm text-gray-600">
-              Software Architecture lesson - Chapter 1
-            </h2>
+            <h1 className="text-lg font-semibold text-gray-900">AURORA</h1>
+            <h2 className="text-sm text-gray-600">Software Architecture lesson - Chapter 1</h2>
           </div>
         </div>
 
@@ -270,4 +268,4 @@ const StarklaChat = () => {
   );
 };
 
-export default StarklaChat;
+export default AuroraChat;

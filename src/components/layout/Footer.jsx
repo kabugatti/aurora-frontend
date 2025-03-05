@@ -7,10 +7,10 @@ const Footer = ({ customClass = "" }) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Brain className="w-6 h-6 text-gray-300" />
-            <span className="text-white font-semibold">STARKLA</span>
+            <span className="text-white font-semibold">AURORA</span>
           </div>
           <p className="text-sm text-gray-300">
-            © 2025 STARKLA. All rights reserved.
+            © 2025 AURORA. All rights reserved.
           </p>
         </div>
       </div>
