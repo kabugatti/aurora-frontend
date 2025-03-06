@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ElizaBot from 'elizabot';
 import auroraImage from "@/assets/aurora.jpg";
 import {
@@ -9,8 +9,8 @@ import {
   FileIcon,
 } from "lucide-react";
 import styles from "./aurora-chat.module.css";
-import RenderFileUploadMessage from "./render-file-upload-message";
-import PreviewModal from "./file-preview-modal";
+import RenderFileUploadMessage from "@/components/chat/render-file-upload-message";
+import PreviewModal from "@/components/chat/file-preview-modal";
 
 const AuroraChat = () => {
   const [messages, setMessages] = useState([]);
