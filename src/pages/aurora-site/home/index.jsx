@@ -1,7 +1,7 @@
 import React from "react";
 import { ArrowRight, Brain, BookOpen, MessageSquare, Award, BarChart2 } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import AuroraIcon from "@/assets/S-icon.jpg";
+import AuroraIcon from "@/assets/Aurora_word.jpg";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -39,9 +39,9 @@ const HomePage = () => {
               <img
                 src={AuroraIcon}
                 alt="Aurora Icon"
-                className="w-8 h-8 object-contain rounded-full"
+                className="w-36 h-20 object-contain"
               />
-              <span className="text-xl font-semibold text-gray-900">AURORA</span>
+              <span className="text-xl font-semibold text-gray-900"></span>
             </div>
           </div>
         </div>
