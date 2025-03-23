@@ -12,6 +12,7 @@ import {
   MessageCircle,
   MessageSquare,
   Users,
+  Plus,
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -61,7 +62,6 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
         </div>
         <nav className="flex flex-col gap-2 flex-1">
           {/* Home Button */}
-
           <NavLink to="/">
             <button
               onClick={() => handleNavClick("/")}
@@ -69,17 +69,22 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
                 currentPage === "/" ? "bg-transparent  " : "bg-blue-600 "
               }`}
             >
-              <Home
-                className={`w-5 h-5    ${
-                  currentPage === "/" ? "text-blue-800  " : "text-gray-200  "
-                }`}
-              />
-              <span
-                className={`text-sm font-medium text-gray-100  ${
-                  currentPage === "/" ? "text-blue-800  " : "text-gray-200  "
-                }`}
-              >
-                Home
+              <Home className={`w-5 h-5    ${currentPage === "/" ? "text-blue-800  " : "text-gray-200  "}`} />
+              <span className={`text-sm font-medium text-gray-100  ${currentPage === "/" ? "text-blue-800  " : "text-gray-200  "}`}>Home</span>
+            </button>
+          </NavLink>
+
+          {/* Question Creator Button */}
+          <NavLink to="/question-creator">
+            <button
+              onClick={() => handleNavClick("question-creator")}
+              className={`flex items-center gap-3 hover:text-blue-600 px-3 py-2 w-full text-left rounded-lg hover:transparent hover:border-blue-600 bg-blue-500  ${
+                currentPage === "question-creator" ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              <Plus className={`w-5 h-5 ${currentPage === "question-creator" ? "text-blue-800  " : "text-gray-200"}`} />
+              <span className={`text-sm font-medium text-gray-100 ${currentPage === "question-creator" ? "text-blue-800  " : "text-gray-200  "}`}>
+                Create Questions
               </span>
             </button>
           </NavLink>
@@ -94,11 +99,7 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
                 <BookOpen className="w-5 h-5" />
                 <span className="text-sm font-medium ">Learning content</span>
               </div>
-              {isLearningExpanded ? (
-                <ChevronDown className="w-4 h-4 text-gray-500" />
-              ) : (
-                <ChevronRight className="w-4 h-4 text-gray-500" />
-              )}
+              {isLearningExpanded ? <ChevronDown className="w-4 h-4 text-gray-500" /> : <ChevronRight className="w-4 h-4 text-gray-500" />}
             </button>
 
             {/* Expandable Content */}
@@ -106,9 +107,7 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
               <div className="mt-2 ml-2">
                 {/* Level Selection */}
                 <div className="px-3 mb-4">
-                  <h2 className="text-xs font-semibold mb-2 text-gray-600">
-                    LEVEL
-                  </h2>
+                  <h2 className="text-xs font-semibold mb-2 text-gray-600">LEVEL</h2>
                   <select
                     value={level}
                     onChange={(e) => setLevel(e.target.value)}
@@ -126,18 +125,12 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
 
                 {/* Categories */}
                 <div className="px-3">
-                  <h2 className="text-xs font-semibold mb-2 text-gray-600">
-                    CATEGORIES
-                  </h2>
+                  <h2 className="text-xs font-semibold mb-2 text-gray-600">CATEGORIES</h2>
                   <div className="flex flex-col gap-1">
                     {categories.map((item, index) => (
                       <NavLink key={index} to={item.label.toLowerCase()}>
                         <button
-                          onClick={() =>
-                            handleNavClick(
-                              `category-${item.label.toLowerCase()}`
-                            )
-                          }
+                          onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
                           className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 transition-colors "
                         >
                           <span className="">{item.icon}</span>
