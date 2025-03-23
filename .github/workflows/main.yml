@@ -1,0 +1,144 @@
+name: Aurora Learning CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+env:
+  NODE_VERSION: '18'
+  CACHE_KEY: node-modules-${{ github.sha }}
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install Dependencies
+        run: npm ci
+      
+      - name: Run Linting
+        run: npm run lint
+      
+      - name: Type Checking
+        run: |
+          if [ -f "tsconfig.json" ]; then
+            echo "TypeScript project detected, running type check"
+            npx tsc --noEmit
+          else
+            echo "No TypeScript config found, skipping type check"
+          fi
+      
+      - name: Run Tests
+        run: npm run test -- --coverage
+
+      - name: Check Code Coverage
+        run: |
+          COVERAGE=$(npx jest --coverage --coverageReporters=text-summary | grep "All files" | awk '{print $4}' | cut -d'%' -f1)
+          if [ "$COVERAGE" -lt 70 ]; then
+            echo "Code coverage is below 70% ($COVERAGE%). Pipeline failed."
+            exit 1
+          else
+            echo "Code coverage is $COVERAGE%, which meets the minimum requirement of 70%."
+          fi
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      
+      - name: Run npm audit
+        run: npm audit --audit-level=high
+      
+      - name: Dependency Vulnerability Scan
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+  build:
+    name: Build
+    needs: [test, security-scan]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install Dependencies
+        run: npm ci
+      
+      - name: Build Application
+        run: npm run build
+      
+      - name: Archive Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist/
+
+  deploy-staging:
+    name: Deploy to Staging
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    environment:
+      name: staging
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Download Build
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: dist
+      
+      - name: Deploy to Staging
+        run: |
+          echo "Deploying to Staging..."
+
+  deploy-production:
+    name: Deploy to Production
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Download Build
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: dist
+      
+      - name: Deploy to Production
+        run: |
+          echo "Deploying to Production..."
