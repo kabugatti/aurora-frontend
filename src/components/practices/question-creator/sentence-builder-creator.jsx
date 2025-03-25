@@ -23,7 +23,7 @@ export function SentenceBuilderCreator() {
       category: "grammar",
       subCategory: "sentence-structure",
       tags: ["sentence-building", "word-order"],
-      type: "sentence-builder",
+      type: "drag-and-drop-sentence-builder",
     },
     gameMetadata: {
       pointsValue: 10,

@@ -23,8 +23,8 @@ export function FillInBlanksCreator() {
       difficulty: "beginner",
       category: "grammar",
       subCategory: "vocabulary",
-      tags: ["fill-in-blanks", "vocabulary"],
-      type: "fill-in-blanks",
+      tags: ["fill-in-the-blanks", "vocabulary"],
+      type: "fill-in-the-blanks",
     },
     gameMetadata: {
       pointsValue: 10,
