@@ -1,7 +1,6 @@
 "use client"
 
 import { createContext, forwardRef, useContext, useState } from "react"
-import PropTypes from "prop-types"
 import { cn } from "@/lib/utils"
 
 const TabsContext = createContext({})
@@ -22,14 +21,7 @@ const Tabs = forwardRef(({ defaultValue, onValueChange, className, children, ...
     </TabsContext.Provider>
   )
 })
-Tabs.displayName = "Tabs"
 
-Tabs.propTypes = {
-  defaultValue: PropTypes.any,
-  onValueChange: PropTypes.func,
-  className: PropTypes.string,
-  children: PropTypes.node,
-}
 Tabs.displayName = "Tabs"
 
 const TabsList = forwardRef(({ className, ...props }, ref) => {
@@ -46,10 +38,6 @@ const TabsList = forwardRef(({ className, ...props }, ref) => {
 })
 
 TabsList.displayName = "TabsList"
-
-TabsList.propTypes = {
-  className: PropTypes.string,
-}
 
 const TabsTrigger = forwardRef(({ className, value, ...props }, ref) => {
   const { value: selectedValue, onValueChange } = useContext(TabsContext)
@@ -71,11 +59,6 @@ const TabsTrigger = forwardRef(({ className, value, ...props }, ref) => {
 
 TabsTrigger.displayName = "TabsTrigger"
 
-TabsTrigger.propTypes = {
-  className: PropTypes.string,
-  value: PropTypes.any,
-}
-
 const TabsContent = forwardRef(({ className, value, ...props }, ref) => {
   const { value: selectedValue } = useContext(TabsContext)
   const isSelected = selectedValue === value
@@ -95,11 +78,6 @@ const TabsContent = forwardRef(({ className, value, ...props }, ref) => {
 })
 
 TabsContent.displayName = "TabsContent"
-
-TabsContent.propTypes = {
-  className: PropTypes.string,
-  value: PropTypes.any,
-}
 
 export { Tabs, TabsList, TabsTrigger, TabsContent }
 

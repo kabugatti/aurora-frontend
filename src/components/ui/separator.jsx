@@ -1,5 +1,4 @@
 import { forwardRef } from "react"
-import PropTypes from 'prop-types';
 import { cn } from "@/lib/utils"
 
 const Separator = forwardRef(({ className, orientation = "horizontal", decorative = true, ...props }, ref) => (
@@ -14,14 +13,7 @@ const Separator = forwardRef(({ className, orientation = "horizontal", decorativ
     role={decorative ? "none" : "separator"}
     aria-orientation={decorative ? undefined : orientation}
   />
-));
-Separator.displayName = "Separator"
-
-Separator.propTypes = {
-  className: PropTypes.string,
-  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
-  decorative: PropTypes.bool,
-};
+))
 Separator.displayName = "Separator"
 
 export { Separator }
