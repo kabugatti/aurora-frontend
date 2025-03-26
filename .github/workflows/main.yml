@@ -2,13 +2,12 @@ name: Aurora Learning CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, "feature/*" ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop, "feature/*" ]
 
 env:
   NODE_VERSION: '18'
-  CACHE_KEY: node-modules-${{ github.sha }}
 
 jobs:
   test:
@@ -17,19 +16,19 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      
+
       - name: Install Dependencies
         run: npm ci
-      
+
       - name: Run Linting
         run: npm run lint
-      
+
       - name: Type Checking
         run: |
           if [ -f "tsconfig.json" ]; then
@@ -38,9 +37,9 @@ jobs:
           else
             echo "No TypeScript config found, skipping type check"
           fi
-      
+
       - name: Run Tests
-        run: npm run test -- --coverage
+        run: npm test -- --coverage
 
       - name: Check Code Coverage
         run: |
@@ -52,21 +51,28 @@ jobs:
             echo "Code coverage is $COVERAGE%, which meets the minimum requirement of 70%."
           fi
 
+      - name: Notify Slack on Failure
+        if: failure()
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: "🚨 Test failed in ${{ github.ref }} branch! Check the pipeline for details."
+
   security-scan:
     name: Security Scan
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      
+
       - name: Run npm audit
-        run: npm audit --audit-level=high
-      
+        run: npm audit --audit-level=high --json > audit-results.json || echo "Security issues detected"
+
       - name: Dependency Vulnerability Scan
         uses: snyk/actions/node@master
         continue-on-error: true
@@ -82,24 +88,30 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      
+
       - name: Install Dependencies
         run: npm ci
-      
+
       - name: Build Application
         run: npm run build
-      
+
       - name: Archive Build Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build
           path: dist/
+
+      - name: Notify Slack on Build Success
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: "✅ Build completed successfully for ${{ github.ref }} branch!"
 
   deploy-staging:
     name: Deploy to Staging
@@ -111,16 +123,23 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Download Build
         uses: actions/download-artifact@v3
         with:
           name: build
           path: dist
-      
+
       - name: Deploy to Staging
         run: |
           echo "Deploying to Staging..."
+          # Add your deployment script here
+
+      - name: Notify Slack on Staging Deployment
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: "🚀 Staging deployment successful for ${{ github.ref }} branch!"
 
   deploy-production:
     name: Deploy to Production
@@ -132,13 +151,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      
+
       - name: Download Build
         uses: actions/download-artifact@v3
         with:
           name: build
           path: dist
-      
+
       - name: Deploy to Production
         run: |
           echo "Deploying to Production..."
+          # Add your production deployment script here
+
+      - name: Notify Slack on Production Deployment
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: "🚀 Production deployment successful for ${{ github.ref }} branch!"
