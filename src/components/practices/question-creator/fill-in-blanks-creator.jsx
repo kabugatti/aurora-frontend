@@ -23,8 +23,8 @@ export function FillInBlanksCreator() {
       difficulty: "beginner",
       category: "grammar",
       subCategory: "vocabulary",
-      tags: ["fill-in-the-blanks", "vocabulary"],
-      type: "fill-in-the-blanks",
+      tags: ["fill-in-blanks", "vocabulary"],
+      type: "fill-in-blanks",
     },
     gameMetadata: {
       pointsValue: 10,
@@ -108,7 +108,8 @@ export function FillInBlanksCreator() {
   return (
     <Card className="p-6">
       <div className="space-y-6">
-        <div>
+      <h2 className="text-2xl font-bold text-center">Create Fill in the Blanks Question</h2>
+      <div>
           <Label>Sentence with Blanks</Label>
           <Textarea
             value={question.content.sentence}

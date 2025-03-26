@@ -114,6 +114,7 @@ export function MultipleChoiceCreator() {
   return (
     <Card className="p-6">
       <div className="space-y-6">
+        <h2 className="text-2xl font-bold text-center">Create Multiple Choice Question</h2>
         <div>
           <Label>Question</Label>
           <Textarea

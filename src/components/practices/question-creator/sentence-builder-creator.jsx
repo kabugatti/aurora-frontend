@@ -23,7 +23,7 @@ export function SentenceBuilderCreator() {
       category: "grammar",
       subCategory: "sentence-structure",
       tags: ["sentence-building", "word-order"],
-      type: "drag-and-drop-sentence-builder",
+      type: "sentence-builder",
     },
     gameMetadata: {
       pointsValue: 10,
@@ -124,6 +124,7 @@ export function SentenceBuilderCreator() {
   return (
     <Card className="p-6">
       <div className="space-y-6">
+        <h2 className="text-2xl font-bold text-center">Create Drag and Drop Sentence Builder Question</h2>
         <div>
           <Label>Complete Sentence</Label>
           <Textarea

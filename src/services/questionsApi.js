@@ -13,6 +13,7 @@ export const questionsApi = {
       });
 
       if (!response.ok) {
+        console.log(response);
         throw new Error("Failed to create question");
       }
 
@@ -24,9 +25,19 @@ export const questionsApi = {
   },
 
   // Get all questions
-  getAllQuestions: async () => {
+  getAllQuestions: async ({ type, category, subCategory, englishLevel, difficulty } = {}) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/questions`);
+      const params = new URLSearchParams();
+      if (type) params.append("type", type);
+      if (category) params.append("category", category);
+      if (subCategory) params.append("subCategory", subCategory);
+      if (englishLevel) params.append("englishLevel", englishLevel);
+      if (difficulty) params.append("difficulty", difficulty);
+
+      const queryString = params.toString();
+      const url = `${API_BASE_URL}/questions${queryString ? `?${queryString}` : ""}`;
+
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error("Failed to fetch questions");
