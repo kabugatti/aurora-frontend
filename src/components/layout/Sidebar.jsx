@@ -1,179 +1,215 @@
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
-  BarChart2,
-  Book,
-  BookOpen,
-  ChevronDown,
   ChevronRight,
-  FileText,
-  Gamepad,
-  GraduationCap,
-  Headphones,
+  ChevronDown,
   Home,
-  MessageCircle,
+  BarChart2,
+  Headphones,
+  Menu,
+  BookOpen,
+  FileText,
+  BookmarkIcon,
   MessageSquare,
   Users,
-  Plus,
+  BookPlus,
 } from "lucide-react";
-import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../assets/S-icon-Photoroom.png";
 
-const Sidebar = ({ isOpen, onClose, headerHeight }) => {
+export default function Sidebar({ isOpen, onClose }) {
+  const [expandedItems, setExpandedItems] = useState({});
   const [currentPage, setCurrentPage] = useState("home");
-  const [level, setLevel] = useState("Choose Your Level");
-  const [isLearningExpanded, setIsLearningExpanded] = useState(false);
 
-  const navigate = useNavigate();
+  const toggleExpand = (item) => {
+    setExpandedItems((prev) => ({
+      ...prev,
+      [item]: !prev[item],
+    }));
+  };
 
   const handleNavClick = (page) => {
     setCurrentPage(page);
-    navigate(`/${page}`);
   };
-
-  const categories = [
-    { icon: <Book className="w-5 h-5" />, label: "Grammar" },
-    { icon: <GraduationCap className="w-5 h-5" />, label: "Vocabulary" },
-    { icon: <MessageCircle className="w-5 h-5" />, label: "Speaking" },
-    { icon: <Headphones className="w-5 h-5" />, label: "Listening" },
-    { icon: <FileText className="w-5 h-5" />, label: "Reading" },
-    { icon: <Gamepad className="w-5 h-5" />, label: "Games" },
-  ];
-
-  const topNavItems = [
-    {
-      icon: <BarChart2 className="w-5 h-5" />,
-      label: "Analytics",
-      page: "analytics",
-    },
-    { icon: <Users className="w-5 h-5" />, label: "Community", page: "people" },
-  ];
 
   return (
     <div
-      className={`fixed left-0 z-50 transform ${
+      className={`w-64 bg-gray-900 text-gray-300 flex flex-col h-screen fixed top-0 left-0 transition-transform transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } transition-transform bg-white w-64 min-h-screen flex flex-col h-full shadow-lg border-r border-gray-200 pc-sidebar`}
-      style={{ top: headerHeight }}
+      } z-50`}
     >
-      <div className="p-4 flex flex-col h-full">
-        {/* Logo Section */}
-        <div className="flex items-center justify-center mb-6">
+      {/* Header with logo and close button */}
+      <div className="flex justify-between items-center p-3 border-b border-gray-800">
+        <div className="flex items-center">
           <img src={Logo} alt="Logo" className="w-12 h-auto" />
         </div>
-        <nav className="flex flex-col gap-2 flex-1">
-          {/* Home Button */}
-          <NavLink to="/">
-            <button
-              onClick={() => handleNavClick("/")}
-              className={`flex items-center gap-3 hover:text-blue-600 px-3 py-2 w-full text-left rounded-lg hover:transparent hover:border-blue-600 bg-blue-500  ${
-                currentPage === "/" ? "bg-transparent  " : "bg-blue-600 "
-              }`}
-            >
-              <Home className={`w-5 h-5    ${currentPage === "/" ? "text-blue-800  " : "text-gray-200  "}`} />
-              <span className={`text-sm font-medium text-gray-100  ${currentPage === "/" ? "text-blue-800  " : "text-gray-200  "}`}>Home</span>
-            </button>
-          </NavLink>
+      </div>
 
-          {/* Question Creator Button */}
-          <NavLink to="/question-creator">
-            <button
-              onClick={() => handleNavClick("question-creator")}
-              className={`flex items-center gap-3 hover:text-blue-600 px-3 py-2 w-full text-left rounded-lg hover:transparent hover:border-blue-600 bg-blue-500  ${
-                currentPage === "question-creator" ? "bg-blue-50 text-blue-600" : "text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              <Plus className={`w-5 h-5 ${currentPage === "question-creator" ? "text-blue-800  " : "text-gray-200"}`} />
-              <span className={`text-sm font-medium text-gray-100 ${currentPage === "question-creator" ? "text-blue-800  " : "text-gray-200  "}`}>
-                Create Questions
-              </span>
-            </button>
-          </NavLink>
+      <nav className="flex flex-col gap-2 flex-1 p-3">
+        {/* Home Button */}
+        <NavLink to="/">
+          <button
+            onClick={() => handleNavClick("/")}
+            className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors ${
+              currentPage === "/" ? "bg-blue-600 text-white" : "hover:bg-gray-800"
+            }`}
+          >
+            <Home className="w-5 h-5" />
+            <span className="text-sm font-medium">Home</span>
+          </button>
+        </NavLink>
 
-          {/* Learning Content Accordion */}
-          <div className="mb-2">
-            <button
-              onClick={() => setIsLearningExpanded(!isLearningExpanded)}
-              className="flex items-center justify-between w-full px-3 py-2 bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 rounded-lg transition-colors "
-            >
-              <div className="flex items-center gap-3">
-                <BookOpen className="w-5 h-5" />
-                <span className="text-sm font-medium ">Learning content</span>
-              </div>
-              {isLearningExpanded ? <ChevronDown className="w-4 h-4 text-gray-500" /> : <ChevronRight className="w-4 h-4 text-gray-500" />}
-            </button>
-
-            {/* Expandable Content */}
-            {isLearningExpanded && (
-              <div className="mt-2 ml-2">
-                {/* Level Selection */}
-                <div className="px-3 mb-4">
-                  <h2 className="text-xs font-semibold mb-2 text-gray-600">LEVEL</h2>
-                  <select
-                    value={level}
-                    onChange={(e) => setLevel(e.target.value)}
-                    className="w-full bg-white text-gray-900 p-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  >
-                    <option>Choose Your Level</option>
-                    <option>A1</option>
-                    <option>A2</option>
-                    <option>B1</option>
-                    <option>B2</option>
-                    <option>C1</option>
-                    <option>C2</option>
-                  </select>
-                </div>
-
-                {/* Categories */}
-                <div className="px-3">
-                  <h2 className="text-xs font-semibold mb-2 text-gray-600">CATEGORIES</h2>
-                  <div className="flex flex-col gap-1">
-                    {categories.map((item, index) => (
-                      <NavLink key={index} to={item.label.toLowerCase()}>
-                        <button
-                          onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
-                          className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 transition-colors "
-                        >
-                          <span className="">{item.icon}</span>
-                          <span className="text-sm ">{item.label}</span>
-                        </button>
-                      </NavLink>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
+        {/* Resources - with dropdown */}
+        <div className="relative">
+          <div
+            className={`flex items-center justify-between p-3 hover:bg-gray-800 cursor-pointer rounded-lg ${
+              expandedItems.resources ? "bg-gray-800" : ""
+            }`}
+            onClick={() => toggleExpand("resources")}
+          >
+            <div className="flex items-center gap-3">
+              <BookmarkIcon size={18} />
+              <span>Resources</span>
+            </div>
+            {expandedItems.resources ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
           </div>
-
-          {/* Other Navigation Items */}
-          {topNavItems.map((item, index) => (
-            <NavLink key={index} to={item.page}>
-              <button
-                onClick={() => handleNavClick(item.page)}
-                className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors active:bg-gray-100 active:text-blue-600  bg-blue-600 text-gray-100 hover:bg-gray-100 hover:text-blue-600 ${
-                  currentPage === item.page && "bg-gray-50 text-blue-600"
-                }`}
-              >
-                <span className="">{item.icon}</span>
-                <span className="text-sm font-medium ">{item.label}</span>
-              </button>
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="py-16 space-y-3 flex flex-col">
-          <NavLink to="aurora-chat">
-            <button
-              onClick={() => handleNavClick("aurora-chat")}
-              className="flex items-center gap-3 px-4 py-2.5 w-full text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
-            >
-              <MessageSquare className="w-5 h-5" />
-              <span className="text-sm font-medium">Talk with Aurora</span>
-            </button>
-          </NavLink>
+          {expandedItems.resources && (
+            <div className="bg-gray-900 pl-9 py-1">
+              <NavLink to="/video-zone" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Video zone
+              </NavLink>
+              <NavLink to="/audio-zone" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Audio zone
+              </NavLink>
+              <NavLink to="/magazine-zone" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Magazine zone
+              </NavLink>
+              <NavLink to="/story-zone" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Story zone
+              </NavLink>
+              <NavLink to="/audio-series" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Audio series
+              </NavLink>
+              <NavLink to="/video-series" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Video series
+              </NavLink>
+              <NavLink to="/apps" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Apps
+              </NavLink>
+            </div>
+          )}
         </div>
+
+        {/* Grammar */}
+        <NavLink to="/grammar">
+          <div className="flex items-center gap-3 p-3 hover:bg-gray-800 cursor-pointer rounded-lg">
+            <BookOpen size={18} />
+            <span>Grammar</span>
+          </div>
+        </NavLink>
+
+        {/* Vocabulary - with dropdown */}
+        <div className="relative">
+          <div
+            className={`flex items-center justify-between p-3 hover:bg-gray-800 cursor-pointer rounded-lg ${
+              expandedItems.vocabulary ? "bg-gray-800" : ""
+            }`}
+            onClick={() => toggleExpand("vocabulary")}
+          >
+            <div className="flex items-center gap-3">
+              <FileText size={18} />
+              <span>Vocabulary</span>
+            </div>
+            {expandedItems.vocabulary ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+          </div>
+          {expandedItems.vocabulary && (
+            <div className="bg-gray-900 pl-9 py-1">
+              <NavLink to="/vocabulary/a1-a2" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                A1-A2 vocabulary
+              </NavLink>
+              <NavLink to="/vocabulary/b1-b2" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                B1-B2 vocabulary
+              </NavLink>
+              <NavLink to="/vocabulary/games" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Vocabulary games
+              </NavLink>
+            </div>
+          )}
+        </div>
+
+        {/* English Levels - with dropdown */}
+        <div className="relative">
+          <div
+            className={`flex items-center justify-between p-3 hover:bg-gray-800 cursor-pointer rounded-lg ${
+              expandedItems.levels ? "bg-gray-800" : ""
+            }`}
+            onClick={() => toggleExpand("levels")}
+          >
+            <div className="flex items-center gap-3">
+              <Headphones size={18} />
+              <span>English Levels</span>
+            </div>
+            {expandedItems.levels ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+          </div>
+          {expandedItems.levels && (
+            <div className="bg-gray-900 pl-9 py-1">
+              <NavLink to="/level-test" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Online English level test
+              </NavLink>
+              <NavLink to="/understand-level" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Understand your English level
+              </NavLink>
+              <NavLink to="/improve-level" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Improve your English level
+              </NavLink>
+              <NavLink to="/level-resources" className="block py-2 text-blue-400 hover:bg-gray-800 cursor-pointer">
+                Find resources for your level
+              </NavLink>
+            </div>
+          )}
+        </div>
+
+        {/* Question Creator Button */}
+        <NavLink to="/question-creator">
+          <div className="flex items-center gap-3 p-3 hover:bg-gray-800 cursor-pointer rounded-lg">
+            <BookPlus size={18} />
+            <span>Create Questions</span>
+          </div>
+        </NavLink>
+
+        {/* Games */}
+        <NavLink to="/games">
+          <div className="flex items-center gap-3 p-3 hover:bg-gray-800 cursor-pointer rounded-lg">
+            <Menu size={18} />
+            <span>Games</span>
+          </div>
+        </NavLink>
+
+        {/* Analytics */}
+        <NavLink to="/analytics">
+          <div className="flex items-center gap-3 p-3 hover:bg-gray-800 cursor-pointer rounded-lg">
+            <BarChart2 size={18} />
+            <span>Analytics</span>
+          </div>
+        </NavLink>
+
+        {/* Community */}
+        <NavLink to="/community">
+          <div className="flex items-center gap-3 p-3 hover:bg-gray-800 cursor-pointer rounded-lg">
+            <Users size={18} />
+            <span>Community</span>
+          </div>
+        </NavLink>
+      </nav>
+
+      {/* Talk with Aurora button */}
+      <div className="mt-auto mb-4 px-3">
+        <NavLink to="/aurora-chat">
+          <button className="w-full bg-blue-900 bg-opacity-40 text-blue-400 py-2 px-4 rounded flex items-center justify-center gap-2 hover:bg-blue-900 hover:bg-opacity-60 transition-colors">
+            <MessageSquare size={18} />
+            <span>Talk with Aurora</span>
+          </button>
+        </NavLink>
       </div>
     </div>
   );
-};
-
-export default Sidebar;
+}
