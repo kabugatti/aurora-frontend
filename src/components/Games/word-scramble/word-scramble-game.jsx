@@ -55,7 +55,7 @@ const WordScrambleGame = () => {
 
   const speakWord = () => {
     if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(currentWord.scrambled);
+      const utterance = new SpeechSynthesisUtterance(currentWord.word);
       utterance.lang = "en-US";
       utterance.rate = 0.8;
       speechSynthesis.speak(utterance);

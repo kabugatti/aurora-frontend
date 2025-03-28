@@ -77,7 +77,7 @@ function App() {
           <Route path="/practice/drag-drop-sentence-builder" element={<PracticeSystem/>}/>
           <Route path="/notifications" element={<Notifications />} />
 
-          <Route path="/story-game" element={<StoryGame />} />
+          <Route path="games/story-game" element={<StoryGame />} />
           <Route path="/games/word-matching/" element={<WordMatching />} />
           <Route path="/games/word-scramble/" element={<WordScrambleGame />} />
           <Route path="/games" element={<GamePanel />} />
