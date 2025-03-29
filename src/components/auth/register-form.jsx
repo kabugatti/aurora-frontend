@@ -141,17 +141,18 @@ export default function RegisterForm() {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="••••••••"
-                {...register("password")}
+                {...register("password", {
+                  onChange: (e) => {
+                    const strength = calculatePasswordStrength(e.target.value)
+                    setPasswordStrength(strength)
+                  }
+                })}
                 className={errors.password ? "border-destructive" : ""}
-                onChange={(e) => {
-                  const strength = calculatePasswordStrength(e.target.value)
-                  setPasswordStrength(strength)
-                }}
               />
               <Button
                 type="button"
                 variant="ghost"
-                className="absolute right-0 top-0 h-full px-3 py-2 hover bg-transparent"
+                className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
@@ -161,7 +162,7 @@ export default function RegisterForm() {
                 )}
               </Button>
             </div>
-            {password && <PasswordStrengthIndicator strength={passwordStrength} />}
+            <PasswordStrengthIndicator strength={passwordStrength} />
             {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
           </div>
 
