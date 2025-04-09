@@ -32,6 +32,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
+     
       <nav className="bg-white border-b">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
