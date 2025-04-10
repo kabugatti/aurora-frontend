@@ -11,7 +11,7 @@ import {
   whyChooseAuruora,
 } from "./Content";
 
-function CallToAction() {
+function CallToActionPage() {
   return (
     <div className="flex w-full h-full flex-col overflow-y-scroll ">
       <div className="w-full flex-col justify-center gap-4 flex h-[582px] bg-[#030712] p-[3%]">
@@ -111,4 +111,4 @@ function CallToAction() {
   );
 }
 
-export default CallToAction;
+export default CallToActionPage;
