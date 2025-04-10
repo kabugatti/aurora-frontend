@@ -33,23 +33,76 @@ export const skillContent = [
   },
 ];
 
-export const courses = [
-  {
-    icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
-    tag: "Basic Conversation",
-    content: "Learn everyday phrases and expressions",
-  },
-  {
-    icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
-    tag: "Grammar Foundations",
-    content: "Master the basics of English grammar",
-  },
-  {
-    icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
-    tag: "Cultural Insights",
-    content: "Learn about cultures while learning language",
-  },
-];
+export const courses = {
+  Beginner: [
+    {
+      icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Basic Conversation",
+      content: "Learn everyday phrases and expressions",
+    },
+    {
+      icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Grammar Foundations",
+      content: "Master the basics of English grammar",
+    },
+    {
+      icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Cultural Insights",
+      content: "Learn about cultures while learning language",
+    },
+  ],
+  Intermediate: [
+    {
+      icons: <MessageCircle className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Fluent Conversation",
+      content: "Improve your speaking fluency",
+    },
+    {
+      icons: <BookOpen className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Reading Comprehension",
+      content: "Enhance your reading skill",
+    },
+    {
+      icons: <Bookmark className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Writing Workshop",
+      content: "Develope your writing skills",
+    },
+  ],
+  Advanced: [
+    {
+      icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Advanced Grammar",
+      content: "Master complex grammatic structures",
+    },
+    {
+      icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Idiomatic Expression",
+      content: "Learn native-like expression",
+    },
+    {
+      icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Academic English",
+      content: "Prepare for academic environments",
+    },
+  ],
+  Business: [
+    {
+      icons: <Users className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Business Communication",
+      content: "Professional email and meeting skill",
+    },
+    {
+      icons: <MessageCircle className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Negotiation Skill",
+      content: "Learn to negotiate Effectively",
+    },
+    {
+      icons: <BookOpen className="text-[#00B8D4] h-[32px] w-[32px]" />,
+      tag: "Presentation Mastery",
+      content: "Deliver impactful presentations",
+    },
+  ],
+};
 
 export const whyChooseAuruora = [
   {

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   CoursesCard,
   SkillCards,
@@ -11,7 +12,8 @@ import {
   whyChooseAuruora,
 } from "./Content";
 
-function CallToAction() {
+function CallToActionPage() {
+  const [selectedLevel, setSelectedLevel] = useState("Beginner");
   return (
     <div className="flex w-full h-full flex-col overflow-y-scroll ">
       <div className="w-full flex-col justify-center gap-4 flex h-[582px] bg-[#030712] p-[3%]">
@@ -54,10 +56,24 @@ function CallToAction() {
         <p className="text-[#D1D5DB] font-normal text-center text-base lg:text-xl">
           Find the perfect course to match your learning goals
         </p>
-        <div className="h-auto w-full gap-[32px] flex flex-col">
-          <div>tabs</div>
+        <div className="h-auto w-full gap-[32px] items-center justify-center flex flex-col">
+          <div className="flex space-x-2 md:space-x-4 w-full md:w-fit p-2 items-center rounded-[8px] justify-center bg-gray-700">
+            {Object.keys(courses).map((level) => (
+              <button
+                key={level}
+                onClick={() => setSelectedLevel(level)}
+                className={`px-2 py-1 rounded text-sm md:text-base ${
+                  selectedLevel === level
+                    ? "bg-white text-black"
+                    : "bg-transparent text-gray-200"
+                }`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
           <div className="lg:flex-wrap grid md:grid-cols-2  lg:flex gap-4 items-center justify-center w-full">
-            {courses.map((contents, i) => {
+            {courses[selectedLevel].map((contents, i) => {
               return <CoursesCard key={i} {...contents} />;
             })}
           </div>
@@ -111,4 +127,4 @@ function CallToAction() {
   );
 }
 
-export default CallToAction;
+export default CallToActionPage;

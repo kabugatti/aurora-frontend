@@ -154,23 +154,44 @@ const AuroraChat = () => {
   };
 
   return (
-    <div className="flex flex-col w-full bg-white">
-      {/* Header */}
-      <div className="flex items-center w-full px-6 py-2 border-b border-gray-100">
-        {/* Left: Profile Section */}
-        <div className="flex items-center gap-4">
-          <div className="w-16 h-16 rounded-full overflow-hidden">
-            <img
-              src={auroraImage}
-              alt="Aurora Profile"
-              className="w-full h-full object-cover"
-            />
+    <div className="flex w-full bg-gradient-to-br from-white to-blue-50">
+      {/* Left Tips Section */}
+      <div className="hidden lg:block w-44 p-3 border-r border-gray-100 bg-white/80 backdrop-blur-sm">
+        <h2 className="text-base font-semibold mb-3 text-gray-800">Learning Tips</h2>
+        <div className="space-y-3">
+          <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-100 hover:bg-blue-50 transition-colors">
+            <h3 className="font-medium text-sm text-blue-800">Practice Speaking</h3>
+            <p className="text-xs text-blue-600/80">Try to speak in English as much as possible during our conversations.</p>
           </div>
-          <div>
-            <h1 className="text-lg font-semibold text-gray-900">AURORA</h1>
-            <h2 className="text-sm text-gray-600">Software Architecture lesson - Chapter 1</h2>
+          <div className="p-2.5 bg-green-50/80 rounded-xl border border-green-100 hover:bg-green-50 transition-colors">
+            <h3 className="font-medium text-sm text-green-800">Use Context</h3>
+            <p className="text-xs text-green-600/80">Pay attention to how words are used in different situations.</p>
+          </div>
+          <div className="p-2.5 bg-purple-50/80 rounded-xl border border-purple-100 hover:bg-purple-50 transition-colors">
+            <h3 className="font-medium text-sm text-purple-800">Review Regularly</h3>
+            <p className="text-xs text-purple-600/80">Go back to previous conversations to reinforce what you've learned.</p>
           </div>
         </div>
+      </div>
+
+      {/* Main Chat Area */}
+      <div className="flex-1 mx-auto flex flex-col h-[calc(100vh-7rem)] bg-white/80 backdrop-blur-sm shadow-lg rounded-lg m-2 max-w-3xl">
+        {/* Header */}
+        <div className="flex items-center w-full px-4 py-3 border-b border-gray-100 rounded-t-lg bg-white">
+          {/* Left: Profile Section */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-100 ring-offset-2">
+              <img
+                src={auroraImage}
+                alt="Aurora Profile"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h1 className="text-base font-semibold text-gray-900">AURORA</h1>
+              <h2 className="text-xs text-gray-500">Software Architecture lesson - Chapter 1</h2>
+            </div>
+          </div>
 
           {/* Right: Unit Navigation */}
           <div className="flex items-center gap-3 ml-auto">

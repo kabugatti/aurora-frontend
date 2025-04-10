@@ -20,7 +20,7 @@ export function CoursesCard({ icons, tag, content }) {
       <div className="flex flex-row gap-4">
         {icons}
         <div className=" flex flex-col ">
-          <p className="text-[#09090B] font-bold text-xl lg:text-base ">
+          <p className="text-[#09090B] capitalize font-bold text-xl lg:text-base ">
             {tag}
           </p>
           <p className="text-[#71717A] font-normal text-lg lg:text-sm ">
