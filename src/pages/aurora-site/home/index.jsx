@@ -8,7 +8,7 @@ import {
   BarChart2,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import CoursesSection from "@/components/landing-page/CoursesSection";
+
 import AuroraIcon from "@/assets/Aurora_word.jpg";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
@@ -156,7 +156,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-      <CoursesSection />
+  
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useState } from "react"
 import Footer from "./Footer"
 import Header from "./Header"
 import Sidebar from "./Sidebar"
+import CoursesSection from "../landing-page/CoursesSection"
 
 const MainLayout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -28,6 +29,7 @@ const MainLayout = ({ children }) => {
             }`}
         >
           <div className="container mx-auto max-w-7xl">{children}</div>
+          <CoursesSection/>
         </main>
 
         {/* Footer - Adjusts with sidebar */}
