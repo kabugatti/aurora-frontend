@@ -39,7 +39,7 @@ import Analytics from "@/pages/aurora-site/analytics"
 
 // 🏠 Main Pages
 import HomePage from "@/pages/aurora-site/home"
-import TestimonialsPage from "./components/TestimonialsPage";
+
 
 // 🧩 Games & Challenges
 import StoryGame from "@/pages/games/story-game"
@@ -79,7 +79,7 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="/testimonials" element={<TestimonialsPage />} />
+              
               
             </Route>
 

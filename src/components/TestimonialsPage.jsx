@@ -1,5 +1,5 @@
 import React from 'react';
-import TestimonialsSection from './testimonials/index.jsx'; // Adjust path as needed
+import TestimonialsSection from '../pages/aurora-site/home/Testimonial.jsx'; // Adjust path as needed
 
 const TestimonialsPage = () => {
   return (
