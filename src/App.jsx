@@ -46,13 +46,12 @@ import Categories from "@/pages/aurora-site/categories";
 import HomePage from "@/pages/aurora-site/home";
 
 // 🧩 Games & Challenges
-import StoryGame from "@/pages/games/story-game"
-import WordMatching from "@/pages/games/word-matching"
-import GamePanel from "@/pages/games/game-panel"
-import DifficultySelector from "@/components/games/memory-card/difficulty-selector"
-import GameBoard from "@/components/games/memory-card/game-board"
+import DifficultySelector from "@/components/games/memory-card/difficulty-selector";
+import GameBoard from "@/components/games/memory-card/game-board";
 import WordScrambleGame from "@/components/games/word-scramble/word-scramble-game";
-
+import GamePanel from "@/pages/games/game-panel";
+import StoryGame from "@/pages/games/story-game";
+import WordMatching from "@/pages/games/word-matching";
 
 // 📝 Practices & Exercises
 import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
@@ -67,8 +66,7 @@ import GrammarContent from "@/pages/aurora-site/grammar-content";
 
 // ✨ Question Creator
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
-
-
+import CallToActionPage from "./components/landing-page/call-to-action/CallToAction";
 
 function App() {
   return (
@@ -83,7 +81,7 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
-              
+              <Route path="/call-to-action" element={<CallToActionPage />} />
             </Route>
 
             {/* Protected routes with MainLayout */}

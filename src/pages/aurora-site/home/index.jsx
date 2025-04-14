@@ -2,8 +2,6 @@ import AuroraIcon from "@/assets/Aurora_word.jpg";
 import { ArrowRight, Award, Brain, MessageSquare } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import CallToActionPage from "../../../components/hompage/call-to-action/CallToAction";
-
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
     <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -30,6 +28,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
+
       <nav className="bg-white border-b">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
@@ -64,7 +63,6 @@ const HomePage = () => {
             </button>
           </div>
         </div>
-        <CallToActionPage />
       </div>
 
       {/* Core Features Section */}
