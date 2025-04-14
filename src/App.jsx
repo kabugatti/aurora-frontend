@@ -67,7 +67,7 @@ import GrammarContent from "@/pages/aurora-site/grammar-content";
 // ✨ Question Creator
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
 
-import CallToActionPage from "./pages/aurora-site/call-to-action/CallToAction";
+
 
 function App() {
   return (
@@ -79,7 +79,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/verify-email" element={<VerifyEmailPage />} />
-            <Route path="/call-to-action" element={<CallToActionPage />} />
+
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
             </Route>

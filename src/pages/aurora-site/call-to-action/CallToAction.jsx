@@ -15,7 +15,7 @@ import {
 function CallToActionPage() {
   const [selectedLevel, setSelectedLevel] = useState("Beginner");
   return (
-    <div className="flex w-full h-full flex-col overflow-y-scroll ">
+    <div className="flex w-full h-full flex-col ">
       <div className="w-full flex-col justify-center gap-4 flex h-[582px] bg-[#030712] p-[3%]">
         <p className="text-white font-bold text-4xl  lg:text-6xl  lg:max-w-[700px]">
           Learn Languages with AI-Powered Assistance
