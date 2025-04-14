@@ -46,12 +46,13 @@ import Categories from "@/pages/aurora-site/categories";
 import HomePage from "@/pages/aurora-site/home"
 
 // 🧩 Games & Challenges
-import DifficultySelector from "@/components/games/memory-card/difficulty-selector";
-import GameBoard from "@/components/games/memory-card/game-board";
-import WordScrambleGame from "@/components/Games/word-scramble/word-scramble-game";
-import GamePanel from "@/pages/games/game-panel";
-import StoryGame from "@/pages/games/story-game";
-import WordMatching from "@/pages/games/word-matching";
+import StoryGame from "@/pages/games/story-game"
+import WordMatching from "@/pages/games/word-matching"
+import GamePanel from "@/pages/games/game-panel"
+import DifficultySelector from "@/components/games/memory-card/difficulty-selector"
+import GameBoard from "@/components/games/memory-card/game-board"
+import WordScrambleGame from "@/components/games/word-scramble/word-scramble-game";
+
 
 // 📝 Practices & Exercises
 import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder"
