@@ -83,6 +83,7 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
+              
             </Route>
 
             {/* Protected routes with MainLayout */}

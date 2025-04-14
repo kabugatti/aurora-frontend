@@ -2,7 +2,7 @@ import AuroraIcon from "@/assets/Aurora_word.jpg";
 import { ArrowRight, Award, Brain, MessageSquare } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import CallToActionPage from "../call-to-action/CallToAction";
+import CallToActionPage from "../../../components/hompage/call-to-action/CallToAction";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
