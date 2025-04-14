@@ -27,7 +27,7 @@ const MainLayout = ({ children }) => {
           className={`flex-1 p-4 sm:p-6 overflow-y-auto transition-all duration-300 ease-in-out ${isSidebarOpen ? "lg:ml-64" : ""
             }`}
         >
-          {children} {/* Render routed content here */}
+          {children} 
         </main>
 
         {/* Footer - Adjusts with sidebar */}

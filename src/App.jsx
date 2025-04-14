@@ -45,9 +45,9 @@ import HomePage from "@/pages/aurora-site/home"
 import StoryGame from "@/pages/games/story-game"
 import WordMatching from "@/pages/games/word-matching"
 import GamePanel from "@/pages/games/game-panel"
-import DifficultySelector from "@/components/Games/memory-card/difficulty-selector"
-import GameBoard from "@/components/Games/memory-card/game-board"
-import WordScrambleGame from "@/components/Games/word-scramble/word-scramble-game";
+// import DifficultySelector from "@/components/Games/memory-card/difficulty-selector"
+// import GameBoard from "@/components/Games/memory-card/game-board"
+// import WordScrambleGame from "@/components/Games/word-scramble/word-scramble-game";
 
 
 // 📝 Practices & Exercises
