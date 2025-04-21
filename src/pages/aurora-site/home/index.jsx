@@ -1,4 +1,5 @@
 import AuroraIcon from "@/assets/Aurora_word.jpg";
+import CallToActionPage from "@/components/landing-page/call-to-action/CallToAction";
 import { ArrowRight, Award, Brain, MessageSquare } from "lucide-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
@@ -63,6 +64,7 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+        <CallToActionPage />
       </div>
 
       {/* Core Features Section */}
