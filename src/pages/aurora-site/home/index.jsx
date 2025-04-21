@@ -3,6 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import AuroraIcon from "@/assets/Aurora_word.jpg";
+import CallToActionPage from "@/components/landing-page/call-to-action/CallToAction";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -65,6 +66,7 @@ const HomePage = () => {
             </button>
           </div>
         </div>
+        <CallToActionPage />
       </div>
 
       {/* Core Features Section */}

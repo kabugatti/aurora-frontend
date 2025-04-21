@@ -81,7 +81,7 @@ function App() {
 
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
-              <Route path="/call-to-action" element={<CallToActionPage />} />
+              
             </Route>
 
             {/* Protected routes with MainLayout */}
