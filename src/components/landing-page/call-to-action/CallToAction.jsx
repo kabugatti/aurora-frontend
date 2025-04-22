@@ -80,7 +80,7 @@ function CallToActionPage() {
         </div>
       </div>
       <div className="flex flex-col items-center justify-center w-full p-[3%] gap-4 bg-[#374151] h-auto lg:h-[912px]">
-        <p className="w-[496px] text-3xl lg:text-5xl mt-[32px] font-bold text-white text-center ">
+        <p className="lg:w-[496px] text-3xl lg:text-5xl mt-[32px] font-bold text-white text-center ">
           Why Choose AURORA?
         </p>
         <p className="text-center font-normal text-[#D1D5DB] text-xl">
