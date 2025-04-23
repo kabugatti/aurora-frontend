@@ -139,6 +139,15 @@ const Header = ({ onMenuClick }) => {
     <>
       <header className="border-b border-[#e5e7eb] sticky top-0 bg-white z-50">
         <div className="container mx-auto px-2 sm:px-4 flex items-center justify-between h-16">
+          {/* Botón hamburguesa (izquierda) - Visible en móvil y tablet */}
+          <button 
+            className="lg:hidden p-2 rounded-full hover:bg-gray-100 mr-2"
+            onClick={onMenuClick}
+            aria-label="Menú principal"
+          >
+            <Menu size={24} />
+          </button>
+
           {/* Logo - Ajustado para responsive */}
           <div 
             onClick={() => navigate('/')} 
@@ -153,6 +162,9 @@ const Header = ({ onMenuClick }) => {
             </div>
           </div>
 
+          {/* Espacio flexible para centrar el logo en móvil/tablet */}
+          <div className="flex-1 lg:hidden"></div>
+
           {/* Área de botones para dispositivos móviles y tablet pequeño */}
           <div className="flex items-center space-x-2 lg:hidden">
             {/* Buscador móvil (solo icono) */}
@@ -164,13 +176,13 @@ const Header = ({ onMenuClick }) => {
               <Search size={20} />
             </button>
 
-            {/* Botón de menú móvil */}
+            {/* Botón para menú de usuario/app */}
             <button 
               className="p-2 rounded-full hover:bg-gray-100"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Abrir menú"
+              aria-label="Menú de usuario"
             >
-              <Menu size={24} />
+              <User size={20} />
             </button>
           </div>
 
