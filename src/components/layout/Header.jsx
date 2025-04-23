@@ -11,6 +11,7 @@ import {
   Lightbulb,
   Award,
   User,
+  Bot,
   X
 } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
@@ -148,12 +149,14 @@ const Header = ({ onMenuClick }) => {
         <div className="container mx-auto px-2 sm:px-4 flex items-center justify-between h-16">
           {/* Botón hamburguesa (izquierda) - Visible en móvil y tablet */}
           <button 
-            className="lg:hidden p-2 rounded-full hover:bg-gray-100 mr-2"
-            onClick={handleMenuToggle}
+              className="p-2 rounded-full hover:bg-gray-100 mr-4 items-center"
+              onClick={handleMenuToggle}
             aria-label="Menú principal"
           >
-            <Menu size={24} />
+            <Bot size={24} />
           </button>
+
+     
 
           {/* Logo - Ajustado para responsive */}
           <div 
@@ -189,20 +192,11 @@ const Header = ({ onMenuClick }) => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Menú de usuario"
             >
-              <User size={20} />
+              <Menu size={20} />
             </button>
           </div>
 
-          {/* Botón hamburguesa (escritorio) - Visible en lg y superiores */}
-          <div className="hidden lg:flex items-center">
-            <button 
-              className="p-2 rounded-full hover:bg-gray-100 mr-4"
-              onClick={handleMenuToggle}
-              aria-label="Menú principal"
-            >
-              <Menu size={24} />
-            </button>
-          </div>
+          
 
           {/* Navegación para tablet grande y desktop */}
           <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8">
