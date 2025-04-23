@@ -135,6 +135,13 @@ const Header = ({ onMenuClick }) => {
     }
   }, [isMobileMenuOpen])
 
+  // Manejador del botón hamburguesa
+  const handleMenuToggle = (event) => {
+    if (onMenuClick && typeof onMenuClick === 'function') {
+      onMenuClick(event);
+    }
+  };
+
   return (
     <>
       <header className="border-b border-[#e5e7eb] sticky top-0 bg-white z-50">
@@ -142,7 +149,7 @@ const Header = ({ onMenuClick }) => {
           {/* Botón hamburguesa (izquierda) - Visible en móvil y tablet */}
           <button 
             className="lg:hidden p-2 rounded-full hover:bg-gray-100 mr-2"
-            onClick={onMenuClick}
+            onClick={handleMenuToggle}
             aria-label="Menú principal"
           >
             <Menu size={24} />
@@ -183,6 +190,17 @@ const Header = ({ onMenuClick }) => {
               aria-label="Menú de usuario"
             >
               <User size={20} />
+            </button>
+          </div>
+
+          {/* Botón hamburguesa (escritorio) - Visible en lg y superiores */}
+          <div className="hidden lg:flex items-center">
+            <button 
+              className="p-2 rounded-full hover:bg-gray-100 mr-4"
+              onClick={handleMenuToggle}
+              aria-label="Menú principal"
+            >
+              <Menu size={24} />
             </button>
           </div>
 
