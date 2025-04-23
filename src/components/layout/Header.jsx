@@ -52,11 +52,11 @@ const Header = ({ onMenuClick }) => {
   ]
 
   const routeMap = {
-    courses: "/learning-content",
-    practice: "/practiceSystem",
-    resources: "/categories",
+    skills: "/skills",
+    grammar: "/grammar",
+    vocabulary: "/vocabulary",
+    "business english": "/business-english",
     community: "/people",
-    achievements: "/certifications-obtained",
     settings: "/settings",
     notifications: "/notifications",
     grammar: "/grammar",
