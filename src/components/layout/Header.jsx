@@ -10,10 +10,11 @@ import {
   BookOpen,
   Lightbulb,
   Award,
-  User
+  User,
+  X
 } from "lucide-react"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState, useRef, useEffect } from "react"
+import { useNavigate, Link } from "react-router-dom"
 import { useWallet } from "../../context/WalletContext"
 import { useAuth } from "@/context/AuthContext"
 import { truncateAddress } from "../../utils/helpers"
@@ -23,6 +24,7 @@ const Header = ({ onMenuClick }) => {
   const { address } = useWallet()
   const { user, logout, isAuthenticated, isLoadingUser } = useAuth()
   const navigate = useNavigate()
+  const searchRef = useRef(null)
 
   const [notifications, setNotifications] = useState([])
   const [isOpen, setIsOpen] = useState(false)
@@ -30,6 +32,7 @@ const Header = ({ onMenuClick }) => {
   const [filteredOptions, setFilteredOptions] = useState([])
   const [showFiltered, setShowFiltered] = useState(false)
   const [showProfileMenu, setShowProfileMenu] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const unreadCount = notifications.filter((n) => !n.isRead).length
 
@@ -54,11 +57,28 @@ const Header = ({ onMenuClick }) => {
     achievements: "/certifications-obtained",
     settings: "/settings",
     notifications: "/notifications",
+    grammar: "/grammar",
+    vocabulary: "/vocabulary",
+    speaking: "/speaking",
+    listening: "/listening",
+    reading: "/reading",
+    games: "/games",
+    challenges: "/challenges"
   }
 
   const handleNavClick = (key) => {
-    const path = routeMap[key.toLowerCase()]
-    if (path) navigate(path)
+    const path = {
+      'skills': '/skills',
+      'grammar': '/grammar',
+      'vocabulary': '/vocabulary',
+      'business english': '/business-english',
+      'community': '/community'
+    }[key.toLowerCase()]
+    
+    if (path) {
+      navigate(path)
+      setIsMobileMenuOpen(false) // Cierra el menú móvil después de navegar
+    }
     else console.warn("❗Ruta inválida desde Header:", key)
   }
 
@@ -72,217 +92,278 @@ const Header = ({ onMenuClick }) => {
     setFilteredOptions(filtered)
   }
 
+  const handleSearchOptionClick = (option) => {
+    const path = routeMap[option]
+    if (path) {
+      navigate(path)
+      setShowFiltered(false)
+      setSearchQuery("")
+      setIsOpen(false)
+    }
+  }
+
   const markAllAsRead = () => {
     setNotifications((prev) =>
       prev.map((n) => ({ ...n, isRead: true }))
     )
   }
 
+  // Cierra el dropdown cuando se hace clic fuera de él
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowFiltered(false)
+      }
+    }
+    
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  // Previene el scroll cuando el menú móvil está abierto
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+    
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isMobileMenuOpen])
+
   return (
-    <header className="h-16 border-b border-blue-100 bg-white px-6 shadow-sm">
-      <div className="flex items-center justify-between h-full max-w-[1440px] mx-auto">
-
-        {/* Left Section */}
-        <div className="flex items-center">
-          <button
-            className="p-2 text-white bg-blue-500 hover:bg-blue-600 rounded-lg mr-4"
-            onClick={onMenuClick}
-            aria-label="Menu"
+    <>
+      <header className="border-b border-[#e5e7eb] sticky top-0 bg-white z-50">
+        <div className="container mx-auto px-2 sm:px-4 flex items-center justify-between h-16">
+          {/* Logo - Ajustado para responsive */}
+          <div 
+            onClick={() => navigate('/')} 
+            className="flex items-center cursor-pointer"
           >
-            <Menu className="h-5 w-5" />
-          </button>
-
-          <div className="flex items-center">
-            <BookOpen className="h-7 w-7 text-blue-500 mr-2" />
-            <span className="text-xl font-bold text-blue-700 hidden sm:inline">Aurora</span>
+            <div className="p-1 rounded">
+              <img
+                src="/logo.png" 
+                alt="Aurora Logo"
+                className="h-6 sm:h-7 md:h-8"
+              />
+            </div>
           </div>
 
-          <nav className="hidden md:flex ml-8 space-x-6">
-            {["Courses", "Practice", "Resources", "Community"].map((item) => (
-              <button
+          {/* Área de botones para dispositivos móviles y tablet pequeño */}
+          <div className="flex items-center space-x-2 lg:hidden">
+            {/* Buscador móvil (solo icono) */}
+            <button 
+              className="p-2 rounded-full hover:bg-gray-100"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Buscar"
+            >
+              <Search size={20} />
+            </button>
+
+            {/* Botón de menú móvil */}
+            <button 
+              className="p-2 rounded-full hover:bg-gray-100"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Abrir menú"
+            >
+              <Menu size={24} />
+            </button>
+          </div>
+
+          {/* Navegación para tablet grande y desktop */}
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8">
+            {['Skills', 'Grammar', 'Vocabulary', 'Business English', 'Community'].map((item) => (
+              <button 
                 key={item}
                 onClick={() => handleNavClick(item)}
-                className="text-sm font-medium text-gray-600 hover:text-blue-600"
+                className="text-sm font-medium text-gray-700 hover:text-gray-900 py-1"
               >
                 {item}
               </button>
             ))}
           </nav>
-        </div>
 
-        {/* Search */}
-        <div className="relative w-full max-w-xs sm:max-w-md lg:max-w-lg mx-4">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Search className="h-4 w-4 text-blue-400" />
-          </div>
-          <input
-            type="text"
-            placeholder="Search..."
-            className="block w-full pl-10 pr-3 py-2 border border-blue-100 rounded-full bg-blue-50 text-sm"
-            value={searchQuery}
-            onChange={handleSearchChange}
-          />
-          {showFiltered && searchQuery.length > 0 && (
-            <div className="absolute top-full left-0 w-full mt-1 bg-white border border-blue-100 rounded-lg shadow-lg z-10">
-              {filteredOptions.length > 0 ? (
-                filteredOptions.map((option, index) => (
-                  <div
-                    key={index}
-                    className="px-4 py-2 text-gray-700 hover:bg-blue-50 cursor-pointer"
-                    onClick={() => {
-                      setSearchQuery("")
-                      setShowFiltered(false)
-                      navigate(`/${option}`)
-                    }}
+          {/* Buscador (tablet grande y desktop) */}
+          <div className="hidden lg:flex relative w-48 xl:w-64" ref={searchRef}>
+            <div className="relative w-full">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Search size={18} className="text-gray-400" />
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Buscar contenido..."
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
+              />
+            </div>
+
+            {/* Resultados de búsqueda */}
+            {showFiltered && filteredOptions.length > 0 && (
+              <div className="absolute top-full left-0 mt-1 w-full bg-white shadow-lg rounded-md z-50 max-h-60 overflow-y-auto">
+                {filteredOptions.map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => handleSearchOptionClick(option)}
+                    className="text-left block w-full px-4 py-2 text-sm hover:bg-gray-100"
                   >
                     {option.charAt(0).toUpperCase() + option.slice(1)}
-                  </div>
-                ))
-              ) : (
-                <div className="px-4 py-3 text-gray-500 text-center">
-                  No results for &quot;{searchQuery}&quot;
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Right Section */}
-        <div className="flex items-center space-x-3">
-
-          {/* Progress */}
-          <div className="hidden md:flex items-center mr-2">
-            <div className="w-8 h-8 bg-blue-100 flex items-center justify-center rounded-full">
-              <Lightbulb className="h-4 w-4 text-blue-500" />
-            </div>
-            <div className="ml-2">
-              <div className="text-xs text-gray-500">Daily Progress</div>
-              <div className="w-24 h-2 bg-gray-200 mt-1 rounded-full">
-                <div className="w-3/4 h-full bg-green-500 rounded-full"></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Achievements */}
-          <button
-            className="hidden sm:flex h-9 w-9 bg-blue-100 text-blue-600 rounded-full items-center justify-center"
-            onClick={() => handleNavClick("achievements")}
-          >
-            <Award className="h-5 w-5" />
-          </button>
-
-          {/* Notifications */}
-          <div className="relative">
-            <button
-              className="h-9 w-9 bg-blue-100 text-blue-600 rounded-full relative flex items-center justify-center"
-              onClick={() => setIsOpen(!isOpen)}
-            >
-              <Bell className="h-5 w-5" />
-              {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
-                  {unreadCount}
-                </span>
-              )}
-            </button>
-            {isOpen && (
-              <div className="absolute right-0 mt-2 w-80 bg-white border border-blue-100 rounded-lg shadow-lg z-50">
-                <div className="flex justify-between px-4 py-3 border-b bg-blue-50">
-                  <span className="font-semibold text-blue-700">Notifications</span>
-                  <button onClick={markAllAsRead} className="text-xs text-blue-600 hover:text-blue-800">
-                    Mark all as read
                   </button>
-                </div>
-                <div className="max-h-80 overflow-y-auto">
-                  {notifications.length === 0 ? (
-                    <div className="px-4 py-6 text-gray-500 text-center">No notifications</div>
-                  ) : (
-                    notifications.map((n) => (
-                      <div
-                        key={n.id}
-                        className={`px-4 py-3 border-b hover:bg-blue-50 cursor-pointer ${!n.isRead ? "bg-blue-50" : ""}`}
-                        onClick={() => handleNavClick("notifications")}
-                      >
-                        <p className={`text-sm ${!n.isRead ? "font-semibold" : ""}`}>{n.title}</p>
-                        <p className="text-xs text-gray-600">{n.message}</p>
-                        <span className="text-xs text-gray-400">{n.timestamp}</span>
-                      </div>
-                    ))
-                  )}
-                </div>
+                ))}
               </div>
             )}
           </div>
 
-          {/* Settings */}
-          <button
-            onClick={() => handleNavClick("settings")}
-            className="h-9 w-9 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center"
-          >
-            <Settings className="h-5 w-5" />
-          </button>
+          {/* Botones de autenticación (tablet grande y desktop) */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-2 xl:space-x-4">
+                <button
+                  onClick={() => setShowProfileMenu(!showProfileMenu)}
+                  className="flex items-center space-x-2"
+                >
+                  <User size={16} />
+                  <span className="text-sm font-medium truncate max-w-[80px] xl:max-w-[150px]">
+                    {user?.username || truncateAddress(address)}
+                  </span>
+                </button>
+                <button 
+                  onClick={logout}
+                  className="flex items-center space-x-1 text-sm font-medium text-gray-700 hover:text-gray-900"
+                >
+                  <LogOut size={16} />
+                  <span className="hidden xl:inline">Cerrar sesión</span>
+                </button>
+              </div>
+            ) : (
+              <>
+                <button 
+                  onClick={() => navigate('/login')}
+                  className="text-sm font-medium text-gray-700 hover:text-gray-900"
+                >
+                  Log in
+                </button>
+                <button
+                  onClick={() => navigate('/signup')}
+                  className="text-sm font-medium text-white bg-[#00b8d4] px-3 py-1.5 xl:px-4 xl:py-2 rounded hover:bg-[#00a5bd] transition-colors"
+                >
+                  Sign up
+                </button>
+              </>
+            )}
+          </div>
+        </div>
 
-          {/* Auth/Profile */}
-          {!isAuthenticated && !isLoadingUser ? (
-            <button
-              onClick={() => navigate("/login")}
-              className="flex items-center gap-2 px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-full shadow-sm"
-            >
-              <LogIn className="h-4 w-4" />
-              <span className="text-sm font-medium">Login</span>
-            </button>
-          ) : (
+        {/* Panel de búsqueda expandible */}
+        {isOpen && (
+          <div className="lg:hidden p-4 bg-white border-t border-gray-200 transition-all duration-300" ref={searchRef}>
             <div className="relative">
-              <button
-                onClick={() => setShowProfileMenu(!showProfileMenu)}
-                className="h-9 w-9 rounded-full bg-blue-600 text-white hover:bg-blue-700 flex items-center justify-center"
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Search size={18} className="text-gray-400" />
+              </div>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={handleSearchChange}
+                placeholder="Buscar contenido..."
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2"
+                autoFocus
+              />
+              <button 
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
+                onClick={() => setIsOpen(false)}
               >
-                <User className="h-5 w-5" />
+                <X size={18} className="text-gray-400" />
               </button>
-              {showProfileMenu && (
-                <div className="absolute right-0 mt-2 w-48 bg-white border border-blue-100 rounded-lg shadow-lg z-50">
-                  <div className="px-4 py-3 border-b">
-                    <p className="text-sm font-medium text-gray-700">{user?.firstName}</p>
-                    <p className="text-xs text-gray-500 mt-1">{user?.email}</p>
+            </div>
+            {/* Resultados de búsqueda */}
+            {showFiltered && filteredOptions.length > 0 && (
+              <div className="mt-2 bg-white rounded-md z-50 max-h-40 overflow-y-auto">
+                {filteredOptions.map((option) => (
+                  <button
+                    key={option}
+                    onClick={() => handleSearchOptionClick(option)}
+                    className="text-left block w-full px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    {option.charAt(0).toUpperCase() + option.slice(1)}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+      </header>
+
+      {/* Menú móvil y tablet */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 bg-white z-50 pt-16 overflow-y-auto lg:hidden">
+          <div className="p-4">
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100"
+              aria-label="Cerrar menú"
+            >
+              <X size={24} />
+            </button>
+            
+            <nav className="flex flex-col space-y-4 mt-4">
+              {['Skills', 'Grammar', 'Vocabulary', 'Business English', 'Community'].map((item) => (
+                <button 
+                  key={item}
+                  onClick={() => handleNavClick(item)}
+                  className="text-lg font-medium text-gray-700 hover:text-gray-900 py-2 border-b border-gray-100"
+                >
+                  {item}
+                </button>
+              ))}
+            </nav>
+            
+            <div className="mt-8 pt-4 border-t border-gray-200">
+              {isAuthenticated ? (
+                <div className="flex flex-col space-y-4">
+                  <div className="flex items-center space-x-2 py-2">
+                    <User size={20} />
+                    <span className="text-md font-medium">
+                      {user?.username || truncateAddress(address)}
+                    </span>
                   </div>
-                  <div className="py-1">
-                    <button onClick={() => navigate("/profile")} className="px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 w-full text-left">
-                      Your Profile
-                    </button>
-                    <button onClick={() => navigate("/learning-path")} className="px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 w-full text-left">
-                      Learning Path
-                    </button>
-                  </div>
-                  {address && (
-                    <div className="px-4 py-2 border-t border-blue-100">
-                      <div className="flex items-center space-x-2 text-xs text-gray-500">
-                        <span>Wallet:</span>
-                        <span className="font-medium">{truncateAddress(address)}</span>
-                      </div>
-                    </div>
-                  )}
-                  <div className="border-t">
-                    <button
-                      onClick={() => {
-                        logout()
-                        setShowProfileMenu(false)
-                      }}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full text-left"
-                    >
-                      <LogOut className="h-4 w-4" />
-                      <span>Logout</span>
-                    </button>
-                  </div>
+                  <button 
+                    onClick={logout}
+                    className="flex items-center space-x-2 text-md font-medium text-gray-700 hover:text-gray-900 py-2"
+                  >
+                    <LogOut size={20} />
+                    <span>Cerrar sesión</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-col space-y-4">
+                  <button 
+                    onClick={() => {
+                      navigate('/login')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="w-full text-md font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md py-3"
+                  >
+                    Log in
+                  </button>
+                  <button
+                    onClick={() => {
+                      navigate('/signup')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    className="w-full text-md font-medium text-white bg-[#00b8d4] py-3 rounded-md hover:bg-[#00a5bd] transition-colors"
+                  >
+                    Sign up
+                  </button>
                 </div>
               )}
             </div>
-          )}
-
-          <div className="hidden sm:block">
-            <ConnectWalletButton />
           </div>
         </div>
-      </div>
-    </header>
+      )}
+    </>
   )
 }
 
