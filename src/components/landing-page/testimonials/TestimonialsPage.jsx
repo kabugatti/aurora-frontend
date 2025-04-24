@@ -1,5 +1,5 @@
 import React from 'react';
-import TestimonialsSection from '../pages/aurora-site/home/Testimonial.jsx'; // Adjust path as needed
+import TestimonialsSection from '@/pages/aurora-site/home/Testimonial';
 
 const TestimonialsPage = () => {
   return (
@@ -10,4 +10,4 @@ const TestimonialsPage = () => {
   );
 };
 
-export default TestimonialsPage;
+export default TestimonialsPage; 
