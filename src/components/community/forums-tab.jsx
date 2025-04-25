@@ -7,18 +7,18 @@ import { MessageCircle, Heart, Share2, ChevronRight } from "lucide-react"
 
 export const ForumsTab = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 gap-8 text-white lg:grid-cols-3">
       <div className="lg:col-span-2">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Popular Discussions</h2>
-          <Button variant="link" className="text-[#3b82f6]">
-            View all <ChevronRight className="h-4 w-4" />
+          <Button variant="link" className="text-light-blue-1">
+            View all <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
 
         <div className="space-y-4">
           {popularDiscussions.map((discussion) => (
-            <Card key={discussion.id} className="hover:shadow-md transition-shadow">
+            <Card key={discussion.id} className="transition-shadow hover:shadow-md bg-dark-blue-5 border-neutral-4">
               <CardHeader className="pb-2">
                 <div className="flex justify-between">
                   <div className="flex items-center gap-3">
@@ -27,30 +27,30 @@ export const ForumsTab = () => {
                       <AvatarFallback>{discussion.author.charAt(0)}</AvatarFallback>
                     </Avatar>
                     <div>
-                      <CardTitle className="text-lg">{discussion.title}</CardTitle>
+                      <CardTitle className="text-lg text-white">{discussion.title}</CardTitle>
                       <CardDescription>
                         By {discussion.author} • {discussion.timeAgo}
                       </CardDescription>
                     </div>
                   </div>
-                  <Badge variant="outline" className="bg-blue-50">
+                  <Badge variant="outline" className="text-white border-none pointer-events-none bg-light-blue-1 max-h-6">
                     {discussion.language}
                   </Badge>
                 </div>
               </CardHeader>
-              <CardFooter className="pt-2 flex justify-between">
+              <CardFooter className="flex justify-between pt-2">
                 <div className="flex items-center gap-4 text-sm text-gray-500">
                   <div className="flex items-center">
-                    <MessageCircle className="h-4 w-4 mr-1" />
+                    <MessageCircle className="w-4 h-4 mr-1" />
                     {discussion.replies} replies
                   </div>
                   <div className="flex items-center">
-                    <Heart className="h-4 w-4 mr-1" />
+                    <Heart className="w-4 h-4 mr-1" />
                     {discussion.likes} likes
                   </div>
                 </div>
-                <Button variant="ghost" size="sm">
-                  <Share2 className="h-4 w-4 mr-1" />
+                <Button variant="clear" size="sm" className='text-white border-transparent'>
+                  <Share2 className="w-4 h-4 mr-1" />
                   Share
                 </Button>
               </CardFooter>
@@ -59,12 +59,12 @@ export const ForumsTab = () => {
         </div>
 
         <div className="mt-8">
-          <Button className="w-full bg-[#3b82f6]">Start New Discussion</Button>
+          <Button className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent hover:border-light-blue-1 ">Start New Discussion</Button>
         </div>
       </div>
 
       <div>
-        <Card>
+        <Card className="text-white bg-dark-blue-4 border-neutral-4">
           <CardHeader>
             <CardTitle>Your Progress with Aurora AI</CardTitle>
           </CardHeader>
@@ -75,9 +75,9 @@ export const ForumsTab = () => {
 
               return (
                 <div key={achievement.id} className="flex items-start gap-3">
-                  <div className="bg-blue-50 p-2 rounded-full">
+                  <div className="p-2 rounded-full bg-blue-50">
                     {/* Render the icon dynamically */}
-                    {IconComponent && <IconComponent className="h-6 w-6 text-blue-500" />}
+                    {IconComponent && <IconComponent className="w-6 h-6 text-blue-500" />}
                   </div>
                   <div className="flex-1">
                     <div className="flex justify-between">
@@ -85,9 +85,9 @@ export const ForumsTab = () => {
                       <span className="text-sm text-gray-500">{achievement.progress}%</span>
                     </div>
                     <p className="text-sm text-gray-500">{achievement.description}</p>
-                    <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+                    <div className="w-full h-2 mt-2 bg-gray-200 rounded-full">
                       <div
-                        className="bg-[#3b82f6] h-2 rounded-full"
+                        className="h-2 rounded-full bg-light-blue-1"
                         style={{ width: `${achievement.progress}%` }}
                       ></div>
                     </div>
@@ -96,14 +96,14 @@ export const ForumsTab = () => {
               )
             })}
           </CardContent>
-          <CardFooter>
-            <Button variant="outline" className="w-full">
+          <CardFooter >
+            <Button variant="clear" className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent">
               View All Achievements
             </Button>
           </CardFooter>
         </Card>
 
-        <Card className="mt-6">
+        <Card className="mt-6 text-white bg-dark-blue-4 border-neutral-4">
           <CardHeader>
             <CardTitle>Trending Topics</CardTitle>
           </CardHeader>
