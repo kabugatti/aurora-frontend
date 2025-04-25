@@ -82,7 +82,6 @@ function App() {
               <Route path="/" element={<HomePage />} />
             </Route>
 
-            {/* Protected routes with MainLayout */}
 
               <Route element={<MainLayout />}>
                 <Route path="/learning-content" element={<LearningContent />} />
@@ -174,7 +173,7 @@ function App() {
             </Route>
 
             {/* Redirect any unknown routes to login */}
-            <Route path="*" element={<Navigate to="/login" />} />
+            {/*<Route path="*" element={<Navigate to="/login" />} />*/}
           </Routes>
         </AuthProvider>
       </ToastContextProvider>
