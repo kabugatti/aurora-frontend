@@ -82,8 +82,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
             </Route>
 
-            {/* Protected routes with MainLayout */}
-            <Route element={<ProtectedRoute />}>
+
               <Route element={<MainLayout />}>
                 <Route path="/learning-content" element={<LearningContent />} />
                 <Route path="/wallet-connection" element={<WalletConnection />} />
@@ -113,11 +112,11 @@ function App() {
                 <Route path="/reading" element={<ReadingContent />} />
                 <Route path="/people" element={<CommunityInteractionPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
-              </Route>
+
             </Route>
 
             {/* Redirect any unknown routes to login */}
-            <Route path="*" element={<Navigate to="/login" />} />
+            {/*<Route path="*" element={<Navigate to="/login" />} />*/}
           </Routes>
         </AuthProvider>
       </ToastContextProvider>
