@@ -52,9 +52,10 @@ import WordScrambleGame from "@/components/games/word-scramble/word-scramble-gam
 import GamePanel from "@/pages/games/game-panel";
 import StoryGame from "@/pages/games/story-game";
 import WordMatching from "@/pages/games/word-matching";
+import PracticeSystem from "@/components/practices/funny_practices/DragDropSentenceBuilder";
 
 // 📝 Practices & Exercises
-import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
+//import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
 import SentenceBuilder from "@/components/practices/exercises/sentence-builder";
 
 // 🧠 Quizzes
@@ -108,10 +109,7 @@ function App() {
                   path="/practice/sentence-builder"
                   element={<SentenceBuilder />}
                 />
-                <Route
-                  path="/practice/drag-drop-sentence-builder"
-                  element={<PracticeSystem />}
-                />
+                <Route path="/practice/drag-drop-sentence-builder" element={<PracticeSystem/>}/>
                 <Route path="/notifications" element={<Notifications />} />
 
                 <Route path="/story-game" element={<StoryGame />} />
