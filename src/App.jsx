@@ -83,7 +83,7 @@ function App() {
             </Route>
 
             {/* Protected routes with MainLayout */}
-            <Route element={<ProtectedRoute />}>
+
               <Route element={<MainLayout />}>
                 <Route path="/learning-content" element={<LearningContent />} />
                 <Route
@@ -170,7 +170,7 @@ function App() {
                 <Route path="/reading" element={<ReadingContent />} />
                 <Route path="/people" element={<CommunityInteractionPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
-              </Route>
+
             </Route>
 
             {/* Redirect any unknown routes to login */}
