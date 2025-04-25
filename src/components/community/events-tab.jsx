@@ -7,57 +7,57 @@ import { Users, Calendar, Share2, ChevronRight, Video, Bot, MessageSquare } from
 
 export const EventsTab = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 gap-8 text-white lg:grid-cols-3">
       <div className="lg:col-span-2">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Upcoming Events</h2>
-          <Button variant="link" className="text-[#3b82f6]">
-            View calendar <ChevronRight className="h-4 w-4" />
+          <Button variant="link" className="text-light-blue-1">
+            View calendar <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
 
         <div className="space-y-4">
           {upcomingEvents.map((event) => (
-            <Card key={event.id} className="hover:shadow-md transition-shadow">
+            <Card key={event.id} className="transition-shadow hover:shadow-md bg-dark-blue-5 border-neutral-4">
               <CardHeader className="pb-2">
                 <div className="flex justify-between">
                   <div>
-                    <CardTitle className="text-lg">{event.title}</CardTitle>
+                    <CardTitle className="text-lg text-white">{event.title}</CardTitle>
                     <CardDescription>
                       {event.date} • {event.time}
                     </CardDescription>
                   </div>
-                  <Badge variant="default" className="bg-[#3b82f6]">
+                  <Badge variant="default" className="border-none pointer-events-none bg-light-blue-1">
                     {event.type === "online" ? "Online" : "In-person"}
                   </Badge>
                 </div>
               </CardHeader>
               <CardContent className="py-2">
                 <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className="bg-blue-50">
+                  <Badge variant="outline" className="border-none rounded pointer-events-none bg-light-blue-4 text-light-blue-1">
                     {event.language}
                   </Badge>
-                  <Badge variant="outline" className="bg-purple-50">
+                  <Badge variant="outline" className="border-none rounded pointer-events-none text-neutral-2 bg-neutral-4">
                     {event.level}
                   </Badge>
                   <div className="flex items-center text-sm text-gray-500">
-                    <Users className="h-4 w-4 mr-1" />
+                    <Users className="w-4 h-4 mr-1" />
                     {event.participants} participants
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="pt-2 flex justify-between">
+              <CardFooter className="flex justify-between pt-2">
                 <div className="flex gap-2">
-                  <Button variant="outline" size="sm">
-                    <Calendar className="h-4 w-4 mr-1" />
+                  <Button variant="clear" size="sm" className="px-0 border-none text-neutral-6">
+                    <Calendar/>
                     Add to calendar
                   </Button>
-                  <Button variant="outline" size="sm">
-                    <Share2 className="h-4 w-4 mr-1" />
+                  <Button variant="clear" size="sm" className="px-0 border-none text-neutral-6">
+                    <Share2/>
                     Share
                   </Button>
                 </div>
-                <Button className="bg-[#3b82f6]" size="sm">
+                <Button className="bg-light-blue-1" size="sm">
                   Register
                 </Button>
               </CardFooter>
@@ -76,29 +76,29 @@ export const EventsTab = () => {
             <CardTitle>Event Types</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
-              <Video className="h-5 w-5 text-blue-600" />
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-blue-50">
+              <Video className="w-5 h-5 text-blue-600" />
               <div>
                 <h4 className="font-medium">Learning Webinars</h4>
                 <p className="text-sm text-gray-600">Learn advanced techniques with experts</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-3 bg-purple-50 rounded-lg">
-              <Bot className="h-5 w-5 text-purple-600" />
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-purple-50">
+              <Bot className="w-5 h-5 text-purple-600" />
               <div>
                 <h4 className="font-medium">AI Demonstrations</h4>
                 <p className="text-sm text-gray-600">Discover Aurora&apos;s new features</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
-              <Users className="h-5 w-5 text-green-600" />
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-green-50">
+              <Users className="w-5 h-5 text-green-600" />
               <div>
                 <h4 className="font-medium">Group Practice Sessions</h4>
                 <p className="text-sm text-gray-600">Practice with other students and AI</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-3 bg-amber-50 rounded-lg">
-              <MessageSquare className="h-5 w-5 text-amber-600" />
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-amber-50">
+              <MessageSquare className="w-5 h-5 text-amber-600" />
               <div>
                 <h4 className="font-medium">Q&A Sessions</h4>
                 <p className="text-sm text-gray-600">Resolve your doubts about using Aurora AI</p>
@@ -114,7 +114,7 @@ export const EventsTab = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex gap-3">
-                <div className="bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg p-3 text-center min-w-16">
+                <div className="p-3 text-center text-white rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 min-w-16">
                   <div className="text-sm">JUN</div>
                   <div className="text-xl font-bold">15</div>
                 </div>
@@ -128,7 +128,7 @@ export const EventsTab = () => {
               </div>
               <Separator />
               <div className="flex gap-3">
-                <div className="bg-gradient-to-r from-green-500 to-teal-500 text-white rounded-lg p-3 text-center min-w-16">
+                <div className="p-3 text-center text-white rounded-lg bg-gradient-to-r from-green-500 to-teal-500 min-w-16">
                   <div className="text-sm">JUL</div>
                   <div className="text-xl font-bold">08</div>
                 </div>

@@ -7,21 +7,21 @@ import { Users, TrendingUp, Bot, Sparkles, BookOpen, Mic, ChevronRight } from "l
 
 export const StudyGroupsTab = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 gap-8 text-white lg:grid-cols-3">
       <div className="lg:col-span-2">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Popular Study Groups</h2>
           <Button variant="link" className="text-[#3b82f6]">
-            View all <ChevronRight className="h-4 w-4" />
+            View all <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {studyGroups.map((group) => (
-            <Card key={group.id} className="hover:shadow-md transition-shadow">
+            <Card key={group.id} className="transition-shadow hover:shadow-md bg-dark-blue-5 border-neutral-4">
               <CardHeader className="pb-2">
                 <div className="flex justify-between">
-                  <CardTitle>{group.name}</CardTitle>
+                  <CardTitle className='text-white'>{group.name}</CardTitle>
                   <Badge variant="outline" className="bg-blue-50">
                     {group.language}
                   </Badge>
@@ -31,7 +31,7 @@ export const StudyGroupsTab = () => {
               <CardContent className="py-2">
                 <div className="flex flex-wrap gap-2">
                   <div className="flex items-center text-sm text-gray-500">
-                    <Users className="h-4 w-4 mr-1" />
+                    <Users className="w-4 h-4 mr-1" />
                     {group.members} members
                   </div>
                   <Badge variant="outline" className="bg-purple-50">
@@ -61,8 +61,8 @@ export const StudyGroupsTab = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="bg-blue-100 p-2 rounded-full">
-                <Users className="h-5 w-5 text-blue-600" />
+              <div className="p-2 bg-blue-100 rounded-full">
+                <Users className="w-5 h-5 text-blue-600" />
               </div>
               <div>
                 <h4 className="font-medium">Collaborative Learning</h4>
@@ -70,8 +70,8 @@ export const StudyGroupsTab = () => {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-green-100 p-2 rounded-full">
-                <TrendingUp className="h-5 w-5 text-green-600" />
+              <div className="p-2 bg-green-100 rounded-full">
+                <TrendingUp className="w-5 h-5 text-green-600" />
               </div>
               <div>
                 <h4 className="font-medium">Consistent Progress</h4>
@@ -79,8 +79,8 @@ export const StudyGroupsTab = () => {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-purple-100 p-2 rounded-full">
-                <Bot className="h-5 w-5 text-purple-600" />
+              <div className="p-2 bg-purple-100 rounded-full">
+                <Bot className="w-5 h-5 text-purple-600" />
               </div>
               <div>
                 <h4 className="font-medium">Shared AI Practice</h4>
@@ -88,8 +88,8 @@ export const StudyGroupsTab = () => {
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="bg-amber-100 p-2 rounded-full">
-                <Sparkles className="h-5 w-5 text-amber-600" />
+              <div className="p-2 rounded-full bg-amber-100">
+                <Sparkles className="w-5 h-5 text-amber-600" />
               </div>
               <div>
                 <h4 className="font-medium">Group Challenges</h4>
@@ -112,8 +112,8 @@ export const StudyGroupsTab = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="bg-blue-100 p-2 rounded-full">
-                    <BookOpen className="h-4 w-4 text-blue-600" />
+                  <div className="p-2 bg-blue-100 rounded-full">
+                    <BookOpen className="w-4 h-4 text-blue-600" />
                   </div>
                   <div>
                     <h4 className="font-medium">Tech Vocabulary</h4>
@@ -127,8 +127,8 @@ export const StudyGroupsTab = () => {
               <Separator />
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="bg-purple-100 p-2 rounded-full">
-                    <Mic className="h-4 w-4 text-purple-600" />
+                  <div className="p-2 bg-purple-100 rounded-full">
+                    <Mic className="w-4 h-4 text-purple-600" />
                   </div>
                   <div>
                     <h4 className="font-medium">Advanced Pronunciation</h4>

@@ -156,19 +156,19 @@ const AuroraChat = () => {
   return (
     <div className="flex w-full bg-gradient-to-br from-white to-blue-50">
       {/* Left Tips Section */}
-      <div className="hidden lg:block w-44 p-3 border-r border-gray-100 bg-white/80 backdrop-blur-sm">
-        <h2 className="text-base font-semibold mb-3 text-gray-800">Learning Tips</h2>
+      <div className="hidden p-3 border-r border-gray-100 lg:block w-44 bg-white/80 backdrop-blur-sm">
+        <h2 className="mb-3 text-base font-semibold text-gray-800">Learning Tips</h2>
         <div className="space-y-3">
           <div className="p-2.5 bg-blue-50/80 rounded-xl border border-blue-100 hover:bg-blue-50 transition-colors">
-            <h3 className="font-medium text-sm text-blue-800">Practice Speaking</h3>
+            <h3 className="text-sm font-medium text-blue-800">Practice Speaking</h3>
             <p className="text-xs text-blue-600/80">Try to speak in English as much as possible during our conversations.</p>
           </div>
           <div className="p-2.5 bg-green-50/80 rounded-xl border border-green-100 hover:bg-green-50 transition-colors">
-            <h3 className="font-medium text-sm text-green-800">Use Context</h3>
+            <h3 className="text-sm font-medium text-green-800">Use Context</h3>
             <p className="text-xs text-green-600/80">Pay attention to how words are used in different situations.</p>
           </div>
           <div className="p-2.5 bg-purple-50/80 rounded-xl border border-purple-100 hover:bg-purple-50 transition-colors">
-            <h3 className="font-medium text-sm text-purple-800">Review Regularly</h3>
+            <h3 className="text-sm font-medium text-purple-800">Review Regularly</h3>
             <p className="text-xs text-purple-600/80">Go back to previous conversations to reinforce what you've learned.</p>
           </div>
         </div>
@@ -177,14 +177,14 @@ const AuroraChat = () => {
       {/* Main Chat Area */}
       <div className="flex-1 mx-auto flex flex-col h-[calc(100vh-7rem)] bg-white/80 backdrop-blur-sm shadow-lg rounded-lg m-2 max-w-3xl">
         {/* Header */}
-        <div className="flex items-center w-full px-4 py-3 border-b border-gray-100 rounded-t-lg bg-white">
+        <div className="flex items-center w-full px-4 py-3 bg-white border-b border-gray-100 rounded-t-lg">
           {/* Left: Profile Section */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden ring-2 ring-blue-100 ring-offset-2">
+            <div className="w-10 h-10 overflow-hidden rounded-full ring-2 ring-blue-100 ring-offset-2">
               <img
                 src={auroraImage}
                 alt="Aurora Profile"
-                className="w-full h-full object-cover"
+                className="object-cover w-full h-full"
               />
             </div>
             <div>
@@ -214,7 +214,7 @@ const AuroraChat = () => {
         </div>
 
         {/* Messages Area with Scroll */}
-        <div className="flex-1 overflow-y-auto px-4 py-4 scroll-smooth">
+        <div className="flex-1 px-4 py-4 overflow-y-auto scroll-smooth">
           <div className="flex flex-col gap-3">
             {messages.map((message, index) => (
               <div
@@ -230,7 +230,7 @@ const AuroraChat = () => {
                     <RenderFileUploadMessage message={message} />
                   </div>
                 ) : (
-                  <p className="break-words text-sm leading-relaxed">{message.content}</p>
+                  <p className="text-sm leading-relaxed break-words">{message.content}</p>
                 )}
               </div>
             ))}
@@ -262,7 +262,7 @@ const AuroraChat = () => {
               <input
                 type="text"
                 placeholder="Write something related to the topic"
-                className="w-full px-4 py-2 pr-20 text-sm transition-all bg-gray-50 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white placeholder-gray-400"
+                className="w-full px-4 py-2 pr-20 text-sm placeholder-gray-400 transition-all rounded-lg shadow-sm bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white"
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 onKeyPress={handleKeyPress}
@@ -286,19 +286,19 @@ const AuroraChat = () => {
       </div>
 
       {/* Right Tips Section */}
-      <div className="hidden lg:block w-44 p-3 border-l border-gray-100 bg-white/80 backdrop-blur-sm">
-        <h2 className="text-base font-semibold mb-3 text-gray-800">Useful Links</h2>
+      <div className="hidden p-3 border-l border-gray-100 lg:block w-44 bg-white/80 backdrop-blur-sm">
+        <h2 className="mb-3 text-base font-semibold text-gray-800">Useful Links</h2>
         <div className="space-y-3">
           <a href="#" className="block p-2.5 bg-gray-50/80 rounded-xl border border-gray-100 hover:bg-gray-100 transition-all hover:shadow-sm">
-            <h3 className="font-medium text-sm text-gray-800">Grammar Guide</h3>
+            <h3 className="text-sm font-medium text-gray-800">Grammar Guide</h3>
             <p className="text-xs text-gray-500">Review essential grammar rules</p>
           </a>
           <a href="#" className="block p-2.5 bg-gray-50/80 rounded-xl border border-gray-100 hover:bg-gray-100 transition-all hover:shadow-sm">
-            <h3 className="font-medium text-sm text-gray-800">Vocabulary List</h3>
+            <h3 className="text-sm font-medium text-gray-800">Vocabulary List</h3>
             <p className="text-xs text-gray-500">Expand your word knowledge</p>
           </a>
           <a href="#" className="block p-2.5 bg-gray-50/80 rounded-xl border border-gray-100 hover:bg-gray-100 transition-all hover:shadow-sm">
-            <h3 className="font-medium text-sm text-gray-800">Practice Exercises</h3>
+            <h3 className="text-sm font-medium text-gray-800">Practice Exercises</h3>
             <p className="text-xs text-gray-500">Test your understanding</p>
           </a>
         </div>

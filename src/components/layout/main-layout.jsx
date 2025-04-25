@@ -14,7 +14,7 @@ const MainLayout = () => {
   };
 
   return (
-    <div className="flex min-h-screen w-full overflow-hidden bg-gray-50">
+    <div className="flex w-full min-h-screen overflow-hidden bg-gray-50">
       {/* Sidebar */}
       <Sidebar
         isOpen={isSidebarOpen}
@@ -29,11 +29,11 @@ const MainLayout = () => {
 
         {/* Main Content */}
         <main
-          className={`flex-1 p-4 sm:p-6 overflow-y-auto transition-all duration-300 ease-in-out ${
+          className={`flex-1 overflow-y-auto transition-all duration-300 ease-in-out ${
             isSidebarOpen ? "lg:ml-64" : ""
           }`}
         >
-          <div className="container mx-auto max-w-7xl">
+          <div className="container mx-auto max-w-[MIN(100%,2400px)]">
             <Outlet />
           </div>
         </main>

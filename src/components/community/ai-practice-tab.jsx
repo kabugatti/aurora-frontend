@@ -19,27 +19,27 @@ import {
 
 export const AIPracticeTab = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 gap-8 text-white lg:grid-cols-3">
       <div className="lg:col-span-2">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Aurora AI Practice Tools</h2>
           <Button variant="link" className="text-[#3b82f6]">
-            View all <ChevronRight className="h-4 w-4" />
+            View all <ChevronRight className="w-4 h-4" />
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {aiPracticeTools.map((tool) => (
-            <Card key={tool.id} className="hover:shadow-md transition-shadow">
+            <Card key={tool.id} className="transition-shadow hover:shadow-md bg-dark-blue-5 border-neutral-4">
               <CardHeader className="pb-2">
                 <div className="flex justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="bg-blue-50 p-2 rounded-full">
+                    <div className="p-2 rounded-full bg-blue-50">
                       {/* Dynamically render the icon based on the tool.icon string */}
-                      {tool.icon === "Bot" && <Bot className="h-6 w-6 text-blue-500" />}
-                      {tool.icon === "Mic" && <Mic className="h-6 w-6 text-purple-500" />}
-                      {tool.icon === "PenTool" && <PenTool className="h-6 w-6 text-green-500" />}
-                      {tool.icon === "Laptop" && <Laptop className="h-6 w-6 text-amber-500" />}
+                      {tool.icon === "Bot" && <Bot className="w-6 h-6 text-blue-500" />}
+                      {tool.icon === "Mic" && <Mic className="w-6 h-6 text-purple-500" />}
+                      {tool.icon === "PenTool" && <PenTool className="w-6 h-6 text-green-500" />}
+                      {tool.icon === "Laptop" && <Laptop className="w-6 h-6 text-amber-500" />}
                     </div>
                     <CardTitle>{tool.name}</CardTitle>
                   </div>
@@ -49,14 +49,14 @@ export const AIPracticeTab = () => {
                 </div>
               </CardHeader>
               <CardContent className="py-2">
-                <p className="text-gray-600 mb-3">{tool.description}</p>
+                <p className="mb-3 text-gray-600">{tool.description}</p>
                 <div className="flex flex-wrap gap-2 text-sm text-gray-500">
                   <div className="flex items-center">
-                    <TrendingUp className="h-4 w-4 mr-1" />
+                    <TrendingUp className="w-4 h-4 mr-1" />
                     {tool.popularity}% popularity
                   </div>
                   <div className="flex items-center">
-                    <Clock className="h-4 w-4 mr-1" />
+                    <Clock className="w-4 h-4 mr-1" />
                     {tool.lastUsed}
                   </div>
                 </div>
@@ -81,12 +81,12 @@ export const AIPracticeTab = () => {
           <CardContent className="space-y-4">
             {aiFeatures.map((feature, index) => (
               <div key={index} className="flex items-start gap-3">
-                <div className="bg-blue-50 p-2 rounded-full">
+                <div className="p-2 rounded-full bg-blue-50">
                   {/* Dynamically render the icon based on the feature.icon string */}
-                  {feature.icon === "Mic" && <Mic className="h-5 w-5 text-blue-600" />}
-                  {feature.icon === "Brain" && <Brain className="h-5 w-5 text-purple-600" />}
-                  {feature.icon === "Sparkles" && <Sparkles className="h-5 w-5 text-green-600" />}
-                  {feature.icon === "Zap" && <Zap className="h-5 w-5 text-amber-600" />}
+                  {feature.icon === "Mic" && <Mic className="w-5 h-5 text-blue-600" />}
+                  {feature.icon === "Brain" && <Brain className="w-5 h-5 text-purple-600" />}
+                  {feature.icon === "Sparkles" && <Sparkles className="w-5 h-5 text-green-600" />}
+                  {feature.icon === "Zap" && <Zap className="w-5 h-5 text-amber-600" />}
                 </div>
                 <div>
                   <h4 className="font-medium">{feature.name}</h4>
@@ -109,8 +109,8 @@ export const AIPracticeTab = () => {
           <CardContent>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <div className="bg-blue-100 p-2 rounded-full">
-                  <MessageSquare className="h-4 w-4 text-blue-600" />
+                <div className="p-2 bg-blue-100 rounded-full">
+                  <MessageSquare className="w-4 h-4 text-blue-600" />
                 </div>
                 <div>
                   <h4 className="font-medium">Travel conversation</h4>
@@ -119,8 +119,8 @@ export const AIPracticeTab = () => {
               </div>
               <Separator />
               <div className="flex items-center gap-3">
-                <div className="bg-purple-100 p-2 rounded-full">
-                  <Mic className="h-4 w-4 text-purple-600" />
+                <div className="p-2 bg-purple-100 rounded-full">
+                  <Mic className="w-4 h-4 text-purple-600" />
                 </div>
                 <div>
                   <h4 className="font-medium">Pronunciation practice</h4>
@@ -129,8 +129,8 @@ export const AIPracticeTab = () => {
               </div>
               <Separator />
               <div className="flex items-center gap-3">
-                <div className="bg-green-100 p-2 rounded-full">
-                  <PenTool className="h-4 w-4 text-green-600" />
+                <div className="p-2 bg-green-100 rounded-full">
+                  <PenTool className="w-4 h-4 text-green-600" />
                 </div>
                 <div>
                   <h4 className="font-medium">Writing correction</h4>
