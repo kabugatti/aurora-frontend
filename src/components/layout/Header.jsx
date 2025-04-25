@@ -148,7 +148,7 @@ const Header = ({ onMenuClick }) => {
         <div className="container mx-auto px-2 sm:px-4 flex items-center justify-between h-16">
           {/* Botón hamburguesa (izquierda) - Visible en móvil y tablet */}
           <button 
-              className="p-2 rounded-full hover:bg-gray-100 mr-4 items-center"
+              className="p-2 rounded-full hover:bg-gray-100 mr-4 items-center hover:border-transparent"
               onClick={handleMenuToggle}
             aria-label="Menú principal"
           >
@@ -272,7 +272,7 @@ const Header = ({ onMenuClick }) => {
                 </button>
                 <button
                   onClick={() => navigate('/signup')}
-                  className="text-sm font-medium text-white bg-[#00b8d4] px-3 py-1.5 xl:px-4 xl:py-2 rounded hover:bg-[#00a5bd] transition-colors"
+                  className="text-sm font-medium text-white bg-[#00b8d4] px-3 py-1.5 xl:px-4 xl:py-2 rounded hover:bg-[#00a5bd] transition-colors hover:border-transparent"
                 >
                   Sign up
                 </button>
