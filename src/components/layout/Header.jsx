@@ -20,8 +20,7 @@ import { useWallet } from "../../context/WalletContext"
 import { useAuth } from "@/context/AuthContext"
 import { truncateAddress } from "../../utils/helpers"
 import ConnectWalletButton from "./ui/connect-wallet-button"
-import auroraBrain from "../../assets/auroraLogo.jpg"
-
+import auroraLogo from "../../assets/auroraLogo.jpg"
 
 const Header = ({ onMenuClick }) => {
   const { address } = useWallet()
@@ -165,7 +164,7 @@ const Header = ({ onMenuClick }) => {
           >
             <div className="p-1 rounded">
               <img
-                src="/logo.png" 
+                src={auroraLogo} 
                 alt="Aurora Logo"
                 className="h-6 sm:h-7 md:h-8"
               />
@@ -204,7 +203,7 @@ const Header = ({ onMenuClick }) => {
               <button 
                 key={item}
                 onClick={() => handleNavClick(item)}
-                className="text-sm font-medium text-gray-700 hover:text-gray-900 py-1"
+                className="text-sm font-medium text-gray-700 py-2 border-radius-none border-transparent hover:border-transparent hover:border-radius-none hover:border-b-[#00b8d4]  hover:rounded-none hover:text-[#00b8d4] focus:outline-none transition-colors duration-200"
               >
                 {item}
               </button>
@@ -267,7 +266,7 @@ const Header = ({ onMenuClick }) => {
               <>
                 <button 
                   onClick={() => navigate('/login')}
-                  className="text-sm font-medium text-gray-700 hover:text-gray-900"
+                  className="text-sm font-medium text-gray-700 hover:text-gray-900 hover:border-transparent"
                 >
                   Log in
                 </button>
@@ -339,7 +338,7 @@ const Header = ({ onMenuClick }) => {
                 <button 
                   key={item}
                   onClick={() => handleNavClick(item)}
-                  className="text-lg font-medium text-gray-700 hover:text-gray-900 py-2 border-b border-gray-100"
+                  className="text-lg font-medium text-gray-700 py-2 rounded-none border-transparent hover:border-transparent hover:rounded-none hover:border-b-[#00b8d4]  hover:rounded-none hover:text-[#00b8d4] focus:outline-none transition-colors duration-200"
                 >
                   {item}
                 </button>
@@ -370,7 +369,7 @@ const Header = ({ onMenuClick }) => {
                       navigate('/login')
                       setIsMobileMenuOpen(false)
                     }}
-                    className="w-full text-md font-medium text-gray-700 hover:text-gray-900 border border-gray-300 rounded-md py-3"
+                    className="w-full text-md font-medium border-transparent text-gray-700 hover:text-gray-900 hover:border-transparent border border-gray-300 rounded-md py-3"
                   >
                     Log in
                   </button>
