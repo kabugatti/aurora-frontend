@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, Brain, BookOpen, MessageSquare, Award, BarChart2 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import AuroraIcon from "@/assets/Aurora_word.jpg";
+import WhyChooseAurora from "@/components/home/WhyChooseAurora";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -26,9 +27,6 @@ const BenefitItem = ({ title, description }) => (
 );
 
 const HomePage = () => {
-
-
-
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
@@ -65,6 +63,9 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+
+      {/* Why Choose AURORA Section */}
+      <WhyChooseAurora />
 
       {/* Core Features Section */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
@@ -141,7 +142,6 @@ const HomePage = () => {
               approach to language learning. Experience personalized tutoring that adapts to your needs.
             </p>
             <button
-
               className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
               Get Started
               <ArrowRight className="w-5 h-5" />
@@ -149,7 +149,6 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };
