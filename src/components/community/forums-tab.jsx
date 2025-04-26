@@ -1,9 +1,19 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card"
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { popularDiscussions, communityAchievements } from "@/data/mock-data-community"
-import { MessageCircle, Heart, Share2, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardFooter,
+  CardContent,
+} from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import {
+  popularDiscussions,
+  communityAchievements,
+} from "@/data/mock-data-community";
+import { MessageCircle, Heart, Share2, ChevronRight } from "lucide-react";
 
 export const ForumsTab = () => {
   return (
@@ -18,22 +28,35 @@ export const ForumsTab = () => {
 
         <div className="space-y-4">
           {popularDiscussions.map((discussion) => (
-            <Card key={discussion.id} className="transition-shadow hover:shadow-md bg-dark-blue-5 border-neutral-4">
+            <Card
+              key={discussion.id}
+              className="transition-shadow hover:shadow-md bg-dark-blue-5 border-neutral-4"
+            >
               <CardHeader className="pb-2">
                 <div className="flex justify-between">
                   <div className="flex items-center gap-3">
                     <Avatar>
-                      <AvatarImage src={discussion.authorAvatar} alt={discussion.author} />
-                      <AvatarFallback>{discussion.author.charAt(0)}</AvatarFallback>
+                      <AvatarImage
+                        src={discussion.authorAvatar}
+                        alt={discussion.author}
+                      />
+                      <AvatarFallback>
+                        {discussion.author.charAt(0)}
+                      </AvatarFallback>
                     </Avatar>
                     <div>
-                      <CardTitle className="text-lg text-white">{discussion.title}</CardTitle>
+                      <CardTitle className="text-lg text-white">
+                        {discussion.title}
+                      </CardTitle>
                       <CardDescription>
                         By {discussion.author} • {discussion.timeAgo}
                       </CardDescription>
                     </div>
                   </div>
-                  <Badge variant="outline" className="text-white border-none pointer-events-none bg-light-blue-1 max-h-6">
+                  <Badge
+                    variant="outline"
+                    className="border-transparent rounded hover:border-light-blue-1 bg-light-blue-4 text-light-blue-1 max-h-6"
+                  >
                     {discussion.language}
                   </Badge>
                 </div>
@@ -49,7 +72,11 @@ export const ForumsTab = () => {
                     {discussion.likes} likes
                   </div>
                 </div>
-                <Button variant="clear" size="sm" className='text-white border-transparent'>
+                <Button
+                  variant="clear"
+                  size="sm"
+                  className="text-white border-transparent"
+                >
                   <Share2 className="w-4 h-4 mr-1" />
                   Share
                 </Button>
@@ -59,33 +86,32 @@ export const ForumsTab = () => {
         </div>
 
         <div className="mt-8">
-          <Button className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent hover:border-light-blue-1 ">Start New Discussion</Button>
+          <Button className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent hover:border-light-blue-1 ">
+            Start New Discussion
+          </Button>
         </div>
       </div>
 
       <div>
-        <Card className="text-white bg-dark-blue-4 border-neutral-4">
+        <Card className="text-white bg-dark-blue-5 border-neutral-4">
           <CardHeader>
             <CardTitle>Your Progress with Aurora AI</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {communityAchievements.map((achievement) => {
-              // Dynamically import the icon
-              const IconComponent = achievement.icon
-
               return (
                 <div key={achievement.id} className="flex items-start gap-3">
-                  <div className="p-2 rounded-full bg-blue-50">
-                    {/* Render the icon dynamically */}
-                    {IconComponent && <IconComponent className="w-6 h-6 text-blue-500" />}
-                  </div>
                   <div className="flex-1">
                     <div className="flex justify-between">
                       <h4 className="font-medium">{achievement.title}</h4>
-                      <span className="text-sm text-gray-500">{achievement.progress}%</span>
+                      <span className="text-sm text-gray-500">
+                        {achievement.progress}%
+                      </span>
                     </div>
-                    <p className="text-sm text-gray-500">{achievement.description}</p>
-                    <div className="w-full h-2 mt-2 bg-gray-200 rounded-full">
+                    <p className="text-sm text-gray-500">
+                      {achievement.description}
+                    </p>
+                    <div className="w-full h-2 mt-2 rounded-full bg-dark-blue-4">
                       <div
                         className="h-2 rounded-full bg-light-blue-1"
                         style={{ width: `${achievement.progress}%` }}
@@ -93,48 +119,46 @@ export const ForumsTab = () => {
                     </div>
                   </div>
                 </div>
-              )
+              );
             })}
           </CardContent>
-          <CardFooter >
-            <Button variant="clear" className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent">
+          <CardFooter>
+            <Button
+              variant="clear"
+              className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent"
+            >
               View All Achievements
             </Button>
           </CardFooter>
         </Card>
 
-        <Card className="mt-6 text-white bg-dark-blue-4 border-neutral-4">
+        <Card className="mt-6 text-white bg-dark-blue-5 border-neutral-4">
           <CardHeader>
             <CardTitle>Trending Topics</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary" className="bg-blue-50">
-                #AuroraAI
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-50">
-                #AdaptiveLearning
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-50">
-                #PerfectPronunciation
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-50">
-                #EnglishWithAI
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-50">
-                #SimulatedConversation
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-50">
-                #MemorizationTechniques
-              </Badge>
-              <Badge variant="secondary" className="bg-blue-50">
-                #DailyPractice
-              </Badge>
+              {[
+                "AuroraAI",
+                "AdaptiveLearning",
+                "PerfectPronunciation",
+                "EnglishWithAI",
+                "SimulatedConversation",
+                "MemorizationTechniques",
+                "DailyPractice",
+              ].map((tag, index) => (
+                <Badge
+                  key={`${tag}-${index}`}
+                  variant="secondary"
+                  className="border-transparent hover:border-light-blue-1 bg-light-blue-4 text-light-blue-1 max-h-6"
+                >
+                  #{tag}
+                </Badge>
+              ))}
             </div>
           </CardContent>
         </Card>
       </div>
     </div>
-  )
-}
-
+  );
+};
