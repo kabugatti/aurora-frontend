@@ -49,12 +49,12 @@ import HomePage from "@/pages/aurora-site/home";
 import StoryGame from "@/pages/games/story-game";
 import WordMatching from "@/pages/games/word-matching";
 import GamePanel from "@/pages/games/game-panel";
+import PracticeSystem from "@/components/practices/funny_practices/DragDropSentenceBuilder";
+import IdiomChallenge from "@/components/practices/funny_practices/idiom-challenge";
 import DifficultySelector from "@/components/Games/memory-card/difficulty-selector";
 import GameBoard from "@/components/Games/memory-card/game-board";
-import WordScrambleGame from "@/components/Games/word-scramble/word-scramble-game";
-
 // 📝 Practices & Exercises
-import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
+//import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
 import SentenceBuilder from "@/components/practices/exercises/sentence-builder";
 
 // 🧠 Quizzes
@@ -82,7 +82,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
             </Route>
 
-
+            {/* Protected routes with MainLayout */}
+            <Route element={<ProtectedRoute />}>
               <Route element={<MainLayout />}>
                 <Route path="/learning-content" element={<LearningContent />} />
                 <Route path="/wallet-connection" element={<WalletConnection />} />
@@ -95,11 +96,11 @@ function App() {
                 <Route path="/module-details" element={<ModuleDetails />} />
                 <Route path="/practiceSystem" element={<PracticeSystem />} />
                 <Route path="/practice/sentence-builder" element={<SentenceBuilder />} />
+                <Route path="/practice/idiom-challenge" element={<IdiomChallenge />} />
                 <Route path="/practice/drag-drop-sentence-builder" element={<PracticeSystem />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/story-game" element={<StoryGame />} />
                 <Route path="/games/word-matching/" element={<WordMatching />} />
-                <Route path="/games/word-scramble/" element={<WordScrambleGame />} />
                 <Route path="/games" element={<GamePanel />} />
                 <Route path="/games/memory-card" element={<DifficultySelector />} />
                 <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
@@ -112,11 +113,11 @@ function App() {
                 <Route path="/reading" element={<ReadingContent />} />
                 <Route path="/people" element={<CommunityInteractionPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
-
+              </Route>
             </Route>
 
             {/* Redirect any unknown routes to login */}
-            {/*<Route path="*" element={<Navigate to="/login" />} />*/}
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
         </AuthProvider>
       </ToastContextProvider>
