@@ -51,43 +51,43 @@ export const courses = [
   },
 ];
 
-export const whyChooseAuruora = [
-  {
-    icons: <Brain className="text-[#00B8D4] h-[48px] w-[48px]" />,
-    tag: "AI-Powered Learning",
-    content:
-      "Our advanced AI adapts to your learning style and pace for personalized education",
-  },
-  {
-    icons: <Globe className="text-[#00B8D4] h-[48px] w-[48px]" />,
-    tag: "Web3 Integration",
-    content:
-      "Built on blockchain technology for secure, transparent, and decentralized learning",
-  },
-  {
-    icons: <Users className="text-[#00B8D4] h-[48px] w-[48px]" />,
-    tag: "Community Learning",
-    content:
-      "Connect with other learners and native speakers to practice your skills",
-  },
-  {
-    icons: <GraduationCap className="text-[#00B8D4] h-[48px] w-[48px]" />,
-    tag: "Certified Progress",
-    content:
-      "Earn verifiable certificates as you complete courses and achieve milestones",
-  },
-  {
-    icons: <MessageCircle className="text-[#00B8D4] h-[48px] w-[48px]" />,
-    tag: "Interactive Conversations",
-    content:
-      "Practice speaking with our AI assistant that provides instant feedback",
-  },
-  {
-    icons: <BookOpen className="text-[#00B8D4] h-[48px] w-[48px]" />,
-    tag: "Comprehensive Resources",
-    content: "Access a wide range of learning materials, exercises, and tests",
-  },
-];
+export const whyChooseAuruora = {
+  title: "Why Choose",
+  subtitle: "AURORA?",
+  content: "Our AI-powered platform offers unique advantages for language learners",
+  cards: [
+    {
+      icons: <Brain className="w-full h-full" />,
+      tag: "AI-Powered Learning",
+      content: "Our AI technology personalizes your language learning journey for maximum efficiency and results."
+    },
+    {
+      icons: <Globe className="w-full h-full" />,
+      tag: "Web3 Integration",
+      content: "Earn rewards and certificates on blockchain as you progress through your language learning journey."
+    },
+    {
+      icons: <Users className="w-full h-full" />,
+      tag: "Community Learning",
+      content: "Connect with other learners and native speakers to practice and improve your language skills."
+    },
+    {
+      icons: <GraduationCap className="w-full h-full" />,
+      tag: "Certified Progress",
+      content: "Track your advancement with recognized certifications that validate your language proficiency."
+    },
+    {
+      icons: <MessageCircle className="w-full h-full" />,
+      tag: "Interactive Conversations",
+      content: "Practice real-world conversation scenarios with our advanced AI chatbot technology."
+    },
+    {
+      icons: <BookOpen className="w-full h-full" />,
+      tag: "Comprehensive Resources",
+      content: "Access a vast library of learning materials, exercises, and tools to enhance your language skills."
+    }
+  ]
+};
 
 export const whatOurUsersSay = [
   {
