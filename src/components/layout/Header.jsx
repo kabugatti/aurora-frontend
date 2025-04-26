@@ -59,8 +59,6 @@ const Header = ({ onMenuClick }) => {
     community: "/people",
     settings: "/settings",
     notifications: "/notifications",
-    grammar: "/grammar",
-    vocabulary: "/vocabulary",
     speaking: "/speaking",
     listening: "/listening",
     reading: "/reading",
