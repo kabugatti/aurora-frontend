@@ -1,23 +1,27 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Outlet } from "react-router-dom"
-import Footer from "./Footer"
-import Header from "./Header"
-import Sidebar from "./Sidebar"
-import CoursesSection from "../landing-page/CoursesSection"
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import CoursesSection from "../landing-page/CoursesSection";
 
 const MainLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen)
-  }
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <div className="flex min-h-screen w-full overflow-hidden bg-gray-50">
       {/* Sidebar */}
-      <Sidebar isOpen={isSidebarOpen} onClose={toggleSidebar} headerHeight="64px" />
+      <Sidebar
+        isOpen={isSidebarOpen}
+        onClose={toggleSidebar}
+        headerHeight="64px"
+      />
 
       {/* Main Content Container */}
       <div className="flex flex-col flex-1 w-full transition-all duration-300 ease-in-out">
@@ -31,16 +35,20 @@ const MainLayout = () => {
           }`}
         >
           <div className="container mx-auto max-w-7xl">
-            <CoursesSection/>
-            <Outlet /> 
+            <CoursesSection />
+            <Outlet />
           </div>
         </main>
 
         {/* Footer */}
-        <Footer customClass={`transition-all duration-300 ease-in-out ${isSidebarOpen ? "lg:ml-64" : ""}`} />
+        <Footer
+          customClass={`transition-all duration-300 ease-in-out ${
+            isSidebarOpen ? "lg:ml-64" : ""
+          }`}
+        />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default MainLayout;

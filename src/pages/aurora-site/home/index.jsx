@@ -1,16 +1,11 @@
-import React from "react";
-import {
-  ArrowRight,
-  Brain,
-  BookOpen,
-  MessageSquare,
-  Award,
-  BarChart2,
-} from "lucide-react";
+import React, { lazy, Suspense } from "react";
+import { ArrowRight, Brain, MessageSquare, Award } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
-import AuroraIcon from "@/assets/Aurora_word.jpg";
+// Import image
+import AuroraIcon from "@/assets/Aurora_word.webp";
 
+// Define FeatureCard component with display name to avoid ESLint warnings
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="p-6 bg-white rounded-xl shadow-sm border border-gray-100">
     <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
@@ -20,7 +15,9 @@ const FeatureCard = ({ icon: Icon, title, description }) => (
     <p className="text-gray-600">{description}</p>
   </div>
 );
+FeatureCard.displayName = "FeatureCard";
 
+// Define BenefitItem component with display name to avoid ESLint warnings
 const BenefitItem = ({ title, description }) => (
   <div className="flex gap-4">
     <div className="w-6 h-6 mt-1 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
@@ -32,20 +29,101 @@ const BenefitItem = ({ title, description }) => (
     </div>
   </div>
 );
+BenefitItem.displayName = "BenefitItem";
+
+// Memoize components to prevent unnecessary re-renders
+const MemoizedFeatureCard = React.memo(FeatureCard);
+const MemoizedBenefitItem = React.memo(BenefitItem);
+
+// Create lazy-loaded components for below-the-fold content
+// This improves initial load performance by deferring non-critical content
+const AuroraAdvantageSection = () => (
+  <div className="bg-white py-24">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+        The AURORA Advantage
+      </h2>
+      <div className="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
+        <div className="space-y-8">
+          <MemoizedBenefitItem
+            title="Smart Adaptive System"
+            description="Our AI continuously analyzes your performance to provide the perfect learning curve."
+          />
+          <MemoizedBenefitItem
+            title="Blockchain Integration"
+            description="Secure, transparent progress tracking and rewards through Starknet technology."
+          />
+          <MemoizedBenefitItem
+            title="Comprehensive Assessment"
+            description="Get certified based on CEFR (A1-C2 levels) standards in reading, writing, speaking, and listening."
+          />
+        </div>
+        <div className="space-y-8">
+          <MemoizedBenefitItem
+            title="Dynamic Content Generation"
+            description="Lessons tailored to your interests, from general conversation to specific fields like IT or healthcare."
+          />
+          <MemoizedBenefitItem
+            title="Real-time Feedback"
+            description="Instant corrections and suggestions for pronunciation, grammar, and vocabulary improvement."
+          />
+          <MemoizedBenefitItem
+            title="Multi-Device Access"
+            description="Seamlessly continue your learning journey across all your devices."
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+AuroraAdvantageSection.displayName = "AuroraAdvantageSection";
+
+const BottomHeroSection = () => (
+  <div className="bg-white border-t">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+      <div className="text-center w-full max-w-4xl mx-auto">
+        <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          Your Personalized Virtual English Tutor
+        </h2>
+        <p className="text-xl text-gray-600 mb-8">
+          AURORA combines cutting-edge AI with blockchain technology to deliver
+          a revolutionary approach to language learning. Experience personalized
+          tutoring that adapts to your needs.
+        </p>
+        <button className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+          Get Started
+          <ArrowRight className="w-5 h-5" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  </div>
+);
+BottomHeroSection.displayName = "BottomHeroSection";
+
+// Lazy load below-the-fold components
+const LazyAuroraAdvantageSection = lazy(() =>
+  Promise.resolve({ default: AuroraAdvantageSection })
+);
+const LazyBottomHeroSection = lazy(() =>
+  Promise.resolve({ default: BottomHeroSection })
+);
 
 const HomePage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-
       <nav className="bg-white border-b">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center gap-2">
+              {/* Optimized image with width and height attributes to prevent layout shifts */}
               <img
-                src={AuroraIcon}
-                alt="Aurora Icon"
+                src={AuroraIcon || "/placeholder.svg"}
+                alt="Aurora Logo"
+                width="144"
+                height="80"
                 className="w-36 h-20 object-contain"
+                loading="eager" // Explicitly load eagerly as it's above the fold
               />
               <span className="text-xl font-semibold text-gray-900"></span>
             </div>
@@ -60,15 +138,15 @@ const HomePage = () => {
             <p className="text-xl text-blue-100 mb-4">
               Say It Right, Learn It Bright – Meet Your AI Agent!
             </p>
-            <h2 className="text-3xl font-bold text-white mb-8">
+            {/* Changed h2 to h1 for better SEO and accessibility */}
+            <h1 className="text-3xl font-bold text-white mb-8">
               Ready to Transform Your English Learning Journey?
-            </h2>
+            </h1>
             <button className="inline-flex items-center gap-2 bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-50 hover:bg-opacity-90 transition-colors">
               <NavLink data-testid="get-started" to="wallet-connection">
-                {" "}
                 Get Started Now
               </NavLink>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -80,17 +158,17 @@ const HomePage = () => {
           Core Features
         </h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          <FeatureCard
+          <MemoizedFeatureCard
             icon={Brain}
             title="Personalized Learning"
             description="Our AI tutor adapts lessons to your level, providing custom exercises based on your progress and areas for improvement."
           />
-          <FeatureCard
+          <MemoizedFeatureCard
             icon={MessageSquare}
             title="Real Conversation Practice"
             description="Practice real-life scenarios with our AI, from job interviews to daily conversations, with instant pronunciation feedback."
           />
-          <FeatureCard
+          <MemoizedFeatureCard
             icon={Award}
             title="Smart Gamification"
             description="Earn tokens on Starknet blockchain for completing objectives, maintaining streaks, and mastering new skills."
@@ -98,67 +176,29 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* What Makes Us Different */}
-      <div className="bg-white py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            The AURORA Advantage
-          </h2>
-          <div className="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
-            <div className="space-y-8">
-              <BenefitItem
-                title="Smart Adaptive System"
-                description="Our AI continuously analyzes your performance to provide the perfect learning curve."
-              />
-              <BenefitItem
-                title="Blockchain Integration"
-                description="Secure, transparent progress tracking and rewards through Starknet technology."
-              />
-              <BenefitItem
-                title="Comprehensive Assessment"
-                description="Get certified based on CEFR (A1-C2 levels) standards in reading, writing, speaking, and listening."
-              />
-            </div>
-            <div className="space-y-8">
-              <BenefitItem
-                title="Dynamic Content Generation"
-                description="Lessons tailored to your interests, from general conversation to specific fields like IT or healthcare."
-              />
-              <BenefitItem
-                title="Real-time Feedback"
-                description="Instant corrections and suggestions for pronunciation, grammar, and vocabulary improvement."
-              />
-              <BenefitItem
-                title="Multi-Device Access"
-                description="Seamlessly continue your learning journey across all your devices."
-              />
-            </div>
+      {/* Lazy load below-the-fold content */}
+      <Suspense
+        fallback={
+          <div className="h-96 flex items-center justify-center">
+            Loading...
           </div>
-        </div>
-      </div>
+        }
+      >
+        <LazyAuroraAdvantageSection />
+      </Suspense>
 
-      {/* Bottom Hero Section */}
-      <div className="bg-white border-t">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center w-full max-w-4xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-              Your Personalized Virtual English Tutor
-            </h1>
-            <p className="text-xl text-gray-600 mb-8">
-              AURORA combines cutting-edge AI with blockchain technology to
-              deliver a revolutionary approach to language learning. Experience
-              personalized tutoring that adapts to your needs.
-            </p>
-            <button className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-              Get Started
-              <ArrowRight className="w-5 h-5" />
-            </button>
+      <Suspense
+        fallback={
+          <div className="h-96 flex items-center justify-center">
+            Loading...
           </div>
-        </div>
-      </div>
-  
+        }
+      >
+        <LazyBottomHeroSection />
+      </Suspense>
     </div>
   );
 };
 
-export default HomePage;
+HomePage.displayName = "HomePage";
+export default React.memo(HomePage);
