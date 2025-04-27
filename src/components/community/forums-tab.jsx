@@ -21,7 +21,7 @@ export const ForumsTab = () => {
       <div className="lg:col-span-2">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold">Popular Discussions</h2>
-          <Button variant="link" className="text-light-blue-1">
+          <Button variant="link" className="text-light-blue-1 hover:border-transparent">
             View all <ChevronRight className="w-4 h-4" />
           </Button>
         </div>

@@ -75,8 +75,8 @@ export const TabsSection = () => {
               icon: <Calendar className="w-4 h-4 mr-2" />,
             },
             {
-              title: "Groups",
-              value: "Study Groups",
+              title: "Study Groups",
+              value: "groups",
               icon: <Users className="w-4 h-4 mr-2" />,
             },
             {
