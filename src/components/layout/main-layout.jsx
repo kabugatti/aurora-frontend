@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import CoursesSection from "../landing-page/CoursesSection";
+import TestimonialsPage from "@/components/landing-page/testimonials/TestimonialsPage";
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,8 +34,7 @@ const MainLayout = () => {
             isSidebarOpen ? "lg:ml-64" : ""
           }`}
         >
-          <div className="container mx-auto max-w-7xl">
-            <CoursesSection />
+          <div className="w-full">
             <Outlet />
           </div>
         </main>
