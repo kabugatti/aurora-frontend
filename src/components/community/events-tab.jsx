@@ -8,7 +8,6 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { upcomingEvents } from "@/data/mock-data-community";
 import {
   Users,
@@ -178,7 +177,6 @@ export const EventsTab = () => {
                   </Badge>
                 </div>
               </div>
-              <Separator />
               <div className="flex gap-3">
                 <div className="flex flex-col items-center justify-center text-center text-white rounded-lg aspect-square size-16 bg-green">
                   <div className="text-sm">JUL</div>

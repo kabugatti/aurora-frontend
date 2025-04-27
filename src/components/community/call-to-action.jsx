@@ -9,7 +9,7 @@ export const CallToAction = () => {
           Join thousands of students who are revolutionizing their way of learning English with our advanced artificial
           intelligence.
         </p>
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
+        <div className="flex justify-center gap-4">
           <Button className="bg-white border border-transparent hover:!border-white hover:bg-transparent hover:text-white text-light-blue-1 ">Start Free</Button>
           <Button variant="outline" className="text-white bg-transparent hover:text-light-blue-1 hover:bg-white hover:border-white  !border-white">
             Learn more

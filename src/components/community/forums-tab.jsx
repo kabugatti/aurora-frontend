@@ -55,7 +55,7 @@ export const ForumsTab = () => {
                   </div>
                   <Badge
                     variant="outline"
-                    className="border-transparent rounded hover:border-light-blue-1 bg-light-blue-4 text-light-blue-1 max-h-6"
+                    className="border-transparent rounded bg-light-blue-4 text-light-blue-1 max-h-6"
                   >
                     {discussion.language}
                   </Badge>
@@ -86,7 +86,7 @@ export const ForumsTab = () => {
         </div>
 
         <div className="mt-8">
-          <Button className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent hover:border-light-blue-1 ">
+          <Button className="w-full border border-transparent bg-light-blue-1 hover:bg-transparent hover:border-light-blue-1 hover:text-light-blue-1">
             Start New Discussion
           </Button>
         </div>
@@ -103,8 +103,8 @@ export const ForumsTab = () => {
                 <div key={achievement.id} className="flex items-start gap-3">
                   <div className="flex-1">
                     <div className="flex justify-between">
-                      <h4 className="font-medium">{achievement.title}</h4>
-                      <span className="text-sm text-gray-500">
+                      <h4 className="text-sm font-medium">{achievement.title}</h4>
+                      <span className="text-xs text-gray-500">
                         {achievement.progress}%
                       </span>
                     </div>

@@ -33,7 +33,7 @@ const MainLayout = () => {
             isSidebarOpen ? "lg:ml-64" : ""
           }`}
         >
-          <div className="container mx-auto max-w-[MIN(100%,2400px)]">
+          <div className="w-full">
             <Outlet />
           </div>
         </main>

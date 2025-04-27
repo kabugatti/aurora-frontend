@@ -25,7 +25,7 @@ export const TabsSection = () => {
   return (
     <div className="container py-12 mx-auto text-black sm:px-8">
       {/* Search and Filter Bar */}
-      <div className="flex flex-col gap-4 px-4 mb-8 md:flex-row">
+      <div className="flex flex-wrap gap-4 px-4 mb-8">
         <div className="relative flex-grow">
           <Search
             className={`absolute transform -translate-y-1/2 bg-transparent left-3 top-1/2 ${
