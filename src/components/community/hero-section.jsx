@@ -13,6 +13,7 @@ export const HeroSection = () => {
           <div className="flex gap-4">
             <Button
               variant="community"
+              className="hover:border-light-blue-1"
             >
               Start Practicing
             </Button>
