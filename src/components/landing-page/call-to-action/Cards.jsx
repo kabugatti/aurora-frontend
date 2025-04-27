@@ -41,12 +41,14 @@ export function CoursesCard({ icons, tag, content }) {
 
 export function WhyChooseAuruora({ icons, tag, content }) {
   return (
-    <div className="flex flex-col items-center justify-center w-full sm:max-w-[320px] md:max-w-[360px] lg:w-[320px] bg-[#1F2937] rounded-[8px] p-4 sm:p-[24px] h-auto min-h-[220px] shadow-sm mx-auto">
-      <div className="mb-3 flex items-center justify-center">{icons}</div>
-      <strong className="font-bold text-center text-[#FFFFFF] text-lg mb-2">
+    <div className="bg-[#1F2937] rounded-xl p-6 flex flex-col items-center text-center hover:bg-[#111827] transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 group border border-transparent hover:border-[#00B8D4] cursor-default h-[220px]">
+      <div className="h-12 w-12 text-[#00B8D4] group-hover:text-white transition-colors duration-300">
+        {icons}
+      </div>
+      <strong className="text-white font-medium text-lg mb-2 group-hover:text-[#00B8D4] transition-colors duration-300">
         {tag}
       </strong>
-      <p className="text-center w-full text-[#D1D5DB] flex font-normal text-sm sm:text-base">
+      <p className="text-[#71717A] group-hover:text-gray-300 text-sm leading-relaxed transition-colors duration-300">
         {content}
       </p>
     </div>

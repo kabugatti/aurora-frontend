@@ -2,15 +2,14 @@ import {
   CoursesCard,
   SkillCards,
   WhatOurUsersSay,
-  WhyChooseAuruora,
 } from "./Cards";
 import {
   courses,
   skillContent,
   whatOurUsersSay,
-  whyChooseAuruora,
 } from "./Content";
 import "./responsive.css";
+import WhyChooseAurora from "../why-choose-aurora";
 
 function CallToActionPage() {
   return (
@@ -71,19 +70,7 @@ function CallToActionPage() {
       </div>
 
       {/* Why Choose AURORA Section */}
-      <div className="flex flex-col items-center justify-center w-full px-5 py-12 md:p-[3%] gap-6 md:gap-4 bg-[#374151] min-h-[600px] md:min-h-[700px] lg:h-[912px]">
-        <p className="w-full md:w-[496px] text-2xl md:text-3xl lg:text-5xl mt-0 md:mt-[32px] font-bold text-white text-center">
-          Why Choose AURORA?
-        </p>
-        <p className="text-center font-normal text-[#D1D5DB] text-base md:text-lg lg:text-xl max-w-[90%] md:max-w-none">
-          Our AI-powered platform offers unique advantages for language learners
-        </p>
-        <div className="gap-6 md:gap-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center mx-auto w-full max-w-[320px] sm:max-w-[400px] md:max-w-[740px] lg:max-w-[1024px]">
-          {whyChooseAuruora.map((content, i) => {
-            return <WhyChooseAuruora key={`why-${content.tag}-${i}`} {...content} />;
-          })}
-        </div>
-      </div>
+      <WhyChooseAurora />
 
       {/* Testimonials Section */}
       <div className="bg-[#1F2937] w-full min-h-[550px] md:min-h-[600px] lg:h-[608px] items-center gap-6 md:gap-4 py-12 md:py-[5%] px-5 md:px-[2%] lg:p-[3%] flex flex-col justify-center">
