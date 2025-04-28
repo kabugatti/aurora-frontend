@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   CoursesCard,
   SkillCards,
@@ -12,11 +13,11 @@ import "./responsive.css";
 import WhyChooseAurora from "../why-choose-aurora";
 
 function CallToActionPage() {
+  const [selectedLevel, setSelectedLevel] = useState("Beginner");
   return (
-    <div className="flex w-full h-full flex-col overflow-y-auto">
-      {/* Hero Section */}
-      <div className="w-full flex-col justify-center gap-4 flex min-h-[450px] md:h-[550px] lg:h-[582px] bg-[#030712] px-5 py-12 md:p-[3%]">
-        <p className="text-white font-bold text-3xl md:text-4xl lg:text-6xl max-w-full text-left lg:max-w-[700px]">
+    <div className="flex w-full h-full flex-col ">
+      <div className="w-full flex-col justify-center gap-4 flex h-[582px] bg-[#030712] p-[3%]">
+        <p className="text-white font-bold text-4xl  lg:text-6xl  lg:max-w-[700px]">
           Learn Languages with AI-Powered Assistance
         </p>
         <p className="font-normal mt-3 text-[#D1D5DB] text-base md:text-lg lg:text-base max-w-full text-left lg:max-w-[600px]">
@@ -59,11 +60,25 @@ function CallToActionPage() {
         <p className="text-[#D1D5DB] font-normal text-center text-base md:text-lg lg:text-xl max-w-[90%] md:max-w-none">
           Find the perfect course to match your learning goals
         </p>
-        <div className="h-auto w-full gap-5 md:gap-[32px] flex flex-col">
-          <div className="flex justify-center">tabs</div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:flex lg:flex-wrap gap-5 md:gap-4 items-center justify-items-center mx-auto">
-            {courses.map((contents, i) => {
-              return <CoursesCard key={`course-${contents.tag}-${i}`} {...contents} />;
+        <div className="h-auto w-full gap-[32px] items-center justify-center flex flex-col">
+          <div className="flex space-x-2 md:space-x-4 w-full md:w-fit p-2 items-center rounded-[8px] justify-center bg-gray-700">
+            {Object.keys(courses).map((level) => (
+              <button
+                key={level}
+                onClick={() => setSelectedLevel(level)}
+                className={`px-2 py-1 rounded text-sm md:text-base ${
+                  selectedLevel === level
+                    ? "bg-white text-black"
+                    : "bg-transparent text-gray-200"
+                }`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
+          <div className="lg:flex-wrap grid md:grid-cols-2  lg:flex gap-4 items-center justify-center w-full">
+            {courses[selectedLevel].map((contents, i) => {
+              return <CoursesCard key={i} {...contents} />;
             })}
           </div>
         </div>
