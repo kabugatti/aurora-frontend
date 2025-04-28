@@ -30,7 +30,7 @@ const MainLayout = () => {
 
         {/* Main Content */}
         <main
-          className={`flex-1 p-4 sm:p-6 overflow-y-auto transition-all duration-300 ease-in-out ${
+          className={`flex-1 overflow-y-auto transition-all duration-300 ease-in-out ${
             isSidebarOpen ? "lg:ml-64" : ""
           }`}
         >

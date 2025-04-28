@@ -9,47 +9,127 @@ import {
   Users,
 } from "lucide-react";
 
-export const skillContent = [
-  {
-    icons: <BookOpen className="text-[#00B8D4] h-[40px] w-[40px]" />,
-    tag: "Reading",
-    content: "Improve your reading skills with interactive texts",
+export const heroContent ={
+  title: {
+    textOne: "Learn Languages with",
+    textTwo: "AI-Powered Assistance",
   },
+  subtitle: "AURORA.LA is an innovative AI-powered language learning platform that combines personalized tutoring, blockchain technology, and advanced language processing to create an engaging and effective learning experience.",
+  buttons: [
+    {
+      text: "Get Started",
+      variant: "primary",
+    },
+    {
+      text: "Learn More",
+      variant: "outline",
+    },
+  ]
+}
 
-  {
-    icons: <MessageCircle className="text-[#00B8D4] h-[40px] w-[40px]" />,
-    tag: "Speaking",
-    content: "Practice conversations with our AI assistant",
-  },
-  {
-    icons: <CirclePlay className="text-[#00B8D4] h-[40px] w-[40px]" />,
-    tag: "Listening",
-    content: "Enhance your listening skills with audio lessons",
-  },
-  {
-    icons: <Bookmark className="text-[#00B8D4] h-[40px] w-[40px]" />,
-    tag: "Writing",
-    content: "Get feedback on your writing from our AI",
-  },
-];
+export const skillContent = {
+  title: "Improve Your Language Skills",
+  subtitle: "Practice your English language skills with our AI-powered learning platform",
+  cards: [
+    {
+      icons: <BookOpen className="text-[#00B8D4] h-[40px] w-[40px]" />,
+      tag: "Reading",
+      content: "Improve your reading skills with interactive texts",
+    },
+  
+    {
+      icons: <MessageCircle className="text-[#00B8D4] h-[40px] w-[40px]" />,
+      tag: "Speaking",
+      content: "Practice conversations with our AI assistant",
+    },
+    {
+      icons: <CirclePlay className="text-[#00B8D4] h-[40px] w-[40px]" />,
+      tag: "Listening",
+      content: "Enhance your listening skills with audio lessons",
+    },
+    {
+      icons: <Bookmark className="text-[#00B8D4] h-[40px] w-[40px]" />,
+      tag: "Writing",
+      content: "Get feedback on your writing from our AI",
+    },
+  ]
+};
 
-export const courses = [
-  {
-    icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
-    tag: "Basic Conversation",
-    content: "Learn everyday phrases and expressions",
-  },
-  {
-    icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
-    tag: "Grammar Foundations",
-    content: "Master the basics of English grammar",
-  },
-  {
-    icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
-    tag: "Cultural Insights",
-    content: "Learn about cultures while learning language",
-  },
-];
+export const courses = {
+  title: "Explore Our Courses",
+  subtitle: "Find the perfect course to match your learning goals",
+  cards: {
+    Beginner: [
+      {
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Basic Conversation",
+        content: "Learn everyday phrases and expressions",
+      },
+      {
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Grammar Foundations",
+        content: "Master the basics of English grammar",
+      },
+      {
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Cultural Insights",
+        content: "Learn about cultures while learning language",
+      },
+    ],
+    Intermediate: [
+      {
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Basic Conversation",
+        content: "Learn everyday phrases and expressions",
+      },
+      {
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Grammar Foundations",
+        content: "Master the basics of English grammar",
+      },
+      {
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Cultural Insights",
+        content: "Learn about cultures while learning language",
+      },
+    ],
+    Advanced: [
+      {
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Basic Conversation",
+        content: "Learn everyday phrases and expressions",
+      },
+      {
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Grammar Foundations",
+        content: "Master the basics of English grammar",
+      },
+      {
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Cultural Insights",
+        content: "Learn about cultures while learning language",
+      },
+    ] ,
+    Business: [
+      {
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Basic Conversation",
+        content: "Learn everyday phrases and expressions",
+      },
+      {
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Grammar Foundations",
+        content: "Master the basics of English grammar",
+      },
+      {
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        tag: "Cultural Insights",
+        content: "Learn about cultures while learning language",
+      },
+    ]
+  }
+  
+};
 
 export const whyChooseAuruora = {
   title: "Why Choose",
@@ -89,7 +169,14 @@ export const whyChooseAuruora = {
   ]
 };
 
-export const whatOurUsersSay = [
+export const whatOurUsersSay = 
+{
+  title: {
+    textOne: "What Our Users",
+    textTwo: "Say",
+  },
+  subtitle: "Hear from our community about their experience with AURORA",
+  cards: [
   {
     name: "Sarah K.",
     tag: "Business Professional",
@@ -107,5 +194,24 @@ export const whatOurUsersSay = [
     tag: "Language Enthusiast",
     content:
       '"The Web3 integration is brilliant! I love earning certificates that are verifiable on the blockchain as I complete my courses."',
+    },
+  ]
+};
+
+export const callToAction = {
+  title: {
+    textOne: "Start Your Language Learning Journey",
+    textTwo: "Today",
   },
-];
+  subtitle: "Join thousands of learners who are transforming their language skills with AURORA",
+  buttons: [
+    {
+      text: "Signup Free",
+      variant: "primary",
+    },
+    {
+      text: "Explore Courses",
+      variant: "outline",
+    },
+  ],
+};

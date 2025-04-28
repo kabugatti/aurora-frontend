@@ -185,7 +185,6 @@ const Footer = ({ customClass = "" }) => {
                   type="submit"
                   className="bg-blue-400 hover:bg-gray-600 px-2 py-2 rounded-md flex items-center text-sm">
                   <span>Subscribe</span>
-                  <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
               </div>
             </form>
