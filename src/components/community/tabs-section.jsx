@@ -20,7 +20,8 @@ import {
 
 export const TabsSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [setActiveTab] = useState("forums");
+  // eslint-disable-next-line no-unused-vars
+  const [_, setActiveTab] = useState("forums");
 
   return (
     <div className="container py-12 mx-auto text-black sm:px-8">
