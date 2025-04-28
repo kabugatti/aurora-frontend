@@ -26,6 +26,7 @@ const Header = () => {
               key={item.label}
               to={item.path}
               variant="nav"
+              className="text-xs lg:text-sm"
             >
               {item.label}
             </ActionButton>
