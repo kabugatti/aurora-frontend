@@ -55,11 +55,11 @@ import DifficultySelector from "@/components/Games/memory-card/difficulty-select
 import GameBoard from "@/components/Games/memory-card/game-board";
 // 📝 Practices & Exercises
 //import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
-import SentenceBuilder from "@/components/practices/exercises/sentence-builder";
+import SentenceBuilder from "@/components/practices/funny_practices/SentenceBuilder";
 
 // 🧠 Quizzes
-import FillInTheBlanksQuizPage from "@/pages/aurora-site/quizzes/fill-in-the-blanks-quiz";
-import Quiz from "@/pages/aurora-site/quizzes/quiz";
+import FillInTheBlanksQuizPage from "@/components/practices/funny_practices/FillInTheBlanksPage";
+import Quiz from "@/components/practices/funny_practices/QuizPage";
 
 // 🏛️ Grammar & Language
 import GrammarContent from "@/pages/aurora-site/grammar-content";
@@ -83,7 +83,7 @@ function App() {
             </Route>
 
             {/* Protected routes with MainLayout */}
-            <Route element={<ProtectedRoute />}>
+            
               <Route element={<MainLayout />}>
                 <Route path="/learning-content" element={<LearningContent />} />
                 <Route path="/wallet-connection" element={<WalletConnection />} />
@@ -104,8 +104,8 @@ function App() {
                 <Route path="/games" element={<GamePanel />} />
                 <Route path="/games/memory-card" element={<DifficultySelector />} />
                 <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
-                <Route path="/quiz" element={<Quiz />} />
-                <Route path="/fill-in-the-blanks" element={<FillInTheBlanksQuizPage />} />
+                <Route path="/practice/quiz" element={<Quiz />} />
+                <Route path="/practice/fill-in-the-blanks" element={<FillInTheBlanksQuizPage />} />
                 <Route path="/grammar" element={<GrammarContent />} />
                 <Route path="/vocabulary" element={<VocabularyPage />} />
                 <Route path="/speaking" element={<SpeakingPage />} />
@@ -113,7 +113,7 @@ function App() {
                 <Route path="/reading" element={<ReadingContent />} />
                 <Route path="/people" element={<CommunityInteractionPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
-              </Route>
+              
             </Route>
 
             {/* Redirect any unknown routes to login */}
