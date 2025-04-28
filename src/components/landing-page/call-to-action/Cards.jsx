@@ -29,12 +29,14 @@ export function CoursesCard({ icons, tag, content }) {
           </p>
         </div>
       </div>
-      <button
-        type="button"
-        className="bg-[#00B8D4] hover:bg-[#00a5c0] transition-colors text-[#FAFAFA] text-sm rounded-[6px] border-none px-4 py-2 mt-auto self-start"
-      >
-        Start Learning
-      </button>
+
+        <button
+          type="button"
+          className="bg-[#00B8D4] hover:bg-[#00a5c0] w-full transition-colors text-[#FAFAFA] text-sm rounded-[6px] border-none px-4 py-2 mt-auto self-start"
+        >
+          Start Learning
+        </button>
+
     </div>
   );
 }
@@ -57,7 +59,8 @@ export function CTACard({ children, styles }) {
   return (
     <div
       className={`flex flex-col items-center justify-center ${
-        styles ?? "w-full max-w-[320px] bg-[#1F2937] rounded-[8px] p-4 sm:p-[24px] h-auto min-h-[220px]"
+        styles ??
+        "w-full max-w-[320px] bg-[#1F2937] rounded-[8px] p-4 sm:p-[24px] h-auto min-h-[220px]"
       } shadow-sm mx-auto`}
     >
       {children}
