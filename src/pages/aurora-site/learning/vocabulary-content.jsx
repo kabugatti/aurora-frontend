@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Categories from "@/components/learning-path/categories";
 import Practice from "@/components/learning-path/practice";
@@ -72,6 +73,7 @@ const VocabularySection = () => {
             Expand your vocabulary with our AI-powered learning system that
             adapts to your level and learning style.
           </p>
+
         </div>
       </div>
 
