@@ -3,7 +3,9 @@ import Categories from "@/components/learning-path/categories";
 import Practice from "@/components/learning-path/practice";
 import Progress from "@/components/learning-path/progress";
 import SavedWork from "@/components/learning-path/saved-work";
-import LanguageSkils from "@/components/learning-path/language-skils";
+import LanguageSkills from "@/components/learning-path/language-skills";
+
+import { Folder, Bookmark, Repeat2, TrendingUp } from "lucide-react";
 
 const VocabularySection = () => {
   // State to track the active tab
@@ -14,26 +16,44 @@ const VocabularySection = () => {
     switch (activeTab) {
       case "Categories":
         return (
-          <>
+          <div
+            role="tabpanel"
+            id="categories-panel"
+            aria-labelledby="categories-tab"
+          >
             <h2 className="text-3xl font-semibold text-center mb-8 ">
               Vocabulary Categories
             </h2>
             <Categories />
-          </>
+          </div>
         );
       case "Saved Words":
-        return (
-          <SavedWork setActiveTab={setActiveTab}/>
-        );
+        <div
+          role="tabpanel"
+          id="saved-words-panel"
+          aria-labelledby="saved-words-tab"
+        >
+          <SavedWork setActiveTab={setActiveTab} />
+        </div>;
       case "Practice":
         return (
-          <div className="text-center text-gray-400">
-           <Practice/>
+          <div
+            className="text-center text-gray-400"
+            role="tabpanel"
+            id="practice-panel"
+            aria-labelledby="practice-tab"
+          >
+            <Practice />
           </div>
         );
       case "Progress":
         return (
-          <div className="text-center text-gray-400">
+          <div
+            className="text-center text-gray-400"
+            role="tabpanel"
+            id="progress-panel"
+            aria-labelledby="progress-tab"
+          >
             <Progress />
           </div>
         );
@@ -65,29 +85,45 @@ const VocabularySection = () => {
       </div>
 
       <div className="container mx-auto">
-        {/* Tabs */}
-        <div className="flex justify-center space-x-6 mb-12 bg-gray-700 container mx-auto">
-          {["Categories", "Saved Words", "Practice", "Progress"].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`${
-                activeTab === tab
-                  ? "text-white bg-gray-800 outline-none"
-                  : "text-gray-400 hover:text-white"
-              } pb-2  w-full`}
-            >
-              {tab}
-            </button>
-          ))}
+        <div className="mb-8 w-full overflow-x-auto">
+          <div className="flex min-w-max md:min-w-0 md:justify-center space-x-1 md:space-x-6 bg-gray-700 container mx-auto px-2 md:px-0">
+            {[
+              {
+                name: "Categories",
+                icon: <Folder className="w-4 h-4 md:mr-2" />,
+              },
+              { name: "Saved", icon: <Bookmark className="w-4 h-4 md:mr-2" /> },
+              {
+                name: "Practice",
+                icon: <Repeat2 className="w-4 h-4 md:mr-2" />,
+              },
+              {
+                name: "Progress",
+                icon: <TrendingUp className="w-4 h-4 md:mr-2" />,
+              },
+            ].map((tab) => (
+              <button
+                key={tab.name}
+                onClick={() => setActiveTab(tab.name)}
+                className={`px-3 py-2 md:py-3 text-sm md:text-base whitespace-nowrap transition-colors flex items-center ${
+                  activeTab === tab.name
+                    ? "text-white bg-gray-800 font-medium border-b-2 border-blue-500"
+                    : "text-gray-400 hover:text-white hover:bg-gray-600"
+                } rounded-t-lg md:w-full md:justify-center`}
+              >
+                {tab.icon}
+                <span className="hidden md:inline">{tab.name}</span>
+                <span className="md:hidden ml-1">{tab.name.split(" ")[0]}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-       
         {renderContent()}
       </div>
 
       <div className="mb-10 mt-16">
-      <LanguageSkils/>
+        <LanguageSkills />
       </div>
     </div>
   );

@@ -11,6 +11,9 @@ const Progress = () => {
         stroke="currentColor"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+        role="img"
+        aria-label="Progress chart"
       >
         <path
           strokeLinecap="round"
@@ -22,10 +25,14 @@ const Progress = () => {
     </div>
     <p className="mb-6">Track your progress. Sign in to see your vocabulary learning statistics and progress.</p>
     <div className="flex justify-center space-x-4">
-      <button className="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors">
+      <button 
+      className="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400" 
+      >
         Log In
       </button>
-      <button className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+      <button 
+       className="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400" 
+      >
         Sign Up
       </button>
     </div>

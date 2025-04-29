@@ -1,6 +1,6 @@
 import React from "react";
 
-const LanguageSkils = () => {
+const LanguageSkills = () => {
   // Sample data for language skills
   const languageSkills = [
     {
@@ -107,4 +107,4 @@ const LanguageSkils = () => {
   );
 };
 
-export default LanguageSkils;
+export default LanguageSkills;
