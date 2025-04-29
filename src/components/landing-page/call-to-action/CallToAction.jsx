@@ -1,6 +1,7 @@
-import React, { lazy, Suspense } from "react";
+import { useState } from "react";
 import { CoursesCard, SkillCards, WhatOurUsersSay } from "./Cards";
 import { courses, skillContent, whatOurUsersSay } from "./Content";
+import React, { lazy, Suspense } from "react";
 import "./responsive.css";
 
 // Lazy load the WhyChooseAurora component since it's below the fold
@@ -14,13 +15,14 @@ const LoadingFallback = () => (
 );
 
 function CallToActionPage() {
+  const [selectedLevel, setSelectedLevel] = useState("Beginner");
+
   return (
-    <div className="flex w-full h-full flex-col overflow-y-auto">
-      {/* Hero Section - Using semantic HTML */}
-      <section className="w-full flex-col justify-center gap-4 flex min-h-[450px] md:h-[550px] lg:h-[582px] bg-[#030712] px-5 py-12 md:p-[3%]">
-        <h1 className="text-white font-bold text-3xl md:text-4xl lg:text-6xl max-w-full text-left lg:max-w-[700px]">
+    <div className="flex w-full h-full flex-col ">
+      <div className="w-full flex-col justify-center gap-4 flex h-[582px] bg-[#030712] p-[3%]">
+        <p className="text-white font-bold text-4xl  lg:text-6xl  lg:max-w-[700px]">
           Learn Languages with AI-Powered Assistance
-        </h1>
+        </p>
         <p className="font-normal mt-3 text-[#D1D5DB] text-base md:text-lg lg:text-base max-w-full text-left lg:max-w-[600px]">
           AURORA.LA is an innovative AI-powered language learning platform that
           combines personalized tutoring, blockchain technology, and advanced
@@ -31,7 +33,6 @@ function CallToActionPage() {
           <a
             href="/signup"
             className="cta-button bg-[#34D399] text-[#111827] hover:bg-[#2dcb8e]"
-            rel="preload"
           >
             Get Started
           </a>
@@ -42,13 +43,13 @@ function CallToActionPage() {
             Learn More
           </a>
         </div>
-      </section>
+      </div>
 
       {/* Skills Section */}
-      <section className="w-full bg-[#1F2937] min-h-[500px] py-12 md:py-16 lg:h-[660px] flex flex-col gap-6 md:gap-4 px-5 md:p-[3%] items-center justify-center">
-        <h2 className="w-full md:w-auto lg:w-[623px] font-bold mt-0 md:mt-[32px] text-2xl md:text-3xl lg:text-5xl text-white text-center">
+      <div className="w-full bg-[#1F2937] min-h-[500px] py-12 md:py-16 lg:h-[660px] flex flex-col gap-6 md:gap-4 px-5 md:p-[3%] items-center justify-center">
+        <p className="w-full md:w-auto lg:w-[623px] font-bold mt-0 md:mt-[32px] text-2xl md:text-3xl lg:text-5xl text-white text-center">
           Improve Your Language Skills
-        </h2>
+        </p>
         <p className="text-center font-normal text-[#D1D5DB] text-base md:text-lg lg:text-xl max-w-[90%] md:max-w-[80%] lg:max-w-none">
           Practice your English language skills with our AI-powered learning
           platform
@@ -58,30 +59,39 @@ function CallToActionPage() {
             return <SkillCards {...values} key={`skill-${values.tag}-${i}`} />;
           })}
         </div>
-      </section>
+      </div>
 
       {/* Courses Section */}
-      <section className="min-h-[500px] md:min-h-[550px] lg:h-[595px] w-full items-center justify-center px-5 py-12 md:p-[3%] gap-6 md:gap-4 flex-col flex bg-[#111827]">
-        <h2 className="text-white mt-0 md:mt-[32px] text-2xl md:text-3xl lg:text-5xl font-bold text-center">
+      <div className="min-h-[500px] md:min-h-[550px] lg:h-[595px] w-full items-center justify-center px-5 py-12 md:p-[3%] gap-6 md:gap-4 flex-col flex bg-[#111827]">
+        <p className="text-white mt-0 md:mt-[32px] text-2xl md:text-3xl lg:text-5xl font-bold text-center">
           Explore Our Courses
-        </h2>
+        </p>
         <p className="text-[#D1D5DB] font-normal text-center text-base md:text-lg lg:text-xl max-w-[90%] md:max-w-none">
           Find the perfect course to match your learning goals
         </p>
-        <div className="h-auto w-full gap-5 md:gap-[32px] flex flex-col">
-          <div className="flex justify-center">tabs</div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:flex lg:flex-wrap gap-5 md:gap-4 items-center justify-items-center mx-auto">
-            {courses.map((contents, i) => {
-              return (
-                <CoursesCard
-                  key={`course-${contents.tag}-${i}`}
-                  {...contents}
-                />
-              );
+        <div className="h-auto w-full gap-[32px] items-center justify-center flex flex-col">
+          <div className="flex space-x-2 md:space-x-4 w-full md:w-fit p-2 items-center rounded-[8px] justify-center bg-gray-700">
+            {Object.keys(courses).map((level) => (
+              <button
+                key={level}
+                onClick={() => setSelectedLevel(level)}
+                className={`px-2 py-1 rounded text-sm md:text-base ${
+                  selectedLevel === level
+                    ? "bg-white text-black"
+                    : "bg-transparent text-gray-200"
+                }`}
+              >
+                {level}
+              </button>
+            ))}
+          </div>
+          <div className="lg:flex-wrap grid md:grid-cols-2  lg:flex gap-4 items-center justify-center w-full">
+            {courses[selectedLevel].map((contents, i) => {
+              return <CoursesCard key={i} {...contents} />;
             })}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Why Choose AURORA Section - Lazy loaded */}
       <Suspense fallback={<LoadingFallback />}>

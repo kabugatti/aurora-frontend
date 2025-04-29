@@ -37,7 +37,6 @@ export const CoursesCard = memo(function CoursesCard({ icons, tag, content }) {
       <button
         type="button"
         className="bg-[#00B8D4] hover:bg-[#00a5c0] transition-colors text-[#FAFAFA] text-sm rounded-[6px] border-none px-4 py-2 mt-auto self-start"
-       
       >
         Start Learning
       </button>
