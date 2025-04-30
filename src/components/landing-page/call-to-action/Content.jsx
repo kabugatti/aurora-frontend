@@ -61,68 +61,68 @@ export const courses = {
   cards: {
     Beginner: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Basic Conversation",
         content: "Learn everyday phrases and expressions",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Grammar Foundations",
         content: "Master the basics of English grammar",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Cultural Insights",
         content: "Learn about cultures while learning language",
       },
     ],
     Intermediate: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Intermediate Conversation",
         content: "Practice conversations with our AI assistant",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
-        tag: "Advanced Grammar",
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
+        tag: "Intermediate Grammar",
         content: "Practice advanced grammar with our AI assistant",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
-        tag: "Advanced Vocabulary",
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
+        tag: "Intermediate Vocabulary",
         content: "Practice advanced vocabulary with our AI assistant",
       },
     ],
     Advanced: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Advanced Conversation",
         content: "Practice advanced conversation with our AI assistant",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Advanced Grammar",
         content: "Practice advanced grammar with our AI assistant",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Advanced Vocabulary",
         content: "Practice advanced vocabulary with our AI assistant",
       },
     ] ,
     Business: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Business Conversation",
         content: "Practice business conversation with our AI assistant",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Business Vocabulary",
         content: "Practice business vocabulary with our AI assistant",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" />,
+        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
         tag: "Business Grammar",
         content: "Practice business grammar with our AI assistant",
       },
