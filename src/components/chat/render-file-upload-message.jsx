@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import CustomAudioPlayer from "./custom-audio-player";
-import { FileIcon, ImageIcon, AudioWaveformIcon } from "lucide-react";
+import { FileIcon, AudioWaveformIcon } from "lucide-react";
 
 export default function RenderFileUploadMessage({ message }) {
   if (!message?.fileType) {

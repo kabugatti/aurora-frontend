@@ -174,7 +174,7 @@ const AuroraChat = () => {
           </div>
           <div className="p-3 bg-dark-blue-1 rounded-xl border border-dark-blue-4 hover:bg-dark-blue-4 transition-colors">
             <h3 className="text-sm font-medium text-purple-400">Review Regularly</h3>
-            <p className="mt-1 text-xs text-neutral-2">Go back to previous conversations to reinforce what you've learned.</p>
+            <p className="mt-1 text-xs text-neutral-2">Go back to previous conversations to reinforce what you&apos;ve learned.</p>
           </div>
         </div>
       </div>
