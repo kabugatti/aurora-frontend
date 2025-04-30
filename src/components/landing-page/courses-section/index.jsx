@@ -33,7 +33,7 @@ function CoursesTabs({ active, setActive }) {
 const CoursesSection = () => {
   const [activeTab, setActiveTab] = useState('Beginner');
   return (
-    <section className="h-auto w-full items-center justify-center px-0 py-20 gap-4 flex-col flex bg-[#111827]">
+    <section className="h-auto w-full items-center justify-center px-0 py-20 gap-4 flex-col flex bg-[#111827]" aria-label="Courses Section">
       <div className="flex flex-col gap-4 w-full max-w-7xl mx-auto px-4 sm:px-10 lg:px-12">
       <p className="text-white text-3xl text-center lg:text-5xl font-bold">
         {courses.title}
