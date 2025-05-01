@@ -32,6 +32,7 @@ body {
   min-width: 320px;
   margin: 0 auto;
   min-height: 100vh;
+  font-family: "Inter", sans-serif;
 }
 
 .auth {
@@ -147,8 +148,6 @@ button:focus-visible {
   }
 }
 
-
-
 /* Form styling */
 .auth-card {
   backdrop-filter: blur(16px);
@@ -170,7 +169,11 @@ button:focus-visible {
 }
 
 .auth-button {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
   transition: all 0.2s ease;
 }
 
