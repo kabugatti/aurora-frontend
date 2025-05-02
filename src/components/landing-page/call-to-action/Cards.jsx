@@ -17,11 +17,11 @@ export function SkillCards({ icons, tag, content }) {
 
 export function CoursesCard({ icons, tag, content }) {
   return (
-    <div className="flex-col flex w-full sm:max-w-[320px] md:max-w-[360px] lg:w-[320px] h-auto min-h-[148px] p-4 sm:p-[24px] bg-[#FFFFFF] rounded-[8px] border-none shadow-sm mx-auto">
-      <div className="flex flex-row gap-3 sm:gap-4 mb-4">
-        <div className="flex-shrink-0">{icons}</div>
-        <div className="flex flex-col">
-          <p className="text-[#09090B] font-bold text-base sm:text-lg lg:text-base">
+    <div className="flex-col flex w-full lg:w-[434px] h-[148px] p-[24px] bg-[#FFFFFF] rounded-[8px] border-none">
+      <div className="flex flex-row gap-4">
+        {icons}
+        <div className=" flex flex-col ">
+          <p className="text-[#09090B] capitalize font-bold text-xl lg:text-base ">
             {tag}
           </p>
           <p className="text-[#71717A] font-normal text-sm lg:text-sm mt-1">
@@ -29,12 +29,14 @@ export function CoursesCard({ icons, tag, content }) {
           </p>
         </div>
       </div>
-      <button 
-        type="button"
-        className="bg-[#00B8D4] hover:bg-[#00a5c0] transition-colors text-[#FAFAFA] text-sm rounded-[6px] border-none px-4 py-2 mt-auto self-start"
-      >
-        Start Learning
-      </button>
+
+        <button
+          type="button"
+          className="bg-[#00B8D4] hover:bg-[#00a5c0] w-full transition-colors text-[#FAFAFA] text-sm rounded-[6px] border-none px-4 py-2 mt-auto self-start"
+        >
+          Start Learning
+        </button>
+
     </div>
   );
 }
@@ -59,7 +61,8 @@ export function CTACard({ children, styles }) {
   return (
     <div
       className={`flex flex-col items-center justify-center ${
-        styles ?? "w-full max-w-[320px] bg-[#1F2937] rounded-[8px] p-4 sm:p-[24px] h-auto min-h-[220px]"
+        styles ??
+        "w-full max-w-[320px] bg-[#1F2937] rounded-[8px] p-4 sm:p-[24px] h-auto min-h-[220px]"
       } shadow-sm mx-auto`}
     >
       {children}
