@@ -4,7 +4,7 @@ import { WhyChooseAuruora as FeatureCard } from "../call-to-action/Cards";
 
 const WhyChooseAurora = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full p-[3%] gap-4 bg-[#374151] h-auto pb-16">
+    <section className="flex flex-col items-center justify-center w-full p-[3%] gap-4 bg-[#374151] h-auto pb-16" aria-label="Why Choose Aurora Section">
       <h2 className="flex flex-col text-3xl lg:text-5xl mt-[32px] font-bold text-white text-center">
         <span>{whyChooseAuruora.title}</span>
         <span>{whyChooseAuruora.subtitle}</span>
@@ -17,7 +17,7 @@ const WhyChooseAurora = () => {
           <FeatureCard key={i} {...content} />
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
