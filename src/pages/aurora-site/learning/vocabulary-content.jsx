@@ -34,7 +34,7 @@ const VocabularySection = () => {
           aria-labelledby="saved-words-tab"
         >
           <SavedWork setActiveTab={setActiveTab} />
-        </div>;
+        </div>
       case "Practice":
         return (
           <div
@@ -92,7 +92,7 @@ const VocabularySection = () => {
                 name: "Categories",
                 icon: <Folder className="w-4 h-4 md:mr-2" />,
               },
-              { name: "Saved", icon: <Bookmark className="w-4 h-4 md:mr-2" /> },
+              { name: "Saved Words", icon: <Bookmark className="w-4 h-4 md:mr-2" /> },
               {
                 name: "Practice",
                 icon: <Repeat2 className="w-4 h-4 md:mr-2" />,
