@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function CourseSkeletons({ viewMode, count }) {
+export default function CourseSkeletons({ viewMode = "grid", count = 6 }) {
   return (
     <div
       className={`grid ${
