@@ -95,7 +95,7 @@ function App() {
                   path="/certifications-obtained"
                   element={<CertificationsObtained />}
                 />
-                <Route path="/course-listing" element={<CourseListing />} />
+
                 <Route path="/categories" element={<Categories />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/settings" element={<SettingsPage />} />
