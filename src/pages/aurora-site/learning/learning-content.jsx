@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const CertificationCard = ({ title, description, variant = "blue", onClick, imageSrc }) => {
   return (
-    <div className="bg-white rounded-xl overflow-hidden">
+    <div className="bg-[#1f2937] rounded-xl overflow-hidden mx-8 mb-8">
       {/* Banner Image */}
       <div className={`h-32 relative ${variant === "pink" ? "bg-pink-400" : "bg-blue-600"}`}>
         {imageSrc ? (
@@ -33,10 +33,10 @@ const CertificationCard = ({ title, description, variant = "blue", onClick, imag
 
       {/* Content */}
       <div className="p-4">
-        <h3 className="font-medium text-gray-900 mb-2">{title}</h3>
+        <h3 className="font-medium text-[#ffffff] mb-2">{title}</h3>
         <p className="text-gray-500 text-sm mb-4">{description}</p>
         <button
-          className="w-full bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+          className="w-full bg-[#22d3ee] text-white py-2.5 rounded-lg hover:bg-[#22d3ee]transition-colors text-sm font-medium"
           onClick={onClick}
         >
           Start learning
@@ -96,10 +96,10 @@ const LearningContent = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-gray-900">Learning content</h1>
+      <h1 className="text-2xl font-semibold text-[#ffffff] ml-4">Learning content</h1>
       <div>
-        <h2 className="text-base text-gray-900 mb-4">{certifications.length} Certifications</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-base text-[#ffffff] ml-4 mb-4">{certifications.length} Certifications</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {certifications.map((cert, index) => (
             <CertificationCard
               key={index}

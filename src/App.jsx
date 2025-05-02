@@ -49,12 +49,13 @@ import HomePage from "@/pages/aurora-site/home";
 import StoryGame from "@/pages/games/story-game";
 import WordMatching from "@/pages/games/word-matching";
 import GamePanel from "@/pages/games/game-panel";
-import PracticeSystem from "@/components/practices/funny_practices/DragDropSentenceBuilder";
-import IdiomChallenge from "@/components/practices/funny_practices/idiom-challenge";
 import DifficultySelector from "@/components/Games/memory-card/difficulty-selector";
 import GameBoard from "@/components/Games/memory-card/game-board";
+// import WordScrambleGame from "@/pages/games/word-scramble"; // Uncomment if exists
+
 // 📝 Practices & Exercises
-//import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
+import PracticeSystem from "@/components/practices/funny_practices/DragDropSentenceBuilder";
+import IdiomChallenge from "@/components/practices/funny_practices/idiom-challenge";
 import SentenceBuilder from "@/components/practices/funny_practices/SentenceBuilder";
 
 // 🧠 Quizzes
@@ -78,20 +79,34 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/verify-email" element={<VerifyEmailPage />} />
 
+            {/* Public route */}
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
             </Route>
 
             {/* Protected routes with MainLayout */}
-
             <Route element={<MainLayout />}>
-              <Route path="/learning-content" element={<LearningContent />} />
+              <Route
+                path="/learning-content"
+                element={
+                  <div className="min-h-screen w-full bg-[#4a5462]">
+                    <LearningContent />
+                  </div>
+                }
+              />
               <Route path="/wallet-connection" element={<WalletConnection />} />
               <Route
                 path="/certifications-obtained"
                 element={<CertificationsObtained />}
               />
-              <Route path="/categories" element={<Categories />} />
+              <Route
+                path="/categories"
+                element={
+                  <div className="min-h-screen w-full bg-[#4a5462]">
+                    <Categories />
+                  </div>
+                }
+              />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/aurora-chat" element={<AuroraChat />} />
@@ -125,9 +140,11 @@ function App() {
                 path="/games/memory-card/:levelId"
                 element={<GameBoard />}
               />
-              <Route path="/practice/quiz" element={<Quiz />} />
+              {/* Uncomment below when WordScrambleGame is implemented */}
+              {/* <Route path="/games/word-scramble/" element={<WordScrambleGame />} /> */}
+              <Route path="/quiz" element={<Quiz />} />
               <Route
-                path="/practice/fill-in-the-blanks"
+                path="/fill-in-the-blanks"
                 element={<FillInTheBlanksQuizPage />}
               />
               <Route path="/grammar" element={<GrammarContent />} />
