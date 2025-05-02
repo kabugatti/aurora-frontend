@@ -134,39 +134,46 @@ export const courses = {
 export const whyChooseAuruora = {
   title: "Why Choose",
   subtitle: "AURORA?",
-  content: "Our AI-powered platform offers unique advantages for language learners",
+  content:
+    "Our AI-powered platform offers unique advantages for language learners",
   cards: [
     {
       icons: <Brain className="w-full h-full" aria-hidden="true" />,
       tag: "AI-Powered Learning",
-      content: "Our AI technology personalizes your language learning journey for maximum efficiency and results."
+      content:
+        "Our AI technology personalizes your language learning journey for maximum efficiency and results.",
     },
     {
       icons: <Globe className="w-full h-full" aria-hidden="true" />,
       tag: "Web3 Integration",
-      content: "Earn rewards and certificates on blockchain as you progress through your language learning journey."
+      content:
+        "Earn rewards and certificates on blockchain as you progress through your language learning journey.",
     },
     {
       icons: <Users className="w-full h-full" aria-hidden="true" />,
       tag: "Community Learning",
-      content: "Connect with other learners and native speakers to practice and improve your language skills."
+      content:
+        "Connect with other learners and native speakers to practice and improve your language skills.",
     },
     {
       icons: <GraduationCap className="w-full h-full" aria-hidden="true" />,
       tag: "Certified Progress",
-      content: "Track your advancement with recognized certifications that validate your language proficiency."
+      content:
+        "Track your advancement with recognized certifications that validate your language proficiency.",
     },
     {
       icons: <MessageCircle className="w-full h-full" aria-hidden="true"  />,
       tag: "Interactive Conversations",
-      content: "Practice real-world conversation scenarios with our advanced AI chatbot technology."
+      content:
+        "Practice real-world conversation scenarios with our advanced AI chatbot technology.",
     },
     {
       icons: <BookOpen className="w-full h-full" aria-hidden="true" />,
       tag: "Comprehensive Resources",
-      content: "Access a vast library of learning materials, exercises, and tools to enhance your language skills."
-    }
-  ]
+      content:
+        "Access a vast library of learning materials, exercises, and tools to enhance your language skills.",
+    },
+  ],
 };
 
 export const whatOurUsersSay = 
