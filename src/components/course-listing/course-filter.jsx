@@ -114,6 +114,8 @@ export default function CourseFilters({
                 setFilters((prev) => ({ ...prev, priceRange: value }))
               }
               className="my-4 bg-gray-700 accent-teal-400 rounded-full"
+              aria-label="Price range"
+              aria-valuetext={`$${filters.priceRange[0]} to $${filters.priceRange[1]}`}
             />
           </div>
 
@@ -134,6 +136,8 @@ export default function CourseFilters({
                 setFilters((prev) => ({ ...prev, minRating: value[0] }))
               }
               className="my-4"
+              aria-label="Minimum rating filter"
+              aria-valuetext={`${filters.minRating} stars or higher`}
             />
           </div>
         </div>

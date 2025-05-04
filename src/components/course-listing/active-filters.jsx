@@ -19,6 +19,7 @@ export default function ActiveFilters({
           <button
             className="h-4 w-4 flex justify-center items-center p-0 bg-transparent hover:bg-transparent border-none focus:outline-none focus:ring-0 shadow-none"
             onClick={() => setSearchQuery("")}
+            aria-label="Clear search query"
           >
             <X className="h-4 w-4" />
           </button>
