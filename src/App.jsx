@@ -49,13 +49,16 @@ import HomePage from "@/pages/aurora-site/home";
 import StoryGame from "@/pages/games/story-game";
 import WordMatching from "@/pages/games/word-matching";
 import GamePanel from "@/pages/games/game-panel";
-import PracticeSystem from "@/components/practices/funny_practices/DragDropSentenceBuilder";
-import IdiomChallenge from "@/components/practices/funny_practices/idiom-challenge";
 import DifficultySelector from "@/components/Games/memory-card/difficulty-selector";
 import GameBoard from "@/components/Games/memory-card/game-board";
+// import WordScrambleGame from "@/pages/games/word-scramble"; // Uncomment if exists
+
 // 📝 Practices & Exercises
-//import PracticeSystem from "@/components/practices/exercises/drag-drop-sentence-builder";
-import SentenceBuilder from "@/components/practices/exercises/sentence-builder";
+
+import PracticeSystem from "@/components/practices/funny_practices/DragDropSentenceBuilder";
+import IdiomChallenge from "@/components/practices/funny_practices/idiom-challenge";
+import SentenceBuilder from "@/components/practices/funny_practices/SentenceBuilder";
+
 
 // 🧠 Quizzes
 import FillInTheBlanksQuizPage from "@/pages/aurora-site/quizzes/fill-in-the-blanks-quiz";
@@ -78,12 +81,14 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/verify-email" element={<VerifyEmailPage />} />
 
+            {/* Public route */}
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/course-listing" element={<CourseListing />} />
             </Route>
 
             {/* Protected routes with MainLayout */}
+
             <Route element={<ProtectedRoute />}>
               <Route element={<MainLayout />}>
                 <Route path="/learning-content" element={<LearningContent />} />
@@ -145,7 +150,7 @@ function App() {
                 <Route path="/reading" element={<ReadingContent />} />
                 <Route path="/people" element={<CommunityInteractionPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
-              </Route>
+
             </Route>
 
             {/* Redirect any unknown routes to login */}
