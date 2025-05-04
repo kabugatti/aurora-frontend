@@ -57,8 +57,6 @@ const DropdownMenuContent = React.forwardRef(
         ref={ref}
         sideOffset={sideOffset}
         onOpenAutoFocus={(event) => {
-          // Prevent focus from jumping to the menu when it opens
-          // Allow users to focus the first item using arrow keys
           event.preventDefault();
         }}
         className={cn(

@@ -59,7 +59,6 @@ import PracticeSystem from "@/components/practices/funny_practices/DragDropSente
 import IdiomChallenge from "@/components/practices/funny_practices/idiom-challenge";
 import SentenceBuilder from "@/components/practices/funny_practices/SentenceBuilder";
 
-
 // 🧠 Quizzes
 import FillInTheBlanksQuizPage from "@/pages/aurora-site/quizzes/fill-in-the-blanks-quiz";
 import Quiz from "@/pages/aurora-site/quizzes/quiz";
@@ -150,7 +149,7 @@ function App() {
                 <Route path="/reading" element={<ReadingContent />} />
                 <Route path="/people" element={<CommunityInteractionPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
-
+              </Route>
             </Route>
 
             {/* Redirect any unknown routes to login */}
