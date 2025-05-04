@@ -1,6 +1,6 @@
-import AuroraIcon from "@/assets/Aurora_word.jpg";
-import CallToActionPage from "@/components/landing-page/call-to-action/CallToAction";
 import React from "react";
+
+import CallToActionPage from "@/components/landing-page/call-to-action/CallToAction";
 
 const HomePage = () => {
   return (

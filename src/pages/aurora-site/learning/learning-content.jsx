@@ -31,7 +31,7 @@ const CertificationCard = ({ title, description, variant = "blue", onClick, imag
         <h3 className="font-semibold text-lg text-[#ffffff] mb-2">{title}</h3>
         <p className="text-gray-500 text-sm mb-4 line-clamp-2">{description}</p>
         <button
-          className="w-full bg-[#22d3ee] text-white py-2.5 rounded-lg hover:bg-[#22d3ee] transition-colors text-sm font-medium"
+          className="w-full bg-[#22d3ee] text-white py-2.5 rounded-lg hover:bg-[#1cc9dd] transition-colors text-sm font-medium"
           onClick={onClick}
         >
           Start learning
@@ -98,7 +98,9 @@ const LearningContent = () => {
         Learning Content
       </h2>
       <div>
-        <h3 className="text-base text-[#ffffff] mb-4">{certifications.length} Certifications Available</h3>
+        <h3 className="text-base text-[#ffffff] mb-4">
+          {certifications.length} Certifications Available
+        </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((cert, index) => (
             <CertificationCard
