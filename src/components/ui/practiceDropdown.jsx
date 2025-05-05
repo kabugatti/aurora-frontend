@@ -1,18 +1,21 @@
 import React, {useEffect, useRef, useState} from "react";
 import "../../App.css";
+import {useNavigate} from "react-router-dom";
 const PracticeDropdown = () => {
    const [dropdown, setDropdown] = useState(false);
+   const navigate = useNavigate();
 
    const handleNavClick = (key) => {
-      const path = {
-         sentenceBuilder: "/sentence-builder",
-         wordMatching: "/word-matching",
-         memoryCard: "/memory-card",
-         storyGame: "/story-game",
-         dragAndDrop: "/drag-and-drop",
-         idiomChallenge: "/idiom-challenge",
-         multipleChoice: "/multiple-choice",
-      }[key.toLowerCase()];
+      const displayToPath = {
+         "Sentence Builder": "/sentence-builder",
+         "Word matching": "/word-matching",
+         "Memory Card": "/memory-card",
+         "Story Game": "/story-game",
+         "Drag and Drop": "/drag-and-drop",
+         "Idiom Challenge": "/idiom-challenge",
+         "Multiple Choice": "/multiple-choice",
+      };
+      const path = displayToPath[key];
 
       if (path) {
          navigate(path);
