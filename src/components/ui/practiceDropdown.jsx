@@ -16,7 +16,6 @@ const PracticeDropdown = () => {
 
       if (path) {
          navigate(path);
-         setIsMobileMenuOpen(false); // Cierra el menú móvil después de navegar
       } else console.warn("❗Ruta inválida desde Header:", key);
    };
    return (

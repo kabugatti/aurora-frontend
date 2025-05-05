@@ -1,12 +1,7 @@
 // 📦 External Libraries
-import { AuthProvider } from "@/context/AuthContext";
-import { ToastContextProvider } from "@/context/ToastContext";
-import {
-  Navigate,
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from "react-router-dom";
+import {AuthProvider} from "@/context/AuthContext";
+import {ToastContextProvider} from "@/context/ToastContext";
+import {Navigate, Route, BrowserRouter as Router, Routes} from "react-router-dom";
 
 // 🏗️ Layout
 import MainLayout from "@/components/layout/main-layout";
@@ -68,61 +63,60 @@ import GrammarContent from "@/pages/aurora-site/grammar-content";
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
 
 function App() {
-  return (
-    <Router>
-      <ToastContextProvider>
-        <AuthProvider>
-          <Routes>
-            {/* Auth routes - no MainLayout */}
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/verify-email" element={<VerifyEmailPage />} />
+   return (
+      <Router>
+         <ToastContextProvider>
+            <AuthProvider>
+               <Routes>
+                  {/* Auth routes - no MainLayout */}
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+                  <Route path="/verify-email" element={<VerifyEmailPage />} />
 
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<HomePage />} />
-            </Route>
+                  <Route element={<MainLayout />}>
+                     <Route path="/" element={<HomePage />} />
+                  </Route>
 
-            {/* Protected routes with MainLayout */}
-            
-              <Route element={<MainLayout />}>
-                <Route path="/learning-content" element={<LearningContent />} />
-                <Route path="/wallet-connection" element={<WalletConnection />} />
-                <Route path="/certifications-obtained" element={<CertificationsObtained />} />
-                <Route path="/categories" element={<Categories />} />
-                <Route path="/analytics" element={<Analytics />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/aurora-chat" element={<AuroraChat />} />
-                <Route path="/certification-content" element={<CertificationContent />} />
-                <Route path="/module-details" element={<ModuleDetails />} />
-                <Route path="/practiceSystem" element={<PracticeSystem />} />
-                <Route path="/practice/sentence-builder" element={<SentenceBuilder />} />
-                <Route path="/practice/idiom-challenge" element={<IdiomChallenge />} />
-                <Route path="/practice/drag-drop-sentence-builder" element={<PracticeSystem />} />
-                <Route path="/notifications" element={<Notifications />} />
-                <Route path="/story-game" element={<StoryGame />} />
-                <Route path="/games/word-matching/" element={<WordMatching />} />
-                <Route path="/games" element={<GamePanel />} />
-                <Route path="/games/memory-card" element={<DifficultySelector />} />
-                <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
-                <Route path="/practice/quiz" element={<Quiz />} />
-                <Route path="/practice/fill-in-the-blanks" element={<FillInTheBlanksQuizPage />} />
-                <Route path="/grammar" element={<GrammarContent />} />
-                <Route path="/vocabulary" element={<VocabularyPage />} />
-                <Route path="/speaking" element={<SpeakingPage />} />
-                <Route path="/listening" element={<ListeningPage />} />
-                <Route path="/reading" element={<ReadingContent />} />
-                <Route path="/people" element={<CommunityInteractionPage />} />
-                <Route path="/question-creator" element={<QuestionCreator />} />
-              
-            </Route>
+                  {/* Protected routes with MainLayout */}
 
-            {/* Redirect any unknown routes to login */}
-            <Route path="*" element={<Navigate to="/login" />} />
-          </Routes>
-        </AuthProvider>
-      </ToastContextProvider>
-    </Router>
-  );
+                  <Route element={<MainLayout />}>
+                     <Route path="/learning-content" element={<LearningContent />} />
+                     <Route path="/wallet-connection" element={<WalletConnection />} />
+                     <Route path="/certifications-obtained" element={<CertificationsObtained />} />
+                     <Route path="/categories" element={<Categories />} />
+                     <Route path="/analytics" element={<Analytics />} />
+                     <Route path="/settings" element={<SettingsPage />} />
+                     <Route path="/aurora-chat" element={<AuroraChat />} />
+                     <Route path="/certification-content" element={<CertificationContent />} />
+                     <Route path="/module-details" element={<ModuleDetails />} />
+                     <Route path="/practiceSystem" element={<PracticeSystem />} />
+                     <Route path="/practice/sentence-builder" element={<SentenceBuilder />} />
+                     <Route path="/practice/idiom-challenge" element={<IdiomChallenge />} />
+                     <Route path="/practice/drag-drop-sentence-builder" element={<PracticeSystem />} />
+                     <Route path="/notifications" element={<Notifications />} />
+                     <Route path="/story-game" element={<StoryGame />} />
+                     <Route path="/games/word-matching/" element={<WordMatching />} />
+                     <Route path="/games" element={<GamePanel />} />
+                     <Route path="/games/memory-card" element={<DifficultySelector />} />
+                     <Route path="/games/memory-card/:levelId" element={<GameBoard />} />
+                     <Route path="/practice/quiz" element={<Quiz />} />
+                     <Route path="/practice/fill-in-the-blanks" element={<FillInTheBlanksQuizPage />} />
+                     <Route path="/grammar" element={<GrammarContent />} />
+                     <Route path="/vocabulary" element={<VocabularyPage />} />
+                     <Route path="/speaking" element={<SpeakingPage />} />
+                     <Route path="/listening" element={<ListeningPage />} />
+                     <Route path="/reading" element={<ReadingContent />} />
+                     <Route path="/people" element={<CommunityInteractionPage />} />
+                     <Route path="/question-creator" element={<QuestionCreator />} />
+                  </Route>
+
+                  {/* Redirect any unknown routes to login */}
+                  <Route path="*" element={<Navigate to="/login" />} />
+               </Routes>
+            </AuthProvider>
+         </ToastContextProvider>
+      </Router>
+   );
 }
 
 export default App;
