@@ -42,7 +42,7 @@ const PracticeDropdown = () => {
          </button>
          {dropdown && (
             <div className="absolute bg-white top-12 -left-6 w-48 h-52 rounded-md border overflow-y-auto hide-scrollbar transition-all duration-300 z-10">
-               <ul className="p-4 flex flex-col justify-start items-start gap-2 overflow-y-auto hide-scrollbar font-medium text-gray-700">
+               <ul className="p-4 flex flex-col justify-start items-start gap-2 overflow-y-auto hide-scrollbar font-medium text-gray-600">
                   {["Sentence Builder", "Word matching", "Memory Card", "Story Game", "Drag and Drop", "Idiom Challenge", "Multiple Choice"].map((item) => (
                      <button
                         key={item}
