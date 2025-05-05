@@ -5,9 +5,9 @@ const PracticeDropdown = () => {
 
    const handleNavClick = (key) => {
       const path = {
-         sentenceBbuilder: "/sentence-builder",
-         wordMatching: "/wordmatching",
-         memoryCard: "/memoryCard",
+         sentenceBuilder: "/sentence-builder",
+         wordMatching: "/word-matching",
+         memoryCard: "/memory-card",
          storyGame: "/story-game",
          dragAndDrop: "/drag-and-drop",
          idiomChallenge: "/idiom-challenge",
