@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "../../App.css";
 const PracticeDropdown = () => {
    const [dropdown, setDropdown] = useState(false);
@@ -18,8 +18,22 @@ const PracticeDropdown = () => {
          navigate(path);
       } else console.warn("❗Ruta inválida desde Header:", key);
    };
+   const dropdownRef = useRef(null);
+
+   useEffect(() => {
+      const handleClickOutside = (event) => {
+         if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setDropdown(false);
+         }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+         document.removeEventListener("mousedown", handleClickOutside);
+      };
+   }, []);
    return (
-      <div className="relative ">
+      <div className="relative " ref={dropdownRef}>
          <button
             className="md:text-xs  font-medium text-gray-700 py-2 border-radius-none border-transparent hover:border-transparent hover:border-radius-none hover:border-b-[#00b8d4]  hover:rounded-none hover:text-[#00b8d4] focus:outline-none transition-colors duration-200"
             onClick={() => setDropdown(!dropdown)}
