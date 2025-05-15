@@ -15,9 +15,29 @@ const Header = ({ onMenuClick }) => {
    return (
       <>
          <header className="sticky top-0 bg-[#0d1117] text-white z-50">
-            <div className="container mx-auto px-3 sm:px-4 flex items-center justify-between h-14">
+            <div className="container mx-auto px-3 sm:px-4 flex items-center justify-between h-16">
                <div className="flex items-center space-x-4">
                   <MobileTopButtons {...header} />
+                  <button
+                     onClick={header.handleMenuToggle}
+                     className="p-2 rounded-full hover:bg-[#1f2937] transition-colors"
+                     aria-label="Open sidebar"
+                  >
+                     <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-5 h-5 text-white"
+                     >
+                        <path
+                           strokeLinecap="round"
+                           strokeLinejoin="round"
+                           d="M3.75 5.25h16.5m-16.5 6h16.5m-16.5 6h16.5"
+                        />
+                     </svg>
+                  </button>
                   <Logo onClickHome={header.handleHomeClick} />
                </div>
                <NavDesktop onNavClick={header.handleNavClick} />
