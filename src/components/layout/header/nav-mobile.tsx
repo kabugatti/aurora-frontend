@@ -4,7 +4,15 @@ import { truncateAddress } from "@/utils/helpers";
 import PracticeDropdown from "@/components/ui/practice-drop-down";
 
 const NavMobile = ({ isAuthenticated, user, address, logout, onNavClick, setIsMobileMenuOpen }) => {
-   const items = ["Courses", "Practices", "Analytics", "Resources", "Community"];
+   const items = ["course-listing", "practiceSystem", "analytics", "categories", "community"];
+
+   const displayMap = {
+      "course-listing": "Courses",
+      "practiceSystem": "Practices",
+      analytics: "Analytics",
+      categories: "Resources",
+      community: "Community",
+   };
 
    return (
       <div className="fixed inset-0 z-50 bg-black bg-opacity-50 md:hidden">
@@ -27,7 +35,7 @@ const NavMobile = ({ isAuthenticated, user, address, logout, onNavClick, setIsMo
                         }}
                         className="w-full text-left py-2 px-3 rounded-md hover:bg-[#1f2937] text-gray-300 font-medium transition-colors"
                      >
-                        {item}
+                        {displayMap[item]}
                      </button>
                   ))}
                   <PracticeDropdown />
