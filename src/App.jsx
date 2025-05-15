@@ -116,7 +116,7 @@ function App() {
                 <Route path="/speaking" element={<SpeakingPage />} />
                 <Route path="/listening" element={<ListeningPage />} />
                 <Route path="/reading" element={<ReadingContent />} />
-                <Route path="/people" element={<CommunityInteractionPage />} />
+                <Route path="/community" element={<CommunityInteractionPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
               {/*</Route>*/}
             </Route>
