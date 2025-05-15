@@ -30,22 +30,26 @@ const useHeader = (onMenuClick) => {
    ];
 
    const routeMap = {
-      skills: "/skills",
-      grammar: "/grammar",
-      vocabulary: "/vocabulary",
-      "business english": "/business-english",
-      community: "/community",
-      settings: "/settings",
-      notifications: "/notifications",
-      speaking: "/speaking",
-      listening: "/listening",
-      reading: "/reading",
-      games: "/games",
-      challenges: "/challenges",
-      "question creator": "/question-creator",
-      login: "/login",
-      signup: "/signup"
-   };
+   skills: "/skills",
+   grammar: "/grammar",
+   vocabulary: "/vocabulary",
+   "business english": "/business-english",
+   community: "/community",
+   settings: "/settings",
+   notifications: "/notifications",
+   speaking: "/speaking",
+   listening: "/listening",
+   reading: "/reading",
+   games: "/games",
+   challenges: "/challenges",
+   "question creator": "/question-creator",
+   login: "/login",
+   signup: "/signup",
+   "course-listing": "/course-listing",
+   "practiceSystem": "/practiceSystem",
+   analytics: "/analytics",
+   categories: "/categories"
+};
 
    const handleNavClick = (key) => {
       const path = routeMap[key.toLowerCase()];
