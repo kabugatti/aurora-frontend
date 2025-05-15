@@ -24,7 +24,7 @@ const useHeader = (onMenuClick) => {
       "reading",
       "games",
       "courses",
-      "practice",
+      "practicesystem",
       "challenges",
       "achievements",
    ];
@@ -46,20 +46,24 @@ const useHeader = (onMenuClick) => {
    login: "/login",
    signup: "/signup",
    "course-listing": "/course-listing",
-   "practiceSystem": "/practiceSystem",
+   "practicesystem": "/practiceSystem",
    analytics: "/analytics",
    categories: "/categories"
 };
 
    const handleNavClick = (key) => {
-      const path = routeMap[key.toLowerCase()];
-      if (path) {
-         navigate(path);
-         setIsMobileMenuOpen(false);
-      } else {
-         console.warn("❗Ruta inválida desde Header:", key);
-      }
-   };
+   const normalizedKey = key.trim().toLowerCase(); // sin replace
+   const path = routeMap[normalizedKey];
+
+   if (path) {
+      navigate(path);
+      setIsMobileMenuOpen(false);
+   } else {
+      console.warn("❗Ruta inválida desde Header:", key, `(normalizada: ${normalizedKey})`);
+   }
+};
+
+
 
    const handleSearchChange = (e) => {
       setShowFiltered(true);
