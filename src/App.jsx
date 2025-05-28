@@ -47,6 +47,7 @@ import HomePage from "@/pages/aurora-site/home";
 
 // 🧩 Games & Challenges
 import StoryGame from "@/pages/games/story-game";
+import WordScramble from "@/components/Games/word-scramble/word-scramble-game.jsx"
 import WordMatching from "@/pages/games/word-matching";
 import GamePanel from "@/pages/games/game-panel";
 import DifficultySelector from "@/components/Games/memory-card/difficulty-selector";
@@ -104,7 +105,8 @@ function App() {
                 <Route path="/practice/idiom-challenge" element={<IdiomChallenge />}/>
                 <Route path="/practice/drag-drop-sentence-builder" element={<PracticeSystem />} />
                 <Route path="/notifications" element={<Notifications />} />
-                <Route path="/story-game" element={<StoryGame />} />
+                <Route path="/games/story-game" element={<StoryGame />} />
+                <Route path="/games/word-scramble" element={<WordScramble />} />
                 <Route path="/games/word-matching/" element={<WordMatching />} />
                 <Route path="/games" element={<GamePanel />} />
                 <Route path="/games/memory-card" element={<DifficultySelector />}/>
