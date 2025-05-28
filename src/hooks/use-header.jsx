@@ -53,18 +53,20 @@ const useHeader = (onMenuClick) => {
 };
 
    const handleNavClick = (key) => {
-   const normalizedKey = key.trim().toLowerCase(); // sin replace
-   const path = routeMap[normalizedKey];
-
-   if (path) {
-      navigate(path);
-      setIsMobileMenuOpen(false);
-   } else {
-      console.warn("❗Ruta inválida desde Header:", key, `(normalizada: ${normalizedKey})`);
-   }
-};
-
-
+      if (typeof key === 'string' && key.startsWith('/')) {
+         navigate(key);
+         setIsMobileMenuOpen(false);
+         return;
+      }
+      const normalizedKey = key.trim().toLowerCase();
+      const path = routeMap[normalizedKey];
+      if (path) {
+         navigate(path);
+         setIsMobileMenuOpen(false);
+      } else {
+         console.warn("❗Ruta inválida desde Header:", key, `(normalizada: ${normalizedKey})`);
+      }
+   };
 
    const handleSearchChange = (e) => {
       setShowFiltered(true);

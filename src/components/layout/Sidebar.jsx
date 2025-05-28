@@ -17,7 +17,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "/aurora-logo.png";
 
-const Sidebar = ({ isOpen, headerHeight }) => {
+const Sidebar = ({ isOpen, onClose, headerHeight }) => {
   const [currentPage, setCurrentPage] = useState("home");
   const [level, setLevel] = useState("Choose Your Level");
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
@@ -27,6 +27,7 @@ const Sidebar = ({ isOpen, headerHeight }) => {
   const handleNavClick = (page) => {
     setCurrentPage(page);
     navigate(`/${page}`);
+    if (onClose) onClose();
   };
 
   const categories = [
@@ -47,20 +48,48 @@ const Sidebar = ({ isOpen, headerHeight }) => {
     <div
       className={`fixed left-0 z-50 transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
-      } transition-transform w-64 min-h-screen flex flex-col h-full shadow-lg border-r`}
+      } transition-transform duration-300 ease-in-out w-64 min-h-screen flex flex-col h-full shadow-lg border-r`}
       style={{
         backgroundColor: "#0d1117",
         color: "#FFFFFF",
         borderColor: "#4a5462",
-        top: headerHeight,
+        top: 0,
       }}
     >
-      <div className="p-4 flex flex-col h-full">
-        <div className="flex items-center justify-center mb-6">
-          <img src={Logo} alt="Logo" className="w-12 h-auto" />
-        </div>
-
-        <nav className="flex flex-col gap-2 flex-1">
+      <div
+        className="flex items-center justify-between"
+        style={{
+          height: "64px",
+          backgroundColor: "#0d1117",
+          borderBottom: "1px solid #23272f",
+          paddingLeft: "1rem",
+          paddingRight: "1rem"
+        }}
+      >
+        <img src={Logo} alt="Logo" className="w-10 h-auto" />
+        <button
+          onClick={onClose}
+          className="p-2 rounded-full hover:bg-[#1f2937] transition-colors"
+          aria-label="Close sidebar"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 text-white"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div className="flex-1 flex flex-col overflow-y-auto" style={{height: "calc(100% - 64px)"}}>
+        <nav className="flex flex-col gap-2 flex-1 p-4">
           <NavLink to="/">
             <button
               onClick={() => handleNavClick("/")}
@@ -126,9 +155,7 @@ const Sidebar = ({ isOpen, headerHeight }) => {
                     {categories.map((item, index) => (
                       <NavLink key={index} to={item.label.toLowerCase()}>
                         <button
-                          onClick={() =>
-                            handleNavClick(`category-${item.label.toLowerCase()}`)
-                          }
+                          onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
                           className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
                           style={{ backgroundColor: "#1f2937", color: "#FFFFFF" }}
                         >
@@ -160,7 +187,7 @@ const Sidebar = ({ isOpen, headerHeight }) => {
           ))}
         </nav>
 
-        <div className="py-16 space-y-3 flex flex-col">
+        <div className="py-16 space-y-3 flex flex-col px-4">
           <NavLink to="aurora-chat">
             <button
               onClick={() => handleNavClick("aurora-chat")}
