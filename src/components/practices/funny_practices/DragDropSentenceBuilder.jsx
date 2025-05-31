@@ -204,23 +204,23 @@
 
    return (
      <DndProvider backend={HTML5Backend}>
-       <Card className="max-w-2xl mx-auto">
+       <Card className="max-w-2xl bg-[#030712] mx-auto">
          <CardHeader>
-           <div className="flex flex-row justify-between mb-3">
+           <div className="flex text-red-50 flex-row justify-between mb-3">
              <CardTitle>Sentence Builder</CardTitle>
-             <div className="text-sm text-gray-500">
+             <div className="text-sm bg-[#030712] text-gray-500">
                {currentIndex + 1} of {SENTENCES_DATA.length}
              </div>
            </div>
            <Progress value={progress} className="w-full h-2 bg-gray-200" />
          </CardHeader>
          <CardContent>
-           <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+           <div className="mb-6 p-3 bg-[#030712] text-red-50 border border-blue-200 rounded-lg">
              <p className="font-medium">Sentence Type: Present perfect continuous</p>
-             <p className="text-sm text-gray-600">Drag and drop the words to form a correct sentence.</p>
+             <p className="text-sm text-gray-400">Drag and drop the words to form a correct sentence.</p>
            </div>
            <DropZone sentence={sentence} onDrop={handleDrop} onRemove={handleRemove} />
-           <div className="mt-6 flex flex-wrap p-4 bg-gray-50 rounded-lg">
+           <div className="mt-6 flex flex-wrap p-4 bg-[#030712] border border-white rounded-lg">
              {availableWords.map(({ word, id }) => (
                <DraggableWord key={id} word={word} id={id} />
              ))}
@@ -244,7 +244,7 @@
              </div>
            )}
            <div className="flex justify-between mt-6">
-             <Button variant="outline" onClick={resetExercise} disabled={isResetDisabled}>Reset</Button>
+             <Button className="text-red-50" variant="outline"  onClick={resetExercise} disabled={isResetDisabled}>Reset</Button>
              <Button className="rounded-lg" disabled={!isCheckEnabled} onClick={showResults ? handleShowResults : (showNext ? nextSentence : checkAnswer)}>
                {showResults ? 'Show Results' : (showNext ? 'Next' : 'Check Answer')}
              </Button>

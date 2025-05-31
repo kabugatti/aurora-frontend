@@ -34,7 +34,7 @@ import { useState } from "react";
    };
 
    return (
-     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+     <div className="max-w-md mx-auto mt-10 p-6 bg-[#030712] shadow-lg rounded-lg">
        {showResults ? (
          <div className="text-center">
            <h2 className="text-xl font-bold text-black">Quiz Completed!</h2>
@@ -71,7 +71,7 @@ import { useState } from "react";
                }}
              ></div>
            </div>
-           <h2 className="text-xl font-bold mb-4 text-black flex justify-between">
+           <h2 className="text-xl font-bold mb-4 text-red-50 flex justify-between">
              {questions[currentQuestion].question}
              <span className="text-blue-500">
              {
@@ -83,14 +83,14 @@ import { useState } from "react";
              <button
                key={index}
                onClick={() => handleAnswer(option)}
-               className={`block w-full text-left px-4 py-2 mb-2 border border-gray-200 text-black rounded-lg ${
+               className={`block w-full text-left px-4 py-2 mb-2 border border-gray-200 text-red-50 rounded-lg ${
                  selectedAnswer
                    ? option === questions[currentQuestion].answer
                      ? "bg-green-200 border-green-500"
                      : option === selectedAnswer
                      ? "bg-red-200 border-red-500"
                      : "bg-white"
-                   : "bg-white"
+                   : "bg-[#030712]"
                }`}
                disabled={!!selectedAnswer}
              >
@@ -114,7 +114,7 @@ import { useState } from "react";
              )}
            {selectedAnswer &&
              selectedAnswer == questions[currentQuestion].answer && (
-               <div className="mt-2 p-2 bg-green-100 text-green-500 rounded-lg">
+               <div className="mt-2 p-2 bg-green text-green-500 rounded-lg">
                  {questions[currentQuestion].feedback}
                </div>
              )}

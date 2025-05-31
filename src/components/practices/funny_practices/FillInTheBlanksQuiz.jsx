@@ -102,12 +102,12 @@ import { useState } from "react";
    };
 
    return (
-     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+     <div className="max-w-4xl mx-auto mt-10 p-6 bg-[#030712] shadow-lg rounded-lg">
        <div className="space-y-8">
          {mockQuestions.map((question, index) => (
            <div key={question.id} className="p-4 border border-gray-200 rounded-lg">
              <div className="flex items-center justify-between mb-2">
-               <h3 className="text-lg font-medium text-gray-900">
+               <h3 className="text-lg font-medium text-red-50">
                  Question {index + 1}
                </h3>
                <button
@@ -119,7 +119,7 @@ import { useState } from "react";
                </button>
              </div>
 
-             <p className="text-gray-700 mb-3">{question.question}</p>
+             <p className="text-red-50 mb-3">{question.question}</p>
 
              {showHints[index] && (
                <div className="mb-3 p-2 bg-amber-50 text-amber-800 rounded-lg">
@@ -134,7 +134,7 @@ import { useState } from "react";
                  onChange={(e) => handleAnswerChange(index, e.target.value)}
                  disabled={isSubmitted}
                  placeholder="Type your answer here..."
-                 className="flex-1 p-2 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none bg-white text-gray-900 placeholder-gray-400"
+                 className="flex-1 p-2 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none bg-[#030712] text-white placeholder-gray-400"
                />
              </div>
 
