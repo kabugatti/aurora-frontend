@@ -6,6 +6,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
+import PropTypes from 'prop-types';
+
 
 const TeacherFilters = ({ filters, setFilters }) => {
   const languageOptions = [
@@ -125,4 +127,15 @@ const TeacherFilters = ({ filters, setFilters }) => {
   );
 };
 
+TeacherFilters.propTypes = {
+  filters: PropTypes.shape({
+    language: PropTypes.string.isRequired,
+    level: PropTypes.string.isRequired,
+    classType: PropTypes.string.isRequired,
+    availability: PropTypes.string.isRequired,
+    sortBy: PropTypes.string.isRequired,
+  }).isRequired,
+  setFilters: PropTypes.func.isRequired,
+};
+  
 export default TeacherFilters; 

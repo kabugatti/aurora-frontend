@@ -1,7 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, Globe, Star, Clock } from "lucide-react";
 
-const TeacherStats = ({ totalTeachers, availableThisWeek, languages, averageRating }) => {
+const TeacherStats = ({ totalTeachers, languages, averageRating }) => {
   const stats = [
     {
       value: `${totalTeachers}+`,

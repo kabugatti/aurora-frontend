@@ -1,8 +1,9 @@
-import { Star, Clock, User, Users } from "lucide-react";
+import { Star, Clock, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Avatar } from "@/components/ui/avatar";
+import PropTypes from 'prop-types';
+
 
 const TeacherCard = ({ teacher }) => {
   const {
@@ -54,7 +55,7 @@ const TeacherCard = ({ teacher }) => {
               <Badge
                 key={index}
                 variant="secondary"
-                className="bg-[#154255] text-light-blue-1 text-xs px-2 py-1"
+                className="bg-[#154255] border-light-blue-1 text-light-blue-1 text-xs px-2 py-1"
               >
                 {language}
               </Badge>
@@ -157,4 +158,22 @@ const TeacherCard = ({ teacher }) => {
   );
 };
 
+TeacherCard.propTypes = {
+  teacher: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+    rating: PropTypes.number.isRequired,
+    totalClasses: PropTypes.number.isRequired,
+    languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+    levels: PropTypes.arrayOf(PropTypes.string).isRequired,
+    description: PropTypes.string.isRequired,
+    specialties: PropTypes.arrayOf(PropTypes.string).isRequired,
+    availability: PropTypes.arrayOf(PropTypes.string).isRequired,
+    nextAvailable: PropTypes.string,
+    hourlyRate: PropTypes.number.isRequired,
+    timezone: PropTypes.string.isRequired
+  }).isRequired
+};
+  
 export default TeacherCard; 
