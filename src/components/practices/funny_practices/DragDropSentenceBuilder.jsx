@@ -227,9 +227,9 @@
            </div>
            {feedback && feedback.correct && (
              <div className="p-4 mt-4 border-l-4 border-green-500 bg-green-50 rounded-md text-green-700">
-               <p className="font-semibold">✔ Grammar Explanation:</p>
-               <p className="mt-2"><strong>{feedback.message.split('\n\n')[0]}</strong></p>
-               <ul className="list-none">
+               <p className="font-semibold text-red-50">✔ Grammar Explanation:</p>
+               <p className="mt-2 text-red-50"><strong>{feedback.message.split('\n\n')[0]}</strong></p>
+               <ul className="list-none ">
                  {feedback.message.split('\n\n').slice(1).map((item, index) => (
                    <li key={index}>
                      <pre className="font-light">{item}</pre>
