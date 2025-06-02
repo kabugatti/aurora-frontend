@@ -37,7 +37,7 @@ import { useState } from "react";
      <div className="max-w-md mx-auto mt-10 p-6 bg-[#030712] shadow-lg rounded-lg">
        {showResults ? (
          <div className="text-center">
-           <h2 className="text-xl font-bold text-black">Quiz Completed!</h2>
+           <h2 className="text-xl font-bold text-red-50">Quiz Completed!</h2>
            <p className="text-2xl mt-2 font-bold text-[#4184F3]">
              Score: {Math.round((score / questions.length) * 100)}%
            </p>
@@ -47,14 +47,14 @@ import { useState } from "react";
            <div className="flex justify-center gap-4">
              <button
                onClick={handleRestart}
-               className="mt-4 py-2 px-4 bg-blue-500 flex items-center text-white rounded-lg hover:bg-blue-600"
+               className="mt-4 py-2 px-4 bg-[#030712] outline-none border border-white flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white"
              >
                <RefreshCw className="mr-2" />
                Try Again
              </button>
              <Link
                to="/"
-               className="mt-4 py-2 px-4 bg-gray-500 flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white"
+               className="mt-4 py-2 px-4 bg-[#030712] border border-white flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white"
              >
                <Home className="mr-2" />
                Return Home
@@ -120,7 +120,7 @@ import { useState } from "react";
              )}
            <button
              onClick={handleNext}
-             className="mt-4 w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
+             className="mt-4 w-full px-4 py-2 bg-[#030712] border border-white cursor-pointer text-white rounded-lg"
              disabled={!selectedAnswer}
            >
              {currentQuestion < questions.length - 1

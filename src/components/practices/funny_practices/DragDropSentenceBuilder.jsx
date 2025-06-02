@@ -183,16 +183,16 @@
      const percentage = (correctAnswers / SENTENCES_DATA.length) * 100;
      return (
        <DndProvider backend={HTML5Backend}>
-         <Card className="max-w-2xl mx-auto">
+         <Card className="max-w-2xl bg-[#030712] mx-auto">
          <CardHeader>
-         <CardTitle className="text-3xl text-center font-bold">Exercise Complete!</CardTitle>
+         <CardTitle className="text-3xl text-red-50 text-center font-bold">Exercise Complete!</CardTitle>
          </CardHeader>
          <CardContent>
-         <p className="text-green-600 text-center font-extrabold text-6xl">{`${percentage}%`}</p>
-         <p className="mt-3 text-center">{`You got ${correctAnswers} out of ${SENTENCES_DATA.length} sentences correct!`}</p>
+         <p className="text-green text-center font-extrabold text-6xl">{`${percentage}%`}</p>
+         <p className="mt-3 text-red-50 text-center">{`You got ${correctAnswers} out of ${SENTENCES_DATA.length} sentences correct!`}</p>
          <div className="mt-3 flex justify-between w-full">
-           <Button variant="outline" onClick={() => setResultsDisplayed(false)}>Back</Button>
-           <Button className="rounded-lg" onClick={() => navigate('/')}>
+           <Button className="bg-[#030712] text-red-50" variant="outline" onClick={() => setResultsDisplayed(false)}>Back</Button>
+           <Button className="rounded-lg border border-white bg-[#030712] text-red-50 hover:bg-red-50 hover:text-[#030712]" onClick={() => navigate('/')}>
                Main Menu
              </Button>
          </div>
@@ -244,8 +244,8 @@
              </div>
            )}
            <div className="flex justify-between mt-6">
-             <Button className="text-red-50" variant="outline"  onClick={resetExercise} disabled={isResetDisabled}>Reset</Button>
-             <Button className="rounded-lg" disabled={!isCheckEnabled} onClick={showResults ? handleShowResults : (showNext ? nextSentence : checkAnswer)}>
+             <Button className="text-red-50 bg-[#030712] " variant="outline"  onClick={resetExercise} disabled={isResetDisabled}>Reset</Button>
+             <Button className="rounded-lg bg-[#030712] border-2 border-white text-red-50" disabled={!isCheckEnabled} onClick={showResults ? handleShowResults : (showNext ? nextSentence : checkAnswer)}>
                {showResults ? 'Show Results' : (showNext ? 'Next' : 'Check Answer')}
              </Button>
            </div>

@@ -186,16 +186,16 @@ const IdiomChallenge = () => {
             ))}
           </div>
           {selectedAnswer !== null && (
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <div className="mt-6 p-4 bg-[#030712]  rounded-lg">
               <div className="flex items-center mb-2">
                 <Info className="w-5 h-5 text-blue-600 mr-2" />
-                <h3 className="text-xl font-bold text-black">Explanation:</h3>
+                <h3 className="text-xl font-bold text-blue-50">Explanation:</h3>
               </div>
-              <p className="pl-7 text-sm text-gray-950 mb-4">
+              <p className="pl-7 text-sm text-blue-50 mb-4">
                 {question.explanation}
               </p>
-              <h3 className="text-xl font-bold text-black mb-2">Usage Tips:</h3>
-              <ul className="list-disc list-inside text-sm text-gray-700 space-y-1">
+              <h3 className="text-xl font-bold text-blue-50 mb-2">Usage Tips:</h3>
+              <ul className="list-disc list-inside text-sm text-blue-50 space-y-1">
                 {question.tips.map((tip, index) => (
                   <li key={index}>{tip}</li>
                 ))}
@@ -207,7 +207,7 @@ const IdiomChallenge = () => {
               <div className="flex justify-end mt-4">
                 <button
                   onClick={handleNext}
-                  className="py-2 px-6 bg-[#1E293B] text-white rounded-md text-lg font-semibold hover:bg-[#111827] transition"
+                  className="py-2 px-6 bg-[#030712] text-blue-50 rounded-md text-lg font-semibold hover:bg-[#111827] transition"
                   style={{ border: "none" }}
                 >
                   Next →
