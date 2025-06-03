@@ -218,18 +218,18 @@ import { useState, useEffect } from 'react';
 
    return (
      <DndProvider backend={HTML5Backend}>
-       <Card className="w-full max-w-2xl mx-auto">
+       <Card className="w-full max-w-2xl bg-[#030712] mx-auto">
          <CardHeader>
-           <CardTitle>Sentence Builder</CardTitle>
-           <div className="text-sm text-gray-500">
+           <CardTitle className="text-red-50">Sentence Builder</CardTitle>
+           <div className="text-sm text-gray-400">
              Exercise {currentSentenceIndex + 1} of {SENTENCES_DATA.length}
            </div>
-           <Progress value={progress} className="w-full h-2" />
+           <Progress value={progress} className="w-full bg-red-50 h-2" />
          </CardHeader>
          <CardContent>
            <div className="mb-6">
-             <p className="mb-2 font-medium">Build your sentence here:</p>
-             <div className="flex flex-wrap gap-2 p-4 bg-gray-50 rounded-lg min-h-[80px]">
+             <p className="mb-2 text-red-50 font-medium">Build your sentence here:</p>
+             <div className="flex flex-wrap gap-2 p-4 bg-[#030712] rounded-lg min-h-[80px]">
                {sentence.map((word, index) => (
                  <DropZone 
                    key={index} 
@@ -243,8 +243,8 @@ import { useState, useEffect } from 'react';
            </div>
 
            <div className="mb-6">
-             <p className="text-lg mb-2">Available words:</p>
-             <div className="flex flex-wrap gap-2 min-h-[50px] p-4 bg-gray-50 rounded-lg">
+             <p className="text-lg text-red-50 mb-2">Available words:</p>
+             <div className="flex flex-wrap gap-2 min-h-[50px] p-4 bg-[#030712] border border-white rounded-lg">
                {availableWords.map((word, index) => (
                  <DraggableWord 
                    key={`available-${word}-${index}`}
@@ -268,7 +268,7 @@ import { useState, useEffect } from 'react';
 
            <div className="flex justify-between items-center mt-6">
              <div className="flex gap-4">
-               <Button variant="outline" onClick={handleReset}>Reset</Button>
+               <Button className="text-red-50" variant="outline" onClick={handleReset}>Reset</Button>
              </div>
              <div className="flex items-center gap-4">
                <div className="text-sm text-gray-600">Progress: {progress}%</div>
