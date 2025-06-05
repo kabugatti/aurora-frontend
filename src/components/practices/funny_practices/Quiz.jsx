@@ -34,10 +34,10 @@ import { useState } from "react";
    };
 
    return (
-     <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+     <div className="max-w-md mx-auto mt-10 p-6 bg-[#030712] shadow-lg rounded-lg">
        {showResults ? (
          <div className="text-center">
-           <h2 className="text-xl font-bold text-black">Quiz Completed!</h2>
+           <h2 className="text-xl font-bold text-red-50">Quiz Completed!</h2>
            <p className="text-2xl mt-2 font-bold text-[#4184F3]">
              Score: {Math.round((score / questions.length) * 100)}%
            </p>
@@ -47,14 +47,14 @@ import { useState } from "react";
            <div className="flex justify-center gap-4">
              <button
                onClick={handleRestart}
-               className="mt-4 py-2 px-4 bg-blue-500 flex items-center text-white rounded-lg hover:bg-blue-600"
+               className="mt-4 py-2 px-4 bg-[#030712] outline-none border border-white flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white"
              >
                <RefreshCw className="mr-2" />
                Try Again
              </button>
              <Link
                to="/"
-               className="mt-4 py-2 px-4 bg-gray-500 flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white"
+               className="mt-4 py-2 px-4 bg-[#030712] border border-white flex items-center text-white rounded-lg hover:bg-gray-600 hover:text-white"
              >
                <Home className="mr-2" />
                Return Home
@@ -71,7 +71,7 @@ import { useState } from "react";
                }}
              ></div>
            </div>
-           <h2 className="text-xl font-bold mb-4 text-black flex justify-between">
+           <h2 className="text-xl font-bold mb-4 text-red-50 flex justify-between">
              {questions[currentQuestion].question}
              <span className="text-blue-500">
              {
@@ -83,14 +83,14 @@ import { useState } from "react";
              <button
                key={index}
                onClick={() => handleAnswer(option)}
-               className={`block w-full text-left px-4 py-2 mb-2 border border-gray-200 text-black rounded-lg ${
+               className={`block w-full text-left px-4 py-2 mb-2 border border-gray-200 text-red-50 rounded-lg ${
                  selectedAnswer
                    ? option === questions[currentQuestion].answer
                      ? "bg-green-200 border-green-500"
                      : option === selectedAnswer
                      ? "bg-red-200 border-red-500"
                      : "bg-white"
-                   : "bg-white"
+                   : "bg-[#030712]"
                }`}
                disabled={!!selectedAnswer}
              >
@@ -114,13 +114,13 @@ import { useState } from "react";
              )}
            {selectedAnswer &&
              selectedAnswer == questions[currentQuestion].answer && (
-               <div className="mt-2 p-2 bg-green-100 text-green-500 rounded-lg">
+               <div className="mt-2 p-2 bg-green text-green-500 rounded-lg">
                  {questions[currentQuestion].feedback}
                </div>
              )}
            <button
              onClick={handleNext}
-             className="mt-4 w-full px-4 py-2 bg-blue-500 text-white rounded-lg"
+             className="mt-4 w-full px-4 py-2 bg-[#030712] border border-white cursor-pointer text-white rounded-lg"
              disabled={!selectedAnswer}
            >
              {currentQuestion < questions.length - 1

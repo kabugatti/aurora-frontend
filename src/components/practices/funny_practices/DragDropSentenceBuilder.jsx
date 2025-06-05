@@ -183,16 +183,16 @@
      const percentage = (correctAnswers / SENTENCES_DATA.length) * 100;
      return (
        <DndProvider backend={HTML5Backend}>
-         <Card className="max-w-2xl mx-auto">
+         <Card className="max-w-2xl bg-[#030712] mx-auto">
          <CardHeader>
-         <CardTitle className="text-3xl text-center font-bold">Exercise Complete!</CardTitle>
+         <CardTitle className="text-3xl text-red-50 text-center font-bold">Exercise Complete!</CardTitle>
          </CardHeader>
          <CardContent>
-         <p className="text-green-600 text-center font-extrabold text-6xl">{`${percentage}%`}</p>
-         <p className="mt-3 text-center">{`You got ${correctAnswers} out of ${SENTENCES_DATA.length} sentences correct!`}</p>
+         <p className="text-green text-center font-extrabold text-6xl">{`${percentage}%`}</p>
+         <p className="mt-3 text-red-50 text-center">{`You got ${correctAnswers} out of ${SENTENCES_DATA.length} sentences correct!`}</p>
          <div className="mt-3 flex justify-between w-full">
-           <Button variant="outline" onClick={() => setResultsDisplayed(false)}>Back</Button>
-           <Button className="rounded-lg" onClick={() => navigate('/')}>
+           <Button className="bg-[#030712] text-red-50" variant="outline" onClick={() => setResultsDisplayed(false)}>Back</Button>
+           <Button className="rounded-lg border border-white bg-[#030712] text-red-50 hover:bg-red-50 hover:text-[#030712]" onClick={() => navigate('/')}>
                Main Menu
              </Button>
          </div>
@@ -204,32 +204,32 @@
 
    return (
      <DndProvider backend={HTML5Backend}>
-       <Card className="max-w-2xl mx-auto">
+       <Card className="max-w-2xl bg-[#030712] mx-auto">
          <CardHeader>
-           <div className="flex flex-row justify-between mb-3">
+           <div className="flex text-red-50 flex-row justify-between mb-3">
              <CardTitle>Sentence Builder</CardTitle>
-             <div className="text-sm text-gray-500">
+             <div className="text-sm bg-[#030712] text-gray-500">
                {currentIndex + 1} of {SENTENCES_DATA.length}
              </div>
            </div>
            <Progress value={progress} className="w-full h-2 bg-gray-200" />
          </CardHeader>
          <CardContent>
-           <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+           <div className="mb-6 p-3 bg-[#030712] text-red-50 border border-blue-200 rounded-lg">
              <p className="font-medium">Sentence Type: Present perfect continuous</p>
-             <p className="text-sm text-gray-600">Drag and drop the words to form a correct sentence.</p>
+             <p className="text-sm text-gray-400">Drag and drop the words to form a correct sentence.</p>
            </div>
            <DropZone sentence={sentence} onDrop={handleDrop} onRemove={handleRemove} />
-           <div className="mt-6 flex flex-wrap p-4 bg-gray-50 rounded-lg">
+           <div className="mt-6 flex flex-wrap p-4 bg-[#030712] border border-white rounded-lg">
              {availableWords.map(({ word, id }) => (
                <DraggableWord key={id} word={word} id={id} />
              ))}
            </div>
            {feedback && feedback.correct && (
              <div className="p-4 mt-4 border-l-4 border-green-500 bg-green-50 rounded-md text-green-700">
-               <p className="font-semibold">✔ Grammar Explanation:</p>
-               <p className="mt-2"><strong>{feedback.message.split('\n\n')[0]}</strong></p>
-               <ul className="list-none">
+               <p className="font-semibold text-red-50">✔ Grammar Explanation:</p>
+               <p className="mt-2 text-red-50"><strong>{feedback.message.split('\n\n')[0]}</strong></p>
+               <ul className="list-none ">
                  {feedback.message.split('\n\n').slice(1).map((item, index) => (
                    <li key={index}>
                      <pre className="font-light">{item}</pre>
@@ -244,8 +244,8 @@
              </div>
            )}
            <div className="flex justify-between mt-6">
-             <Button variant="outline" onClick={resetExercise} disabled={isResetDisabled}>Reset</Button>
-             <Button className="rounded-lg" disabled={!isCheckEnabled} onClick={showResults ? handleShowResults : (showNext ? nextSentence : checkAnswer)}>
+             <Button className="text-red-50 bg-[#030712] " variant="outline"  onClick={resetExercise} disabled={isResetDisabled}>Reset</Button>
+             <Button className="rounded-lg bg-[#030712] border-2 border-white text-red-50" disabled={!isCheckEnabled} onClick={showResults ? handleShowResults : (showNext ? nextSentence : checkAnswer)}>
                {showResults ? 'Show Results' : (showNext ? 'Next' : 'Check Answer')}
              </Button>
            </div>
