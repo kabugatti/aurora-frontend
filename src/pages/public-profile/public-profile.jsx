@@ -274,7 +274,7 @@ const PublicProfile = () => {
               {userProfile.isTeacher && (
                 <Link
                   to={userProfile.teacherProfile}
-                  className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm"
+                  className="inline-flex items-center gap-2 text-light-blue-1 hover:text-white text-sm"
                 >
                   <Award className="w-4 h-4" />
                   View Teacher Profile
