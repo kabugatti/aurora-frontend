@@ -11,6 +11,10 @@ module.exports = {
           ebony: "#111828",
           foreground: "hsl(var(--primary-foreground))",
         },
+        gray:{
+          750: "#707079",
+          850: "#0F1623",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           dark: "#D97706",
