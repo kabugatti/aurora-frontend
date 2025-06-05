@@ -311,5 +311,4 @@ const DragDropSentenceBuilder = () => {
     </DndProvider>
   );
 };
-
 export default DragDropSentenceBuilder;
