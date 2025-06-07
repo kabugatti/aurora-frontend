@@ -18,10 +18,11 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "/aurora-logo.png";
 
-const Sidebar = ({ isOpen, onClose, headerHeight }) => {
+const Sidebar = ({ isOpen, onClose }) => {
   const [currentPage, setCurrentPage] = useState("home");
   const [level, setLevel] = useState("Choose Your Level");
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
+  const [isCommunityExpanded, setIsCommunityExpanded] = useState(false);
 
   const navigate = useNavigate();
 
@@ -172,7 +173,48 @@ const Sidebar = ({ isOpen, onClose, headerHeight }) => {
             )}
           </div>
 
-          {topNavItems.map((item, index) => (
+          <div className="mb-2">
+            <button
+              onClick={() => setIsCommunityExpanded(!isCommunityExpanded)}
+              className="flex items-center justify-between w-full px-3 py-2 rounded-lg transition-colors"
+              style={{ backgroundColor: isCommunityExpanded ? "#1f2937" : "transparent", color: "#FFFFFF" }}
+            >
+              <div className="flex items-center gap-3">
+                <Users className="w-5 h-5 text-[#ced2d8]" />
+                <span className="text-sm font-medium">Community</span>
+              </div>
+              {isCommunityExpanded ? (
+                <ChevronDown className="w-4 h-4 text-[#707079]" />
+              ) : (
+                <ChevronRight className="w-4 h-4 text-[#707079]" />
+              )}
+            </button>
+            {isCommunityExpanded && (
+              <div className="mt-2 ml-2 flex flex-col gap-1">
+                <NavLink to="/community">
+                  <button
+                    onClick={() => handleNavClick("community")}
+                    className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+                    style={{ backgroundColor: currentPage === "community" ? "#23272f" : "#1f2937", color: "#FFFFFF" }}
+                  >
+                    <span className="text-sm">Community Home</span>
+                  </button>
+                </NavLink>
+                <NavLink to="/leaderboard">
+                  <button
+                    onClick={() => handleNavClick("leaderboard")}
+                    className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+                    style={{ backgroundColor: currentPage === "leaderboard" ? "#23272f" : "#1f2937", color: "#FFFFFF" }}
+                  >
+                    <span className="text-sm">Leaderboard</span>
+                  </button>
+                </NavLink>
+              </div>
+            )}
+          </div>
+
+          {/* Teacher Directory and Analytics */}
+          {topNavItems.filter(item => item.label !== "Community").map((item, index) => (
             <NavLink key={index} to={item.page}>
               <button
                 onClick={() => handleNavClick(item.page)}
