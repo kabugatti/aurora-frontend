@@ -1,10 +1,10 @@
 const ActivityChart = ({ data }) => {
-  const maxPoints = Math.max(...data.map(d => d.points));
+  const maxPoints = data.length > 0 ? Math.max(...data.map(d => d.points || 0)) : 0;
 
   // Calculate summary statistics dynamically from data
-  const totalPoints = data.reduce((sum, day) => sum + day.points, 0);
-  const totalExercises = data.reduce((sum, day) => sum + day.exercises, 0);
-  const totalStudyTime = data.reduce((sum, day) => sum + day.studyTime, 0);
+  const totalPoints = data.reduce((sum, day) => sum + (day.points || 0), 0);
+  const totalExercises = data.reduce((sum, day) => sum + (day.exercises || 0), 0);
+  const totalStudyTime = data.reduce((sum, day) => sum + (day.studyTime || 0), 0);
 
   return (
     <div className="space-y-4">
@@ -12,10 +12,11 @@ const ActivityChart = ({ data }) => {
       <div>
         <div className="flex items-end gap-2 h-32">
           {data.map((day, index) => (
-            <div key={index} className="flex-1 flex flex-col items-center">
+            <div key={index} className="flex-1 flex flex-col items-center" role="img" aria-label={`${day.day}: ${day.points} points`}>
               <div
                 className="w-full bg-light-blue-1"
                 style={{ height: `${(day.points / maxPoints) * 100}%`, minHeight: '4px' }}
+                title={`${day.points} points on ${day.day}`}
               />
               <span className="text-xs text-neutral-3 mt-1">{day.day}</span>
             </div>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Globe, Users, Calendar, Award, ExternalLink } from 'lucide-react';
 
@@ -9,11 +10,16 @@ const ProfileHeader = ({ userProfile }) => {
           {userProfile.avatarUrl ? (
             <img
               src={userProfile.avatarUrl}
-              alt={userProfile.displayName}
+              alt={`${userProfile.displayName}'s profile picture`}
               className="w-28 h-28 rounded-full border-4 border-light-blue-1"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
             />
           ) : (
-            <div className="w-28 h-28 rounded-full border-4 border-light-blue-1 bg-white flex items-center justify-center">
+            <div className="w-28 h-28 rounded-full border-4 border-light-blue-1 bg-gray-600 flex items-center justify-center text-gray-300 text-2xl font-bold">
+              {userProfile.displayName?.charAt(0)?.toUpperCase() || '?'}
             </div>
           )}
         </div>
@@ -41,7 +47,7 @@ const ProfileHeader = ({ userProfile }) => {
             </span>
             <div className="text-right">
               <div className="text-xl font-bold text-light-blue-1">#{userProfile.globalRank} Global</div>
-              <div className="text-sm text-neutral-3">{userProfile.totalPoints.toLocaleString()} points</div>
+              <div className="text-sm text-neutral-3">{(userProfile.totalPoints || 0).toLocaleString()} points</div>
             </div>
           </div>
 
@@ -51,7 +57,14 @@ const ProfileHeader = ({ userProfile }) => {
               <span className='text-white font-bold'>Overall Progress</span>
               <span>{userProfile.overallProgress}%</span>
             </div>
-            <div className="h-3 bg-white rounded-full overflow-hidden">
+            <div
+              className="h-3 bg-white rounded-full overflow-hidden"
+              role="progressbar"
+              aria-valuenow={userProfile.overallProgress}
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-label={`Overall learning progress: ${userProfile.overallProgress}%`}
+            >
               <div
                 className="h-full bg-[#0F172A] rounded-full transition-all duration-500"
                 style={{ width: `${userProfile.overallProgress}%` }}
@@ -74,6 +87,22 @@ const ProfileHeader = ({ userProfile }) => {
       </div>
     </div>
   );
+};
+
+ProfileHeader.propTypes = {
+  userProfile: PropTypes.shape({
+    avatarUrl: PropTypes.string,
+    displayName: PropTypes.string.isRequired,
+    country: PropTypes.string.isRequired,
+    community: PropTypes.string.isRequired,
+    joinDate: PropTypes.string.isRequired,
+    level: PropTypes.number.isRequired,
+    globalRank: PropTypes.number.isRequired,
+    totalPoints: PropTypes.number.isRequired,
+    overallProgress: PropTypes.number.isRequired,
+    isTeacher: PropTypes.bool,
+    teacherProfile: PropTypes.string,
+  }),
 };
 
 export default ProfileHeader; 
