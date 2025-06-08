@@ -82,19 +82,18 @@ const IdiomChallenge = () => {
         throw new Error("No valid questions available for this level.");
       }
 
-      // Randomize questions and ensure we have 10 unique questions
-      let result = [];
-      while (result.length < 10) {
-        const shuffled = [...formattedQuestions].sort(() => Math.random() - 0.5);
-        for (const q of shuffled) {
-          if (result.length === 0 || result[result.length - 1].idiom !== q.idiom) {
-            result.push(q);
-          }
-          if (result.length === 10) break;
-        }
+      // Get unique questions by idiom
+      const uniqueQuestions = Array.from(new Map(formattedQuestions.map((q) => [q.idiom, q])).values());
+
+      if (uniqueQuestions.length < 1) {
+        throw new Error(`Not enough unique questions available for level ${level}. Please add more questions.`);
       }
 
-      setQuestions(result);
+      // Randomize and select up to 10 questions
+      const shuffled = [...uniqueQuestions].sort(() => Math.random() - 0.5);
+      const selectedQuestions = shuffled.slice(0, Math.min(10, shuffled.length));
+
+      setQuestions(selectedQuestions);
       setCurrentQuestion(0);
       setSelectedAnswer(null);
       setIsCorrect(null);
@@ -102,6 +101,7 @@ const IdiomChallenge = () => {
       setCorrectAnswers(0);
     } catch (err) {
       setError(err.message || "An error occurred while fetching questions. Please try again.");
+      setQuestions([]);
     } finally {
       setLoading(false);
     }
