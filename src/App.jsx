@@ -71,6 +71,8 @@ import GrammarContent from "@/pages/aurora-site/grammar-content";
 // ✨ Question Creator
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
 
+import LeaderboardPage from "@/pages/aurora-site/community/leaderboard";
+
 function App() {
   return (
     <Router>
@@ -122,6 +124,7 @@ function App() {
                 <Route path="/community" element={<CommunityInteractionPage />} />
                 <Route path="/teacher-directory" element={<TeacherDirectoryPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
+                <Route path="/leaderboard" element={<LeaderboardPage />} />
               {/*</Route>*/}
             </Route>
 
