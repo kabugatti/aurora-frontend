@@ -49,7 +49,8 @@ const useHeader = (onMenuClick) => {
    "course-listing": "/course-listing",
    "practicesystem": "/practiceSystem",
    analytics: "/analytics",
-   categories: "/categories"
+   categories: "/categories",
+   leaderboard: "/leaderboard"
 };
 
    const handleNavClick = (key) => {
