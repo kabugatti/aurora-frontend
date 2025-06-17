@@ -1,59 +1,9 @@
-import {
-  DollarSign,
-  Globe,
-  Handshake,
-  Mail,
-  Activity,
-  Users,
-} from "lucide-react";
+
 import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
+import { courses } from "@/data/business-english-mock-date";
 
 // Courses Data
-const courses = [
-  {
-    icon: Mail,
-    title: "Business Communication Essentials",
-    description:
-      "Master emails, meetings, presentations, and phone calls in professional settings.",
-    level: "Beginner to Intermediate",
-  },
-  {
-    icon: Handshake,
-    title: "Negotiation & Persuasion",
-    description:
-      "Develop skills to negotiate contracts, close deals, and persuade stakeholders effectively.",
-    level: "Intermediate to Advanced",
-  },
-  {
-    icon: DollarSign,
-    title: "Financial English",
-    description:
-      "Learn specialized vocabulary and communication patterns for banking, investing, and accounting.",
-    level: "Intermediate",
-  },
-  {
-    icon: Users,
-    title: "Leadership Communication",
-    description:
-      "Enhance your ability to inspire teams, deliver impactful speeches, and communicate vision.",
-    level: "Advanced",
-  },
-  {
-    icon: Activity,
-    title: "Marketing & Sales English",
-    description:
-      "Learn to craft compelling pitches, marketing copy, and customer-facing communications.",
-    level: "Intermediate",
-  },
-  {
-    icon: Globe,
-    title: "Cross-Cultural Business Communication",
-    description:
-      "Navigate cultural differences in international business settings with confidence.",
-    level: "All Levels",
-  },
-];
 
 function CourseSection() {
   return (
@@ -69,12 +19,12 @@ function CourseSection() {
               const Icon = course.icon;
               return (
                 <Card
-                  key={index}
+                  key={course.title + index}
                   className="bg-slate-800/50 border-none "
                 >
                   <CardContent className="pt-6">
                     <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-cyan-400" />
+                       <Icon className="w-6 h-6 text-cyan-400" aria-hidden="true" />
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-3">
                       {course.title}

@@ -1,30 +1,8 @@
-import { BookOpen, Mic, PenTool, Volume2 } from "lucide-react";
-import { Card, CardContent } from "../ui/card";
 
-const skills = [
-  {
-    title: "Reading",
-    description:
-      "Analyze reports, contracts, and business documents with precision",
-    icon: BookOpen,
-  },
-  {
-    title: "Speaking",
-    description:
-      "Communicate confidently in meetings, presentations, and negotiations",
-    icon: Mic,
-  },
-  {
-    title: "Listening",
-    description: "Comprehend complex discussions and extract key information",
-    icon: Volume2,
-  },
-  {
-    title: "Writing",
-    description: "Craft professional emails, reports, and business documents",
-    icon: PenTool,
-  },
-];
+import { Card, CardContent } from "../ui/card";
+import { skills } from "@/data/business-english-mock-date";
+
+
 
 function SkillSection() {
   return (
@@ -37,12 +15,12 @@ function SkillSection() {
         <div className="grid lg:grid-cols-4 md:grid-cols-2  lg:px-28  ">
           {skills.map(({ index, title, description, icon: Icon }) => (
             <Card
-              key={index}
+              key={title + index}
               className="bg-transparent text-center border-none md:p-8 p-0 shadow-none"
             >
               <CardContent className="">
                 <div className="w-16 h-16 bg-[#091217] rounded-lg flex items-center justify-center mx-auto mb-6">
-                  <Icon className="w-8 h-8 text-white" />
+                   <Icon className="w-8 h-8 text-white" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
                 <p className="text-slate-300 text-base  font-semibold leading-relaxed">

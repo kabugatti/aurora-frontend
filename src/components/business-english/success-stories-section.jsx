@@ -1,28 +1,7 @@
+import { testimonials } from "@/data/business-english-mock-date";
 import { Card, CardContent } from "../ui/card";
 
-const testimonials = [
-  {
-    name: "Sarah Chen",
-    role: "Marketing Director, Global Tech",
-    avatar: "/placeholder.svg?height=60&width=60",
-    quote:
-      "The industry-specific vocabulary and real-world scenarios helped me communicate more effectively with international clients. My confidence in business meetings has improved dramatically.",
-  },
-  {
-    name: "Miguel Rodriguez",
-    role: "Finance Manager, Banking Sector",
-    avatar: "/placeholder.svg?height=60&width=60",
-    quote:
-      "The financial English course was exactly what I needed to advance in my career. The AI-powered feedback on my speaking helped me sound more professional and authoritative.",
-  },
-  {
-    name: "Akira Tanaka",
-    role: "Project Manager, Manufacturing",
-    avatar: "/placeholder.svg?height=60&width=60",
-    quote:
-      "The cross-cultural communication module was eye-opening. I now navigate international business relationships with much greater ease and understanding.",
-  },
-];
+
 function SuccessStoriesSection() {
   return (
     <>
