@@ -38,6 +38,7 @@ import WalletConnection from "@/pages/aurora-site/wallet/wallet-connection";
 // 🌐 Community & Interaction
 import AuroraChat from "@/pages/aurora-site/aurora-chat";
 import CommunityInteractionPage from "@/pages/aurora-site/community/community";
+import TeacherDirectoryPage from "@/pages/aurora-site/teacher-directory/teacher-directory";
 
 // 📊 Analytics & Categories
 import Analytics from "@/pages/aurora-site/analytics";
@@ -71,6 +72,13 @@ import GrammarContent from "@/pages/aurora-site/grammar-content";
 // ✨ Question Creator
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
 
+
+// 🌐 Public Profile
+import PublicProfile from "@/pages/public-profile/public-profile";
+
+import LeaderboardPage from "@/pages/aurora-site/community/leaderboard";
+
+
 function App() {
   return (
     <Router>
@@ -81,6 +89,9 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/verify-email" element={<VerifyEmailPage />} />
+
+            {/* Public profile route - no MainLayout needed */}
+            <Route path="/u/:username" element={<PublicProfile />} />
 
             {/* Public route */}
             <Route element={<MainLayout />}>
@@ -121,7 +132,9 @@ function App() {
                 <Route path="/listening" element={<ListeningPage />} />
                 <Route path="/reading" element={<ReadingContent />} />
                 <Route path="/community" element={<CommunityInteractionPage />} />
+                <Route path="/teacher-directory" element={<TeacherDirectoryPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
+                <Route path="/leaderboard" element={<LeaderboardPage />} />
                  <Route path="/business-english" element={<BusinessEnglish />} />
                 
               {/*</Route>*/}
