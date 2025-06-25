@@ -9,6 +9,10 @@ import {
   Routes,
 } from "react-router-dom";
 
+
+
+//mocks blockchain transactions
+import MockPage from "@/components/stellar/mock_page";  
 // 🏗️ Layout
 import MainLayout from "@/components/layout/main-layout";
 
@@ -98,7 +102,7 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/course-listing" element={<CourseListing />} />
-             
+
             </Route>
 
             {/* Protected routes with MainLayout */}
@@ -137,7 +141,8 @@ function App() {
                 <Route path="/question-creator" element={<QuestionCreator />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
                  <Route path="/business-english" element={<BusinessEnglish />} />
-                
+                 <Route path="/mock" element={<MockPage />} />
+
               {/*</Route>*/}
             </Route>
 
