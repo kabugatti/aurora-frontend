@@ -5,9 +5,9 @@ const baseStyles =
 
 const variants = {
   primary:
-    "bg-[#34D399] text-[#111827] border-none hover:bg-[#2ec4a6] focus:ring-[#34D399]",
+    "bg-emerald-400 hover:bg-emerald-300 text-[#111827] border-none focus:ring-[#34D399]",
   outline:
-    "bg-white text-[#22D3EE] border border-[#22D3EE] hover:bg-[#e0f7fa] focus:ring-[#22D3EE]",
+    "text-[#22D3EE] border border-cyan-400 text-cyan-400 hover:bg-[#e0f7fa] focus:ring-[#22D3EE]",
 };
 
 export default function CTAHeroButton({
