@@ -112,33 +112,6 @@ const Footer = ({ customClass = "" }) => {
             </ul>
           </div>
 
-          {/* Column: Legal */}
-          <div className="space-y-4">
-            <h3
-              className="text-lg font-semibold cursor-pointer md:cursor-default"
-              onClick={() => toggleAccordion("legal")}
-            >
-              Legal
-            </h3>
-            <ul className={`${accordionOpen.legal ? "block" : "hidden"} md:block space-y-2`}>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Cookie Policy
-                </a>
-              </li>
-            </ul>
-          </div>
-
           {/* Column: Subscribe */}
           <div className="space-y-4">
             <h3
