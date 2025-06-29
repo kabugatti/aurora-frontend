@@ -69,11 +69,6 @@ const Footer = ({ customClass = "" }) => {
               </li>
               <li>
                 <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
                   Contact
                 </a>
               </li>
@@ -89,24 +84,10 @@ const Footer = ({ customClass = "" }) => {
               Resources
             </h3>
             <ul className={`${accordionOpen.recursos ? "block" : "hidden"} md:block space-y-2`}>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Guides
-                </a>
-              </li>
+
               <li>
                 <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
                   FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Support
                 </a>
               </li>
             </ul>
