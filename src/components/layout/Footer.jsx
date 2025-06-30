@@ -64,9 +64,9 @@ const Footer = ({ customClass = "" }) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
+                <Link to="/team" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
                   Our Team
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="mailto:aurorala.web3@gmail.com" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
@@ -90,7 +90,6 @@ const Footer = ({ customClass = "" }) => {
                 <Link to="/faq" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
                   FAQ
                 </Link>
-
               </li>
             </ul>
           </div>

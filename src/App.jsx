@@ -39,6 +39,7 @@ import Notifications from "@/pages/aurora-site/notifications";
 import SettingsPage from "@/pages/aurora-site/settings";
 import WalletConnection from "@/pages/aurora-site/wallet/wallet-connection";
 import FAQPage from "./components/FAQ/faq";
+import GitHubProfiles from "./components/GithubProfiles/profilesComponent";
 
 // 🌐 Community & Interaction
 import AuroraChat from "@/pages/aurora-site/aurora-chat";
@@ -143,6 +144,7 @@ function App() {
                 <Route path="/business-english" element={<BusinessEnglish />} />
                 <Route path="/mock" element={<MockPage />} />
                 <Route path="/faq" element={< FAQPage/>}/>
+                <Route path="/team" element={< GitHubProfiles/>}/>
 
               {/*</Route>*/}
             </Route>

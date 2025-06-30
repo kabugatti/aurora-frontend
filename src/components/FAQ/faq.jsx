@@ -15,10 +15,7 @@ const FAQPage = () => {
 
     return (
         <div className="min-h-screen">
-            {/* Hero Header */}
             <div className="relative bg-black overflow-hidden">
-
-                {/* Main Content */}
                 <div className="relative z-10 text-center py-20 px-4">
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
                         Frequently Asked Questions
@@ -28,12 +25,8 @@ const FAQPage = () => {
                     </p>
                 </div>
             </div>
-
-            {/* Main Content */}
             <div className="bg-white">
                 <div className="container mx-auto px-4 py-12">
-
-                    {/* FAQ Accordion */}
                     <div className="max-w-4xl mx-auto">
                         <div className="space-y-1">
                             {faqData.map((item, index) => (
@@ -67,8 +60,6 @@ const FAQPage = () => {
                             ))}
                         </div>
                     </div>
-
-                    {/* Contact Section */}
                     <div className="bg-white py-16 mt-12">
                         <div className="text-center max-w-4xl mx-auto px-4">
                             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
