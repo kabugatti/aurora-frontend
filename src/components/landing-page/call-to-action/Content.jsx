@@ -78,53 +78,53 @@ export const courses = {
     ],
     Intermediate: [
       {
-        icons: <Brain className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Intermediate Conversation",
-        content: "Practice conversations with our AI assistant",
+        icons: <MessageCircle className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Fluent Conversations",
+        content: "Improve your speaking fluency",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Intermediate Grammar",
-        content: "Practice advanced grammar with our AI assistant",
+        icons: <BookOpen className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Reading Comprehension",
+        content: "Enhance your reading skills",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Intermediate Vocabulary",
-        content: "Practice advanced vocabulary with our AI assistant",
+        icons: <Bookmark className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Writing Workshop",
+        content: "Develop your writing skills",
       },
     ],
     Advanced: [
       {
         icons: <Brain className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Advanced Conversation",
-        content: "Practice advanced conversation with our AI assistant",
-      },
-      {
-        icons: <GraduationCap className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
         tag: "Advanced Grammar",
-        content: "Practice advanced grammar with our AI assistant",
+        content: "Master complex grammatical structures",
       },
       {
         icons: <Globe className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Advanced Vocabulary",
-        content: "Practice advanced vocabulary with our AI assistant",
+        tag: "Idiomatic Expressions",
+        content: "Learn native-like expressions",
+      },
+      {
+        icons: <GraduationCap className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Academic English",
+        content: "Prepare for academic enviroments",
       },
     ] ,
     Business: [
       {
-        icons: <Brain className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Business Conversation",
-        content: "Practice business conversation with our AI assistant",
+        icons: <Users className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Business Communication",
+        content: "Professional email and meeting skills",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Business Vocabulary",
-        content: "Practice business vocabulary with our AI assistant",
+        icons: <MessageCircle className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Negotiation Skills",
+        content: "Learn to negotiate effectively",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
-        tag: "Business Grammar",
-        content: "Practice business grammar with our AI assistant",
+        icons: <BookOpen className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Presentation Mastery",
+        content: "Deliver impactful presentations",
       },
     ]
   }
