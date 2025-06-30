@@ -7,6 +7,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react"
+import { Link } from "react-router-dom"
 
 import auroraBrain from "/aurora-logo.png"
 
@@ -68,8 +69,8 @@ const Footer = ({ customClass = "" }) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Contact
+                <a href="mailto:aurorala.web3@gmail.com" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
+                  Contact and Support
                 </a>
               </li>
             </ul>
@@ -86,9 +87,10 @@ const Footer = ({ customClass = "" }) => {
             <ul className={`${accordionOpen.recursos ? "block" : "hidden"} md:block space-y-2`}>
 
               <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
+                <Link to="/faq" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
                   FAQ
-                </a>
+                </Link>
+
               </li>
             </ul>
           </div>
