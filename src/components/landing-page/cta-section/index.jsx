@@ -8,10 +8,10 @@ const CTASection = () => {
       
       {/* Marca de agua de fondo */}
       <div className="absolute inset-0 z-0 pointer-events-none flex flex-col justify-evenly items-center text-white text-4xl font-light select-none opacity-5 whitespace-pre leading-[6rem]">
-        <p className="opacity-[0.14]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
-        <p className="opacity-[0.14]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
-        <p className="opacity-[0.14]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
-        <p className="opacity-[0.14]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
+        <p className="opacity-[0.15]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
+        <p className="opacity-[0.15]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
+        <p className="opacity-[0.15]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
+        <p className="opacity-[0.15]">AURORA    AURORA    AURORA    AURORA    AURORA</p>
       </div>
 
       {/* Contenido principal */}
