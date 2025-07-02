@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import faqData from './faqData';
+import { Link } from 'react-router-dom';
 
 const FAQPage = () => {
     const [openItems, setOpenItems] = useState({});
@@ -12,10 +13,22 @@ const FAQPage = () => {
         }));
     };
 
-
     return (
         <div className="min-h-screen">
-            <div className="relative bg-black overflow-hidden">
+            <div className="relative bg-black overflow-hidden" style={{
+                background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(17, 24, 39, 0.95) 50%, rgba(0, 0, 0, 0.95) 100%)'
+            }}>
+                <div className="absolute top-6 left-6 z-20">
+                    <Link
+                        to="/"
+                        className="inline-flex items-center text-gray-300 hover:text-white transition-colors"
+                        aria-label="Back to main page"
+                    >
+                        <img src="/aurora-logo.png" alt="" class="w-10 h-10" />
+
+                    </Link>
+                </div>
+
                 <div className="relative z-10 text-center py-20 px-4">
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
                         Frequently Asked Questions

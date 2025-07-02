@@ -1,15 +1,15 @@
 let users = [
-    {name:"zleypner", role:"FullsTack Developer"},
-    {name:"Gerson2102", role:"Bckend & Blockchain Developer"},
-    {name:"ChrisFernandezVivas", role:"Backend & Blockchain Developer"},
-    {name:"Josue19-08", role:"Fullstack Developer"},
-    {name:"ManuelJG1999", role:"Frontend Developer"}
+    {name:"Anwar Sanchez", login:"zleypner", role:"CoFounder and Full Stack Dev"},
+    {name:"Gerson Loaiza", login:"Gerson2102", role:"CoFounder and Full Stack Dev"},
+    {name:"Chris Fernandez", login:"ChrisFernandezVivas", role:"CoFounder and Backend Dev"},
+    {name:"Josué Araya", login:"Josue19-08", role:"CoFounder and Frontend Dev"},
+    {name:"Manuel Jiménez", login:"ManuelJG1999", role:"CoFounder and Frontend Dev"}
 ];
 
 
 const fetchGitHubProfile = async (user) => {
     try {
-        const response = await fetch(`https://api.github.com/users/${user.name}`);
+        const response = await fetch(`https://api.github.com/users/${user.login}`);
         if(!response.ok) {
             throw new Error('Network response was not ok ' + response.statusText);
         }
@@ -17,7 +17,8 @@ const fetchGitHubProfile = async (user) => {
         const interfaceUser = {
             id:data.id,
             avatar: data.avatar_url,
-            name: data.name,
+            name: user.name,
+            login:user.login,
             role: user.role,
             url: data.html_url
         }

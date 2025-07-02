@@ -7,13 +7,27 @@ const GitHubProfiles = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="bg-black text-white py-20 px-8 text-center">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-          Our Team
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-          Everything you need to know about our talented developers and their amazing GitHub projects
-        </p>
+      <div className="relative bg-black overflow-hidden" style={{
+        background: 'linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(17, 24, 39, 0.95) 50%, rgba(0, 0, 0, 0.95) 100%)'
+      }}>
+        <div className="absolute top-6 left-6 z-20">
+          <Link
+            to="/"
+            className="inline-flex items-center text-gray-300 hover:text-white transition-colors"
+            aria-label="Back to main page"
+          >
+            <img src="/aurora-logo.png" alt="AURORA Logo" className="w-10 h-10" />
+          </Link>
+        </div>
+
+        <div className="text-white py-20 px-8 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+            Our Team
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            The brilliant minds behind AURORA's revolutionary language learning platform
+          </p>
+        </div>
       </div>
 
       <div className="py-16 px-8">
@@ -39,7 +53,7 @@ const GitHubProfiles = () => {
                     to={profile.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-8 py-3 text-white font-medium transition-all duration-300 hover:opacity-90 bg-[#00b8d4]"
+                    className="inline-flex items-center justify-center px-8 py-3 text-white font-medium transition-all duration-300 hover:text-black bg-[#00b8d4]"
                   >
                     <Github className="w-5 h-5 mr-2" />
                     GitHub
