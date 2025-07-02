@@ -1,0 +1,10 @@
+/home/soto_linux/Documents/OnlyDust/aurora-frontend/blockchain/target/debug/deps/wasmi_arena-9920661e89efe7a3.d: /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/lib.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/component_vec.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/dedup.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/guarded.rs
+
+/home/soto_linux/Documents/OnlyDust/aurora-frontend/blockchain/target/debug/deps/libwasmi_arena-9920661e89efe7a3.rlib: /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/lib.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/component_vec.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/dedup.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/guarded.rs
+
+/home/soto_linux/Documents/OnlyDust/aurora-frontend/blockchain/target/debug/deps/libwasmi_arena-9920661e89efe7a3.rmeta: /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/lib.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/component_vec.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/dedup.rs /home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/guarded.rs
+
+/home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/lib.rs:
+/home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/component_vec.rs:
+/home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/dedup.rs:
+/home/soto_linux/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmi_arena-0.4.1/src/guarded.rs:
