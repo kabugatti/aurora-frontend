@@ -47,7 +47,7 @@ export const WhyChooseAuruora = memo(function WhyChooseAuruora({
   content,
 }) {
   return (
-    <article className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 group border border-cyan-500/30 hover:border-cyan-500/50 ] cursor-default h-[220px]">
+    <article className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 flex flex-col items-center text-center transition-all duration-300 hover:shadow-xl transform hover:-translate-y-2 group border border-cyan-500/30 hover:border-cyan-500/50 cursor-default h-[220px]">
       <div
         className="h-12 w-12 text-cyan-400 mb-2 group-hover:text-white transition-colors duration-300"
         aria-hidden="true"
