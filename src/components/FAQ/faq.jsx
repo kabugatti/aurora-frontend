@@ -82,12 +82,16 @@ const FAQPage = () => {
                                 Our support team is here to help you get the most out of AURORA
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <button className="bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-500 hover:to-teal-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg">
-                                    Contact Support
-                                </button>
-                                <button className="bg-white text-gray-700 font-semibold py-4 px-8 rounded-lg border border-gray-300 hover:border-gray-400">
+                                <a href="mailto:aurorala.web3@gmail.com">
+                                    <button className="bg-gradient-to-r from-cyan-400 to-teal-400 hover:from-cyan-500 hover:to-teal-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg">
+                                        Contact Support
+                                    </button>
+                                </a>
+                                <Link to="/team">
+                                    <button className="bg-white text-gray-700 font-semibold py-4 px-8 rounded-lg border border-gray-300 hover:border-gray-400">
                                     Learn More About Us
                                 </button>
+                                </Link>
                             </div>
                         </div>
                     </div>
