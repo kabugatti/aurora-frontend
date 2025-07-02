@@ -315,36 +315,12 @@ get-base-uri:
 		--source-account alice \
 		-- base_uri
 
-# Generate TypeScript bindings
-bindings: build
-	@echo "🔗 Generating TypeScript bindings..."
-	@if [ ! -f .contract-id ]; then echo "⚠️  No contract deployed. Using build artifacts for bindings."; fi
-	@mkdir -p ../../nft-sdk/src
-	stellar contract bindings typescript \
-		--wasm $(WASM_FILE) \
-		--output-dir ../../nft-sdk/src \
-		--overwrite
-	@echo "✅ TypeScript bindings generated in ../../nft-sdk/src!"
 
-# Create NFT SDK package
-create-sdk: bindings
-	@echo "📦 Creating NFT SDK package..."
-	@mkdir -p ../../nft-sdk
-	@if [ ! -f ../../nft-sdk/package.json ]; then \
-		echo "Creating package.json..."; \
-		echo '{\n  "name": "@aurora/nft-sdk",\n  "version": "0.1.0",\n  "description": "TypeScript SDK for Aurora NFT contract",\n  "main": "src/index.ts",\n  "types": "src/index.ts",\n  "scripts": {\n    "build": "tsc",\n    "test": "jest"\n  },\n  "dependencies": {\n    "@stellar/stellar-sdk": "^13.0.0",\n    "buffer": "^6.0.3"\n  },\n  "devDependencies": {\n    "typescript": "^5.0.0",\n    "@types/node": "^20.0.0"\n  }\n}' > ../../nft-sdk/package.json; \
-	fi
-	@if [ ! -f ../../nft-sdk/tsconfig.json ]; then \
-		echo "Creating tsconfig.json..."; \
-		echo '{\n  "compilerOptions": {\n    "target": "ES2020",\n    "module": "commonjs",\n    "lib": ["ES2020"],\n    "outDir": "./dist",\n    "rootDir": "./src",\n    "strict": true,\n    "esModuleInterop": true,\n    "skipLibCheck": true,\n    "forceConsistentCasingInFileNames": true,\n    "declaration": true,\n    "declarationMap": true,\n    "sourceMap": true\n  },\n  "include": ["src/**/*"],\n  "exclude": ["node_modules", "dist"]\n}' > ../../nft-sdk/tsconfig.json; \
-	fi
-	@echo "✅ NFT SDK package structure created!"
 
 # Full deployment flow (requires ADMIN parameter)
-full-deploy: setup fund-accounts clean build deploy bindings create-sdk
+full-deploy: setup fund-accounts clean build deploy
 	@echo "🎉 Full deployment complete!"
 	@echo "📋 Contract ID: $(shell cat .contract-id)"
-	@echo "🔗 TypeScript bindings available in ../../nft-sdk/src"
 	@echo "ℹ️  Run 'make initialize ADMIN=<address>' to initialize the contract"
 
 # Quick deployment (assumes setup is done)
@@ -409,8 +385,6 @@ help:
 	@echo "  get-base-uri Get contract base URI"
 	@echo ""
 	@echo "Development:"
-	@echo "  bindings    Generate TypeScript bindings"
-	@echo "  create-sdk  Create NFT SDK package"
 	@echo "  dev         Run development checks"
 	@echo "  info        Show contract information"
 	@echo "  help        Show this help"
@@ -431,4 +405,4 @@ help:
 	@echo "  SYMBOL=<symbol>         Custom NFT symbol (optional)"
 	@echo "  NETWORK=testnet         Set network (default: testnet)"
 
-.PHONY: default all clean clean-all setup setup-account setup-network fund-accounts check-balances build test fmt check lint optimize install deploy initialize mint owner-of balance-of transfer get-admin get-name get-symbol get-base-uri bindings create-sdk full-deploy quick-deploy dev info help
+.PHONY: default all clean clean-all setup setup-account setup-network fund-accounts check-balances build test fmt check lint optimize install deploy initialize mint owner-of balance-of transfer get-admin get-name get-symbol get-base-uri full-deploy quick-deploy dev info help
