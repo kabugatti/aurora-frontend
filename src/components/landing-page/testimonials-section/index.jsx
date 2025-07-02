@@ -4,8 +4,17 @@ import { WhatOurUsersSay } from '../call-to-action/Cards';
 
 const TestimonialsSection = () => {
   return (
-    <section className="bg-[#1F2937] w-full px-6 py-12 bg-gradient-to-br from-slate-900/95 via-gray-900/95 to-black/95 bg-[radial-gradient(ellipse_at_top_right,_rgba(192,132,252,0.1),_transparent_80%)]" aria-label="Testimonials Section">
-      <div className="flex flex-col gap-4 container mx-auto items-center justify-center">
+   <section
+  className="relative w-full px-6 py-12 bg-[#030712] overflow-hidden"
+  aria-label="Testimonials Section"
+>
+  <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-br from-[#030712] via-[#111827] to-black"></div>
+
+  {/* Reflejos morado y cyan sutiles */}
+  <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_left,_rgba(168,85,247,0.15),_transparent_70%)]"></div>
+  <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_right,_rgba(34,211,238,0.15),_transparent_70%)]"></div>
+
+      <div className="relative z-10 flex flex-col gap-4 container mx-auto items-center justify-center">
       <h2 className="block mt-[32px] text-white text-center font-bold text-3xl lg:text-5xl">
         {whatOurUsersSay.title.textOne} {whatOurUsersSay.title.textTwo}
       </h2>
