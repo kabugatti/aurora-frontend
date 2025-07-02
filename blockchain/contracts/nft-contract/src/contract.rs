@@ -14,7 +14,13 @@ pub struct NFT;
 
 #[contractimpl]
 impl NFT {
-    pub fn __constructor(env: Env, admin: Address, name: String, symbol: String) {
+    /// Initialize the NFT contract with admin and metadata
+    pub fn initialize(env: Env, admin: Address, name: String, symbol: String) {
+        // Check if already initialized
+        if env.storage().instance().has(&crate::storage_types::DataKey::Admin) {
+            panic!("Contract already initialized");
+        }
+
         write_admin(&env, &admin);
         write_metadata(
             &env,
@@ -26,6 +32,7 @@ impl NFT {
         );
     }
 
+    /// Get the balance (number of tokens) owned by an address
     pub fn balance_of(env: Env, owner: Address) -> u128 {
         env.storage()
             .instance()
@@ -34,6 +41,7 @@ impl NFT {
         read_balance(&env, owner)
     }
 
+    /// Get the owner of a specific token
     pub fn owner_of(env: Env, token_id: u128) -> Address {
         env.storage()
             .instance()
@@ -42,14 +50,17 @@ impl NFT {
         Self::_require_owned(&env, token_id)
     }
 
+    /// Get the name of the NFT collection
     pub fn name(env: Env) -> String {
         read_name(&env)
     }
 
+    /// Get the symbol of the NFT collection
     pub fn symbol(env: Env) -> String {
         read_symbol(&env)
     }
 
+    /// Get the token URI for a specific token
     pub fn token_uri(env: Env, token_id: u128) -> Vec<String> {
         env.storage()
             .instance()
@@ -79,6 +90,7 @@ impl NFT {
         read_base_uri(&env)
     }
 
+    /// Get the base URI for all tokens
     pub fn base_uri(env: Env) -> String {
         Self::_base_uri(&env)
     }
@@ -94,6 +106,7 @@ impl NFT {
         );
     }
 
+    /// Approve another address to transfer a specific token
     pub fn approve(env: Env, from: Address, to: Option<Address>, token_id: u128) {
         from.require_auth();
 
@@ -104,6 +117,7 @@ impl NFT {
         Self::_approve(&env, to, token_id, Some(from), true);
     }
 
+    /// Get the approved address for a specific token
     pub fn get_approved(env: Env, token_id: u128) -> Option<Address> {
         env.storage()
             .instance()
@@ -113,6 +127,7 @@ impl NFT {
         Self::_get_approved(&env, token_id)
     }
 
+    /// Transfer a token from one address to another
     pub fn transfer_from(env: Env, sender: Address, from: Address, to: Address, token_id: u128) {
         sender.require_auth();
 
@@ -202,7 +217,7 @@ impl NFT {
     fn _mint(env: &Env, to: &Address, token_id: u128) {
         let previous_owner = Self::_update(env, Some(to.clone()), token_id, None);
         if previous_owner.is_some() {
-            panic!("NFTInvalidSender(None)");
+            panic!("NFTInvalidSender");
         }
     }
 
@@ -214,16 +229,19 @@ impl NFT {
     }
 
     fn _transfer(env: &Env, from: &Address, to: &Address, token_id: u128) {
-        let previous_owner = Self::_update(env, Some(to.clone()), token_id, None);
+        let previous_owner = Self::_update(env, Some(to.clone()), token_id, Some(from.clone()));
         if previous_owner.is_none() {
             panic!("NFTNonexistentToken({})", token_id);
-        } else if previous_owner.clone().unwrap() != *from {
+        } else {
+            let previous_owner = previous_owner.unwrap();
+            if previous_owner != *from {
             panic!(
                 "NFTIncorrectOwner({:?}, {}, {:?})",
                 from,
                 token_id,
-                previous_owner.unwrap()
+                    previous_owner
             );
+            }
         }
     }
 
@@ -234,21 +252,23 @@ impl NFT {
         auth: Option<Address>,
         emit_event: bool,
     ) {
-        if emit_event || auth.is_some() {
             let owner = Self::_require_owned(env, token_id);
 
-            if auth.is_some() && owner != auth.clone().unwrap() {
-                panic!("NFTInvalidApprover({:?})", auth.unwrap());
-            }
-
-            if emit_event {
-                TokenUtils::new(&env)
-                    .events()
-                    .approval(owner, &to, token_id);
+        if let Some(ref auth_addr) = auth {
+            if owner != *auth_addr && !Self::_is_authorized(env, &Some(owner.clone()), &auth, token_id) {
+                panic!(
+                    "NFTInsufficientApproval({:?}, {})",
+                    auth_addr,
+                    token_id
+                );
             }
         }
 
-        write_token_approval(env, token_id, to);
+        write_token_approval(env, token_id, to.clone());
+
+            if emit_event {
+            TokenUtils::new(env).events().approval(owner, &to, token_id);
+            }
     }
 
     fn _require_owned(env: &Env, token_id: u128) -> Address {
@@ -259,6 +279,7 @@ impl NFT {
         owner.unwrap()
     }
 
+    /// Mint a new NFT to the specified address (admin only)
     pub fn mint(env: Env, to: Address, token_id: u128) {
         let admin = read_admin(&env);
         admin.require_auth();
@@ -270,6 +291,7 @@ impl NFT {
         Self::_mint(&env, &to, token_id);
     }
 
+    /// Set the URI for a specific token (admin only)
     pub fn set_token_uri(env: Env, token_id: u128, token_uri: String) {
         let admin = read_admin(&env);
         admin.require_auth();
@@ -278,9 +300,11 @@ impl NFT {
             .instance()
             .extend_ttl(INSTANCE_LIFETIME_THRESHOLD, INSTANCE_BUMP_AMOUNT);
 
+        Self::_require_owned(&env, token_id);
         Self::_set_token_uri(&env, token_id, token_uri);
     }
 
+    /// Set the base URI for all tokens (admin only)
     pub fn set_base_uri(env: Env, base_uri: String) {
         let admin = read_admin(&env);
         admin.require_auth();
@@ -292,9 +316,10 @@ impl NFT {
         Self::_set_base_uri(&env, base_uri);
     }
 
+    /// Burn a token (admin or owner only)
     pub fn burn(env: Env, token_id: u128) {
-        let admin = read_admin(&env);
-        admin.require_auth();
+        let owner = Self::_require_owned(&env, token_id);
+        owner.require_auth();
 
         env.storage()
             .instance()
@@ -303,6 +328,7 @@ impl NFT {
         Self::_burn(&env, token_id);
     }
 
+    /// Transfer a token (simpler version for owner)
     pub fn transfer(env: Env, from: Address, to: Address, token_id: u128) {
         from.require_auth();
 
@@ -311,5 +337,22 @@ impl NFT {
             .extend_ttl(INSTANCE_LIFETIME_THRESHOLD, INSTANCE_BUMP_AMOUNT);
 
         Self::_transfer(&env, &from, &to, token_id);
+    }
+
+    /// Get the admin address
+    pub fn get_admin(env: Env) -> Address {
+        read_admin(&env)
+    }
+
+    /// Transfer admin rights to a new address (admin only)
+    pub fn transfer_admin(env: Env, new_admin: Address) {
+        let admin = read_admin(&env);
+        admin.require_auth();
+
+        env.storage()
+            .instance()
+            .extend_ttl(INSTANCE_LIFETIME_THRESHOLD, INSTANCE_BUMP_AMOUNT);
+
+        write_admin(&env, &new_admin);
     }
 }

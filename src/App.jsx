@@ -13,6 +13,7 @@ import {
 
 //mocks blockchain transactions
 import MockPage from "@/components/stellar/mock_page";  
+import NFTInteract from "@/components/stellar/nft-interact";  
 // 🏗️ Layout
 import MainLayout from "@/components/layout/main-layout";
 
@@ -142,6 +143,7 @@ function App() {
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
                  <Route path="/business-english" element={<BusinessEnglish />} />
                  <Route path="/mock" element={<MockPage />} />
+                 <Route path="/nft-interact" element={<NFTInteract />} />
 
               {/*</Route>*/}
             </Route>
