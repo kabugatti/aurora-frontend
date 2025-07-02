@@ -1,5 +1,4 @@
-# .gitignore file
-echo "# Dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
@@ -39,5 +38,21 @@ yarn-error.log*
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db" > .gitignore
+Thumbs.db
+
+# Rust
+target/
+Cargo.lock
+
+# Package manager
 bun.lockb
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
