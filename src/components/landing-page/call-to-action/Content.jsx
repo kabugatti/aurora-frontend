@@ -61,70 +61,70 @@ export const courses = {
   cards: {
     Beginner: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
+        icons: <Brain className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
         tag: "Basic Conversation",
         content: "Learn everyday phrases and expressions",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
+        icons: <GraduationCap className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
         tag: "Grammar Foundations",
         content: "Master the basics of English grammar",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
+        icons: <Globe className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
         tag: "Cultural Insights",
         content: "Learn about cultures while learning language",
       },
     ],
     Intermediate: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Intermediate Conversation",
-        content: "Practice conversations with our AI assistant",
+        icons: <MessageCircle className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Fluent Conversations",
+        content: "Improve your speaking fluency",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Intermediate Grammar",
-        content: "Practice advanced grammar with our AI assistant",
+        icons: <BookOpen className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Reading Comprehension",
+        content: "Enhance your reading skills",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Intermediate Vocabulary",
-        content: "Practice advanced vocabulary with our AI assistant",
+        icons: <Bookmark className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Writing Workshop",
+        content: "Develop your writing skills",
       },
     ],
     Advanced: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Advanced Conversation",
-        content: "Practice advanced conversation with our AI assistant",
-      },
-      {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
+        icons: <Brain className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
         tag: "Advanced Grammar",
-        content: "Practice advanced grammar with our AI assistant",
+        content: "Master complex grammatical structures",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Advanced Vocabulary",
-        content: "Practice advanced vocabulary with our AI assistant",
+        icons: <Globe className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Idiomatic Expressions",
+        content: "Learn native-like expressions",
+      },
+      {
+        icons: <GraduationCap className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Academic English",
+        content: "Prepare for academic enviroments",
       },
     ] ,
     Business: [
       {
-        icons: <Brain className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Business Conversation",
-        content: "Practice business conversation with our AI assistant",
+        icons: <Users className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Business Communication",
+        content: "Professional email and meeting skills",
       },
       {
-        icons: <GraduationCap className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Business Vocabulary",
-        content: "Practice business vocabulary with our AI assistant",
+        icons: <MessageCircle className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Negotiation Skills",
+        content: "Learn to negotiate effectively",
       },
       {
-        icons: <Globe className="text-[#00B8D4] h-[32px] w-[32px]" aria-hidden="true" />,
-        tag: "Business Grammar",
-        content: "Practice business grammar with our AI assistant",
+        icons: <BookOpen className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Presentation Mastery",
+        content: "Deliver impactful presentations",
       },
     ]
   }
@@ -138,37 +138,37 @@ export const whyChooseAuruora = {
     "Our AI-powered platform offers unique advantages for language learners",
   cards: [
     {
-      icons: <Brain className="w-full h-full" aria-hidden="true" />,
+      icons: <Brain className="w-12 h-12" aria-hidden="true" />,
       tag: "AI-Powered Learning",
       content:
         "Our AI technology personalizes your language learning journey for maximum efficiency and results.",
     },
     {
-      icons: <Globe className="w-full h-full" aria-hidden="true" />,
+      icons: <Globe className="w-12 h-12" aria-hidden="true" />,
       tag: "Web3 Integration",
       content:
         "Earn rewards and certificates on blockchain as you progress through your language learning journey.",
     },
     {
-      icons: <Users className="w-full h-full" aria-hidden="true" />,
+      icons: <Users className="w-12 h-12" aria-hidden="true" />,
       tag: "Community Learning",
       content:
         "Connect with other learners and native speakers to practice and improve your language skills.",
     },
     {
-      icons: <GraduationCap className="w-full h-full" aria-hidden="true" />,
+      icons: <GraduationCap className="w-12 h-12" aria-hidden="true" />,
       tag: "Certified Progress",
       content:
         "Track your advancement with recognized certifications that validate your language proficiency.",
     },
     {
-      icons: <MessageCircle className="w-full h-full" aria-hidden="true"  />,
+      icons: <MessageCircle className="w-12 h-12" aria-hidden="true"  />,
       tag: "Interactive Conversations",
       content:
         "Practice real-world conversation scenarios with our advanced AI chatbot technology.",
     },
     {
-      icons: <BookOpen className="w-full h-full" aria-hidden="true" />,
+      icons: <BookOpen className="w-12 h-12" aria-hidden="true" />,
       tag: "Comprehensive Resources",
       content:
         "Access a vast library of learning materials, exercises, and tools to enhance your language skills.",
@@ -211,14 +211,14 @@ export const callToAction = {
     textTwo: "Today",
   },
   subtitle: "Join thousands of learners who are transforming their language skills with AURORA",
-  buttons: [
-    {
-      text: "Signup Free",
-      variant: "primary",
-    },
-    {
-      text: "Explore Courses",
-      variant: "outline",
-    },
-  ],
+  // buttons: [
+  //   {
+  //     text: "Signup Free",
+  //     variant: "primary",
+  //   },
+  //   {
+  //     text: "Explore Courses",
+  //     variant: "outline",
+  //   },
+  // ],
 };
