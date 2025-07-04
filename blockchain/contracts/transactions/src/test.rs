@@ -57,4 +57,60 @@ fn test_transactions() {
     
     assert_eq!(client.read_cash_inflows(), 0i128);
     assert_eq!(client.read_cash_outflows(), 0i128);
+}
+
+#[test]
+fn test_read_admin_and_deployer() {
+    let env = Env::default();
+    let contract_id = env.register(Transactions {}, ());
+    let client = TransactionsClient::new(&env, &contract_id);
+
+    let admin = Address::generate(&env);
+    let user1 = Address::generate(&env);
+
+    // Initialize contract
+    env.mock_all_auths();
+    client.initialize(&admin);
+
+    // Test read_admin returns the deployer
+    let read_admin = client.read_admin();
+    assert_eq!(read_admin, admin);
+
+    // Test read_deployer returns the same as read_admin (the deployer)
+    let read_deployer = client.read_deployer();
+    assert_eq!(read_deployer, admin);
+    assert_eq!(read_admin, read_deployer);
+
+    // Add another admin
+    client.add_admin(&admin, &user1);
+    
+    // Verify both are admins
+    assert!(client.is_admin(&admin));
+    assert!(client.is_admin(&user1));
+    
+    // But read_admin and read_deployer should still return the original deployer
+    assert_eq!(client.read_admin(), admin);
+    assert_eq!(client.read_deployer(), admin);
+}
+
+#[test]
+#[should_panic(expected = "Contract not initialized")]
+fn test_read_admin_uninitialized_contract() {
+    let env = Env::default();
+    let contract_id = env.register(Transactions {}, ());
+    let client = TransactionsClient::new(&env, &contract_id);
+
+    // Try to read admin before initialization - should panic
+    client.read_admin();
+}
+
+#[test]
+#[should_panic(expected = "Contract not initialized")]
+fn test_read_deployer_uninitialized_contract() {
+    let env = Env::default();
+    let contract_id = env.register(Transactions {}, ());
+    let client = TransactionsClient::new(&env, &contract_id);
+
+    // Try to read deployer before initialization - should panic
+    client.read_deployer();
 } 
