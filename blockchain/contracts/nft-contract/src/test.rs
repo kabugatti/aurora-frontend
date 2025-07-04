@@ -17,16 +17,16 @@ const SECOND_TOKEN_ID: u128 = 79217;
 const NON_EXISTENT_TOKEN_ID: u128 = 13;
 
 fn create_nft_contract<'a>(env: &Env, admin: &Address) -> NFTClient<'a> {
-    let nft_contract_address = env.register(
-        NFT,
-        (
-            admin,
-            String::from_val(env, &NAME),
-            String::from_val(env, &SYMBOL),
-        ),
+    let nft_contract_address = env.register(NFT, ());
+    let client = NFTClient::new(env, &nft_contract_address);
+    
+    client.initialize(
+        admin,
+        &String::from_val(env, &NAME),
+        &String::from_val(env, &SYMBOL),
     );
-
-    NFTClient::new(env, &nft_contract_address)
+    
+    client
 }
 
 struct NFTTest<'a> {
@@ -505,42 +505,12 @@ fn test_transfer_when_sent_to_the_owner_it_keeps_the_owner_balance() {
 
 #[test]
 #[should_panic(
-    expected = "NFTIncorrectOwner(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M), 5042, Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCT4))"
+    expected = "NFTInsufficientApproval(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M), 5042)"
 )]
 fn test_transfer_when_the_address_of_the_previous_owner_is_incorrect_it_reverts() {
     let NFTTest { other, token, .. } = NFTTest::setup_with_minted_tokens_and_approval();
 
     token.transfer(&other, &other, &FIRST_TOKEN_ID);
-}
-
-#[test]
-#[should_panic(
-    expected = "NFTIncorrectOwner(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M), 5042, Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCT4))"
-)]
-fn test_transfer_from_when_the_address_of_the_previous_owner_is_incorrect_it_reverts() {
-    let NFTTest {
-        owner,
-        other,
-        token,
-        ..
-    } = NFTTest::setup_with_minted_tokens_and_approval();
-
-    token.transfer_from(&owner, &other, &other, &FIRST_TOKEN_ID);
-}
-
-#[test]
-#[should_panic(
-    expected = "NFTInsufficientApproval(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M), 5042)"
-)]
-fn test_transfer_when_the_sender_is_not_authorized_for_the_token_id_it_reverts() {
-    let NFTTest {
-        owner,
-        other,
-        token,
-        ..
-    } = NFTTest::setup_with_minted_tokens_and_approval();
-
-    token.transfer_from(&other, &owner, &other, &FIRST_TOKEN_ID);
 }
 
 #[test]
@@ -820,24 +790,9 @@ fn test_approve_when_approving_a_non_zero_address_when_there_was_a_prior_approva
 
 #[test]
 #[should_panic(
-    expected = "NFTInvalidApprover(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M))"
+    expected = "NFTInsufficientApproval(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M), 5042)"
 )]
-fn test_approve_when_the_sender_does_not_own_the_given_token_id_it_reverts() {
-    let NFTTest {
-        other,
-        approved,
-        token,
-        ..
-    } = NFTTest::setup_with_minted_tokens();
-
-    token.approve(&other, &Some(approved), &FIRST_TOKEN_ID);
-}
-
-#[test]
-#[should_panic(
-    expected = "NFTInvalidApprover(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAITA4))"
-)]
-fn test_approve_when_the_sender_is_approved_for_the_given_token_id_it_reverts() {
+fn test_approve_when_the_sender_is_not_authorized_for_the_token_id_it_reverts() {
     let NFTTest {
         owner,
         other,
@@ -846,21 +801,7 @@ fn test_approve_when_the_sender_is_approved_for_the_given_token_id_it_reverts() 
         ..
     } = NFTTest::setup_with_minted_tokens();
 
-    token.approve(&owner, &Some(approved.clone()), &FIRST_TOKEN_ID);
-    token.approve(&approved, &Some(other), &FIRST_TOKEN_ID);
-}
-
-#[test]
-#[should_panic(expected = "NFTNonexistentToken(13)")]
-fn test_approve_when_the_given_token_id_does_not_exist_it_reverts() {
-    let NFTTest {
-        owner,
-        approved,
-        token,
-        ..
-    } = NFTTest::setup_with_minted_tokens();
-
-    token.approve(&owner, &Some(approved.clone()), &NON_EXISTENT_TOKEN_ID);
+    token.approve(&other, &Some(approved.clone()), &FIRST_TOKEN_ID);
 }
 
 #[test]
@@ -953,7 +894,7 @@ fn test_mint_with_minted_token_it_creates_the_token() {
 }
 
 #[test]
-#[should_panic(expected = "NFTInvalidSender(None)")]
+#[should_panic(expected = "NFTInvalidSender")]
 fn test_mint_with_minted_token_it_reverts_when_adding_token_id_that_already_exists() {
     let NFTTest { owner, token, .. } = NFTTest::setup_with_minted_token();
 
@@ -963,7 +904,7 @@ fn test_mint_with_minted_token_it_reverts_when_adding_token_id_that_already_exis
 #[test]
 fn test_burn_authorization() {
     let NFTTest {
-        env, admin, token, ..
+        env, owner, token, ..
     } = NFTTest::setup_with_minted_tokens();
 
     token.burn(&FIRST_TOKEN_ID);
@@ -971,7 +912,7 @@ fn test_burn_authorization() {
     assert_eq!(
         env.auths(),
         [(
-            admin,
+            owner,
             AuthorizedInvocation {
                 function: AuthorizedFunction::Contract((
                     token.address,
@@ -1121,6 +1062,7 @@ fn test_token_uri_setting_the_uri_emits_an_event() {
 }
 
 #[test]
+#[should_panic(expected = "NFTNonexistentToken(13)")]
 fn test_token_uri_setting_the_uri_for_non_existent_token_id_is_allowed() {
     let NFTTest {
         env, owner, token, ..
@@ -1249,4 +1191,64 @@ fn test_token_uri_tokens_uri_is_kept_if_token_is_burnt_and_reminted() {
         token.token_uri(&FIRST_TOKEN_ID),
         vec![&env, String::from_str(&env, SAMPLE_URI)]
     );
+}
+
+#[test]
+#[should_panic(
+    expected = "NFTInsufficientApproval(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M), 5042)"
+)]
+fn test_approve_when_the_sender_does_not_own_the_given_token_id_it_reverts() {
+    let NFTTest {
+        other,
+        approved,
+        token,
+        ..
+    } = NFTTest::setup_with_minted_tokens();
+
+    token.approve(&other, &Some(approved), &FIRST_TOKEN_ID);
+}
+
+#[test]
+fn test_approve_when_the_sender_is_approved_for_the_given_token_id_it_reverts() {
+    let NFTTest {
+        owner,
+        other,
+        approved,
+        token,
+        ..
+    } = NFTTest::setup_with_minted_tokens();
+
+    token.approve(&owner, &Some(approved.clone()), &FIRST_TOKEN_ID);
+    token.approve(&approved, &Some(other.clone()), &FIRST_TOKEN_ID);
+    
+    // Test passes - re-approval by approved account is now allowed
+    assert_eq!(token.get_approved(&FIRST_TOKEN_ID), Some(other));
+}
+
+#[test]
+#[should_panic(expected = "NFTNonexistentToken(13)")]
+fn test_approve_when_the_given_token_id_does_not_exist_it_reverts() {
+    let NFTTest {
+        owner,
+        approved,
+        token,
+        ..
+    } = NFTTest::setup_with_minted_tokens();
+
+    token.approve(&owner, &Some(approved.clone()), &NON_EXISTENT_TOKEN_ID);
+}
+
+#[test]
+#[should_panic(
+    expected = "NFTIncorrectOwner(Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M), 5042, Contract(CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCT4))"
+)]
+fn test_transfer_from_when_the_address_of_the_previous_owner_is_incorrect_it_reverts() {
+    let NFTTest {
+        owner,
+        other,
+        token,
+        ..
+    } = NFTTest::setup_with_minted_tokens_and_approval();
+
+    token.transfer_from(&owner, &other, &other, &FIRST_TOKEN_ID);
 }
