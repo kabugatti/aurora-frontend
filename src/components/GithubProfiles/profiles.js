@@ -24,16 +24,14 @@ const fetchGitHubProfile = async (user) => {
         }
         return interfaceUser;
     } catch (error) {
-        console.log("ERROR Fetching Github API:" + error);
         return null;
     }
 };
 
 const getGitHubProfiles = async () => {
     const profiles = await Promise.all(users.map(user => fetchGitHubProfile(user)));
-    return profiles;
+    const validProfiles = profiles.filter(profile => profile !== null);
+    return validProfiles;
 };
 
-const gitHubProfiles = getGitHubProfiles();
-
-export default gitHubProfiles;
+export default getGitHubProfiles;

@@ -46,10 +46,15 @@ const FAQPage = () => {
                                 <div key={index} className="bg-white border border-gray-200 rounded-lg shadow-sm">
                                     <button
                                         onClick={() => toggleItem(index)}
+                                        aria-expanded={openItems[index] ? 'true' : 'false'}
+                                        aria-controls={`faq-answer-${index}`}
                                         className="w-full px-6 py-6 text-left hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition-colors duration-200 rounded-lg"
                                     >
+
                                         <div className="flex justify-between items-center">
-                                            <h3 className="text-lg font-semibold text-gray-900 pr-8">
+                                            <h3
+                                                id={`faq-question-${index}`}
+                                                className="text-lg font-semibold text-gray-900 pr-8">
                                                 {item.question}
                                             </h3>
                                             <ChevronDown
@@ -60,8 +65,10 @@ const FAQPage = () => {
                                     </button>
 
                                     <div
-                                        className={`overflow-hidden transition-all duration-300 ease-in-out ${openItems[index] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                                            }`}
+                                        id={`faq-content-${index}`}
+                                        role="region"
+                                        aria-labelledby={`faq-question-${index}`}
+                                        className={`overflow-hidden transition-all duration-300 ease-in-out ${openItems[index] ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
                                     >
                                         <div className="px-6 pb-6">
                                             <p className="text-gray-700 leading-relaxed">
@@ -89,8 +96,8 @@ const FAQPage = () => {
                                 </a>
                                 <Link to="/team">
                                     <button className="bg-white text-gray-700 font-semibold py-4 px-8 rounded-lg border border-gray-300 hover:border-gray-400">
-                                    Learn More About Us
-                                </button>
+                                        Learn More About Us
+                                    </button>
                                 </Link>
                             </div>
                         </div>
