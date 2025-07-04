@@ -9,9 +9,9 @@ const CallToActionPage = () => {
   return (
     <div className="flex w-full h-full flex-col">
       <HeroSection />
-      <SkillSection />
-      <CoursesSection />
       <WhyChooseAurora />
+      <CoursesSection />
+      {/* <SkillSection /> */} 
       <TestimonialsSection />
       <CTASection />
     </div>

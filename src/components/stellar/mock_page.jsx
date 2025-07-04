@@ -15,12 +15,12 @@ const MockPage = () => {
       const contract = new Client({
         networkPassphrase: Networks.TESTNET,
         rpcUrl: 'https://soroban-testnet.stellar.org',
-        contractId: 'CAYU7EXYAUBM4VKHZYB6WE5RADTATRDKGK3GOIDOBBRNYNEPU3L4D2LV'
+        contractId: 'CBPIN7VOPCXDCWT2QIXTXCAX2N4XBNGSQKNEWPRP7J5Z4QSQOGGXBPGP'
       });
 
       console.log('Llamando a initialize...');
       const { result: transactionResult } = await contract.initialize({
-        admin: 'GCQZQEHWCEM5AG2HY6CMPKXC7S5FL6U7Z44Q7RTYAPKFYQLQTNJ45X7W'
+        admin: 'GB3A3QFF7SDBEIE2NMNJ2JGR7DWRMX2QV4EFR7WUC7OIT2O3EOUEOCJF'
       });
 
       console.log('Transacción completada:', transactionResult);

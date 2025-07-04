@@ -15,8 +15,8 @@ pub fn read_owner(env: &Env, token_id: u128) -> Option<Address> {
 
 pub fn write_owner(env: &Env, token_id: u128, owner: &Option<Address>) {
     let key = DataKey::Owner(token_id);
-    if owner.is_some() {
-        env.storage().persistent().set(&key, &owner);
+    if let Some(owner_addr) = owner {
+        env.storage().persistent().set(&key, owner_addr);
         env.storage()
             .persistent()
             .extend_ttl(&key, OWNER_LIFETIME_THRESHOLD, OWNER_BUMP_AMOUNT);

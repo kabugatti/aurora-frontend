@@ -13,8 +13,6 @@ import { Horizon } from "@stellar/stellar-sdk";
 // Stellar testnet server
 const stellarServer = new Horizon.Server("https://horizon-testnet.stellar.org");
 
-
-// Types
 // Create context
 const WalletContext = createContext(undefined);
 
@@ -28,7 +26,7 @@ export const useWallet = () => {
 };
 
 // Provider component
-export const WalletProvider= ({ children }) => {
+export const WalletProvider = ({ children }) => {
   const [walletAddress, setWalletAddress] = useState(null);
   const [walletType, setWalletType] = useState(null);
   const [isConnecting, setIsConnecting] = useState(false);
@@ -41,7 +39,7 @@ export const WalletProvider= ({ children }) => {
     modules: allowAllModules(),
   });
   
-   const fundTestnetAccount = async (publicKey) => {
+  const fundTestnetAccount = async (publicKey) => {
     try {
       console.log("Funding testnet account:", publicKey);
       const response = await fetch(`https://friendbot.stellar.org?addr=${publicKey}`);
@@ -57,7 +55,8 @@ export const WalletProvider= ({ children }) => {
       return false;
     }
   };
-   const fetchBalances = async (publicKey, autoFund = false) => {
+
+  const fetchBalances = async (publicKey, autoFund = false) => {
     try {
       console.log("Fetching balances for:", publicKey);
       const account = await stellarServer.loadAccount(publicKey);
@@ -179,19 +178,83 @@ export const WalletProvider= ({ children }) => {
     }
 
     try {
+      // Handle different transaction formats
+      let transactionXDR;
+      console.log("🔍 Analyzing transaction format:", { 
+        type: typeof transaction, 
+        hasToXDR: !!(transaction && typeof transaction.toXDR === 'function'),
+        hasBuilt: !!(transaction && transaction.built),
+        keys: transaction ? Object.keys(transaction) : []
+      });
+
+      if (typeof transaction === 'string') {
+        // Already XDR string
+        transactionXDR = transaction;
+      } else if (transaction && typeof transaction.toXDR === 'function') {
+        // Transaction object
+        transactionXDR = transaction.toXDR();
+      } else if (transaction && transaction.built && typeof transaction.built.toXDR === 'function') {
+        // Soroban contract transaction object
+        transactionXDR = transaction.built.toXDR();
+      } else {
+        console.error("Unknown transaction format:", transaction);
+        throw new Error(`Invalid transaction format. Type: ${typeof transaction}, hasToXDR: ${!!(transaction && typeof transaction.toXDR === 'function')}, hasBuilt: ${!!(transaction && transaction.built)}`);
+      }
+
       if (walletType === "rabbit") {
         if (!window.rabet) {
           throw new Error("Rabbit wallet not installed");
         }
-        const { xdr } = await window.rabet.sign(transaction.toXDR(), "testnet");
+        const { xdr } = await window.rabet.sign(transactionXDR, "testnet");
         return xdr;
       } else {
-        const { signedXDR } = await kit.sign({
-          xdr: transaction.toXDR(),
-          publicKey: walletAddress,
-          network: WalletNetwork.TESTNET,
-        });
-        return signedXDR;
+        console.log("🔍 Available kit methods:", Object.getOwnPropertyNames(kit).filter(name => typeof kit[name] === 'function'));
+        
+        // Try different methods that might be available
+        if (typeof kit.signTransaction === 'function') {
+          console.log("📝 Using kit.signTransaction from WalletContext");
+          const result = await kit.signTransaction(transactionXDR, {
+            publicKey: walletAddress,
+            network: WalletNetwork.TESTNET,
+          });
+          console.log("🔍 WalletContext kit.signTransaction result:", result);
+          const signedXdr = result.signedXDR || result.signedTxXdr || result.xdr || result;
+          console.log("🔍 WalletContext extracted XDR:", { 
+            type: typeof signedXdr, 
+            length: signedXdr ? signedXdr.length : 0,
+            preview: signedXdr ? signedXdr.substring(0, 100) + '...' : 'null'
+          });
+          
+          // Validate XDR format
+          if (typeof signedXdr !== 'string' || !signedXdr.trim()) {
+            throw new Error(`Invalid XDR format from WalletContext kit.signTransaction. Got: ${typeof signedXdr}, value: ${signedXdr}`);
+          }
+          
+          return signedXdr;
+        } else if (typeof kit.signTx === 'function') {
+          console.log("📝 Using kit.signTx from WalletContext");
+          const result = await kit.signTx({
+            xdr: transactionXDR,
+            publicKeys: [walletAddress],
+            network: WalletNetwork.TESTNET,
+          });
+          console.log("🔍 WalletContext kit.signTx result:", result);
+          const signedXdr = result.signedXDR || result.signedTxXdr || result.xdr || result;
+          console.log("🔍 WalletContext extracted XDR:", { 
+            type: typeof signedXdr, 
+            length: signedXdr ? signedXdr.length : 0,
+            preview: signedXdr ? signedXdr.substring(0, 100) + '...' : 'null'
+          });
+          
+          // Validate XDR format
+          if (typeof signedXdr !== 'string' || !signedXdr.trim()) {
+            throw new Error(`Invalid XDR format from WalletContext kit.signTx. Got: ${typeof signedXdr}, value: ${signedXdr}`);
+          }
+          
+          return signedXdr;
+        } else {
+          throw new Error(`Wallet kit signing method not found. Available methods: ${Object.getOwnPropertyNames(kit).filter(name => typeof kit[name] === 'function').join(', ')}`);
+        }
       }
     } catch (error) {
       console.error("Transaction signing error:", error);
@@ -214,11 +277,13 @@ export const WalletProvider= ({ children }) => {
     walletAddress,
     walletType,
     isConnecting,
+    isReady: !!walletAddress && !isConnecting, // Add isReady property
     balances,
     connectWallet,
     connectRabbit,
     disconnectWallet,
     signTransaction,
+    walletKit: kit, // Also add walletKit for compatibility
   };
 
   return <WalletContext.Provider value={value}>{children}</WalletContext.Provider>;

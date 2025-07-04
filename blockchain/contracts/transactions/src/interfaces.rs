@@ -6,6 +6,8 @@ pub trait AdminInterface {
     fn add_admin(env: Env, caller: Address, new_admin: Address);
     fn only_admins(env: &Env, address: &Address) -> bool;
     fn is_admin(env: Env, address: Address) -> bool;
+    fn read_admin(env: Env) -> Address;
+    fn read_deployer(env: Env) -> Address;
 }
 
 pub trait TransactionInterface {
