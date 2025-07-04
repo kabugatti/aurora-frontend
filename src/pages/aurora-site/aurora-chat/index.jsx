@@ -30,7 +30,6 @@ const AuroraChat = () => {
     },
   ]);
   const [inputText, setInputText] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
   const [previewMessage, setPreviewMessage] = useState(null);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
