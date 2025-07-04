@@ -9,8 +9,6 @@ import {
   Routes,
 } from "react-router-dom";
 
-
-
 //mocks blockchain transactions
 import MockPage from "@/components/stellar/mock_page";  
 import NFTInteract from "@/components/stellar/nft-interact";  
@@ -36,10 +34,13 @@ import CertificationContent from "@/pages/aurora-site/english-level/english-leve
 import CertificationsObtained from "@/pages/aurora-site/english-level/english-level-obtained";
 import ModuleDetails from "@/pages/aurora-site/modules/module-details";
 import CourseListing from "./pages/aurora-site/course-listing/course-listing-page";
+
 // ⚙️ System & Settings
 import Notifications from "@/pages/aurora-site/notifications";
 import SettingsPage from "@/pages/aurora-site/settings";
 import WalletConnection from "@/pages/aurora-site/wallet/wallet-connection";
+import FAQPage from "./components/FAQ/faq";
+import GitHubProfiles from "./components/GithubProfiles/profilesComponent";
 
 // 🌐 Community & Interaction
 import AuroraChat from "@/pages/aurora-site/aurora-chat";
@@ -141,10 +142,13 @@ function App() {
                 <Route path="/teacher-directory" element={<TeacherDirectoryPage />} />
                 <Route path="/question-creator" element={<QuestionCreator />} />
                 <Route path="/leaderboard" element={<LeaderboardPage />} />
-                 <Route path="/business-english" element={<BusinessEnglish />} />
-                 <Route path="/mock" element={<MockPage />} />
-                 <Route path="/nft-interact" element={<NFTInteract />} />
 
+                <Route path="/business-english" element={<BusinessEnglish />} />
+                <Route path="/mock" element={<MockPage />} />
+                <Route path="/faq" element={< FAQPage/>}/>
+                <Route path="/team" element={< GitHubProfiles/>}/>
+                <Route path="/nft-interact" element={<NFTInteract />} />
+              
               {/*</Route>*/}
             </Route>
 
