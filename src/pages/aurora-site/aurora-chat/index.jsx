@@ -1,19 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import ElizaBot from "elizabot";
-import auroraImage from "@/assets/aurora.jpg";
-import {
-  LightbulbIcon,
-  FileIcon,
-  SendIcon,
-  Send,
-  User,
-  ThumbsDown,
-  ThumbsUp,
-} from "lucide-react";
-import styles from "./aurora-chat.module.css";
-import RenderFileUploadMessage from "@/components/chat/render-file-upload-message";
+import { Send, User, ThumbsDown, ThumbsUp } from "lucide-react";
 import PreviewModal from "@/components/chat/file-preview-modal";
-import VoiceInput from "@/components/chat/voice-input";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
@@ -29,7 +17,7 @@ const AuroraChat = () => {
       isEliza: true,
     },
   ]);
-  const [inputText, setInputText] = useState("");
+  const [inputText] = useState("");
   const [previewMessage, setPreviewMessage] = useState(null);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
