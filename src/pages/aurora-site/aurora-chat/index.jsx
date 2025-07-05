@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import ElizaBot from "elizabot";
-import { Send, User, ThumbsDown, ThumbsUp } from "lucide-react";
+import { Send, User, ThumbsDown, ThumbsUp, Settings } from "lucide-react";
 import PreviewModal from "@/components/chat/file-preview-modal";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import TextToSpeech from "@/components/chat/text-to-speech";
+import VoiceSettings from "@/components/chat/voice-settings";
+import VoiceStatusIndicator from "@/components/chat/voice-status-indicator";
 
 const AuroraChat = () => {
   const [messages, setMessages] = useState([
@@ -22,6 +25,7 @@ const AuroraChat = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+  const [showVoiceSettings, setShowVoiceSettings] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -207,7 +211,7 @@ const AuroraChat = () => {
       {/* Main Chat Area */}
       <div className="flex-1 mx-auto flex flex-col h-screen">
         {/* Header */}
-        <div className="flex items-center w-full px-6 py-4 bg-dark-blue-1 border-b border-dark-blue-4">
+        <div className="flex items-center justify-between w-full px-6 py-4 bg-dark-blue-1 border-b border-dark-blue-4">
           {/* AI Assistant */}
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-12 h-12 overflow-hidden rounded-full bg-light-blue-1">
@@ -222,6 +226,15 @@ const AuroraChat = () => {
               </p>
             </div>
           </div>
+          {/* Voice Settings Button */}
+          <button
+            onClick={() => setShowVoiceSettings(true)}
+            className="flex items-center gap-2 px-3 py-2 text-sm text-neutral-5 hover:text-light-blue-2 bg-dark-blue-4 hover:bg-dark-blue-3 rounded-lg transition-colors"
+            title="Voice Settings"
+          >
+            <Settings className="w-4 h-4" />
+            <span className="hidden sm:inline">Voice Settings</span>
+          </button>
         </div>
 
         {/* Messages Area with Scroll */}
@@ -258,9 +271,17 @@ const AuroraChat = () => {
                         : "bg-slate-700 border-slate-600"
                     )}
                   >
-                    <p className="text-white whitespace-pre-wrap">
-                      {message.content}
-                    </p>
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-sm leading-relaxed break-words flex-1">
+                        {message.content}
+                      </p>
+                      {message.isEliza && (
+                        <TextToSpeech
+                          text={message.content}
+                          className="flex-shrink-0 mt-1"
+                        />
+                      )}
+                    </div>
                   </Card>
 
                   {message.role === "assistant" && (
@@ -433,6 +454,14 @@ const AuroraChat = () => {
           onChangeFile={handleChangeFile}
         />
       )}
+      {/* Voice Settings Modal */}
+      <VoiceSettings
+        isOpen={showVoiceSettings}
+        onClose={() => setShowVoiceSettings(false)}
+      />
+
+      {/* Voice Status Indicator */}
+      <VoiceStatusIndicator />
     </div>
   );
 };
