@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import ElizaBot from "elizabot";
 import { Send, User, ThumbsDown, ThumbsUp, Settings } from "lucide-react";
@@ -7,6 +8,9 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import styles from "./aurora-chat.module.css";
+import RenderFileUploadMessage from "@/components/chat/render-file-upload-message";
+import VoiceInput from "@/components/chat/voice-input";
 import TextToSpeech from "@/components/chat/text-to-speech";
 import VoiceSettings from "@/components/chat/voice-settings";
 import VoiceStatusIndicator from "@/components/chat/voice-status-indicator";
@@ -25,6 +29,7 @@ const AuroraChat = () => {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
+
   const [showVoiceSettings, setShowVoiceSettings] = useState(false);
 
   const scrollToBottom = () => {
@@ -226,6 +231,7 @@ const AuroraChat = () => {
               </p>
             </div>
           </div>
+
           {/* Voice Settings Button */}
           <button
             onClick={() => setShowVoiceSettings(true)}
@@ -272,16 +278,18 @@ const AuroraChat = () => {
                     )}
                   >
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-sm leading-relaxed break-words flex-1">
-                        {message.content}
-                      </p>
+
+
+                      <p className="text-sm leading-relaxed break-words flex-1">{message.content}</p>
                       {message.isEliza && (
-                        <TextToSpeech
-                          text={message.content}
+                        <TextToSpeech 
+                          text={message.content} 
+
                           className="flex-shrink-0 mt-1"
                         />
                       )}
                     </div>
+
                   </Card>
 
                   {message.role === "assistant" && (
@@ -322,6 +330,7 @@ const AuroraChat = () => {
                       <User className="h-4 w-4" />
                     </AvatarFallback>
                   </Avatar>
+
                 )}
               </div>
             ))}
@@ -454,10 +463,13 @@ const AuroraChat = () => {
           onChangeFile={handleChangeFile}
         />
       )}
+
+
       {/* Voice Settings Modal */}
-      <VoiceSettings
-        isOpen={showVoiceSettings}
-        onClose={() => setShowVoiceSettings(false)}
+      <VoiceSettings 
+        isOpen={showVoiceSettings} 
+        onClose={() => setShowVoiceSettings(false)} 
+
       />
 
       {/* Voice Status Indicator */}

@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Settings, Volume2 } from "lucide-react";
 const VoiceSettings = ({ isOpen, onClose }) => {
@@ -8,13 +9,15 @@ const VoiceSettings = ({ isOpen, onClose }) => {
   const [volume, setVolume] = useState(1);
 
   useEffect(() => {
-    if ("speechSynthesis" in window) {
+
+    if ('speechSynthesis' in window) {
       const loadVoices = () => {
         const availableVoices = window.speechSynthesis.getVoices();
-        const englishVoices = availableVoices.filter((voice) =>
-          voice.lang.startsWith("en")
+        const englishVoices = availableVoices.filter(voice => 
+          voice.lang.startsWith('en')
         );
         setVoices(englishVoices);
+        
 
         // Set default voice
         if (englishVoices.length > 0 && !selectedVoice) {
@@ -32,11 +35,13 @@ const VoiceSettings = ({ isOpen, onClose }) => {
   }, [selectedVoice]);
 
   const testVoice = () => {
-    if ("speechSynthesis" in window && selectedVoice) {
+
+    if ('speechSynthesis' in window && selectedVoice) {
       const utterance = new SpeechSynthesisUtterance(
         "Hello! This is a test of the voice settings."
       );
-      utterance.voice = voices.find((v) => v.name === selectedVoice);
+      utterance.voice = voices.find(v => v.name === selectedVoice);
+
       utterance.rate = rate;
       utterance.pitch = pitch;
       utterance.volume = volume;
@@ -49,18 +54,22 @@ const VoiceSettings = ({ isOpen, onClose }) => {
       voice: selectedVoice,
       rate,
       pitch,
-      volume,
+
+      volume
     };
-    localStorage.setItem("voiceSettings", JSON.stringify(settings));
+    localStorage.setItem('voiceSettings', JSON.stringify(settings));
+
     onClose();
   };
 
   useEffect(() => {
     // Load saved settings
-    const saved = localStorage.getItem("voiceSettings");
+
+    const saved = localStorage.getItem('voiceSettings');
     if (saved) {
       const settings = JSON.parse(saved);
-      setSelectedVoice(settings.voice || "");
+      setSelectedVoice(settings.voice || '');
+
       setRate(settings.rate || 0.9);
       setPitch(settings.pitch || 1);
       setVolume(settings.volume || 1);
@@ -182,4 +191,6 @@ const VoiceSettings = ({ isOpen, onClose }) => {
   );
 };
 
-export default VoiceSettings;
+
+export default VoiceSettings; 
+

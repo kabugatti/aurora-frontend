@@ -1,5 +1,5 @@
 use soroban_sdk::{Address, Env, Map};
-use crate::datatype::ADMINS;
+use crate::datatype::{ADMINS, DEPLOYER};
 use crate::interfaces::AdminInterface;
 
 pub struct AdminImpl;
@@ -7,6 +7,8 @@ pub struct AdminImpl;
 impl AdminInterface for AdminImpl {
     fn initialize(env: Env, admin: Address) {
         admin.require_auth();
+        
+        env.storage().instance().set(&DEPLOYER, &admin);
         
         let mut admins: Map<Address, bool> = Map::new(&env);
         admins.set(admin, true);
@@ -46,5 +48,19 @@ impl AdminInterface for AdminImpl {
             .unwrap_or(Map::new(&env));
         
         admins.get(address).unwrap_or(false)
+    }
+    
+    fn read_admin(env: Env) -> Address {
+        env.storage()
+            .instance()
+            .get(&DEPLOYER)
+            .expect("Contract not initialized")
+    }
+    
+    fn read_deployer(env: Env) -> Address {
+        env.storage()
+            .instance()
+            .get(&DEPLOYER)
+            .expect("Contract not initialized")
     }
 } 

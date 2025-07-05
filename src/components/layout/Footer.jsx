@@ -7,6 +7,7 @@ import {
   Instagram,
   Linkedin,
 } from "lucide-react"
+import { Link } from "react-router-dom"
 
 import auroraBrain from "/aurora-logo.png"
 
@@ -63,19 +64,9 @@ const Footer = ({ customClass = "" }) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
+                <Link to="/team" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
                   Our Team
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -89,51 +80,15 @@ const Footer = ({ customClass = "" }) => {
               Resources
             </h3>
             <ul className={`${accordionOpen.recursos ? "block" : "hidden"} md:block space-y-2`}>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Guides
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Support
-                </a>
-              </li>
-            </ul>
-          </div>
 
-          {/* Column: Legal */}
-          <div className="space-y-4">
-            <h3
-              className="text-lg font-semibold cursor-pointer md:cursor-default"
-              onClick={() => toggleAccordion("legal")}
-            >
-              Legal
-            </h3>
-            <ul className={`${accordionOpen.legal ? "block" : "hidden"} md:block space-y-2`}>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Terms of Service
-                </a>
+                <Link to="/faq" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
+                  FAQ
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
-                  Cookie Policy
+                <a href="mailto:aurorala.web3@gmail.com" className="text-gray-400 hover:text-white no-underline text-sm block py-1">
+                  Contact and Support
                 </a>
               </li>
             </ul>

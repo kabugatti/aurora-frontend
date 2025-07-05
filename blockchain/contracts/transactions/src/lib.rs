@@ -48,6 +48,14 @@ impl Transactions {
         AdminImpl::is_admin(env, address)
     }
     
+    pub fn read_admin(env: Env) -> Address {
+        AdminImpl::read_admin(env)
+    }
+    
+    pub fn read_deployer(env: Env) -> Address {
+        AdminImpl::read_deployer(env)
+    }
+    
     // Transaction functions
     pub fn add_transaction_received(env: Env, caller: Address, address: Address, amount: i128) {
         TransactionImpl::add_transaction_received(env, caller, address, amount);

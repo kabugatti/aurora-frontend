@@ -1,35 +1,41 @@
+
 import { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Pause, Volume2 } from "lucide-react";
 
 const TextToSpeech = ({ text, className = "" }) => {
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [isSupported, setIsSupported] = useState(false);
   const utteranceRef = useRef(null);
 
   useEffect(() => {
     // Check if browser supports speech synthesis
-    setIsSupported(
-      "speechSynthesis" in window && "SpeechSynthesisUtterance" in window
-    );
+
+    setIsSupported('speechSynthesis' in window && 'SpeechSynthesisUtterance' in window);
+
   }, []);
 
   const getVoiceSettings = () => {
     try {
-      const saved = localStorage.getItem("voiceSettings");
+
+      const saved = localStorage.getItem('voiceSettings');
+
       if (saved) {
         return JSON.parse(saved);
       }
     } catch (error) {
-      console.error("Error loading voice settings:", error);
-    }
 
+      console.error('Error loading voice settings:', error);
+    }
+    
     // Default settings
     return {
-      voice: "",
+      voice: '',
       rate: 0.9,
       pitch: 1,
-      volume: 1,
+      volume: 1
+
     };
   };
 
@@ -44,9 +50,11 @@ const TextToSpeech = ({ text, className = "" }) => {
     // Create new utterance
     utteranceRef.current = new SpeechSynthesisUtterance(text);
 
+    
     // Apply saved settings
     const settings = getVoiceSettings();
-    utteranceRef.current.lang = "en-US";
+    utteranceRef.current.lang = 'en-US';
+
     utteranceRef.current.rate = settings.rate || 0.9;
     utteranceRef.current.pitch = settings.pitch || 1;
     utteranceRef.current.volume = settings.volume || 1;
@@ -54,7 +62,9 @@ const TextToSpeech = ({ text, className = "" }) => {
     // Set voice if available
     if (settings.voice) {
       const voices = window.speechSynthesis.getVoices();
-      const selectedVoice = voices.find((v) => v.name === settings.voice);
+
+      const selectedVoice = voices.find(v => v.name === settings.voice);
+
       if (selectedVoice) {
         utteranceRef.current.voice = selectedVoice;
       }
@@ -64,7 +74,9 @@ const TextToSpeech = ({ text, className = "" }) => {
     utteranceRef.current.onstart = () => setIsPlaying(true);
     utteranceRef.current.onend = () => setIsPlaying(false);
     utteranceRef.current.onerror = (event) => {
-      console.error("Speech synthesis error:", event.error);
+
+      console.error('Speech synthesis error:', event.error);
+
       setIsPlaying(false);
     };
 
@@ -104,8 +116,10 @@ const TextToSpeech = ({ text, className = "" }) => {
     <button
       onClick={togglePlay}
       className={`flex items-center justify-center w-6 h-6 rounded-full bg-light-blue-1/20 hover:bg-light-blue-1/30 text-light-blue-2 hover:text-light-blue-1 transition-all duration-200 ${className}`}
-      aria-label={isPlaying ? "Stop audio playback" : "Play audio message"}
-      title={isPlaying ? "Stop audio playback" : "Play audio message"}
+
+      aria-label={isPlaying ? 'Stop audio playback' : 'Play audio message'}
+      title={isPlaying ? 'Stop audio playback' : 'Play audio message'}
+
     >
       {isPlaying ? (
         <Pause className="w-3 h-3" />
@@ -121,4 +135,6 @@ TextToSpeech.propTypes = {
   className: PropTypes.string,
 };
 
-export default TextToSpeech;
+
+export default TextToSpeech; 
+
