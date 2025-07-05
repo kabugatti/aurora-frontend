@@ -1,6 +1,6 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST(request) {
   try {
     const { message, history } = await request.json();
 
@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY}`,
+          Authorization: `Bearer ${process.env.DEEPSEEK_API_KEY ?? ""}`,
         },
         body: JSON.stringify({
           model: "deepseek-chat",
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
                 "You are AURORA, a helpful AI language learning assistant. Provide clear, encouraging responses to help users learn languages. Keep responses concise and educational.",
             },
             // Include conversation history for context
-            ...history.slice(-5).map((msg: any) => ({
+            ...history.slice(-5).map((msg) => ({
               role: msg.role,
               content: msg.content,
             })),
