@@ -17,7 +17,7 @@ const AuroraChat = () => {
       isEliza: true,
     },
   ]);
-  const [inputText] = useState("");
+  const [inputText, setInputText] = useState("");
   const [previewMessage, setPreviewMessage] = useState(null);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -138,7 +138,7 @@ const AuroraChat = () => {
 
       setPreviewMessage(null);
 
-      setIsTyping(true);
+      setInputText(true);
 
       setTimeout(() => {
         const elizaResponse = {
@@ -148,7 +148,7 @@ const AuroraChat = () => {
         };
 
         setMessages((prev) => [...prev, elizaResponse]);
-        setIsTyping(false);
+        setInputText(false);
       }, 1500);
     }
   };
