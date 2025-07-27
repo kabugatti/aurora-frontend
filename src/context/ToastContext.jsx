@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState } from "react";
-import { ToastProvider, ToastViewport, Toast, ToastTitle, ToastDescription } from "@/components/layout/ui/toast";
+import {
+  ToastProvider,
+  ToastViewport,
+  Toast,
+  ToastTitle,
+  ToastDescription,
+} from "@/components/layout/ui/toast";
 
 const ToastContext = createContext({
   showToast: () => {},
@@ -10,8 +16,11 @@ export const useToast = () => useContext(ToastContext);
 export function ToastContextProvider({ children }) {
   const [toasts, setToasts] = useState([]);
 
-  const showToast = ({ title, description, variant = "default" }) => {
+  const showToast = ({ title, description, type = "default" }) => {
     const id = Math.random().toString(36).substring(2, 9);
+    // Map type to variant for consistent styling
+    const variant =
+      type === "success" ? "success" : type === "error" ? "error" : "default";
     setToasts((prev) => [...prev, { id, title, description, variant }]);
 
     setTimeout(() => {
@@ -27,7 +36,9 @@ export function ToastContextProvider({ children }) {
           <Toast key={toast.id} variant={toast.variant}>
             <div className="grid gap-1">
               {toast.title && <ToastTitle>{toast.title}</ToastTitle>}
-              {toast.description && <ToastDescription>{toast.description}</ToastDescription>}
+              {toast.description && (
+                <ToastDescription>{toast.description}</ToastDescription>
+              )}
             </div>
           </Toast>
         ))}
