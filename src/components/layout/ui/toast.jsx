@@ -24,12 +24,12 @@ const Toast = React.forwardRef(({ className, variant, ...props }, ref) => {
       className={cn(
         "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
         variant === "success" &&
-          "border-green-500 bg-green-900/20 text-green-100 border-green-400",
+          "border-green-500 bg-green-900/20 text-green-100",
         variant === "error" &&
-          "border-red-500 bg-red-900/20 text-red-100 border-red-400",
+          " bg-red-900/20 text-red-100 border-red-400",
         variant === "default" &&
-          "border-blue-500 bg-blue-900/20 text-blue-100 border-blue-400",
-        !variant && "border-gray-600 bg-gray-800 text-gray-100 border-gray-500",
+          " bg-blue-900/20 text-blue-100 border-blue-400",
+        !variant && " bg-gray-800 text-gray-100 border-gray-500",
         className
       )}
       {...props}

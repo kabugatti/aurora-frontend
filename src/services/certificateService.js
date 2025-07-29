@@ -1,9 +1,6 @@
 // Certificate NFT Service
 // Handles interactions with Aurora certification NFTs on the Stellar blockchain
 
-// Certificate NFT Service
-// Handles interactions with Aurora certification NFTs on the Stellar blockchain
-
 // Note: Real blockchain integration will require proper Stellar SDK imports
 // For now, we're using mock data to demonstrate the functionality
 
@@ -20,8 +17,12 @@ class CertificateService {
   // Fetch all certificates owned by a wallet address
   async fetchUserCertificates(walletAddress) {
     try {
+      // Validate wallet address
+      if (!walletAddress || typeof walletAddress !== "string") {
+        throw new Error("Invalid wallet address");
+      }
       console.log("Fetching certificates for wallet:", walletAddress);
-
+      // TODO: Replace mock implementation with actual Stellar blockchain queries  
       // In a real implementation, this would query the blockchain
       // For now, we'll return mock data
       const mockCertificates = [

@@ -32,8 +32,6 @@ const CertificateCard = ({ certificate, onDownload, onShare }) => {
   const handleDownload = async () => {
     setIsDownloading(true);
     try {
-      // Simulate download process
-      await new Promise((resolve) => setTimeout(resolve, 2000));
       onDownload(certificate);
     } catch (error) {
       console.error("Download failed:", error);
@@ -55,7 +53,7 @@ const CertificateCard = ({ certificate, onDownload, onShare }) => {
         await navigator.share(shareData);
       } else {
         await navigator.clipboard.writeText(shareData.url);
-        // Show toast notification
+        // Toast notification is handled by the parent component
       }
       onShare(certificate);
     } catch (error) {
@@ -243,6 +241,7 @@ const CertificatePage = () => {
   const { walletAddress, connectWallet, disconnectWallet } = useWallet();
   const { showToast } = useToast();
   const [certificates, setCertificates] = useState([]);
+  const [analytics, setAnalytics] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState("certificates");
 
@@ -256,6 +255,12 @@ const CertificatePage = () => {
         walletAddress
       );
       setCertificates(certificates);
+
+      // Fetch analytics data
+      const analyticsData = await certificateService.getCertificateAnalytics(
+        walletAddress
+      );
+      setAnalytics(analyticsData);
 
       showToast({
         title: "Certificates Loaded",
@@ -499,15 +504,7 @@ const CertificatePage = () => {
                       <div>
                         <p className="text-gray-400 text-sm">Average Score</p>
                         <p className="text-2xl font-bold text-white">
-                          {certificates.length > 0
-                            ? Math.round(
-                                certificates.reduce(
-                                  (acc, cert) => acc + cert.metadata.score,
-                                  0
-                                ) / certificates.length
-                              )
-                            : 0}
-                          %
+                          {analytics?.averageScore || 0}%
                         </p>
                       </div>
                     </div>
@@ -523,23 +520,7 @@ const CertificatePage = () => {
                       <div>
                         <p className="text-gray-400 text-sm">Highest Level</p>
                         <p className="text-2xl font-bold text-white">
-                          {certificates.length > 0
-                            ? certificates.reduce((highest, cert) => {
-                                const levels = [
-                                  "A1",
-                                  "A2",
-                                  "B1",
-                                  "B2",
-                                  "C1",
-                                  "C2",
-                                ];
-                                const currentIndex = levels.indexOf(cert.level);
-                                const highestIndex = levels.indexOf(highest);
-                                return currentIndex > highestIndex
-                                  ? cert.level
-                                  : highest;
-                              }, "A1")
-                            : "None"}
+                          {analytics?.highestLevel || "None"}
                         </p>
                       </div>
                     </div>
@@ -558,11 +539,7 @@ const CertificatePage = () => {
                     </CardHeader>
                     <CardContent>
                       <div className="flex flex-wrap gap-2">
-                        {[
-                          ...new Set(
-                            certificates.flatMap((cert) => cert.metadata.skills)
-                          ),
-                        ].map((skill, index) => (
+                        {analytics?.skillsAcquired?.map((skill, index) => (
                           <Badge
                             key={index}
                             variant="secondary"
@@ -570,7 +547,7 @@ const CertificatePage = () => {
                           >
                             {skill}
                           </Badge>
-                        ))}
+                        )) || []}
                       </div>
                     </CardContent>
                   </Card>
@@ -583,22 +560,23 @@ const CertificatePage = () => {
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-2">
-                        {Object.entries(
-                          certificates.reduce((acc, cert) => {
-                            acc[cert.level] = (acc[cert.level] || 0) + 1;
-                            return acc;
-                          }, {})
-                        ).map(([level, count]) => (
-                          <div
-                            key={level}
-                            className="flex justify-between items-center"
-                          >
-                            <span className="text-gray-300">{level}</span>
-                            <Badge variant="outline" className="text-blue-400">
-                              {count}
-                            </Badge>
-                          </div>
-                        ))}
+                        {analytics?.certificatesByLevel &&
+                          Object.entries(analytics.certificatesByLevel).map(
+                            ([level, count]) => (
+                              <div
+                                key={level}
+                                className="flex justify-between items-center"
+                              >
+                                <span className="text-gray-300">{level}</span>
+                                <Badge
+                                  variant="outline"
+                                  className="text-blue-400"
+                                >
+                                  {count}
+                                </Badge>
+                              </div>
+                            )
+                          )}
                       </div>
                     </CardContent>
                   </Card>
