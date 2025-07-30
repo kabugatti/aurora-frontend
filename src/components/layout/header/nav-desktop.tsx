@@ -19,7 +19,7 @@ const NavDesktop = ({ onNavClick }: NavDesktopProps) => {
     "analytics",
     "categories",
     "community",
-    "certificate",
+    "certification",
   ];
 
   const displayMap = {
@@ -28,7 +28,7 @@ const NavDesktop = ({ onNavClick }: NavDesktopProps) => {
     analytics: "Analytics",
     categories: "Resources",
     community: "Community",
-    certificate: "Certificates",
+    certification: "Certification",
   };
 
   const [showPracticeDropdown, setShowPracticeDropdown] = useState(false);

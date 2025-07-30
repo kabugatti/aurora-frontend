@@ -17,7 +17,7 @@ const NavMobile = ({
     "analytics",
     "categories",
     "community",
-    "certificate",
+    "certification",
   ];
 
   const displayMap = {
@@ -26,7 +26,7 @@ const NavMobile = ({
     analytics: "Analytics",
     categories: "Resources",
     community: "Community",
-    certificate: "Certificates",
+    certification: "Certification",
   };
 
   return (

@@ -51,7 +51,7 @@ const useHeader = (onMenuClick) => {
     analytics: "/analytics",
     categories: "/categories",
     leaderboard: "/leaderboard",
-    certificate: "/certificate",
+    certification: "/certificate",
   };
 
   const handleNavClick = (key) => {

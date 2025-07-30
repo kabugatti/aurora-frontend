@@ -69,7 +69,7 @@ const Sidebar = ({ isOpen, onClose }) => {
     },
     {
       icon: <Award className="w-5 h-5 text-[#ced2d8]" />,
-      label: "Certificates",
+      label: "Certification",
       page: "certificate",
     },
   ];
