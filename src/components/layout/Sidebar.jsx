@@ -13,6 +13,7 @@ import {
   MessageSquare,
   Users,
   UserCheck,
+  Award
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -34,17 +35,43 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   const categories = [
     { icon: <Book className="w-5 h-5 text-[#ced2d8]" />, label: "Grammar" },
-    { icon: <GraduationCap className="w-5 h-5 text-[#ced2d8]" />, label: "Vocabulary" },
-    { icon: <MessageCircle className="w-5 h-5 text-[#ced2d8]" />, label: "Speaking" },
-    { icon: <Headphones className="w-5 h-5 text-[#ced2d8]" />, label: "Listening" },
+    {
+      icon: <GraduationCap className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Vocabulary",
+    },
+    {
+      icon: <MessageCircle className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Speaking",
+    },
+    {
+      icon: <Headphones className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Listening",
+    },
     { icon: <FileText className="w-5 h-5 text-[#ced2d8]" />, label: "Reading" },
     { icon: <Gamepad className="w-5 h-5 text-[#ced2d8]" />, label: "Games" },
   ];
 
   const topNavItems = [
-    { icon: <BarChart2 className="w-5 h-5 text-[#ced2d8]" />, label: "Analytics", page: "analytics" },
-    { icon: <Users className="w-5 h-5 text-[#ced2d8]" />, label: "Community", page: "community" },
-    { icon: <UserCheck className="w-5 h-5 text-[#ced2d8]" />, label: "Teacher Directory", page: "teacher-directory" },
+    {
+      icon: <BarChart2 className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Analytics",
+      page: "analytics",
+    },
+    {
+      icon: <Users className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Community",
+      page: "community",
+    },
+    {
+      icon: <UserCheck className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Teacher Directory",
+      page: "teacher-directory",
+    },
+    {
+      icon: <Award className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Certification",
+      page: "certificate",
+    },
   ];
 
   return (
@@ -66,7 +93,7 @@ const Sidebar = ({ isOpen, onClose }) => {
           backgroundColor: "#0d1117",
           borderBottom: "1px solid #23272f",
           paddingLeft: "1rem",
-          paddingRight: "1rem"
+          paddingRight: "1rem",
         }}
       >
         <img src={Logo} alt="Logo" className="w-10 h-auto" />
@@ -91,13 +118,17 @@ const Sidebar = ({ isOpen, onClose }) => {
           </svg>
         </button>
       </div>
-      <div className="flex-1 flex flex-col overflow-y-auto" style={{height: "calc(100% - 64px)"}}>
+      <div
+        className="flex-1 flex flex-col overflow-y-auto"
+        style={{ height: "calc(100% - 64px)" }}
+      >
         <nav className="flex flex-col gap-2 flex-1 p-4">
           <NavLink to="/">
             <button
               onClick={() => handleNavClick("/")}
               style={{
-                backgroundColor: currentPage === "/" ? "#1f2937" : "transparent",
+                backgroundColor:
+                  currentPage === "/" ? "#1f2937" : "transparent",
                 color: "#FFFFFF",
               }}
               className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
@@ -127,7 +158,10 @@ const Sidebar = ({ isOpen, onClose }) => {
             {isLearningExpanded && (
               <div className="mt-2 ml-2">
                 <div className="px-3 mb-4">
-                  <h2 className="text-xs font-semibold mb-2" style={{ color: "#e6f8fb" }}>
+                  <h2
+                    className="text-xs font-semibold mb-2"
+                    style={{ color: "#e6f8fb" }}
+                  >
                     LEVEL
                   </h2>
                   <select
@@ -151,16 +185,26 @@ const Sidebar = ({ isOpen, onClose }) => {
                 </div>
 
                 <div className="px-3">
-                  <h2 className="text-xs font-semibold mb-2" style={{ color: "#e6f8fb" }}>
+                  <h2
+                    className="text-xs font-semibold mb-2"
+                    style={{ color: "#e6f8fb" }}
+                  >
                     CATEGORIES
                   </h2>
                   <div className="flex flex-col gap-1">
                     {categories.map((item, index) => (
                       <NavLink key={index} to={item.label.toLowerCase()}>
                         <button
-                          onClick={() => handleNavClick(`category-${item.label.toLowerCase()}`)}
+                          onClick={() =>
+                            handleNavClick(
+                              `category-${item.label.toLowerCase()}`
+                            )
+                          }
                           className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                          style={{ backgroundColor: "#1f2937", color: "#FFFFFF" }}
+                          style={{
+                            backgroundColor: "#1f2937",
+                            color: "#FFFFFF",
+                          }}
                         >
                           {item.icon}
                           <span className="text-sm">{item.label}</span>
@@ -177,7 +221,12 @@ const Sidebar = ({ isOpen, onClose }) => {
             <button
               onClick={() => setIsCommunityExpanded(!isCommunityExpanded)}
               className="flex items-center justify-between w-full px-3 py-2 rounded-lg transition-colors"
-              style={{ backgroundColor: isCommunityExpanded ? "#1f2937" : "transparent", color: "#FFFFFF" }}
+              style={{
+                backgroundColor: isCommunityExpanded
+                  ? "#1f2937"
+                  : "transparent",
+                color: "#FFFFFF",
+              }}
             >
               <div className="flex items-center gap-3">
                 <Users className="w-5 h-5 text-[#ced2d8]" />
@@ -195,7 +244,11 @@ const Sidebar = ({ isOpen, onClose }) => {
                   <button
                     onClick={() => handleNavClick("community")}
                     className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                    style={{ backgroundColor: currentPage === "community" ? "#23272f" : "#1f2937", color: "#FFFFFF" }}
+                    style={{
+                      backgroundColor:
+                        currentPage === "community" ? "#23272f" : "#1f2937",
+                      color: "#FFFFFF",
+                    }}
                   >
                     <span className="text-sm">Community Home</span>
                   </button>
@@ -204,7 +257,11 @@ const Sidebar = ({ isOpen, onClose }) => {
                   <button
                     onClick={() => handleNavClick("leaderboard")}
                     className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                    style={{ backgroundColor: currentPage === "leaderboard" ? "#23272f" : "#1f2937", color: "#FFFFFF" }}
+                    style={{
+                      backgroundColor:
+                        currentPage === "leaderboard" ? "#23272f" : "#1f2937",
+                      color: "#FFFFFF",
+                    }}
                   >
                     <span className="text-sm">Leaderboard</span>
                   </button>
@@ -214,21 +271,24 @@ const Sidebar = ({ isOpen, onClose }) => {
           </div>
 
           {/* Teacher Directory and Analytics */}
-          {topNavItems.filter(item => item.label !== "Community").map((item, index) => (
-            <NavLink key={index} to={item.page}>
-              <button
-                onClick={() => handleNavClick(item.page)}
-                className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                style={{
-                  backgroundColor: currentPage === item.page ? "#1f2937" : "transparent",
-                  color: "#FFFFFF",
-                }}
-              >
-                {item.icon}
-                <span className="text-sm font-medium">{item.label}</span>
-              </button>
-            </NavLink>
-          ))}
+          {topNavItems
+            .filter((item) => item.label !== "Community")
+            .map((item, index) => (
+              <NavLink key={index} to={item.page}>
+                <button
+                  onClick={() => handleNavClick(item.page)}
+                  className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+                  style={{
+                    backgroundColor:
+                      currentPage === item.page ? "#1f2937" : "transparent",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  {item.icon}
+                  <span className="text-sm font-medium">{item.label}</span>
+                </button>
+              </NavLink>
+            ))}
         </nav>
 
         <div className="py-16 space-y-3 flex flex-col px-4">
@@ -240,8 +300,12 @@ const Sidebar = ({ isOpen, onClose }) => {
                 backgroundColor: "#00b8d4",
                 color: "#FFFFFF",
               }}
-              onMouseOver={(e) => (e.currentTarget.style.backgroundColor = "#22d3ee")}
-              onMouseOut={(e) => (e.currentTarget.style.backgroundColor = "#00b8d4")}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.backgroundColor = "#22d3ee")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.backgroundColor = "#00b8d4")
+              }
             >
               <MessageSquare className="w-5 h-5" />
               <span className="text-sm font-medium">Talk with Aurora</span>
