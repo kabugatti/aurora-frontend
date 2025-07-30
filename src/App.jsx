@@ -79,6 +79,8 @@ import PublicProfile from "@/pages/public-profile/public-profile";
 
 import LeaderboardPage from "@/pages/aurora-site/community/leaderboard";
 import CertificatePage from "@/pages/aurora-site/certificate";
+import MyRequestsPage from "@/pages/aurora-site/my-requests";
+
 
 function App() {
   return (
@@ -98,6 +100,7 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/course-listing" element={<CourseListing />} />
+              <Route path="/my-requests" element={<MyRequestsPage />} />
             </Route>
 
             {/* Protected routes with MainLayout */}
