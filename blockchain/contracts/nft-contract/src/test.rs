@@ -1252,3 +1252,150 @@ fn test_transfer_from_when_the_address_of_the_previous_owner_is_incorrect_it_rev
 
     token.transfer_from(&owner, &other, &other, &FIRST_TOKEN_ID);
 }
+
+// === NEW TESTS FOR ADMIN-ONLY MINT FIX ===
+
+#[test]
+fn test_mint_works_with_admin_address() {
+    let NFTTest {
+        admin,
+        owner,
+        token,
+        ..
+    } = NFTTest::setup();
+
+    // Admin should be able to mint to any address
+    token.mint(&owner, &FIRST_TOKEN_ID);
+    
+    // Verify the token was minted successfully
+    assert_eq!(token.owner_of(&FIRST_TOKEN_ID), owner);
+    assert_eq!(token.balance_of(&owner), 1);
+}
+
+#[test]
+fn test_mint_works_with_different_recipient_addresses() {
+    let NFTTest {
+        admin,
+        owner,
+        other,
+        token,
+        ..
+    } = NFTTest::setup();
+
+    // Admin should be able to mint to owner
+    token.mint(&owner, &FIRST_TOKEN_ID);
+    assert_eq!(token.owner_of(&FIRST_TOKEN_ID), owner);
+    
+    // Admin should also be able to mint to other addresses
+    token.mint(&other, &SECOND_TOKEN_ID);
+    assert_eq!(token.owner_of(&SECOND_TOKEN_ID), other);
+    
+    // Both addresses should have their respective balances
+    assert_eq!(token.balance_of(&owner), 1);
+    assert_eq!(token.balance_of(&other), 1);
+}
+
+#[test]
+fn test_mint_admin_can_mint_to_themselves() {
+    let NFTTest {
+        admin,
+        token,
+        ..
+    } = NFTTest::setup();
+
+    // Admin should be able to mint to their own address
+    token.mint(&admin, &FIRST_TOKEN_ID);
+    
+    assert_eq!(token.owner_of(&FIRST_TOKEN_ID), admin);
+    assert_eq!(token.balance_of(&admin), 1);
+}
+
+#[test]
+fn test_get_admin_returns_correct_admin_address() {
+    let NFTTest {
+        admin,
+        token,
+        ..
+    } = NFTTest::setup();
+
+    // Verify we can query the admin address
+    let retrieved_admin = token.get_admin();
+    assert_eq!(retrieved_admin, admin);
+}
+
+#[test]
+fn test_admin_can_transfer_admin_rights() {
+    let NFTTest {
+        admin,
+        other,
+        owner,
+        token,
+        ..
+    } = NFTTest::setup();
+
+    // Original admin transfers rights to 'other'
+    token.transfer_admin(&other);
+    
+    // Verify admin has changed
+    assert_eq!(token.get_admin(), other);
+    
+    // New admin should be able to mint
+    token.mint(&owner, &FIRST_TOKEN_ID);
+    assert_eq!(token.owner_of(&FIRST_TOKEN_ID), owner);
+}
+
+#[test] 
+fn test_multiple_mints_by_admin_work_correctly() {
+    let NFTTest {
+        admin,
+        owner,
+        other,
+        token,
+        ..
+    } = NFTTest::setup();
+
+    // Admin mints multiple tokens to different addresses
+    token.mint(&owner, &FIRST_TOKEN_ID);
+    token.mint(&other, &SECOND_TOKEN_ID);
+    token.mint(&admin, &79218); // Different token ID
+    
+    // All mints should succeed
+    assert_eq!(token.owner_of(&FIRST_TOKEN_ID), owner);
+    assert_eq!(token.owner_of(&SECOND_TOKEN_ID), other);  
+    assert_eq!(token.owner_of(&79218), admin);
+    
+    // Balances should be correct
+    assert_eq!(token.balance_of(&owner), 1);
+    assert_eq!(token.balance_of(&other), 1);
+    assert_eq!(token.balance_of(&admin), 1);
+}
+
+#[test]
+fn test_admin_authorization_is_required_for_mint() {
+    let NFTTest {
+        env,
+        admin, 
+        owner,
+        token,
+        ..
+    } = NFTTest::setup();
+
+    // Perform mint operation
+    token.mint(&owner, &FIRST_TOKEN_ID);
+
+    // Verify that admin authorization was required
+    assert_eq!(
+        env.auths(),
+        [(
+            admin,
+            AuthorizedInvocation {
+                function: AuthorizedFunction::Contract((
+                    token.address,
+                    symbol_short!("mint"),
+                    (owner, FIRST_TOKEN_ID).into_val(&env)
+                )),
+                sub_invocations: std::vec![]
+            }
+        )]
+    );
+}

@@ -462,8 +462,28 @@ const NFTInteract = () => {
       return;
     }
 
+    // Enhanced admin check with better error messaging
+    if (!adminAddress) {
+      showToast({ 
+        title: 'Contract not loaded', 
+        description: 'Please load the contract first to verify admin permissions', 
+        variant: 'destructive' 
+      });
+      return;
+    }
+
     if (!isAdmin) {
-      showToast({ title: 'Only admin can mint NFTs', variant: 'destructive' });
+      console.log("🔍 Admin check failed:", {
+        walletAddress,
+        adminAddress,
+        isAdmin,
+        comparison: walletAddress === adminAddress
+      });
+      showToast({ 
+        title: 'Only admin can mint NFTs', 
+        description: `Admin address: ${adminAddress.substring(0, 8)}...${adminAddress.substring(-6)}. Your address: ${walletAddress.substring(0, 8)}...${walletAddress.substring(-6)}`,
+        variant: 'destructive' 
+      });
       return;
     }
 
@@ -594,8 +614,10 @@ const NFTInteract = () => {
         errorMessage = "Transaction was rejected by the wallet";
       } else if (error.message?.includes("insufficient")) {
         errorMessage = "Insufficient balance to perform this operation";
-      } else if (error.message?.includes("already exists")) {
-        errorMessage = `Token ID ${mintTokenId} already exists`;
+      } else if (error.message?.includes("already exists") || error.message?.includes("NFTInvalidSender")) {
+        errorMessage = `Token ID ${mintTokenId} already exists or invalid mint request`;
+      } else if (error.message?.includes("require_auth") || error.message?.includes("Unauthorized")) {
+        errorMessage = `Unauthorized: Only the admin (${adminAddress?.substring(0, 8)}...${adminAddress?.substring(-6)}) can mint NFTs. Connected as: ${walletAddress?.substring(0, 8)}...${walletAddress?.substring(-6)}`;
       } else if (error.message?.includes("Decrypted message is null")) {
         errorMessage = "Wallet connection lost. Please reconnect.";
         needsReconnect = true;
@@ -953,7 +975,11 @@ const NFTInteract = () => {
       walletAddress, 
       adminAddress, 
       isAdmin: walletAddress === adminAddress,
-      comparison: `"${walletAddress}" === "${adminAddress}"` 
+      comparison: `"${walletAddress}" === "${adminAddress}"`,
+      walletLength: walletAddress ? walletAddress.length : 0,
+      adminLength: adminAddress ? adminAddress.length : 0,
+      walletType: typeof walletAddress,
+      adminType: typeof adminAddress
     });
   }, [walletAddress, adminAddress]);
 
@@ -1495,24 +1521,64 @@ const NFTInteract = () => {
                     <h3 className="font-semibold mb-2">Contract Information</h3>
                     <div className="space-y-2 text-sm">
                       <div><strong>Collection:</strong> {collectionName} ({collectionSymbol})</div>
-                      <div><strong>Admin:</strong> <span className="font-mono text-xs">{adminAddress}</span></div>
+                      <div>
+                        <strong>Admin:</strong> 
+                        <div className="font-mono text-xs mt-1 p-2 bg-white rounded border">
+                          {adminAddress || 'Not loaded'}
+                        </div>
+                        {walletAddress && adminAddress && (
+                          <div className="mt-2">
+                            <strong>Your Address:</strong>
+                            <div className="font-mono text-xs mt-1 p-2 bg-white rounded border">
+                              {walletAddress}
+                            </div>
+                            <div className="mt-1 text-xs">
+                              {walletAddress === adminAddress ? (
+                                <span className="text-green-600 font-semibold">✅ You are the admin</span>
+                              ) : (
+                                <span className="text-red-600">❌ You are not the admin</span>
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </div>
                       <div><strong>Your Balance:</strong> {userBalance} NFTs</div>
-
                     </div>
                   </div>
                 </div>
 
                 {!isAdmin && (
-                  <div className="p-4 bg-yellow-50 rounded-lg">
-                    <p className="text-sm text-yellow-800">
-                      Admin functions are only available to the contract administrator.
-                      {adminAddress && (
+                  <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <div className="flex items-center mb-2">
+                      <Shield className="w-4 h-4 text-yellow-600 mr-2" />
+                      <h4 className="font-semibold text-yellow-800">Admin Access Required</h4>
+                    </div>
+                    <div className="space-y-2 text-sm text-yellow-800">
+                      <p>Only the contract administrator can mint NFTs.</p>
+                      {adminAddress ? (
                         <>
-                          <br />
-                          <strong>Admin Address:</strong> <span className="font-mono text-xs">{adminAddress}</span>
+                          <div className="mt-2">
+                            <strong>Current Admin:</strong>
+                            <div className="font-mono text-xs mt-1 p-2 bg-yellow-100 rounded border">
+                              {adminAddress}
+                            </div>
+                          </div>
+                          {walletAddress && (
+                            <div className="mt-2">
+                              <strong>Your Address:</strong>
+                              <div className="font-mono text-xs mt-1 p-2 bg-yellow-100 rounded border">
+                                {walletAddress}
+                              </div>
+                            </div>
+                          )}
+                          <p className="mt-2 text-xs">
+                            💡 <strong>Solution:</strong> Connect with the admin wallet address shown above, or ask the current admin to transfer admin rights to your address using the "Transfer Admin" function.
+                          </p>
                         </>
+                      ) : (
+                        <p>Please load the contract first to check admin permissions.</p>
                       )}
-                    </p>
+                    </div>
                   </div>
                 )}
               </CardContent>
