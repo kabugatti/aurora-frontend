@@ -53,7 +53,7 @@
 
 .assessment-incorrect-explanation {
   background-color: rgba(239, 68, 68, 0.1);
-  color: #991b1b;
+  color: var(--color-red-dark);
 }
 
 .card {
