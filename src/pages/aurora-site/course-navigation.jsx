@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MessageCircle,
@@ -23,17 +23,27 @@ import { Badge } from "@/components/ui/badge";
 
 const CourseNavigation = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
+  const closeButtonRef = useRef(null);
 
-  // Quick click outside handler - could be better but works for now
-  React.useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (selectedCourse && !event.target.closest(".course-card")) {
+  // Handle keyboard events for modal accessibility
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedCourse && e.key === "Escape") {
         setSelectedCourse(null);
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    if (selectedCourse) {
+      document.addEventListener("keydown", handleKeyDown);
+      // Focus the close button when modal opens
+      if (closeButtonRef.current) {
+        closeButtonRef.current.focus();
+      }
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [selectedCourse]);
 
   // Course data - TODO: move to API later
@@ -230,6 +240,16 @@ const CourseNavigation = () => {
                 selectedCourse === course.id ? "ring-2 ring-[#00C2CB]/20" : ""
               }`}
               onClick={() => handleCourseClick(course.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  handleCourseClick(course.id);
+                }
+              }}
+              tabIndex={0}
+              role="button"
+              aria-expanded={selectedCourse === course.id}
+              aria-label={`${course.title} course - ${course.progress}% complete`}
             >
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between">
@@ -353,6 +373,9 @@ const CourseNavigation = () => {
               <motion.div
                 className="relative w-full max-w-2xl max-h-[80vh] bg-gray-900 border border-gray-700 rounded-lg shadow-2xl overflow-hidden mx-4"
                 onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
                 initial={{
                   opacity: 0,
                   scale: 0.9,
@@ -375,7 +398,10 @@ const CourseNavigation = () => {
               >
                 <div className="p-4 border-b border-gray-700 bg-gray-800">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-lg font-semibold text-white">
+                    <h4
+                      id="modal-title"
+                      className="text-lg font-semibold text-white"
+                    >
                       {(() => {
                         // Quick way to get course data - could be optimized
                         const course = courseAreas.find(
@@ -389,10 +415,12 @@ const CourseNavigation = () => {
                       })()}
                     </h4>
                     <Button
+                      ref={closeButtonRef}
                       variant="ghost"
                       size="sm"
                       onClick={() => setSelectedCourse(null)}
                       className="text-gray-400 hover:text-black hover:bg-white/20"
+                      aria-label="Close course lessons modal"
                     >
                       <X className="w-4 h-4" />
                     </Button>

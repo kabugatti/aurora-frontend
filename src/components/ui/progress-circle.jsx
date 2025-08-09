@@ -1,4 +1,4 @@
-import React from "react";
+import { useId } from "react";
 
 const ProgressCircle = ({
   progress,
@@ -8,11 +8,15 @@ const ProgressCircle = ({
   showPercentage = true,
   className = "",
 }) => {
+  const gradientId = useId();
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
-  const strokeDasharray = `${
-    (progress / 100) * circumference
-  } ${circumference}`;
+
+  // Clamp progress to valid range 0-100
+  const clampedProgress = Math.max(0, Math.min(100, Number(progress) || 0));
+
+  // Calculate stroke dash offset for cleaner progress rendering
+  const strokeDashoffset = circumference * (1 - clampedProgress / 100);
 
   return (
     <div
@@ -40,17 +44,17 @@ const ProgressCircle = ({
           r={radius}
           stroke="currentColor"
           strokeWidth={strokeWidth}
-          strokeDasharray={strokeDasharray}
+          strokeDasharray={circumference}
+          strokeDashoffset={strokeDashoffset}
           strokeLinecap="round"
           fill="none"
-          className={`bg-gradient-to-r ${color}`}
           style={{
-            stroke: `url(#gradient-${color.replace(/\s+/g, "-")})`,
+            stroke: `url(#${gradientId})`,
           }}
         />
         {/* Gradient definition */}
         <defs>
-          <linearGradient id={`gradient-${color.replace(/\s+/g, "-")}`}>
+          <linearGradient id={gradientId}>
             <stop
               offset="0%"
               stopColor={
@@ -89,7 +93,7 @@ const ProgressCircle = ({
       {showPercentage && (
         <div className="absolute inset-0 flex items-center justify-center">
           <span className="text-sm font-bold text-white">
-            {Math.round(progress)}%
+            {Math.round(clampedProgress)}%
           </span>
         </div>
       )}
