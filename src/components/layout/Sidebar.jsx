@@ -166,6 +166,22 @@ const Sidebar = ({ isOpen, onClose }) => {
             )}
           </div>
 
+          {/* Courses */}
+          <NavLink to="course-listing">
+            <button
+              onClick={() => handleNavClick("course-listing")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "course-listing" ? "#1f2937" : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <BookOpen className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Courses</span>
+            </button>
+          </NavLink>
+
           {/* Teacher Directory */}
           <NavLink to="teacher-directory">
             <button
