@@ -6,7 +6,6 @@ const NavDesktop = () => {
     { key: "payments", label: "Payments", path: "/payments" },
     { key: "escrow", label: "Escrow", path: "escrow/classes" },
   ];
-
   return (
     <nav className="hidden md:flex items-center space-x-6">
       {items.map(({ key, label, path }) => (
