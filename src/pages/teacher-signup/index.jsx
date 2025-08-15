@@ -7,7 +7,7 @@ const TeacherSignupPage = () => {
     firstName: '',
     lastName: '',
     email: '',
-    phone: ''
+    walletAddress: ''
   });
 
   const handleInputChange = (e) => {
@@ -66,10 +66,10 @@ const TeacherSignupPage = () => {
                 required
               />
               <input
-                type="tel"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
+                type="text"
+                name="walletAddress"
+                placeholder="Wallet Address"
+                value={formData.walletAddress}
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400"
               />
