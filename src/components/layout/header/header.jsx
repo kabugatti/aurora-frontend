@@ -7,7 +7,7 @@ import NavMobile from "./nav-mobile";
 import SearchBar from "./search-bar";
 import AuthButtons from "./auth-buttons";
 import MobileTopButtons from "./mobile-top-buttons";
-import { Lightbulb, LineChart, Bell, Settings} from "lucide-react";
+import { Lightbulb, Bell, Settings} from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 
 
@@ -44,9 +44,6 @@ const Header = ({ onMenuClick }) => {
 
    const handleSettingsClick = () => {
       header.navigate('/settings');
-   };
-   const handleAnalyticsClick = () => {
-      header.navigate('/analytics');
    };
 
    // Cerrar el popover al hacer click fuera
@@ -101,9 +98,6 @@ const Header = ({ onMenuClick }) => {
                      </div>
                      <Lightbulb size={16} className="text-yellow-400" />
                   </div>
-                  <button className="p-1 rounded-full hover:bg-[#1f2937]" onClick={handleAnalyticsClick} aria-label="Analytics">
-                     <LineChart size={20} className="text-gray-300" />
-                  </button>
                   <button className="p-1 rounded-full hover:bg-[#1f2937]" onClick={handleSettingsClick} aria-label="Settings">
                      <Settings size={20} className="text-gray-300" />
                   </button>
