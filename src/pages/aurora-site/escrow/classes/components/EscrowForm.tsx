@@ -1,11 +1,6 @@
 import React, { useMemo, useState } from "react";
 import StatusIndicator from "./StatusIndicator";
-import {
-  mockEscrow,
-  type MockEscrow,
-  type MockEscrowStatus,
-  type MockEscrowType,
-} from "@/lib/mock/escrow";
+import { mockEscrow, type MockEscrow } from "@/lib/mock/escrow";  
 
 const Step: React.FC<{ label: string; active?: boolean }> = ({
   label,
@@ -26,12 +21,12 @@ const Step: React.FC<{ label: string; active?: boolean }> = ({
 const EscrowForm: React.FC = () => {
   const [escrow, setEscrow] = useState<MockEscrow>(mockEscrow);
 
-  const updateField = (
-    field: keyof MockEscrow,
-    value: string | number | MockEscrowStatus | MockEscrowType
-  ) => {
-    setEscrow((prev) => ({ ...prev, [field]: value } as MockEscrow));
-  };
+  const updateField = <K extends keyof MockEscrow>(  
+       field: K,  
+        value: MockEscrow[K]  
+      ) => {  
+        setEscrow((prev) => ({ ...prev, [field]: value }));  
+    };  
 
   const onCreate = () => updateField("status", "funded");
   const onProgress = () => updateField("status", "in-progress");
@@ -148,7 +143,7 @@ const EscrowForm: React.FC = () => {
         </div>
 
         {/* Right: status and flow */}
-        <div className="mt-5 flex flex-col justify-items-end">
+        <div className="mt-5 flex flex-col items-end">
           <div className="flex items-center justify-between">
             <p className="text-sm text-gray-300">Current Status</p>
             <StatusIndicator status={escrow.status} />

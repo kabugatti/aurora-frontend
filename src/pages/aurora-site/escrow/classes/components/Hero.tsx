@@ -7,7 +7,7 @@ const Hero: React.FC = () => {
       <div className="max-w-4xl mx-auto px-6 flex flex-col items-center">
         <p className="inline-flex  items-center text-xs uppercase tracking-widest border border-gray-500 rounded-full px-3 py-1 mb-4">
           
-          <Shield className=" mr-2"/>
+        <Shield className=" mr-2" aria-hidden="true" focusable="false" />  
            Smart
           escrow for classes
         </p>

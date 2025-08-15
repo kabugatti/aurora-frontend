@@ -22,13 +22,16 @@ type Props = {
 
 const StatusIndicator: React.FC<Props> = ({ status, className }) => {
   return (
-    <span
-      className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
-        statusStyles[status]
-      } ${className ?? ""}`}
-    >
-      {statusLabel[status]}
-    </span>
+    <span  
+    role="status"  
+    aria-live="polite"  
+    aria-label={`Escrow status: ${statusLabel[status]}`}  
+    className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${  
+      statusStyles[status]  
+    } ${className ?? ""}`}  
+  >  
+    {statusLabel[status]}  
+  </span>  
   );
 };
 
