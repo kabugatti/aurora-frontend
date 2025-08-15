@@ -14,7 +14,7 @@ import {
   MessageSquare,
   Users,
   UserCheck,
-  Award
+  Award,
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -189,12 +189,30 @@ const Sidebar = ({ isOpen, onClose }) => {
               className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
               style={{
                 backgroundColor:
-                  currentPage === "teacher-directory" ? "#1f2937" : "transparent",
+                  currentPage === "teacher-directory"
+                    ? "#1f2937"
+                    : "transparent",
                 color: "#FFFFFF",
               }}
             >
               <UserCheck className="w-5 h-5 text-[#ced2d8]" />
               <span className="text-sm font-medium">Teacher Directory</span>
+            </button>
+          </NavLink>
+
+          {/* Escrow */}
+          <NavLink to="escrow/classes">
+            <button
+              onClick={() => handleNavClick("escrow/classes")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "escrow/classes" ? "#1f2937" : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <CreditCard className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Escrow</span>
             </button>
           </NavLink>
 
