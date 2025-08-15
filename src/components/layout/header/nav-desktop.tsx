@@ -18,7 +18,7 @@ const NavDesktop = ({ onNavClick }: NavDesktopProps) => {
   ];
 
   const displayMap = {
-    payments: "Payments",
+    payments: "Pay your classes with crypto",
   };
 
   return (

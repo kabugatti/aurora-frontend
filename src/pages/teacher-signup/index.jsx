@@ -93,7 +93,7 @@ const TeacherSignupPage = () => {
           <div className="grid md:grid-cols-3 gap-6">
             <div className="bg-gray-800 p-6 rounded-lg">
               <h4 className="text-xl font-bold mb-3">💰 Instant Crypto Payments</h4>
-              <p className="text-gray-400">Get paid in Scrolls cryptocurrency after each class</p>
+              <p className="text-gray-400">Get paid in cryptocurrency</p>
             </div>
             <div className="bg-gray-800 p-6 rounded-lg">
               <h4 className="text-xl font-bold mb-3">🌍 Global Students</h4>
