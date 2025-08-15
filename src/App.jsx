@@ -80,7 +80,6 @@ import PublicProfile from "@/pages/public-profile/public-profile";
 import LeaderboardPage from "@/pages/aurora-site/community/leaderboard";
 import CertificatePage from "@/pages/aurora-site/certificate";
 import MyRequestsPage from "@/pages/aurora-site/my-requests";
-import EscrowClassesPage from "@/pages/aurora-site/escrow/classes";
 import TeacherSignupPage from "@/pages/teacher-signup";
 
 
