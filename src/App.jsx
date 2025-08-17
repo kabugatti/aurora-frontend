@@ -11,13 +11,11 @@ import NFTInteract from "@/components/stellar/nft-interact";
 import MainLayout from "@/components/layout/main-layout";
 
 // 🔐 Authentication
-import ProtectedRoute from "@/components/auth/protected-route";
 import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import VerifyEmailPage from "@/pages/auth/verify-email";
 
 // 📚 Learning & Education
-import LearningContent from "@/pages/aurora-site/learning/learning-content";
 import ListeningPage from "@/pages/aurora-site/learning/listening-content";
 import ReadingContent from "@/pages/aurora-site/learning/reading-content";
 import SpeakingPage from "@/pages/aurora-site/learning/speaking-content";
@@ -80,6 +78,8 @@ import PublicProfile from "@/pages/public-profile/public-profile";
 import LeaderboardPage from "@/pages/aurora-site/community/leaderboard";
 import CertificatePage from "@/pages/aurora-site/certificate";
 import MyRequestsPage from "@/pages/aurora-site/my-requests";
+import EscrowClassesPage from "@/pages/aurora-site/escrow/classes";
+import TeacherSignupPage from "@/pages/teacher-signup";
 
 
 function App() {
@@ -101,13 +101,13 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/course-listing" element={<CourseListing />} />
               <Route path="/my-requests" element={<MyRequestsPage />} />
+              <Route path="/escrow/classes" element={<EscrowClassesPage />} />
             </Route>
 
             {/* Protected routes with MainLayout */}
 
             {/*<Route element={<ProtectedRoute />}>*/}
             <Route element={<MainLayout />}>
-              <Route path="/learning-content" element={<LearningContent />} />
               <Route path="/wallet-connection" element={<WalletConnection />} />
               <Route
                 path="/certifications-obtained"
@@ -172,6 +172,7 @@ function App() {
               <Route path="/team" element={<GitHubProfiles />} />
               <Route path="/nft-interact" element={<NFTInteract />} />
               <Route path="/certificate" element={<CertificatePage />} />
+              <Route path="/teacher-signup" element={<TeacherSignupPage />} />
 
               {/*</Route>*/}
             </Route>
