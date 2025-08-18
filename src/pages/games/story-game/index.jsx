@@ -86,10 +86,13 @@ const StoryGame = () => {
   };
 
   const handleRestart = () => {
-    const currentQuestions = [...questions];
-    const reshuffledQuestions = shuffleQuestionsInStories(currentQuestions);
-    setQuestions(reshuffledQuestions);
-    setCurrentIndex(0);
+    setQuestions((prev) =>
+      prev.map((story, idx) =>
+        idx === currentIndex
+          ? { ...story, questions: shuffleArray(story.questions || []) }
+          : story
+      )
+    );
   };
 
   const handleComplete = (score) => {
