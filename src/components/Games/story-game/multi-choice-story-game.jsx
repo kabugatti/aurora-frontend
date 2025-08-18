@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaArrowLeft, FaSyncAlt } from 'react-icons/fa';
 import { AiFillTrophy } from "react-icons/ai";
 
 const MultiChoiceStoryGame = ({ 
-  storyText, 
-  questions, 
+  storyText = "", 
+  questions = [], 
   onGoBack, 
   onRestart, 
   onComplete,
@@ -75,10 +75,36 @@ const MultiChoiceStoryGame = ({
   };
 
   const isAnswered = (questionIndex) => {
-    return selectedAnswers.hasOwnProperty(questionIndex);
+    return Object.prototype.hasOwnProperty.call(selectedAnswers, questionIndex);
   };
 
   const canProceed = isAnswered(currentQuestionIndex);
+
+  // No-questions fallback
+  if (!Array.isArray(questions) || questions.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+        <h2 className="text-xl font-semibold mb-2">No questions available for this story.</h2>
+        <p className="text-gray-600 mb-6">Please go back or try the next story.</p>
+        <div className="flex gap-3 justify-center">
+          <button
+            onClick={onGoBack}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Back to Menu
+          </button>
+          {currentStory < totalStories && (
+            <button
+              onClick={handleNextStory}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            >
+              Next Story
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  }
 
   // Results/Completion Screen
   if (showResults) {
@@ -90,7 +116,11 @@ const MultiChoiceStoryGame = ({
           Your Score: {score}/{questions.length}
         </p>
         <p className="text-sm text-gray-600 mb-6">
-          {score === questions.length ? "Perfect!" : score >= questions.length * 0.8 ? "Great job!" : "Keep practicing!"}
+          {score === questions.length
+            ? "Perfect!"
+            : score >= questions.length * 0.8
+            ? "Great job!"
+            : "Keep practicing!"}
         </p>
 
         <div className="mb-6">
@@ -108,19 +138,29 @@ const MultiChoiceStoryGame = ({
             {questions.map((question, index) => {
               const userAnswer = selectedAnswers[index];
               const isCorrect = userAnswer === question.correct;
-              
+
               return (
-                <div key={index} className={`p-4 rounded-lg border-2 ${isCorrect ? 'border-green-300 bg-green-50' : 'border-red-300 bg-red-50'}`}>
+                <div
+                  key={index}
+                  className={`p-4 rounded-lg border-2 ${
+                    isCorrect
+                      ? 'border-green-300 bg-green-50'
+                      : 'border-red-300 bg-red-50'
+                  }`}
+                >
                   <p className="font-medium mb-2">{question.question}</p>
                   <p className="text-sm text-gray-600 mb-2">
-                    Your answer: {question.options[userAnswer]} {isCorrect ? '✅' : '❌'}
+                    Your answer: {question.options[userAnswer]}{' '}
+                    {isCorrect ? '✅' : '❌'}
                   </p>
                   {!isCorrect && (
                     <p className="text-sm text-green-600 mb-2">
                       Correct answer: {question.options[question.correct]}
                     </p>
                   )}
-                  <p className="text-sm text-gray-700">{question.explanation}</p>
+                  <p className="text-sm text-gray-700">
+                    {question.explanation}
+                  </p>
                 </div>
               );
             })}
@@ -134,7 +174,7 @@ const MultiChoiceStoryGame = ({
           >
             <FaSyncAlt /> Play Again
           </button>
-          
+
           {currentStory < totalStories && (
             <button
               onClick={handleNextStory}
@@ -143,7 +183,7 @@ const MultiChoiceStoryGame = ({
               Next Story ({currentStory + 1}/{totalStories})
             </button>
           )}
-          
+
           <button
             onClick={onGoBack}
             className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-gray-600 transition-colors"

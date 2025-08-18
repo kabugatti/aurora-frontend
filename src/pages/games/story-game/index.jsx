@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import LevelSelector from "@/components/Games/story-game/level-selector";
+import { useState, useEffect } from "react";
+import LevelSelector from "@/components/practices/funny_practices/LevelSelector";
 import MultiChoiceStoryGame from "@/components/Games/story-game/multi-choice-story-game";
 import { questionsApi } from "@/services/questionsApi";
 
@@ -46,11 +46,19 @@ const StoryGame = () => {
       const questionsData = response.data || response.questions || response;
       
       if (questionsData && Array.isArray(questionsData) && questionsData.length > 0) {
-        const transformedQuestions = questionsData.map(item => ({
-          storyText: item.content?.story || item.story || "",
-          questions: item.content?.questions || item.questions || [],
-          metadata: item.metadata || {},
-          gameMetadata: item.gameMetadata || {}
+        const normalizeQuestions = (qs = []) =>
+          qs.map((q) => ({
+            question: q?.question ?? q?.text ?? "",
+            options: q?.options ?? q?.choices ?? [],
+            correct: q?.correct ?? q?.correctIndex ?? q?.correct_answer_index ?? 0,
+            explanation: q?.explanation ?? q?.note ?? "",
+          }));
+
+        const transformedQuestions = questionsData.map((item) => ({
+          storyText: item?.content?.story ?? item?.story ?? "",
+          questions: normalizeQuestions(item?.content?.questions ?? item?.questions),
+          metadata: item?.metadata ?? {},
+          gameMetadata: item?.gameMetadata ?? {},
         }));
         
         const shuffledStories = shuffleArray([...transformedQuestions]);
