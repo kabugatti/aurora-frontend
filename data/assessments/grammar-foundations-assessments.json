@@ -1,0 +1,25 @@
+[
+  {
+    "course": "Present Simple",
+    "questions": [
+      {
+        "id": "PS1",
+        "type": "multiple_choice",
+        "prompt": "Complete: 'My sister _____ in a hospital. She _____ patients every day.'",
+        "options": ["work/help", "works/helps", "working/helping", "worked/helped"],
+        "answer_index": 1,
+        "answer": "works/helps",
+        "explanation": "Tests third person singular formation"
+      },
+      {
+        "id": "PS2",
+        "type": "multiple_choice",
+        "prompt": "Make negative: 'They speak French.' → 'They _____ French.'",
+        "options": ["don't speak", "doesn't speak", "not speak", "no speak"],
+        "answer_index": 0,
+        "answer": "don't speak",
+        "explanation": "Tests negative formation"
+      }
+    ]
+  }
+]
