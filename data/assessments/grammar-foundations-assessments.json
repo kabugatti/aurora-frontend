@@ -1,39 +1,62 @@
-{
-  "id": "grammar-foundations",
-  "title": "Grammar Foundations Assessment",
-  "questions": [
-    {
-      "id": "q1",
-      "question": "Complete the sentence: They ____ patients every day.",
-      "options": [
-        "work/help",
-        "works/helps",
-        "working/helping",
-        "worked/helped"
-      ],
-      "answer_index": 1
-    },
-    {
-      "id": "q2",
-      "question": "Choose the correct negative form: They _____ French.",
-      "options": [
-        "don't speak",
-        "doesn't speak",
-        "not speak",
-        "no speak"
-      ],
-      "answer_index": 0
-    },
-    {
-      "id": "q3",
-      "question": "Choose the correct adverb position: \"She is tired after work.\"",
-      "options": [
-        "She always is tired after work",
-        "She is always tired after work",
-        "Always she is tired after work",
-        "She is tired always after work"
-      ],
-      "answer_index": 1
-    }
-  ]
-}
+[
+  {
+    "id": "PS1",
+    "question": "Complete: \"My sister _____ in a hospital. She _____ patients every day.\"",
+    "options": [
+      "work/help",
+      "works/helps",
+      "working/helping",
+      "worked/helped"
+    ],
+    "answer_index": 1,
+    "explanation": "Tests third-person singular verb agreement."
+  },
+  {
+    "id": "PS2",
+    "question": "Choose the correct sentence:",
+    "options": [
+      "He go to the office every day",
+      "He goes to the office every day",
+      "He going to the office every day",
+      "He gone to the office every day"
+    ],
+    "answer_index": 1,
+    "explanation": "Tests Present Simple tense."
+  },
+  {
+    "id": "PS3",
+    "question": "Choose the correct position of the adverb \"always\" in the sentence \"She is tired after work.\"",
+    "options": [
+      "She always is tired after work",
+      "She is always tired after work",
+      "Always she is tired after work",
+      "She is tired always after work"
+    ],
+    "answer_index": 1,
+    "explanation": "The adverb ‘always’ is usually put after the verb ‘is’."
+  },
+  {
+    "id": "PS4",
+    "question": "Select the sentence in Present Simple:",
+    "options": [
+      "They are playing football now",
+      "They played football yesterday",
+      "They play football every weekend",
+      "They will play football tomorrow"
+    ],
+    "answer_index": 2,
+    "explanation": "Habitual action in Present Simple."
+  },
+  {
+    "id": "PS5",
+    "question": "Choose the correct article: \"She is ___ teacher.\"",
+    "options": [
+      "a",
+      "an",
+      "the",
+      "no article"
+    ],
+    "answer_index": 0,
+    "explanation": "Before consonant sound."
+  }
+]
