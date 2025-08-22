@@ -1,4 +1,5 @@
 [
+  {[
   {
     "course": "Present Simple",
     "questions": [
@@ -9,7 +10,7 @@
         "options": ["work/help", "works/helps", "working/helping", "worked/helped"],
         "answer_index": 1,
         "answer": "works/helps",
-        "explanation": "Tests third person singular formation"
+        "explanation": "Tests third-person singular formation"
       },
       {
         "id": "PS2",
@@ -19,6 +20,33 @@
         "answer_index": 0,
         "answer": "don't speak",
         "explanation": "Tests negative formation"
+      },
+      {
+        "id": "PS3",
+        "type": "multiple_choice",
+        "prompt": "Choose the correct frequency adverb position: 'She is tired after work.'",
+        "options": ["She always is tired after work", "She is always tired after work", "Always she is tired after work", "She is tired always after work"],
+        "answer_index": 1,
+        "answer": "She is always tired after work",
+        "explanation": "Tests adverb placement with 'be'"
+      },
+      {
+        "id": "PS4",
+        "type": "multiple_choice",
+        "prompt": "Which sentence describes a habit?",
+        "options": ["I'm eating lunch now", "I eat lunch at 12:30 every day", "I ate lunch yesterday", "I will eat lunch tomorrow"],
+        "answer_index": 1,
+        "answer": "I eat lunch at 12:30 every day",
+        "explanation": "Tests present simple for habits"
+      },
+      {
+        "id": "PS5",
+        "type": "multiple_choice",
+        "prompt": "Complete: 'Water _____ at 100 degrees Celsius.'",
+        "options": ["boil", "boils", "boiling", "boiled"],
+        "answer_index": 1,
+        "answer": "boils",
+        "explanation": "Tests present simple for facts"
       }
     ]
   }
