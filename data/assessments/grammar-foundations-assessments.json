@@ -1,62 +1,67 @@
 [
   {
     "id": "PS1",
-    "question": "Choose the correct sentence:",
+    "question": "Choose the correct sentence",
     "options": [
       "He go to school every day.",
       "He goes to school every day.",
       "He going to school every day.",
       "He gone to school every day."
     ],
+    "answer_index": 1,
     "answer": "He goes to school every day.",
     "explanation": "In the Present Simple tense, with third person singular (he/she/it), we add -s to the verb."
   },
   {
     "id": "PS2",
-    "question": "Choose the correct sentence:",
+    "question": "Choose the correct negative form",
     "options": [
-      "They plays football on Sundays.",
-      "They play football on Sundays.",
-      "They played football on Sundays.",
-      "They are play football on Sundays."
+      "She don't like apples.",
+      "She doesn't likes apples.",
+      "She doesn't like apples.",
+      "She not like apples."
     ],
-    "answer": "They play football on Sundays.",
-    "explanation": "For plural subjects (they/we/you), the verb does not take -s in the Present Simple tense."
+    "answer_index": 2,
+    "answer": "She doesn't like apples.",
+    "explanation": "In negative sentences with 'does not', the main verb stays in base form: 'She doesn't like...'."
   },
   {
     "id": "PS3",
-    "question": "Choose the correct sentence:",
+    "question": "Choose the correct question form",
     "options": [
-      "Does she like ice cream?",
-      "Do she likes ice cream?",
-      "She does likes ice cream?",
-      "She like ice cream?"
+      "Do he play football?",
+      "Does he plays football?",
+      "Does he play football?",
+      "He does play football?"
     ],
-    "answer": "Does she like ice cream?",
-    "explanation": "In questions, Present Simple uses do/does + subject + base verb. With 'she,' we use 'does'."
+    "answer_index": 2,
+    "answer": "Does he play football?",
+    "explanation": "Questions in Present Simple use 'Does' + subject + base verb: 'Does he play...'."
   },
   {
     "id": "PS4",
-    "question": "Choose the correct sentence:",
+    "question": "Choose the correct sentence with 'to be'",
     "options": [
-      "I doesn’t understand the question.",
-      "I don’t understands the question.",
-      "I don’t understand the question.",
-      "I doesn’t understands the question."
+      "They is happy.",
+      "They are happy.",
+      "They am happy.",
+      "They be happy."
     ],
-    "answer": "I don’t understand the question.",
-    "explanation": "With 'I,' the correct negative form is don’t + base verb."
+    "answer_index": 1,
+    "answer": "They are happy.",
+    "explanation": "With 'they', the correct form of 'to be' is 'are': 'They are happy.'"
   },
   {
     "id": "PS5",
-    "question": "Choose the correct sentence:",
+    "question": "Choose the correct possessive form",
     "options": [
-      "The children’s toys are on the floor.",
-      "The childrens’ toys are on the floor.",
-      "The childrens toys are on the floor.",
-      "The children toy’s are on the floor."
+      "This is the childrens book.",
+      "This is the children's book.",
+      "This is the childrens's book.",
+      "This is the child book."
     ],
-    "answer": "The children’s toys are on the floor.",
-    "explanation": "Children is already plural, so we form the possessive with an apostrophe ’s."
+    "answer_index": 1,
+    "answer": "This is the children's book.",
+    "explanation": "The correct possessive form of 'children' is 'children's'."
   }
 ]
