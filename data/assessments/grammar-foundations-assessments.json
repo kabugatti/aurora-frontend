@@ -1,62 +1,66 @@
-[
-  {
-    "id": "PS1",
-    "question": "Complete: \"My sister _____ in a hospital. She _____ patients every day.\"",
-    "options": [
-      "work/help",
-      "works/helps",
-      "working/helping",
-      "worked/helped"
-    ],
-    "answer_index": 1,
-    "explanation": "Tests third-person singular verb agreement."
-  },
-  {
-    "id": "PS2",
-    "question": "Choose the correct sentence:",
-    "options": [
-      "He go to the office every day",
-      "He goes to the office every day",
-      "He going to the office every day",
-      "He gone to the office every day"
-    ],
-    "answer_index": 1,
-    "explanation": "Tests Present Simple tense."
-  },
-  {
-    "id": "PS3",
-    "question": "Choose the correct position of the adverb \"always\" in the sentence \"She is tired after work.\"",
-    "options": [
-      "She always is tired after work",
-      "She is always tired after work",
-      "Always she is tired after work",
-      "She is tired always after work"
-    ],
-    "answer_index": 1,
-    "explanation": "The adverb ‘always’ is usually put after the verb ‘is’."
-  },
-  {
-    "id": "PS4",
-    "question": "Select the sentence in Present Simple:",
-    "options": [
-      "They are playing football now",
-      "They played football yesterday",
-      "They play football every weekend",
-      "They will play football tomorrow"
-    ],
-    "answer_index": 2,
-    "explanation": "Habitual action in Present Simple."
-  },
-  {
-    "id": "PS5",
-    "question": "Choose the correct article: \"She is ___ teacher.\"",
-    "options": [
-      "a",
-      "an",
-      "the",
-      "no article"
-    ],
-    "answer_index": 0,
-    "explanation": "Before consonant sound."
-  }
-]
+{
+  "id": "grammar-foundations-present-simple",
+  "title": "Grammar Foundations – Present Simple Assessments",
+  "questions": [
+    {
+      "id": "PS1",
+      "question": "Which sentence is correct in the Present Simple tense?",
+      "options": [
+        "She go to school every day.",
+        "She goes to school every day.",
+        "She going to school every day.",
+        "She is go to school every day."
+      ],
+      "answer": 1,
+      "explanation": "Tests the Present Simple tense."
+    },
+    {
+      "id": "PS2",
+      "question": "Where should the adverb 'always' be placed in the sentence?",
+      "options": [
+        "He always is on time.",
+        "He is always on time.",
+        "Always he is on time.",
+        "He is on always time."
+      ],
+      "answer": 1,
+      "explanation": "'Always' usually follows the verb 'be'."
+    },
+    {
+      "id": "PS3",
+      "question": "Which sentence is in the Present Simple tense?",
+      "options": [
+        "They are playing football now.",
+        "They have played football yesterday.",
+        "They play football every weekend.",
+        "They will play football tomorrow."
+      ],
+      "answer": 2,
+      "explanation": "Tests habits in the Present Simple."
+    },
+    {
+      "id": "PS4",
+      "question": "Which of the following is correct?",
+      "options": [
+        "He go to the office every day.",
+        "He going to the office every day.",
+        "He goes to the office every day.",
+        "He is go to the office every day."
+      ],
+      "answer": 2,
+      "explanation": "Subject-verb agreement in the Present Simple."
+    },
+    {
+      "id": "PS5",
+      "question": "Choose the correct article:",
+      "options": [
+        "He is a honest man.",
+        "He is an honest man.",
+        "He is the honest man.",
+        "He is honest man."
+      ],
+      "answer": 1,
+      "explanation": "Before a consonant sound."
+    }
+  ]
+}

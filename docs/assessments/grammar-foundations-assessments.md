@@ -1,49 +1,59 @@
-# Grammar Foundations Assessments
+# Grammar Foundations – Present Simple Assessments
 
-## Q1
-Complete: "My sister _____ in a hospital. She _____ patients every day."  
-- a) work/help  
-- b) works/helps  
-- c) working/helping  
-- d) worked/helped  
-**Correct:** b – Tests third-person singular verb agreement.
+## Question 1
+Which sentence is correct in the Present Simple tense?
 
----
+- a) She go to school every day.
+- b) She goes to school every day.
+- c) She going to school every day.
+- d) She is go to school every day.
 
-## Q2
-Choose the correct sentence:  
-- a) He go to the office every day  
-- b) He goes to the office every day  
-- c) He going to the office every day  
-- d) He gone to the office every day  
-**Correct:** b – Tests Present Simple tense.
+**Correct:** b – Tests the Present Simple tense.
 
 ---
 
-## Q3
-Choose the correct position of the adverb "always" in the sentence "She is tired after work."  
-- a) She always is tired after work  
-- b) She is always tired after work  
-- c) Always she is tired after work  
-- d) She is tired always after work  
-**Correct:** b – The adverb ‘always’ is usually put after the verb ‘is’.
+## Question 2
+Where should the adverb "always" be placed in the sentence?
+
+- a) He always is on time.
+- b) He is always on time.
+- c) Always he is on time.
+- d) He is on always time.
+
+**Correct:** b – 'Always' usually follows the verb 'be'.
 
 ---
 
-## Q4
-Select the sentence in Present Simple:  
-- a) They are playing football now  
-- b) They played football yesterday  
-- c) They play football every weekend  
-- d) They will play football tomorrow  
-**Correct:** c – Habitual action in Present Simple.
+## Question 3
+Which sentence is in the Present Simple tense?
+
+- a) They are playing football now.
+- b) They have played football yesterday.
+- c) They play football every weekend.
+- d) They will play football tomorrow.
+
+**Correct:** c – Tests habits in the Present Simple.
 
 ---
 
-## Q5
-Choose the correct article: "She is ___ teacher."  
-- a) a  
-- b) an  
-- c) the  
-- d) no article  
-**Correct:** a – Before consonant sound.
+## Question 4
+Which of the following is correct?
+
+- a) He go to the office every day.
+- b) He going to the office every day.
+- c) He goes to the office every day.
+- d) He is go to the office every day.
+
+**Correct:** c – Subject-verb agreement in the Present Simple.
+
+---
+
+## Question 5
+Choose the correct article:
+
+- a) He is a honest man.
+- b) He is an honest man.
+- c) He is the honest man.
+- d) He is honest man.
+
+**Correct:** b – Before a consonant sound.
