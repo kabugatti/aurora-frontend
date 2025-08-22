@@ -1,37 +1,39 @@
-[
-  {
-    "id": "q1",
-    "question": "She works in a hospital. She _____ patients every day.",
-    "options": [
-      "work/help",
-      "works/helps",
-      "working/helping",
-      "worked/helped"
-    ],
-    "answer": "works/helps",
-    "explanation": "Correct: b – Tests third-person singular present tense verb agreement."
-  },
-  {
-    "id": "q2",
-    "question": "They speak French. → They _____ French.",
-    "options": [
-      "don't speak",
-      "doesn't speak",
-      "not speak",
-      "no speak"
-    ],
-    "answer": "don't speak",
-    "explanation": "Correct: a – Tests negative formation with plural subject."
-  },
-  {
-    "id": "q3",
-    "question": "Choose the correct adverb position: She is tired after work.",
-    "options": [
-      "She always is tired after work",
-      "She is always tired after work",
-      "Always she is tired after work"
-    ],
-    "answer": "She is always tired after work",
-    "explanation": "Correct: b – The adverb ‘always’ is usually put after the verb ‘is’."
-  }
-]
+{
+  "id": "grammar-foundations",
+  "title": "Grammar Foundations Assessment",
+  "questions": [
+    {
+      "id": "q1",
+      "question": "Complete the sentence: They ____ patients every day.",
+      "options": [
+        "work/help",
+        "works/helps",
+        "working/helping",
+        "worked/helped"
+      ],
+      "answer_index": 1
+    },
+    {
+      "id": "q2",
+      "question": "Choose the correct negative form: They _____ French.",
+      "options": [
+        "don't speak",
+        "doesn't speak",
+        "not speak",
+        "no speak"
+      ],
+      "answer_index": 0
+    },
+    {
+      "id": "q3",
+      "question": "Choose the correct adverb position: \"She is tired after work.\"",
+      "options": [
+        "She always is tired after work",
+        "She is always tired after work",
+        "Always she is tired after work",
+        "She is tired always after work"
+      ],
+      "answer_index": 1
+    }
+  ]
+}

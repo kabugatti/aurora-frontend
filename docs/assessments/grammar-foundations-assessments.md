@@ -1,28 +1,25 @@
-# Grammar Foundations Area Assessments
+# Grammar Foundations Assessment
 
-### Q1
-She works in a hospital. She _____ patients every day.  
+## Q1
+Complete the sentence: They ____ patients every day.  
 - a) work/help  
 - b) works/helps  
 - c) working/helping  
 - d) worked/helped  
-**Correct:** b – Tests third-person singular present tense verb agreement.
+**Correct:** b – Tests third-person singular verb agreement.
 
----
-
-### Q2
-They speak French. → They _____ French.  
+## Q2
+Choose the correct negative form: They _____ French.  
 - a) don't speak  
 - b) doesn't speak  
 - c) not speak  
 - d) no speak  
 **Correct:** a – Tests negative formation with plural subject.
 
----
-
-### Q3
+## Q3
 Choose the correct adverb position: "She is tired after work."  
 - a) She always is tired after work  
 - b) She is always tired after work  
 - c) Always she is tired after work  
+- d) She is tired always after work  
 **Correct:** b – The adverb ‘always’ is usually put after the verb ‘is’.
