@@ -1,76 +1,51 @@
 # Grammar Foundations Assessments
 
-## Present Simple Assessments
+## Present Simple
 
-### Q1. Subject-Verb Agreement
+### Q1 (PS1). Subject-Verb Agreement {#q1-ps1}
+Which of the following sentences is correct?
 
-Which sentence is correct?  
-
-- a) He go to school every day.  
-- b) He goes to school every day.  
-- c) He going to school every day.  
-- d) He gone to school every day.  
-
-**Correct Answer:** b) He goes to school every day.  
-
-**Rationale:** In the Present Simple tense, with third person singular subjects, the verb takes an -s ending.
+- A) He go to school every day.  
+- B) He goes to school every day. ✅  
+- C) He going to school every day.  
+- D) He gone to school every day.  
 
 ---
 
-### Q2. Adverb Placement
+### Q2 (PS2). Negative Sentences {#q2-ps2}
+Which sentence is correct?
 
-Where should the adverb "always" be placed in the sentence "He is on time"?  
-
-- a) He always is on time.  
-- b) He is always on time.  
-- c) Always he is on time.  
-- d) He is on time always.  
-
-**Correct Answer:** b) He is always on time.  
-
-**Rationale:** The adverb "always" is correctly placed after the verb "is".
+- A) She doesn’t like pizza. ✅  
+- B) She don’t likes pizza.  
+- C) She doesn’t likes pizza.  
+- D) She don’t like pizza.  
 
 ---
 
-### Q3. Negative Form
+### Q3 (PS3). Questions {#q3-ps3}
+What is the correct question?
 
-Which is the correct negative form of "She likes coffee"?  
-
-- a) She not likes coffee.  
-- b) She doesn’t likes coffee.  
-- c) She doesn’t like coffee.  
-- d) She don’t like coffee.  
-
-**Correct Answer:** c) She doesn’t like coffee.  
-
-**Rationale:** In Present Simple negative sentences, use "does not (doesn’t)" + base verb.
+- A) Do he play football?  
+- B) Does he plays football?  
+- C) Does he play football? ✅  
+- D) Do he plays football?  
 
 ---
 
-### Q4. Question Form
+### Q4 (PS4). Third-Person Singular {#q4-ps4}
+Choose the correct form for third-person singular:
 
-Which is the correct question form?  
-
-- a) Likes she pizza?  
-- b) Does she like pizza?  
-- c) Do she likes pizza?  
-- d) She likes pizza?  
-
-**Correct Answer:** b) Does she like pizza?  
-
-**Rationale:** In Present Simple questions, use "Does + subject + base verb".
+- A) She walk to work.  
+- B) She walks to work. ✅  
+- C) She walking to work.  
+- D) She walked to work.  
 
 ---
 
-### Q5. Article Usage
+### Q5 (PS5). Articles {#q5-ps5}
+Select the correct sentence:
 
-Which is the correct sentence?  
-
-- a) She is a honest person.  
-- b) She is an honest person.  
-- c) She is the honest person.  
-- d) She is honest person.  
-
-**Correct Answer:** b) She is an honest person.  
-
-**Rationale:** Because "honest" begins with a vowel sound.
+- A) She is a teacher. ✅  
+- B) She is teacher.  
+- C) She is an teacher.  
+- D) She is the teacher.  

@@ -1,62 +1,66 @@
-[
-  {
-    "id": "PS1",
-    "question": "Which sentence is correct?",
-    "options": [
-      "He go to school every day.",
-      "He goes to school every day.",
-      "He going to school every day.",
-      "He gone to school every day."
-    ],
-    "answer": "He goes to school every day.",
-    "explanation": "In the Present Simple tense, with third person singular subjects, the verb takes an -s ending."
-  },
-  {
-    "id": "PS2",
-    "question": "Where should the adverb 'always' be placed in the sentence 'He is on time'?",
-    "options": [
-      "He always is on time.",
-      "He is always on time.",
-      "Always he is on time.",
-      "He is on time always."
-    ],
-    "answer": "He is always on time.",
-    "explanation": "The adverb 'always' is correctly placed after the verb 'is'."
-  },
-  {
-    "id": "PS3",
-    "question": "Which is the correct negative form of 'She likes coffee'?",
-    "options": [
-      "She not likes coffee.",
-      "She doesn’t likes coffee.",
-      "She doesn’t like coffee.",
-      "She don’t like coffee."
-    ],
-    "answer": "She doesn’t like coffee.",
-    "explanation": "In Present Simple negative sentences, use 'does not (doesn’t)' + base verb."
-  },
-  {
-    "id": "PS4",
-    "question": "Which is the correct question form?",
-    "options": [
-      "Likes she pizza?",
-      "Does she like pizza?",
-      "Do she likes pizza?",
-      "She likes pizza?"
-    ],
-    "answer": "Does she like pizza?",
-    "explanation": "In Present Simple questions, use 'Does + subject + base verb'."
-  },
-  {
-    "id": "PS5",
-    "question": "Which is the correct sentence?",
-    "options": [
-      "She is a honest person.",
-      "She is an honest person.",
-      "She is the honest person.",
-      "She is honest person."
-    ],
-    "answer": "She is an honest person.",
-    "explanation": "Because 'honest' begins with a vowel sound."
+{
+  "grammar_foundations": {
+    "present_simple": [
+      {
+        "id": "PS1",
+        "title": "Subject-Verb Agreement",
+        "question": "Which of the following sentences is correct?",
+        "options": [
+          "He go to school every day.",
+          "He goes to school every day.",
+          "He going to school every day.",
+          "He gone to school every day."
+        ],
+        "answer": "He goes to school every day."
+      },
+      {
+        "id": "PS2",
+        "title": "Negative Sentences",
+        "question": "Which sentence is correct?",
+        "options": [
+          "She doesn't like pizza.",
+          "She don't likes pizza.",
+          "She doesn't likes pizza.",
+          "She don't like pizza."
+        ],
+        "answer": "She doesn't like pizza."
+      },
+      {
+        "id": "PS3",
+        "title": "Questions",
+        "question": "What is the correct question?",
+        "options": [
+          "Do he play football?",
+          "Does he plays football?",
+          "Does he play football?",
+          "Do he plays football?"
+        ],
+        "answer": "Does he play football?"
+      },
+      {
+        "id": "PS4",
+        "title": "Third-Person Singular",
+        "question": "Choose the correct form for third-person singular:",
+        "options": [
+          "She walk to work.",
+          "She walks to work.",
+          "She walking to work.",
+          "She walked to work."
+        ],
+        "answer": "She walks to work."
+      },
+      {
+        "id": "PS5",
+        "title": "Articles",
+        "question": "Select the correct sentence:",
+        "options": [
+          "She is a teacher.",
+          "She is teacher.",
+          "She is an teacher.",
+          "She is the teacher."
+        ],
+        "answer": "She is a teacher."
+      }
+    ]
   }
-]
+}
