@@ -50,7 +50,15 @@ const StoryGame = () => {
           qs.map((q) => ({
             question: q?.question ?? q?.text ?? "",
             options: q?.options ?? q?.choices ?? [],
-            correct: q?.correct ?? q?.correctIndex ?? q?.correct_answer_index ?? 0,
+            // Always return a numeric index for scoring:
+            correct:
+              typeof q?.correct === "number"
+                ? q.correct
+                : typeof q?.correctIndex === "number"
+                ? q.correctIndex
+                : typeof q?.correct_answer_index === "number"
+                ? q.correct_answer_index
+                : (q?.options ?? q?.choices)?.indexOf(q?.correct) ?? 0,
             explanation: q?.explanation ?? q?.note ?? "",
           }));
 
@@ -95,10 +103,10 @@ const StoryGame = () => {
     );
   };
 
-  const handleComplete = (score) => {
+  const handleComplete = () => {
     // Add score saving logic here if needed
   };
-
+  
   const handleNextStory = () => {
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
