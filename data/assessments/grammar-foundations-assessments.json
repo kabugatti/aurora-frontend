@@ -1,66 +1,62 @@
-{
-  "grammar_foundations": {
-    "present_simple": [
-      {
-        "id": "PS1",
-        "title": "Subject-Verb Agreement",
-        "question": "Which of the following sentences is correct?",
-        "options": [
-          "He go to school every day.",
-          "He goes to school every day.",
-          "He going to school every day.",
-          "He gone to school every day."
-        ],
-        "answer": "He goes to school every day."
-      },
-      {
-        "id": "PS2",
-        "title": "Negative Sentences",
-        "question": "Which sentence is correct?",
-        "options": [
-          "She doesn't like pizza.",
-          "She don't likes pizza.",
-          "She doesn't likes pizza.",
-          "She don't like pizza."
-        ],
-        "answer": "She doesn't like pizza."
-      },
-      {
-        "id": "PS3",
-        "title": "Questions",
-        "question": "What is the correct question?",
-        "options": [
-          "Do he play football?",
-          "Does he plays football?",
-          "Does he play football?",
-          "Do he plays football?"
-        ],
-        "answer": "Does he play football?"
-      },
-      {
-        "id": "PS4",
-        "title": "Third-Person Singular",
-        "question": "Choose the correct form for third-person singular:",
-        "options": [
-          "She walk to work.",
-          "She walks to work.",
-          "She walking to work.",
-          "She walked to work."
-        ],
-        "answer": "She walks to work."
-      },
-      {
-        "id": "PS5",
-        "title": "Articles",
-        "question": "Select the correct sentence:",
-        "options": [
-          "She is a teacher.",
-          "She is teacher.",
-          "She is an teacher.",
-          "She is the teacher."
-        ],
-        "answer": "She is a teacher."
-      }
-    ]
+[
+  {
+    "id": "PS1",
+    "question": "Choose the correct sentence:",
+    "options": [
+      "He go to school every day.",
+      "He goes to school every day.",
+      "He going to school every day.",
+      "He gone to school every day."
+    ],
+    "answer": "He goes to school every day.",
+    "explanation": "In the Present Simple tense, with third person singular (he/she/it), we add -s to the verb."
+  },
+  {
+    "id": "PS2",
+    "question": "Choose the correct sentence:",
+    "options": [
+      "They plays football on Sundays.",
+      "They play football on Sundays.",
+      "They played football on Sundays.",
+      "They are play football on Sundays."
+    ],
+    "answer": "They play football on Sundays.",
+    "explanation": "For plural subjects (they/we/you), the verb does not take -s in the Present Simple tense."
+  },
+  {
+    "id": "PS3",
+    "question": "Choose the correct sentence:",
+    "options": [
+      "Does she like ice cream?",
+      "Do she likes ice cream?",
+      "She does likes ice cream?",
+      "She like ice cream?"
+    ],
+    "answer": "Does she like ice cream?",
+    "explanation": "In questions, Present Simple uses do/does + subject + base verb. With 'she,' we use 'does'."
+  },
+  {
+    "id": "PS4",
+    "question": "Choose the correct sentence:",
+    "options": [
+      "I doesn’t understand the question.",
+      "I don’t understands the question.",
+      "I don’t understand the question.",
+      "I doesn’t understands the question."
+    ],
+    "answer": "I don’t understand the question.",
+    "explanation": "With 'I,' the correct negative form is don’t + base verb."
+  },
+  {
+    "id": "PS5",
+    "question": "Choose the correct sentence:",
+    "options": [
+      "The children’s toys are on the floor.",
+      "The childrens’ toys are on the floor.",
+      "The childrens toys are on the floor.",
+      "The children toy’s are on the floor."
+    ],
+    "answer": "The children’s toys are on the floor.",
+    "explanation": "Children is already plural, so we form the possessive with an apostrophe ’s."
   }
-}
+]
