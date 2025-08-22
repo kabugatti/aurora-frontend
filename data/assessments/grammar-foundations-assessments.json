@@ -1,66 +1,62 @@
-{
-  "id": "grammar-foundations-present-simple",
-  "title": "Grammar Foundations – Present Simple Assessments",
-  "questions": [
-    {
-      "id": "PS1",
-      "question": "Which sentence is correct in the Present Simple tense?",
-      "options": [
-        "She go to school every day.",
-        "She goes to school every day.",
-        "She going to school every day.",
-        "She is go to school every day."
-      ],
-      "answer": 1,
-      "explanation": "Tests the Present Simple tense."
-    },
-    {
-      "id": "PS2",
-      "question": "Where should the adverb 'always' be placed in the sentence?",
-      "options": [
-        "He always is on time.",
-        "He is always on time.",
-        "Always he is on time.",
-        "He is on always time."
-      ],
-      "answer": 1,
-      "explanation": "'Always' usually follows the verb 'be'."
-    },
-    {
-      "id": "PS3",
-      "question": "Which sentence is in the Present Simple tense?",
-      "options": [
-        "They are playing football now.",
-        "They have played football yesterday.",
-        "They play football every weekend.",
-        "They will play football tomorrow."
-      ],
-      "answer": 2,
-      "explanation": "Tests habits in the Present Simple."
-    },
-    {
-      "id": "PS4",
-      "question": "Which of the following is correct?",
-      "options": [
-        "He go to the office every day.",
-        "He going to the office every day.",
-        "He goes to the office every day.",
-        "He is go to the office every day."
-      ],
-      "answer": 2,
-      "explanation": "Subject-verb agreement in the Present Simple."
-    },
-    {
-      "id": "PS5",
-      "question": "Choose the correct article:",
-      "options": [
-        "He is a honest man.",
-        "He is an honest man.",
-        "He is the honest man.",
-        "He is honest man."
-      ],
-      "answer": 1,
-      "explanation": "Before a consonant sound."
-    }
-  ]
-}
+[
+  {
+    "id": "PS1",
+    "question": "Which sentence is correct?",
+    "options": [
+      "He go to school every day.",
+      "He goes to school every day.",
+      "He going to school every day.",
+      "He gone to school every day."
+    ],
+    "answer": "He goes to school every day.",
+    "explanation": "In the Present Simple tense, with third person singular subjects, the verb takes an -s ending."
+  },
+  {
+    "id": "PS2",
+    "question": "Where should the adverb 'always' be placed in the sentence 'He is on time'?",
+    "options": [
+      "He always is on time.",
+      "He is always on time.",
+      "Always he is on time.",
+      "He is on time always."
+    ],
+    "answer": "He is always on time.",
+    "explanation": "The adverb 'always' is correctly placed after the verb 'is'."
+  },
+  {
+    "id": "PS3",
+    "question": "Which is the correct negative form of 'She likes coffee'?",
+    "options": [
+      "She not likes coffee.",
+      "She doesn’t likes coffee.",
+      "She doesn’t like coffee.",
+      "She don’t like coffee."
+    ],
+    "answer": "She doesn’t like coffee.",
+    "explanation": "In Present Simple negative sentences, use 'does not (doesn’t)' + base verb."
+  },
+  {
+    "id": "PS4",
+    "question": "Which is the correct question form?",
+    "options": [
+      "Likes she pizza?",
+      "Does she like pizza?",
+      "Do she likes pizza?",
+      "She likes pizza?"
+    ],
+    "answer": "Does she like pizza?",
+    "explanation": "In Present Simple questions, use 'Does + subject + base verb'."
+  },
+  {
+    "id": "PS5",
+    "question": "Which is the correct sentence?",
+    "options": [
+      "She is a honest person.",
+      "She is an honest person.",
+      "She is the honest person.",
+      "She is honest person."
+    ],
+    "answer": "She is an honest person.",
+    "explanation": "Because 'honest' begins with a vowel sound."
+  }
+]

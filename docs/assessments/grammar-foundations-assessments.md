@@ -1,59 +1,76 @@
-# Grammar Foundations – Present Simple Assessments
+# Grammar Foundations Assessments
 
-## Question 1
-Which sentence is correct in the Present Simple tense?
+## Present Simple Assessments
 
-- a) She go to school every day.
-- b) She goes to school every day.
-- c) She going to school every day.
-- d) She is go to school every day.
+### Q1. Subject-Verb Agreement
 
-**Correct:** b – Tests the Present Simple tense.
+Which sentence is correct?  
 
----
+- a) He go to school every day.  
+- b) He goes to school every day.  
+- c) He going to school every day.  
+- d) He gone to school every day.  
 
-## Question 2
-Where should the adverb "always" be placed in the sentence?
+**Correct Answer:** b) He goes to school every day.  
 
-- a) He always is on time.
-- b) He is always on time.
-- c) Always he is on time.
-- d) He is on always time.
-
-**Correct:** b – 'Always' usually follows the verb 'be'.
+**Rationale:** In the Present Simple tense, with third person singular subjects, the verb takes an -s ending.
 
 ---
 
-## Question 3
-Which sentence is in the Present Simple tense?
+### Q2. Adverb Placement
 
-- a) They are playing football now.
-- b) They have played football yesterday.
-- c) They play football every weekend.
-- d) They will play football tomorrow.
+Where should the adverb "always" be placed in the sentence "He is on time"?  
 
-**Correct:** c – Tests habits in the Present Simple.
+- a) He always is on time.  
+- b) He is always on time.  
+- c) Always he is on time.  
+- d) He is on time always.  
 
----
+**Correct Answer:** b) He is always on time.  
 
-## Question 4
-Which of the following is correct?
-
-- a) He go to the office every day.
-- b) He going to the office every day.
-- c) He goes to the office every day.
-- d) He is go to the office every day.
-
-**Correct:** c – Subject-verb agreement in the Present Simple.
+**Rationale:** The adverb "always" is correctly placed after the verb "is".
 
 ---
 
-## Question 5
-Choose the correct article:
+### Q3. Negative Form
 
-- a) He is a honest man.
-- b) He is an honest man.
-- c) He is the honest man.
-- d) He is honest man.
+Which is the correct negative form of "She likes coffee"?  
 
-**Correct:** b – Before a consonant sound.
+- a) She not likes coffee.  
+- b) She doesn’t likes coffee.  
+- c) She doesn’t like coffee.  
+- d) She don’t like coffee.  
+
+**Correct Answer:** c) She doesn’t like coffee.  
+
+**Rationale:** In Present Simple negative sentences, use "does not (doesn’t)" + base verb.
+
+---
+
+### Q4. Question Form
+
+Which is the correct question form?  
+
+- a) Likes she pizza?  
+- b) Does she like pizza?  
+- c) Do she likes pizza?  
+- d) She likes pizza?  
+
+**Correct Answer:** b) Does she like pizza?  
+
+**Rationale:** In Present Simple questions, use "Does + subject + base verb".
+
+---
+
+### Q5. Article Usage
+
+Which is the correct sentence?  
+
+- a) She is a honest person.  
+- b) She is an honest person.  
+- c) She is the honest person.  
+- d) She is honest person.  
+
+**Correct Answer:** b) She is an honest person.  
+
+**Rationale:** Because "honest" begins with a vowel sound.
