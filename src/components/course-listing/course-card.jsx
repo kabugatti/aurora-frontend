@@ -7,8 +7,22 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 export default function CourseCard({ course, viewMode }) {
+  const navigate = useNavigate();
+
+  const handleStartLearning = () => {
+    // Special handling for the Cultural Insights course
+    if (course.title === "Cultural Insights") {
+      navigate("/cultural-assessment");
+      return;
+    }
+
+    // Default behavior for other courses would go here
+    // This could be expanded for other specific courses as needed
+  };
+
   return (
     <Card
       className={`bg-gray-900 border-gray-800 overflow-hidden transition-all hover:border-gray-700 ${
@@ -68,7 +82,10 @@ export default function CourseCard({ course, viewMode }) {
             <p className="text-[#00C2CB] font-bold">${course.price}</p>
             <p className="text-xs text-gray-400">By {course.instructor}</p>
           </div>
-          <Button className="bg-[#00C2CB] hover:bg-[#00A8B0] mt-2 sm:mt-0 flex justify-center sm:block">
+          <Button
+            onClick={handleStartLearning}
+            className="bg-[#00C2CB] hover:bg-[#00A8B0] mt-2 sm:mt-0 flex justify-center sm:block"
+          >
             Start Learning
           </Button>
         </CardFooter>

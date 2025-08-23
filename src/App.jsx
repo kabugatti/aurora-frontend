@@ -16,10 +16,13 @@ import RegisterPage from "@/pages/auth/register";
 import VerifyEmailPage from "@/pages/auth/verify-email";
 
 // 📚 Learning & Education
+import LearningContent from "@/pages/aurora-site/learning/learning-content";
 import ListeningPage from "@/pages/aurora-site/learning/listening-content";
 import ReadingContent from "@/pages/aurora-site/learning/reading-content";
 import SpeakingPage from "@/pages/aurora-site/learning/speaking-content";
 import VocabularyPage from "@/pages/aurora-site/learning/vocabulary-content";
+// import ConversationAssessmentPage from "@/pages/aurora-site/learning/conversation-assessment";
+import CulturalAssessmentPage from "@/pages/aurora-site/learning/cultural-assessment";
 import BusinessEnglish from "@/pages/learning/business-english";
 
 // 🎓 Certifications & Courses
@@ -80,7 +83,6 @@ import CertificatePage from "@/pages/aurora-site/certificate";
 import MyRequestsPage from "@/pages/aurora-site/my-requests";
 import EscrowClassesPage from "@/pages/aurora-site/escrow/classes";
 import TeacherSignupPage from "@/pages/teacher-signup";
-
 
 function App() {
   return (
@@ -158,6 +160,10 @@ function App() {
               <Route path="/speaking" element={<SpeakingPage />} />
               <Route path="/listening" element={<ListeningPage />} />
               <Route path="/reading" element={<ReadingContent />} />
+              <Route
+                path="/cultural-assessment"
+                element={<CulturalAssessmentPage />}
+              />
               <Route path="/community" element={<CommunityInteractionPage />} />
               <Route
                 path="/teacher-directory"
