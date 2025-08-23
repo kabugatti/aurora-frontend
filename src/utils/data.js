@@ -28,7 +28,7 @@ export const COURSES = [
     icon: "Brain",
   },
   {
-    id: 22,
+    id: 51,
     title: "Advanced Business Communication",
     description: "Enhance your professional communication skills",
     instructor: "Mark Evans",

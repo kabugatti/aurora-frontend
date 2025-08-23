@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { culturalAssessments } from "@/data/cultural-assessments";
 import {
   Card,
@@ -73,20 +73,33 @@ const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
   const [attempts, setAttempts] = useState(assessment.questions.map(() => 0));
+  const [answeredCorrectly, setAnsweredCorrectly] = useState(() =>
+    assessment.questions.map(() => false)
+  );
 
   const handleAnswer = (option) => {
     if (selectedAnswer) return;
 
+    const qIndex = currentQuestion;
+    const question = assessment.questions[qIndex];
+    const isCorrect = option === question.correctAnswer;
+
     setSelectedAnswer(option);
-    const question = assessment.questions[currentQuestion];
 
     // Track the attempt
-    const newAttempts = [...attempts];
-    newAttempts[currentQuestion] += 1;
-    setAttempts(newAttempts);
+    setAttempts((prev) => {
+      const next = [...prev];
+      next[qIndex] += 1;
+      return next;
+    });
 
-    if (option === question.correctAnswer) {
-      setScore(score + 1);
+    if (isCorrect) {
+      setScore((prev) => prev + 1);
+      setAnsweredCorrectly((prev) => {
+        const next = [...prev];
+        next[qIndex] = true;
+        return next;
+      });
     }
   };
 
@@ -98,7 +111,7 @@ const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
       if (onComplete) {
         onComplete(score, assessment.questions.length);
       }
-      //   setShowResults(true);
+      setShowResults(true);
     }
   };
 
@@ -108,6 +121,7 @@ const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
     setScore(0);
     setShowResults(false);
     setAttempts(assessment.questions.map(() => 0));
+    setAnsweredCorrectly(assessment.questions.map(() => false));
   };
 
   const handleRetryQuestion = () => {
@@ -151,11 +165,12 @@ const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
               </h3>
               <ul className="list-disc list-inside space-y-2 text-neutral-2">
                 {assessment.questions.map((q, index) => {
-                  const wasCorrect = attempts[index] === 1; // Got it on the first try
+                  const gotItRight = answeredCorrectly[index];
+                  const firstTry = gotItRight && attempts[index] === 1;
                   return (
-                    <li key={index} className="flex items-start gap-2">
+                    <li key={q.id} className="flex items-start gap-2">
                       <span>
-                        {wasCorrect ? (
+                        {gotItRight ? (
                           <Check className="text-green-400 h-5 w-5 mt-0.5" />
                         ) : (
                           <X className="text-red-400 h-5 w-5 mt-0.5" />
@@ -163,11 +178,15 @@ const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
                       </span>
                       <span>
                         <span className="font-medium">{q.question}</span>
-                        {!wasCorrect && (
-                          <p className="text-sm text-neutral-3">
-                            Correct: {q.correctAnswer}
-                          </p>
-                        )}
+                        <p className="text-sm text-neutral-3">
+                          {firstTry ? (
+                            "Correct on the first try."
+                          ) : gotItRight ? (
+                            "Correct after multiple attempts."
+                          ) : (
+                            <>Correct answer: {q.correctAnswer}</>
+                          )}
+                        </p>
                       </span>
                     </li>
                   );
