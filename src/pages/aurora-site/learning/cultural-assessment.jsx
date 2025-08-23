@@ -98,7 +98,7 @@ const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
       if (onComplete) {
         onComplete(score, assessment.questions.length);
       }
-      setShowResults(true);
+      //   setShowResults(true);
     }
   };
 
