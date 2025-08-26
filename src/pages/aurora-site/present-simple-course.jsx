@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowLeft, BookOpen, CheckCircle, Play, Lock } from 'lucide-react';
+import { useState } from 'react';
+import { ArrowLeft, BookOpen, CheckCircle, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import presentSimpleCourse from '@/components/grammar-courses/present-simple';
 import LessonComponent from '@/components/grammar-courses/present-simple/LessonComponent';
@@ -47,7 +47,7 @@ const PresentSimpleCoursePage = () => {
               Congratulations! You have successfully completed the Present Simple Tense course.
             </p>
             <div className="bg-dark-blue-5 rounded-lg p-6 mb-6">
-              <h2 className="text-xl font-semibold text-neutral-1 mb-4">What you've learned:</h2>
+              <h2 className="text-xl font-semibold text-neutral-1 mb-4">What you&apos;ve learned:</h2>
               <ul className="text-left space-y-2 text-neutral-2">
                 {presentSimpleCourse.courseOverview.objectives.map((objective, index) => (
                   <li key={index} className="flex items-start">
