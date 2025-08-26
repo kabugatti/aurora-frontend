@@ -94,8 +94,8 @@ export const lesson3Data = {
           options: [
             "They usually go to the gym",
             "They go usually to the gym",
-            "Usually they go to the gym",
-            "They go to the gym usually"
+            "They go to the gym usually",
+            "They usually to the gym go"
           ],
           correctAnswer: "They usually go to the gym",
           explanation: "Frequency adverbs go before the main verb."
@@ -116,8 +116,8 @@ export const lesson3Data = {
           options: [
             "We sometimes study together",
             "We study sometimes together",
-            "Sometimes we study together",
-            "We study together sometimes"
+            "We study together sometimes",
+            "We sometimes together study"
           ],
           correctAnswer: "We sometimes study together",
           explanation: "Frequency adverbs go before the main verb."

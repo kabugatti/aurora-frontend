@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CheckCircle, XCircle, ArrowRight, ArrowLeft, BookOpen, Lightbulb, AlertTriangle } from 'lucide-react';
 
 const LessonComponent = ({ lessonData, onComplete, onNext, onPrevious, lessonNumber, totalLessons }) => {
   const [currentSection, setCurrentSection] = useState('theory');
-  const [currentExercise, setCurrentExercise] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
@@ -20,11 +18,9 @@ const LessonComponent = ({ lessonData, onComplete, onNext, onPrevious, lessonNum
 
   const handleExerciseComplete = () => {
     let currentScore = 0;
-    let totalQuestions = 0;
 
     lessonData.exercises.forEach((exercise, exerciseIndex) => {
       exercise.questions.forEach((question, questionIndex) => {
-        totalQuestions++;
         const selectedAnswer = selectedAnswers[`${exerciseIndex}-${questionIndex}`];
         if (selectedAnswer === question.correctAnswer) {
           currentScore++;
@@ -308,7 +304,7 @@ const LessonComponent = ({ lessonData, onComplete, onNext, onPrevious, lessonNum
 
       {/* Navigation Tabs */}
       <div className="flex space-x-1 mb-6 bg-dark-blue-4 p-1 rounded-lg">
-        {sections.map((section, index) => (
+        {sections.map((section) => (
           <button
             key={section}
             onClick={() => setCurrentSection(section)}

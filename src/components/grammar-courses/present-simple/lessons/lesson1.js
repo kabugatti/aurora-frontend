@@ -16,8 +16,10 @@ export const lesson1Data = {
       ],
       exceptions: [
         "Verbs ending in -ch, -sh, -x, -o, -z: add -es (watch → watches, wash → washes)",
+        "Verbs ending in -ss: add -es (kiss → kisses, miss → misses, pass → passes)",
         "Verbs ending in consonant + y: change y to i + es (study → studies, try → tries)",
-        "Verbs ending in vowel + y: just add -s (play → plays, stay → stays)"
+        "Verbs ending in vowel + y: just add -s (play → plays, stay → stays)",
+        "High-frequency irregulars: do → does, go → goes, have → has"
       ]
     },
     examples: [

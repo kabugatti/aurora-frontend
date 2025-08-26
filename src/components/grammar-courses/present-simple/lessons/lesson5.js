@@ -20,6 +20,10 @@ export const lesson5Data = {
         {
           rule: "Present Continuous: actions happening at the moment of speaking",
           examples: ["I am working now", "She is studying right now", "They are visiting their parents today"]
+        },
+        {
+          rule: "Stative verbs: use Present Simple, not Continuous",
+          examples: ["I know the answer", "She likes chocolate", "He wants a new phone", "They believe in you"]
         }
       ],
       importantNotes: [
@@ -211,6 +215,12 @@ export const lesson5Data = {
       example: "❌ I am going to the gym every day (habit)",
       correction: "✅ I go to the gym every day",
       explanation: "Use present simple for regular habits, present continuous for current actions."
+    },
+    {
+      mistake: "Using present continuous with stative verbs",
+      example: "❌ I am knowing the answer",
+      correction: "✅ I know the answer",
+      explanation: "Use present simple with stative verbs (love, know, believe, belong, etc.); do not use present continuous for states or emotions."
     }
   ]
 }; 

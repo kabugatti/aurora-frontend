@@ -4,6 +4,27 @@ import { lesson3Data } from './lessons/lesson3';
 import { lesson4Data } from './lessons/lesson4';
 import { lesson5Data } from './lessons/lesson5';
 
+// Calculate totals dynamically from lesson data
+const calculateTotals = () => {
+  const lessonDataArray = [lesson1Data, lesson2Data, lesson3Data, lesson4Data, lesson5Data];
+  
+  const totals = lessonDataArray.reduce((acc, lessonData) => {
+    const exerciseCount = lessonData.exercises.length;
+    const questionCount = lessonData.exercises.reduce((sum, exercise) => {
+      return sum + exercise.questions.length;
+    }, 0);
+    
+    return {
+      totalExercises: acc.totalExercises + exerciseCount,
+      totalQuestions: acc.totalQuestions + questionCount
+    };
+  }, { totalExercises: 0, totalQuestions: 0 });
+  
+  return totals;
+};
+
+const { totalExercises, totalQuestions } = calculateTotals();
+
 export const presentSimpleCourse = {
   id: "present-simple",
   title: "Present Simple Tense",
@@ -72,8 +93,8 @@ export const presentSimpleCourse = {
       "Familiarity with subject-verb agreement concepts"
     ]
   },
-  totalExercises: 25,
-  totalQuestions: 50
+  totalExercises,
+  totalQuestions
 };
 
 export default presentSimpleCourse; 
