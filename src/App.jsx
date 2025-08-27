@@ -16,7 +16,6 @@ import RegisterPage from "@/pages/auth/register";
 import VerifyEmailPage from "@/pages/auth/verify-email";
 
 // 📚 Learning & Education
-// import LearningContent from "@/pages/aurora-site/learning/learning-content";
 import ListeningPage from "@/pages/aurora-site/learning/listening-content";
 import ReadingContent from "@/pages/aurora-site/learning/reading-content";
 import SpeakingPage from "@/pages/aurora-site/learning/speaking-content";
