@@ -24,8 +24,9 @@ const MainLayout = ({ children }) => {
 
 const CategoryCard = ({ title, modules, color, icon, onClick }) => {
   return (
-    <div 
-      className={`${color} rounded-xl overflow-hidden h-48 transition-transform hover:scale-105 cursor-pointer`}
+    <button 
+      type="button"
+      className={`${color} rounded-xl overflow-hidden h-48 transition-transform hover:scale-105 cursor-pointer w-full text-left`}
       onClick={onClick}
     >
       <div className="p-6 h-full flex flex-col justify-between">
@@ -41,7 +42,7 @@ const CategoryCard = ({ title, modules, color, icon, onClick }) => {
           <p className="text-white/80 text-sm">{modules} Modules</p>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

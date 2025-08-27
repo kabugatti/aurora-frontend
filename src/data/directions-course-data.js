@@ -274,8 +274,12 @@ export const directionsCourseData = {
         question: "Trace the path: 'From the library, go south one block, then west two blocks'",
         startPoint: "library",
         expectedPath: ["south", "west", "west"],
-        landmarks: ["library", "cafe", "museum"],
-        correctDestination: "museum"
+        landmarks: [
+          { name: "library" },
+          { name: "cafe" },
+          { name: "museum" }
+        ],
+        correctAnswer: "museum"
       },
       {
         id: 6,
@@ -283,8 +287,13 @@ export const directionsCourseData = {
         question: "Follow: 'Turn left at the corner, then it's the second building on your right'",
         startPoint: "entrance", 
         expectedPath: ["left", "pass", "arrive"],
-        buildings: ["entrance", "shop1", "target", "shop2"],
-        correctDestination: "target"
+        landmarks: [
+          { name: "entrance" },
+          { name: "shop1" },
+          { name: "target" },
+          { name: "shop2" }
+        ],
+        correctAnswer: "target"
       },
       {
         id: 7,
@@ -292,8 +301,12 @@ export const directionsCourseData = {
         question: "From the park, follow: 'Head east, turn right at the first intersection'",
         startPoint: "park",
         expectedPath: ["east", "right"], 
-        intersections: ["first_intersection"],
-        correctDestination: "hospital"
+        landmarks: [
+          { name: "park" },
+          { name: "first_intersection" },
+          { name: "hospital" }
+        ],
+        correctAnswer: "hospital"
       }
     ]
   },

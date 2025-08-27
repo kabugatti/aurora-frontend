@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { ArrowLeft, ArrowRight, Map, MessageCircle, Navigation, Car } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { ArrowLeft, Map as MapIcon, MessageCircle, Navigation, Car } from "lucide-react";
 import { directionsCourseData, courseNavigation } from "@/data/directions-course-data";
 import LessonContent from "./lesson-content";
 import DirectionExercise from "./direction-exercise";
@@ -11,9 +11,17 @@ export default function DirectionsCourse() {
   const [currentExercise, setCurrentExercise] = useState(0);
   const [lessonProgress, setLessonProgress] = useState({});
   const [showOverview, setShowOverview] = useState(true);
+  const timeoutIds = useRef([]);
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      timeoutIds.current.forEach(id => clearTimeout(id));
+    };
+  }, []);
 
   const lessonIcons = {
-    1: Map,
+    1: MapIcon,
     2: MessageCircle, 
     3: Navigation,
     4: Car
@@ -38,7 +46,7 @@ export default function DirectionsCourse() {
 
   const goToNextExercise = () => {
     const currentLessonData = directionsCourseData[`lesson${currentLesson}`];
-    if (currentExercise < currentLessonData.exercises.length - 1) {
+    if (currentExercise < currentLessonData.exercises.length) {
       setCurrentExercise(prev => prev + 1);
     } else {
       // TODO: Better completion modal maybe? This toast thing works for now
@@ -50,12 +58,13 @@ export default function DirectionsCourse() {
       
       // Quick hack - auto advance after 2 seconds
       if (currentLesson < courseNavigation.totalLessons) {
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
           setCurrentLesson(prev => prev + 1);
           setCurrentExercise(0);
         }, 2000); // FIXME: Should this timing be configurable?
+        timeoutIds.current.push(timeoutId);
       } else {
-        setTimeout(() => {
+        const timeoutId = setTimeout(() => {
           showToast({
             title: "Course Complete!", 
             description: "Nice work!",
@@ -63,6 +72,7 @@ export default function DirectionsCourse() {
           });
           setShowOverview(true);
         }, 2000);
+        timeoutIds.current.push(timeoutId);
       }
     }
   };
@@ -101,10 +111,12 @@ export default function DirectionsCourse() {
             {courseNavigation.lessons.map((lesson) => {
               const IconComponent = lessonIcons[lesson.id];
               return (
-                <div
+                <button
                   key={lesson.id}
+                  type="button"
                   onClick={() => handleLessonSelect(lesson.id)}
-                  className="bg-dark-blue-5 border border-dark-blue-4 text-white p-6 rounded-lg cursor-pointer hover:border-light-blue-2 transform hover:scale-105 transition-all duration-200"
+                  className="bg-dark-blue-5 border border-dark-blue-4 text-white p-6 rounded-lg cursor-pointer hover:border-light-blue-2 transform hover:scale-105 transition-all duration-200 w-full text-left"
+                  aria-label={`Start ${lesson.title}`}
                 >
                   <div className="flex items-center mb-4">
                     <IconComponent size={24} className="mr-3 text-light-blue-2" />
@@ -117,7 +129,7 @@ export default function DirectionsCourse() {
                     <span>{lesson.exercises} exercises</span>
                     <span>{lesson.duration}</span>
                   </div>
-                </div>
+                </button>
               );
             })}
           </div>
@@ -149,7 +161,8 @@ export default function DirectionsCourse() {
   }
 
   const currentLessonData = directionsCourseData[`lesson${currentLesson}`];
-  const currentExerciseData = currentLessonData.exercises[currentExercise];
+  const exerciseIndex = Math.max(0, currentExercise - 1);
+  const currentExerciseData = currentExercise > 0 ? currentLessonData.exercises[exerciseIndex] : null;
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-[#0d1117] min-h-screen">
@@ -171,7 +184,7 @@ export default function DirectionsCourse() {
             <div className="text-right">
               <div className="text-sm text-neutral-5">Exercise</div>
               <div className="text-lg font-bold text-light-blue-2">
-                {currentExercise + 1} / {currentLessonData.exercises.length}
+                {currentExercise === 0 ? "Intro" : `${currentExercise} / ${currentLessonData.exercises.length}`}
               </div>
             </div>
           </div>
@@ -181,7 +194,7 @@ export default function DirectionsCourse() {
             <div 
               className="bg-light-blue-2 rounded-full h-2 transition-all duration-300"
               style={{ 
-                width: `${((currentExercise + 1) / currentLessonData.exercises.length) * 100}%` 
+                width: `${(currentExercise / (currentLessonData.exercises.length + 1)) * 100}%` 
               }}
             />
           </div>

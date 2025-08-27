@@ -173,7 +173,7 @@ export default function DirectionExercise({
           <Volume2 size={20} className="mr-2 text-light-blue-2" />
           <span className="font-medium text-white">Audio Text:</span>
         </div>
-        <p className="text-[#D1D5DB] italic">"{exercise.audioText}"</p>
+        <p className="text-[#D1D5DB] italic"><q>{exercise.audioText}</q></p>
         <button 
           className="mt-2 text-light-blue-2 hover:text-light-blue-1 font-medium"
           onClick={() => console.log('TODO: Implement real audio playback')}
@@ -222,7 +222,7 @@ export default function DirectionExercise({
             <div 
               key={index}
               className={`p-3 text-center rounded border-2 text-sm ${
-                landmark.name === exercise.correctAnswer
+                showFeedback && landmark.name === exercise.correctAnswer
                   ? "border-green-500 bg-green-900/30 text-green-400"
                   : "border-dark-blue-4 bg-dark-blue-6 text-[#D1D5DB]"
               }`}
@@ -308,10 +308,10 @@ export default function DirectionExercise({
         </button>
         
         <button
-          onClick={onNext}
-          disabled={!showFeedback}
+          onClick={showFeedback && canGoForward ? onNext : () => {}}
+          disabled={!showFeedback || !canGoForward}
           className={`flex items-center px-4 py-2 rounded-lg transition-colors ${
-            showFeedback
+            showFeedback && canGoForward
               ? "bg-dark-blue-5 border border-dark-blue-4 hover:border-light-blue-2 text-white hover:text-light-blue-2"
               : "bg-dark-blue-6 text-neutral-6 cursor-not-allowed"
           }`}

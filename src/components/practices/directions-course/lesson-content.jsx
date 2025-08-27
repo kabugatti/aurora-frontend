@@ -31,30 +31,30 @@ export default function LessonContent({ lesson, onContinue }) {
         <div className="space-y-2 text-[#D1D5DB]">
           {lesson.title.includes("Vocabulary") && (
             <>
-              <p>• Practice compass directions by using your phone's compass app</p>
+              <p>• Practice compass directions by using your phone&apos;s compass app</p>
               <p>• Count blocks when walking to get familiar with distance measurements</p>
               <p>• Notice street signs and practice reading avenue vs street names</p>
             </>
           )}
           {lesson.title.includes("Politely") && (
             <>
-              <p>• Always start with "Excuse me" to be polite</p>
-              <p>• Use "please" and "thank you" when asking for help</p>
-              <p>• Don't be afraid to ask someone to repeat directions</p>
+              <p>• Always start with &quot;Excuse me&quot; to be polite</p>
+              <p>• Use &quot;please&quot; and &quot;thank you&quot; when asking for help</p>
+              <p>• Don&apos;t be afraid to ask someone to repeat directions</p>
             </>
           )}
           {lesson.title.includes("Understanding") && (
             <>
-              <p>• Listen for key landmarks like "traffic light" or "church"</p>
+              <p>• Listen for key landmarks like &quot;traffic light&quot; or &quot;church&quot;</p>
               <p>• Visualize the route as someone explains it</p>
-              <p>• Ask for clarification if you don't understand something</p>
+              <p>• Ask for clarification if you don&apos;t understand something</p>
             </>
           )}
           {lesson.title.includes("Transportation") && (
             <>
               <p>• Know the local transport options in your area</p>
               <p>• Keep emergency phrases ready when traveling</p>
-              <p>• Don't hesitate to ask locals for help when lost</p>
+              <p>• Don&apos;t hesitate to ask locals for help when lost</p>
             </>
           )}
         </div>
