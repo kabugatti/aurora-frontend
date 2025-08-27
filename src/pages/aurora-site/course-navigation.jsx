@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MessageCircle,
@@ -445,6 +445,16 @@ const CourseNavigation = () => {
                           e.stopPropagation();
                           handleLessonClick(selectedCourse, lesson.id);
                         }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleLessonClick(selectedCourse, lesson.id);
+                          }
+                        }}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`${lesson.title} - ${lesson.completed ? "Completed" : "Not started"} - ${lesson.duration}`}
                         initial={{
                           opacity: 0,
                           x: -20,

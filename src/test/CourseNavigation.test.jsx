@@ -82,9 +82,9 @@ describe("CourseNavigation Component", () => {
   test("expands course to show lessons when clicked", () => {
     renderWithRouter(<CourseNavigation />);
 
-    const basicConversationCard = screen
-      .getAllByText("Basic Conversation")[0]
-      .closest("div");
+    const basicConversationCard = screen.getByRole("button", {
+      name: /Basic Conversation/i,
+    });
     fireEvent.click(basicConversationCard);
 
     // Should show lessons after clicking
@@ -101,13 +101,13 @@ describe("CourseNavigation Component", () => {
   test("shows lesson completion status", () => {
     renderWithRouter(<CourseNavigation />);
 
-    const basicConversationCard = screen
-      .getAllByText("Basic Conversation")[0]
-      .closest("div");
+    const basicConversationCard = screen.getByRole("button", {
+      name: /Basic Conversation/i,
+    });
     fireEvent.click(basicConversationCard);
 
     // Should show completed lessons with checkmarks
-    const completedLessons = screen.getAllByText("Greetings and Introductions");
-    expect(completedLessons.length).toBeGreaterThan(0);
+    expect(screen.getByText("Greetings and Introductions")).toBeInTheDocument();
+    expect(screen.getByText("✓ Completed")).toBeInTheDocument();
   });
 });
