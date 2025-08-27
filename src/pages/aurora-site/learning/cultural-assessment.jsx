@@ -108,9 +108,6 @@ const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
     } else {
-      if (onComplete) {
-        onComplete(score, assessment.questions.length);
-      }
       setShowResults(true);
     }
   };
