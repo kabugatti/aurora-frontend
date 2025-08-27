@@ -14,7 +14,7 @@ export const conversationAssessments = [
     description: "Test your knowledge of basic greetings and introductions",
     questions: [
       {
-        id: 1,
+        id: "greetings-introductions-1",
         question:
           "You meet your colleague's friend at a party. What's the most appropriate response?",
         context: 'Colleague: "Maria, this is my friend John."',
@@ -29,7 +29,7 @@ export const conversationAssessments = [
           "When being introduced to someone new in a social setting, 'Nice to meet you' is the most polite and appropriate response.",
       },
       {
-        id: 2,
+        id: "greetings-introductions-2",
         question:
           "Complete this self-introduction: 'Hi, I'm Carlos. I'm 28 years old and _____ Mexico.'",
         options: ["I come from", "I'm from", "I have from", "My country is"],
@@ -38,7 +38,7 @@ export const conversationAssessments = [
           "The phrase 'I'm from' is the most common and natural way to state your country of origin in an introduction.",
       },
       {
-        id: 3,
+        id: "greetings-introductions-3",
         question: "Someone says 'Thank you for your help.' You respond:",
         options: [
           "No problem",
@@ -51,7 +51,7 @@ export const conversationAssessments = [
           "All of these responses are appropriate ways to acknowledge someone's thanks in English.",
       },
       {
-        id: 4,
+        id: "greetings-introductions-4",
         question:
           "What information is typically shared in a basic introduction?",
         options: [
@@ -65,7 +65,7 @@ export const conversationAssessments = [
           "A standard introduction typically includes your name, where you're from, and your occupation or what you do.",
       },
       {
-        id: 5,
+        id: "greetings-introductions-5",
         question: "How do you politely ask someone's name?",
         options: [
           "What's your name?",
@@ -85,7 +85,7 @@ export const conversationAssessments = [
     description: "Test your knowledge of ordering food and drinks in English",
     questions: [
       {
-        id: 1,
+        id: "ordering-food-drinks-1",
         question: "You want to see what food is available. You ask the waiter:",
         options: [
           "What food do you have?",
@@ -98,7 +98,7 @@ export const conversationAssessments = [
           "Asking 'Could I see the menu, please?' is polite and is the standard way to request the menu at a restaurant.",
       },
       {
-        id: 2,
+        id: "ordering-food-drinks-2",
         question:
           "The waiter asks 'What would you like to drink?' You respond:",
         options: [
@@ -112,7 +112,7 @@ export const conversationAssessments = [
           "The phrase 'I'd like a [drink], please' is the most polite way to order a drink in English.",
       },
       {
-        id: 3,
+        id: "ordering-food-drinks-3",
         question: "You want to know if a dish is spicy. You ask:",
         options: [
           "Spicy food?",
@@ -125,7 +125,7 @@ export const conversationAssessments = [
           "Asking 'Is this dish spicy?' is the clearest and most polite way to inquire about the spiciness of a dish.",
       },
       {
-        id: 4,
+        id: "ordering-food-drinks-4",
         question: "You're ready to pay. What do you say to the waiter?",
         options: [
           "Money time",
@@ -138,7 +138,7 @@ export const conversationAssessments = [
           "Asking 'Could I have the check, please?' is the standard polite way to request the bill in a restaurant in English.",
       },
       {
-        id: 5,
+        id: "ordering-food-drinks-5",
         question: "In the US, what's considered a normal tip for good service?",
         options: ["5%", "10%", "15-20%", "No tip needed"],
         correctAnswer: "15-20%",
@@ -154,7 +154,7 @@ export const conversationAssessments = [
       "Test your knowledge of asking for and understanding directions",
     questions: [
       {
-        id: 1,
+        id: "asking-directions-1",
         question:
           "You're lost and need help. The most polite way to approach someone is:",
         options: [
@@ -168,7 +168,7 @@ export const conversationAssessments = [
           "Starting with 'Excuse me' and forming a complete, polite question is the most appropriate way to ask a stranger for directions.",
       },
       {
-        id: 2,
+        id: "asking-directions-2",
         question:
           "Someone gives you directions: 'Go straight for two blocks, then turn left.' What does this mean?",
         options: [
@@ -182,7 +182,7 @@ export const conversationAssessments = [
           "A 'block' typically refers to the distance between streets in a city grid. Going straight for two blocks means passing two intersections before turning.",
       },
       {
-        id: 3,
+        id: "asking-directions-3",
         question: "You want to know if your destination is far. You ask:",
         options: [
           "Far place?",
@@ -195,7 +195,7 @@ export const conversationAssessments = [
           "The question 'Is it far from here?' is a complete, grammatically correct way to ask about distance.",
       },
       {
-        id: 4,
+        id: "asking-directions-4",
         question:
           "Complete the direction: 'The bank is _____ your right, next to the pharmacy.'",
         options: ["in", "at", "on", "by"],
@@ -204,7 +204,7 @@ export const conversationAssessments = [
           "In English, we use the preposition 'on' when indicating something is to the right or left of us.",
       },
       {
-        id: 5,
+        id: "asking-directions-5",
         question: "If someone says 'You can't miss it,' they mean:",
         options: [
           "You will definitely lose it",
