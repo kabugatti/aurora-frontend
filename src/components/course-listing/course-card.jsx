@@ -83,7 +83,7 @@ export default function CourseCard({ course, viewMode }) {
                 "Everyday Idioms": "/courses/everyday-idioms",
                 "Creative Storytelling": "/courses/creative-storytelling",
                 "Public Speaking Mastery": "/courses/public-speaking",
-                "Cultural Insights": "/cultural-assessment"",
+                "Cultural Insights": "/cultural-assessment",
               };
 
               // Navigate to the appropriate route if defined, otherwise stay on the page
