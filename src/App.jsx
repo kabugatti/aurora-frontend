@@ -11,13 +11,11 @@ import NFTInteract from "@/components/stellar/nft-interact";
 import MainLayout from "@/components/layout/main-layout";
 
 // 🔐 Authentication
-import ProtectedRoute from "@/components/auth/protected-route";
 import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import VerifyEmailPage from "@/pages/auth/verify-email";
 
 // 📚 Learning & Education
-import LearningContent from "@/pages/aurora-site/learning/learning-content";
 import ListeningPage from "@/pages/aurora-site/learning/listening-content";
 import ReadingContent from "@/pages/aurora-site/learning/reading-content";
 import SpeakingPage from "@/pages/aurora-site/learning/speaking-content";
@@ -71,6 +69,7 @@ import Quiz from "@/components/practices/funny_practices/QuizPage";
 
 // 🏛️ Grammar & Language
 import GrammarContent from "@/pages/aurora-site/grammar-content";
+import PresentSimpleCoursePage from "@/pages/aurora-site/present-simple-course";
 
 // ✨ Question Creator
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
@@ -81,6 +80,8 @@ import PublicProfile from "@/pages/public-profile/public-profile";
 import LeaderboardPage from "@/pages/aurora-site/community/leaderboard";
 import CertificatePage from "@/pages/aurora-site/certificate";
 import MyRequestsPage from "@/pages/aurora-site/my-requests";
+import EscrowClassesPage from "@/pages/aurora-site/escrow/classes";
+import TeacherSignupPage from "@/pages/teacher-signup";
 
 function App() {
   return (
@@ -102,13 +103,13 @@ function App() {
               <Route path="/course-listing" element={<CourseListing />} />
               <Route path="/course-navigation" element={<CourseNavigation />} />
               <Route path="/my-requests" element={<MyRequestsPage />} />
+              <Route path="/escrow/classes" element={<EscrowClassesPage />} />
             </Route>
 
             {/* Protected routes with MainLayout */}
 
             {/*<Route element={<ProtectedRoute />}>*/}
             <Route element={<MainLayout />}>
-              <Route path="/learning-content" element={<LearningContent />} />
               <Route path="/wallet-connection" element={<WalletConnection />} />
               <Route
                 path="/certifications-obtained"
@@ -155,6 +156,7 @@ function App() {
                 element={<FillInTheBlanksQuizPage />}
               />
               <Route path="/grammar" element={<GrammarContent />} />
+              <Route path="/present-simple-course" element={<PresentSimpleCoursePage />} />
               <Route path="/vocabulary" element={<VocabularyPage />} />
               <Route path="/speaking" element={<SpeakingPage />} />
               <Route path="/listening" element={<ListeningPage />} />
@@ -173,6 +175,7 @@ function App() {
               <Route path="/team" element={<GitHubProfiles />} />
               <Route path="/nft-interact" element={<NFTInteract />} />
               <Route path="/certificate" element={<CertificatePage />} />
+              <Route path="/teacher-signup" element={<TeacherSignupPage />} />
 
               {/*</Route>*/}
             </Route>
