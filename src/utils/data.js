@@ -2,6 +2,20 @@ export const COURSES = [
   // Existing 20 courses
   {
     id: 21,
+    title: "Cultural Insights",
+    description:
+      "Explore cultural differences and improve cross-cultural communication",
+    instructor: "Emma Taylor",
+    price: 39.99,
+    rating: 4.9,
+    level: "Intermediate",
+    duration: "6 weeks",
+    subject: "Culture",
+    thumbnail: "/courses/cultural-assessment.png",
+    icon: "Globe",
+  },
+  {
+    id: 22,
     title: "English for Travel",
     description: "Learn essential phrases for traveling abroad",
     instructor: "Alice Cooper",
@@ -14,7 +28,7 @@ export const COURSES = [
     icon: "Brain",
   },
   {
-    id: 22,
+    id: 51,
     title: "Advanced Business Communication",
     description: "Enhance your professional communication skills",
     instructor: "Mark Evans",

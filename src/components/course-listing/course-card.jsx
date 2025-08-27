@@ -7,8 +7,11 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
 
 export default function CourseCard({ course, viewMode }) {
+  const navigate = useNavigate();
+
   return (
     <Card
       className={`bg-gray-900 border-gray-800 overflow-hidden transition-all hover:border-gray-700 ${
@@ -80,11 +83,12 @@ export default function CourseCard({ course, viewMode }) {
                 "Everyday Idioms": "/courses/everyday-idioms",
                 "Creative Storytelling": "/courses/creative-storytelling",
                 "Public Speaking Mastery": "/courses/public-speaking",
+                "Cultural Insights": "/cultural-assessment",
               };
 
               // Navigate to the appropriate route if defined, otherwise stay on the page
               if (courseRoutes[course.title]) {
-                window.location.href = courseRoutes[course.title];
+                navigate(courseRoutes[course.title]);
               }
             }}
           >
