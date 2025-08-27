@@ -67,7 +67,7 @@ const AssessmentSelector = ({ onSelectAssessment }) => {
  * This component displays the actual assessment questions and handles
  * user interaction, scoring, and feedback.
  */
-const AssessmentQuiz = ({ assessment, onComplete, onBack }) => {
+const AssessmentQuiz = ({ assessment, onBack }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
@@ -341,7 +341,6 @@ const CulturalAssessment = () => {
       {selectedAssessment ? (
         <AssessmentQuiz
           assessment={selectedAssessment}
-          onComplete={handleComplete}
           onBack={() => setSelectedAssessment(null)}
         />
       ) : (
