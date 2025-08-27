@@ -14,9 +14,6 @@ import { conversationAssessments } from "@/data/conversation-assessments";
 
 /**
  * AssessmentSelector component
- *
- * This component displays a list of available conversation assessments
- * and allows the user to select one to take.
  */
 const AssessmentSelector = ({ onSelectAssessment }) => {
   return (
