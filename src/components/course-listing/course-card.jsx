@@ -88,7 +88,7 @@ export default function CourseCard({ course, viewMode }) {
 
               // Navigate to the appropriate route if defined, otherwise stay on the page
               if (courseRoutes[course.title]) {
-                window.location.href = courseRoutes[course.title];
+                navigate(courseRoutes[course.title]);
               }
             }}
           >
