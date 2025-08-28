@@ -20,6 +20,9 @@ import ListeningPage from "@/pages/aurora-site/learning/listening-content";
 import ReadingContent from "@/pages/aurora-site/learning/reading-content";
 import SpeakingPage from "@/pages/aurora-site/learning/speaking-content";
 import VocabularyPage from "@/pages/aurora-site/learning/vocabulary-content";
+import CulturalAssessmentPage from "@/pages/aurora-site/learning/cultural-assessment";
+
+import ConversationAssessmentPage from "@/pages/aurora-site/learning/conversation-assessment";
 import BusinessEnglish from "@/pages/learning/business-english";
 
 // 🎓 Certifications & Courses
@@ -68,6 +71,7 @@ import Quiz from "@/components/practices/funny_practices/QuizPage";
 
 // 🏛️ Grammar & Language
 import GrammarContent from "@/pages/aurora-site/grammar-content";
+import PresentSimpleCoursePage from "@/pages/aurora-site/present-simple-course";
 
 // ✨ Question Creator
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
@@ -153,10 +157,22 @@ function App() {
                 element={<FillInTheBlanksQuizPage />}
               />
               <Route path="/grammar" element={<GrammarContent />} />
+              <Route
+                path="/present-simple-course"
+                element={<PresentSimpleCoursePage />}
+              />
               <Route path="/vocabulary" element={<VocabularyPage />} />
               <Route path="/speaking" element={<SpeakingPage />} />
               <Route path="/listening" element={<ListeningPage />} />
               <Route path="/reading" element={<ReadingContent />} />
+              <Route
+                path="/cultural-assessment"
+                element={<CulturalAssessmentPage />}
+              />
+              <Route
+                path="/conversation-assessment"
+                element={<ConversationAssessmentPage />}
+              />
               <Route path="/community" element={<CommunityInteractionPage />} />
               <Route
                 path="/teacher-directory"
