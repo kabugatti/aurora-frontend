@@ -263,7 +263,6 @@ const TeacherSignupPage = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };

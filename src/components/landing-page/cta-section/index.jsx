@@ -1,4 +1,3 @@
-import React from "react";
 import { callToAction } from "../call-to-action/Content";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
@@ -26,12 +25,12 @@ const CTASection = ({ selectedRole }) => {
     buttonLink: "/teacher-signup",
   };
 
-  const defaultCTA = {
-    title: callToAction.title,
-    subtitle: callToAction.subtitle,
-    buttonText: "Join Our Waitlist",
-    buttonLink: "/waitlist",
-  };
+  const defaultCTA = {  
+    title: callToAction.title,  
+    subtitle: callToAction.subtitle,  
+    buttonText: "Join Our Waitlist",  
+    buttonLink: "/waitlist",  
+  };  
 
   const currentCTA =
     selectedRole === "student"

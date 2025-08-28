@@ -1,5 +1,3 @@
-import CTAHeroButton from "../../ui/buttons/CTAHeroButton";
-import { heroContent } from "../call-to-action/Content";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
