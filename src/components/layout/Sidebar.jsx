@@ -42,6 +42,11 @@ const Sidebar = ({ isOpen, onClose }) => {
       label: "Speaking",
     },
     {
+      icon: <Award className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Conversation-assessment",
+      display: "Conversation Assessment",
+    },
+    {
       icon: <Headphones className="w-5 h-5 text-[#ced2d8]" />,
       label: "Listening",
     },
