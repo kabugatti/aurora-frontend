@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, BookOpen, CheckCircle, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import socialMediaCommunicationCourse from "@/components/cultural-courses/social-media-communication";
+import { socialMediaCommunicationCourse } from "@/components/cultural-courses/social-media-communication";
 import LessonComponent from "@/components/cultural-courses/social-media-communication/LessonComponent";
 
 const SocialMediaCoursePage = () => {
@@ -11,9 +11,7 @@ const SocialMediaCoursePage = () => {
 
   const handleLessonComplete = (lessonIndex = currentLesson) => {
     const idx = typeof lessonIndex === "number" ? lessonIndex : currentLesson;
-    if (!completedLessons.includes(idx)) {
-      setCompletedLessons([...completedLessons, idx]);
-    }
+    setCompletedLessons((prev) => (prev.includes(idx) ? prev : [...prev, idx]));
   };
 
   const handleNextLesson = () => {

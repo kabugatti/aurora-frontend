@@ -22,9 +22,13 @@ const LessonComponent = ({
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
-   
-  const exercises = Array.isArray(lessonData?.exercises) ? lessonData.exercises : [];
-  const totalQuestions = exercises.reduce((total, ex) => total + (ex.questions?.length || 0), 0);
+  const exercises = Array.isArray(lessonData?.exercises)
+    ? lessonData.exercises
+    : [];
+  const totalQuestions = exercises.reduce(
+    (total, ex) => total + (ex.questions?.length || 0),
+    0
+  );
 
   const sections = ["theory", "examples", "exercises"];
 
@@ -39,7 +43,7 @@ const LessonComponent = ({
     let currentScore = 0;
 
     exercises.forEach((exercise, exerciseIndex) => {
-      exercise.questions.forEach((question, questionIndex) => {
+      (exercise.questions || []).forEach((question, questionIndex) => {
         const selectedAnswer =
           selectedAnswers[`${exerciseIndex}-${questionIndex}`];
         if (selectedAnswer === question.correctAnswer) {
@@ -201,7 +205,7 @@ const LessonComponent = ({
             </div>
           </div>
 
-          {lessonData.exercises.map((exercise, exerciseIndex) => (
+          {exercises.map((exercise, exerciseIndex) => (
             <div
               key={exerciseIndex}
               className="bg-dark-blue-4 border-l-4 border-amber-500 p-4 rounded-lg"
@@ -304,10 +308,13 @@ const LessonComponent = ({
                 </h3>
 
                 <div className="space-y-4">
-                  {exercise.questions.map((question, questionIndex) => {
+                  {(exercise.questions || []).map((question, questionIndex) => {
                     const selectedAnswer =
                       selectedAnswers[`${exerciseIndex}-${questionIndex}`];
-                    const isCorrect = isAnswerCorrect(exerciseIndex, questionIndex);
+                    const isCorrect = isAnswerCorrect(
+                      exerciseIndex,
+                      questionIndex
+                    );
 
                     return (
                       <div
@@ -363,9 +370,10 @@ const LessonComponent = ({
             <button
               className="px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors"
               onClick={() => {
-                onComplete(lessonNumber - 1);
                 if (lessonNumber < totalLessons) {
                   onNext();
+                } else {
+                  onComplete();
                 }
               }}
             >
