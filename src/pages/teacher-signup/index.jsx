@@ -15,6 +15,7 @@ import {
   Clock as ClockIcon,
   Rocket,
 } from "lucide-react";
+import logger from "@/lib/logger";
 
 const TeacherSignupPage = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const TeacherSignupPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    logger.info("Teacher signup form submitted", { email: formData.email });
     navigate("/");
   };
 
