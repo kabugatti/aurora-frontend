@@ -22,6 +22,10 @@ const LessonComponent = ({
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
+   
+  const exercises = Array.isArray(lessonData?.exercises) ? lessonData.exercises : [];
+  const totalQuestions = exercises.reduce((total, ex) => total + (ex.questions?.length || 0), 0);
+
   const sections = ["theory", "examples", "exercises"];
 
   const handleAnswerSelect = (exerciseIndex, questionIndex, answer) => {
@@ -34,7 +38,7 @@ const LessonComponent = ({
   const handleExerciseComplete = () => {
     let currentScore = 0;
 
-    lessonData.exercises.forEach((exercise, exerciseIndex) => {
+    exercises.forEach((exercise, exerciseIndex) => {
       exercise.questions.forEach((question, questionIndex) => {
         const selectedAnswer =
           selectedAnswers[`${exerciseIndex}-${questionIndex}`];
@@ -62,10 +66,7 @@ const LessonComponent = ({
   };
 
   const getProgressPercentage = () => {
-    const totalQuestions = lessonData.exercises.reduce(
-      (total, exercise) => total + exercise.questions.length,
-      0
-    );
+    if (totalQuestions === 0) return 0;
     const answeredQuestions = Object.keys(selectedAnswers).length;
     return Math.round((answeredQuestions / totalQuestions) * 100);
   };
@@ -306,7 +307,7 @@ const LessonComponent = ({
                   {exercise.questions.map((question, questionIndex) => {
                     const selectedAnswer =
                       selectedAnswers[`${exerciseIndex}-${questionIndex}`];
-                    const isCorrect = selectedAnswer === question.correctAnswer;
+                    const isCorrect = isAnswerCorrect(exerciseIndex, questionIndex);
 
                     return (
                       <div

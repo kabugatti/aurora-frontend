@@ -40,7 +40,7 @@ export const lesson2Data = {
       {
         category: "Platform-Specific Terminology",
         sentences: [
-          "On Twitter, you can retweet someone's tweet to share it with your followers.",
+           "On X (formerly Twitter), you can repost someone's post to share it with your followers.",
           "Instagram users often use Stories to share daily moments that disappear after 24 hours.",
           "LinkedIn allows you to endorse connections for specific skills they list on their profile.",
           "On TikTok, users create short videos that can go viral if they reach the For You Page (FYP).",
@@ -102,11 +102,11 @@ export const lesson2Data = {
         "Match each term with the platform where it's primarily used.",
       questions: [
         {
-          question: "Tweet",
-          options: ["Instagram", "Twitter", "Facebook", "LinkedIn"],
-          correctAnswer: "Twitter",
+          question: "Post on X (formerly Twitter)",
+          options: ["Instagram", "X (Twitter)", "Facebook", "LinkedIn"],
+          correctAnswer: "X (Twitter)",
           explanation:
-            "A Tweet is a post on Twitter, limited to 280 characters.",
+            "A post on X (formerly Twitter). Typical limit is 280 characters for most accounts; higher limits exist for Premium tiers.",
         },
         {
           question: "Reel",

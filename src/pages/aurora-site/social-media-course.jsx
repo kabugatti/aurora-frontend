@@ -5,18 +5,25 @@ import socialMediaCommunicationCourse from "@/components/cultural-courses/social
 import LessonComponent from "@/components/cultural-courses/social-media-communication/LessonComponent";
 
 const SocialMediaCoursePage = () => {
-  const [currentLesson, setCurrentLesson] = useState(0);
+  const [currentLesson, setCurrentLesson] = useState(-1);
   const [completedLessons, setCompletedLessons] = useState([]);
   const [courseCompleted, setCourseCompleted] = useState(false);
 
-  const handleLessonComplete = (lessonIndex) => {
-    if (!completedLessons.includes(lessonIndex)) {
-      setCompletedLessons([...completedLessons, lessonIndex]);
+  const handleLessonComplete = (lessonIndex = currentLesson) => {
+    const idx = typeof lessonIndex === "number" ? lessonIndex : currentLesson;
+    if (!completedLessons.includes(idx)) {
+      setCompletedLessons([...completedLessons, idx]);
     }
   };
 
   const handleNextLesson = () => {
-    if (currentLesson < socialMediaCommunicationCourse.lessons.length - 1) {
+    const lastIndex = socialMediaCommunicationCourse.lessons.length - 1;
+    if (currentLesson === -1) {
+      setCurrentLesson(0);
+      return;
+    }
+    handleLessonComplete(currentLesson);
+    if (currentLesson < lastIndex) {
       setCurrentLesson(currentLesson + 1);
     } else {
       handleCourseComplete();
@@ -35,11 +42,9 @@ const SocialMediaCoursePage = () => {
   };
 
   const getProgressPercentage = () => {
-    return Math.round(
-      (completedLessons.length /
-        socialMediaCommunicationCourse.lessons.length) *
-        100
-    );
+    const total = socialMediaCommunicationCourse.lessons.length || 1;
+    const uniqueCompleted = new Set(completedLessons).size;
+    return Math.round((uniqueCompleted / total) * 100);
   };
 
   if (courseCompleted) {
@@ -81,7 +86,7 @@ const SocialMediaCoursePage = () => {
               <button
                 onClick={() => {
                   setCourseCompleted(false);
-                  setCurrentLesson(0);
+                  setCurrentLesson(-1);
                   setCompletedLessons([]);
                 }}
                 className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
@@ -170,11 +175,12 @@ const SocialMediaCoursePage = () => {
                 <div
                   className="h-full bg-light-blue-1"
                   style={{
-                    width: `${
+                    width: `${Math.max(
+                      0,
                       ((currentLesson + 1) /
                         socialMediaCommunicationCourse.lessons.length) *
-                      100
-                    }%`,
+                        100
+                    )}%`,
                   }}
                 ></div>
               </div>
@@ -205,7 +211,7 @@ const SocialMediaCoursePage = () => {
               </div>
               <div>
                 <h3 className="font-medium text-neutral-1 mb-2">
-                  Skills You'll Gain
+                  Skills You&apos;ll Gain
                 </h3>
                 <ul className="space-y-1 text-sm text-neutral-2">
                   {socialMediaCommunicationCourse.courseOverview.skills.map(
@@ -248,7 +254,7 @@ const SocialMediaCoursePage = () => {
             lessonData={
               socialMediaCommunicationCourse.lessons[currentLesson].data
             }
-            onComplete={handleLessonComplete}
+            onComplete={handleCourseComplete}
             onNext={handleNextLesson}
             onPrevious={handlePreviousLesson}
             lessonNumber={currentLesson + 1}

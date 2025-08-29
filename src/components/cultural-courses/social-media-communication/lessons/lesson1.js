@@ -15,6 +15,8 @@ export const lesson1Data = {
             "FYI - For Your Information",
             "BTW - By The Way",
             "OMG - Oh My God/Gosh",
+            "IMO - In My Opinion",
+            "TBH - To Be Honest",
           ],
         },
         {
