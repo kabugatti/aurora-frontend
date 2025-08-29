@@ -12,21 +12,11 @@ const NavMobile = ({
   setIsMobileMenuOpen,
 }) => {
   const items = [
-    "course-listing",
-    "practiceSystem",
-    "analytics",
-    "categories",
-    "community",
-    "certification",
+    "payments",
   ];
 
   const displayMap = {
-    "course-listing": "Courses",
-    practiceSystem: "Practices",
-    analytics: "Analytics",
-    categories: "Resources",
-    community: "Community",
-    certification: "Certification",
+    payments: "Payments",
   };
 
   return (

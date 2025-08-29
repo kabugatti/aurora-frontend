@@ -7,7 +7,7 @@ import NavMobile from "./nav-mobile";
 import SearchBar from "./search-bar";
 import AuthButtons from "./auth-buttons";
 import MobileTopButtons from "./mobile-top-buttons";
-import { Lightbulb, LineChart, Bell, Settings} from "lucide-react";
+import { Lightbulb, Bell, Settings} from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 
 
@@ -44,9 +44,6 @@ const Header = ({ onMenuClick }) => {
 
    const handleSettingsClick = () => {
       header.navigate('/settings');
-   };
-   const handleAnalyticsClick = () => {
-      header.navigate('/analytics');
    };
 
    // Cerrar el popover al hacer click fuera
@@ -94,16 +91,6 @@ const Header = ({ onMenuClick }) => {
                <NavDesktop onNavClick={header.handleNavClick} />
                <div className="flex items-center space-x-3 relative">
                   <SearchBar {...header} />
-                  <div className="hidden md:flex items-center space-x-2 bg-gray-800 px-2 py-1 rounded-full">
-                     <span className="text-xs text-gray-400">💡 Daily</span>
-                     <div className="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
-                        <div className="h-full bg-gradient-to-r from-[#00b8d4] to-[#34d399]" style={{ width: "50%" }}></div>
-                     </div>
-                     <Lightbulb size={16} className="text-yellow-400" />
-                  </div>
-                  <button className="p-1 rounded-full hover:bg-[#1f2937]" onClick={handleAnalyticsClick} aria-label="Analytics">
-                     <LineChart size={20} className="text-gray-300" />
-                  </button>
                   <button className="p-1 rounded-full hover:bg-[#1f2937]" onClick={handleSettingsClick} aria-label="Settings">
                      <Settings size={20} className="text-gray-300" />
                   </button>

@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import DifficultySelector from './difficulty-selector';
+import { useState } from 'react';
+import LevelSelector from './level-selector';
 import GameBoard from './game-board';
 import GameOver from './game-over';
-import { DIFFICULTY_SETTINGS } from './mock-data-word-matching/word-matching';
 
 const WordMatchingGame = () => {
-  const [difficulty, setDifficulty] = useState('Medium');
+  const [selectedLevel, setSelectedLevel] = useState(null);
   const [score, setScore] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const [gameOver, setGameOver] = useState(false);
 
-  const handleGameStart = (selectedDifficulty) => {
-    setDifficulty(selectedDifficulty);
+  const handleLevelSelect = (level) => {
+    setSelectedLevel(level);
     setScore(0);
     setGameStarted(true);
     setGameOver(false);
@@ -23,20 +22,24 @@ const WordMatchingGame = () => {
     setGameStarted(false);
   };
 
+  const handlePlayAgain = () => {
+    if (selectedLevel) {
+      handleLevelSelect(selectedLevel);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center p-4">
       {!gameStarted && !gameOver && (
-        <DifficultySelector 
-          onSelect={handleGameStart}
-          currentDifficulty={difficulty}
+        <LevelSelector 
+          onLevelSelect={handleLevelSelect}
         />
       )}
       
       {gameStarted && (
         <>
           <GameBoard
-            difficulty={difficulty}
-            settings={DIFFICULTY_SETTINGS[difficulty]}
+            selectedLevel={selectedLevel}
             onGameOver={handleGameOver}
             onScoreUpdate={setScore}
           />
@@ -46,7 +49,7 @@ const WordMatchingGame = () => {
       {gameOver && (
         <GameOver 
           score={score} 
-          onPlayAgain={() => handleGameStart(difficulty)}
+          onPlayAgain={handlePlayAgain}
         />
       )}
     </div>
