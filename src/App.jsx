@@ -35,8 +35,8 @@ import CourseListing from "./pages/aurora-site/course-listing/course-listing-pag
 import Notifications from "@/pages/aurora-site/notifications";
 import SettingsPage from "@/pages/aurora-site/settings";
 import WalletConnection from "@/pages/aurora-site/wallet/wallet-connection";
-import FAQPage from "./components/FAQ/faq";
-import GitHubProfiles from "./components/GithubProfiles/profilesComponent";
+import FAQPage from "./components/faq/faq";
+import GitHubProfiles from "./components/github-profiles/profilesComponent";
 
 // 🌐 Community & Interaction
 import AuroraChat from "@/pages/aurora-site/aurora-chat";
@@ -52,11 +52,11 @@ import HomePage from "@/pages/aurora-site/home";
 
 // 🧩 Games & Challenges
 import StoryGame from "@/pages/games/story-game";
-import WordScramble from "@/components/Games/word-scramble/word-scramble-game.jsx";
+import WordScramble from "@/components/games/word-scramble/word-scramble-game.jsx";
 import WordMatching from "@/pages/games/word-matching";
 import GamePanel from "@/pages/games/game-panel";
-import DifficultySelector from "@/components/Games/memory-card/difficulty-selector";
-import GameBoard from "@/components/Games/memory-card/game-board";
+import DifficultySelector from "@/components/games/memory-card/difficulty-selector";
+import GameBoard from "@/components/games/memory-card/game-board";
 // import WordScrambleGame from "@/pages/games/word-scramble"; // Uncomment if exists
 
 // 📝 Practices & Exercises
