@@ -90,7 +90,6 @@ const SocialMediaCoursePage = () => {
                   setCompletedLessons([]);
                 }}
                 className="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
-                style={{ backgroundColor: "#059669", color: "white" }}
               >
                 <Play className="w-4 h-4 mr-2" />
                 Restart Course
