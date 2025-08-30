@@ -1,14 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import logger from '@/lib/logger';
 
 const HeroSection = ({ selectedRole, onRoleChange }) => {
   const navigate = useNavigate();
-  console.log(
-    "HeroSection render - selectedRole:",
-    selectedRole,
-    "type:",
-    typeof selectedRole
-  );
 
   const studentContent = {
     title: "Learn Languages with Expert Teachers",
@@ -37,17 +32,16 @@ const HeroSection = ({ selectedRole, onRoleChange }) => {
   };
 
   const handleStudentClick = () => {
-    console.log("Student button clicked");
+    logger.debug("Student button clicked");
     if (onRoleChange && typeof onRoleChange === "function") {
       onRoleChange("student");
-      console.log("Student role set");
     } else {
-      console.error("onRoleChange is not a function:", onRoleChange);
+      logger.error("onRoleChange is not a function", { onRoleChange });
     }
   };
 
   const handleTeacherClick = () => {
-    console.log("Teacher button clicked");
+    logger.debug("Teacher button clicked");
     navigate("/teacher-signup");
   };
 
