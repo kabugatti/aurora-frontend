@@ -5,6 +5,7 @@ import {
   CirclePlay,
   Globe,
   GraduationCap,
+  Headphones,
   MessageCircle,
   Users,
 } from "lucide-react";
@@ -12,12 +13,12 @@ import {
 export const heroContent ={
   title: {
     textOne: "Learn Languages with",
-    textTwo: "AI-Powered Assistance",
+    textTwo: "Expert Teachers",
   },
-  subtitle: "AURORA.LA is an innovative AI-powered language learning platform that combines personalized tutoring, blockchain technology, and advanced language processing to create an engaging and effective learning experience.",
+  subtitle: "AURORA.LA is an innovative language learning platform that connects students with qualified teachers worldwide. Pay for classes securely with Scrolls cryptocurrency and learn any language through personalized, one-on-one instruction. Teachers earn extra money teaching their native language.",
   buttons: [
     {
-      text: "Get Started",
+      text: "Find a Teacher",
       variant: "primary",
     },
     {
@@ -29,18 +30,18 @@ export const heroContent ={
 
 export const skillContent = {
   title: "Improve Your Language Skills",
-  subtitle: "Practice your English language skills with our AI-powered learning platform",
+  subtitle: "Learn from expert teachers and practice with our AI-powered platform",
   cards: [
     {
       icons: <BookOpen className="text-[#00B8D4] h-[40px] w-[40px]" aria-hidden="true" />,
       tag: "Reading",
-      content: "Improve your reading skills with interactive texts",
+      content: "Improve your reading skills with teacher-guided lessons",
     },
   
     {
       icons: <MessageCircle className="text-[#00B8D4] h-[40px] w-[40px]" aria-hidden="true" />,
       tag: "Speaking",
-      content: "Practice conversations with our AI assistant",
+      content: "Practice conversations with native-speaking teachers",
     },
     {
       icons: <CirclePlay className="text-[#00B8D4] h-[40px] w-[40px]" aria-hidden="true" />,
@@ -50,7 +51,7 @@ export const skillContent = {
     {
       icons: <Bookmark className="text-[#00B8D4] h-[40px] w-[40px]" aria-hidden="true" />,
       tag: "Writing",
-      content: "Get feedback on your writing from our AI",
+      content: "Get feedback on your writing from expert teachers",
     },
   ]
 };
@@ -75,6 +76,11 @@ export const courses = {
         tag: "Cultural Insights",
         content: "Learn about cultures while learning language",
       },
+      {
+        icons: <Headphones className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Pronunciation and Listening",
+        content: "Develop clear pronunciation and listening skills",
+      },
     ],
     Intermediate: [
       {
@@ -92,6 +98,11 @@ export const courses = {
         tag: "Writing Workshop",
         content: "Develop your writing skills",
       },
+      {
+        icons: <Headphones className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Pronunciation and Listening",
+        content: "Refine pronunciation and comprehension skills",
+      },
     ],
     Advanced: [
       {
@@ -108,6 +119,11 @@ export const courses = {
         icons: <GraduationCap className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
         tag: "Academic English",
         content: "Prepare for academic enviroments",
+      },
+      {
+        icons: <Headphones className="text-[#00B8D4] h-12 w-12" aria-hidden="true" />,
+        tag: "Pronunciation and Listening",
+        content: "Perfect accent and advanced listening comprehension",
       },
     ] ,
     Business: [
@@ -135,19 +151,19 @@ export const whyChooseAuruora = {
   title: "Why Choose",
   subtitle: "AURORA?",
   content:
-    "Our AI-powered platform offers unique advantages for language learners",
+    "Our platform offers unique advantages for connecting students with language teachers",
   cards: [
     {
-      icons: <Brain className="w-12 h-12" aria-hidden="true" />,
-      tag: "AI-Powered Learning",
+      icons: <Users className="w-12 h-12" aria-hidden="true" />,
+      tag: "Expert Teachers",
       content:
-        "Our AI technology personalizes your language learning journey for maximum efficiency and results.",
+        "Connect with certified language teachers from around the world who specialize in your target language.",
     },
     {
       icons: <Globe className="w-12 h-12" aria-hidden="true" />,
-      tag: "Web3 Integration",
+      tag: "Scrolls Crypto Payments",
       content:
-        "Earn rewards and certificates on blockchain as you progress through your language learning journey.",
+        "Pay for classes securely with Scrolls cryptocurrency. Safe, instant transactions with no traditional banking fees.",
     },
     {
       icons: <Users className="w-12 h-12" aria-hidden="true" />,
@@ -169,9 +185,9 @@ export const whyChooseAuruora = {
     },
     {
       icons: <BookOpen className="w-12 h-12" aria-hidden="true" />,
-      tag: "Comprehensive Resources",
+      tag: "Earn as a Teacher",
       content:
-        "Access a vast library of learning materials, exercises, and tools to enhance your language skills.",
+        "Make extra money by teaching your native language. Get paid securely in Scrolls cryptocurrency for every class.",
     },
   ],
 };
@@ -188,19 +204,19 @@ export const whatOurUsersSay =
     name: "Sarah K.",
     tag: "Business Professional",
     content:
-      '"AURORA has transformed my business English skills. The AI feedback helped me improve my presentations and emails dramatically."',
+      '"AURORA connected me with an amazing Spanish teacher. Paying with Scrolls was so secure and convenient, and the personalized lessons have dramatically improved my business Spanish."',
   },
   {
     name: "Miguel R.",
     tag: "Student",
     content:
-      '"I love how the platform adapts to my learning style. The interactive conversations with the AI feel so natural and have helped me gain confidence."',
+      '"I love how easy it is to find and safely pay teachers on this platform. The Scrolls crypto payments make it simple to book classes with teachers from different countries."',
   },
   {
     name: "Aisha T.",
-    tag: "Language Enthusiast",
+    tag: "Language Teacher",
     content:
-      '"The Web3 integration is brilliant! I love earning certificates that are verifiable on the blockchain as I complete my courses."',
+      '"Teaching on AURORA has been amazing! I earn extra money teaching Arabic and get paid instantly in Scrolls cryptocurrency. No more waiting for international transfers!"',
     },
   ]
 };
@@ -210,7 +226,7 @@ export const callToAction = {
     textOne: "Start Your Language Learning Journey",
     textTwo: "Today",
   },
-  subtitle: "Join thousands of learners who are transforming their language skills with AURORA",
+  subtitle: "Join thousands of learners who are connecting with expert teachers and paying safely with Scrolls crypto on AURORA. Teachers can earn extra money teaching their native language.",
   // buttons: [
   //   {
   //     text: "Signup Free",

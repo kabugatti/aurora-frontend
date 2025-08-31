@@ -11,17 +11,18 @@ import NFTInteract from "@/components/stellar/nft-interact";
 import MainLayout from "@/components/layout/main-layout";
 
 // 🔐 Authentication
-import ProtectedRoute from "@/components/auth/protected-route";
 import LoginPage from "@/pages/auth/login";
 import RegisterPage from "@/pages/auth/register";
 import VerifyEmailPage from "@/pages/auth/verify-email";
 
 // 📚 Learning & Education
-import LearningContent from "@/pages/aurora-site/learning/learning-content";
 import ListeningPage from "@/pages/aurora-site/learning/listening-content";
 import ReadingContent from "@/pages/aurora-site/learning/reading-content";
 import SpeakingPage from "@/pages/aurora-site/learning/speaking-content";
 import VocabularyPage from "@/pages/aurora-site/learning/vocabulary-content";
+import CulturalAssessmentPage from "@/pages/aurora-site/learning/cultural-assessment";
+
+import ConversationAssessmentPage from "@/pages/aurora-site/learning/conversation-assessment";
 import BusinessEnglish from "@/pages/learning/business-english";
 
 // 🎓 Certifications & Courses
@@ -29,13 +30,14 @@ import CertificationContent from "@/pages/aurora-site/english-level/english-leve
 import CertificationsObtained from "@/pages/aurora-site/english-level/english-level-obtained";
 import ModuleDetails from "@/pages/aurora-site/modules/module-details";
 import CourseListing from "./pages/aurora-site/course-listing/course-listing-page";
+import CourseNavigation from "./pages/aurora-site/course-navigation";
 
 // ⚙️ System & Settings
 import Notifications from "@/pages/aurora-site/notifications";
 import SettingsPage from "@/pages/aurora-site/settings";
 import WalletConnection from "@/pages/aurora-site/wallet/wallet-connection";
-import FAQPage from "./components/FAQ/faq";
-import GitHubProfiles from "./components/GithubProfiles/profilesComponent";
+import FAQPage from "./components/faq/faq";
+import GitHubProfiles from "./components/github-profiles/profilesComponent";
 
 // 🌐 Community & Interaction
 import AuroraChat from "@/pages/aurora-site/aurora-chat";
@@ -51,11 +53,11 @@ import HomePage from "@/pages/aurora-site/home";
 
 // 🧩 Games & Challenges
 import StoryGame from "@/pages/games/story-game";
-import WordScramble from "@/components/Games/word-scramble/word-scramble-game.jsx";
+import WordScramble from "@/components/games/word-scramble/word-scramble-game.jsx";
 import WordMatching from "@/pages/games/word-matching";
 import GamePanel from "@/pages/games/game-panel";
-import DifficultySelector from "@/components/Games/memory-card/difficulty-selector";
-import GameBoard from "@/components/Games/memory-card/game-board";
+import DifficultySelector from "@/components/games/memory-card/difficulty-selector";
+import GameBoard from "@/components/games/memory-card/game-board";
 // import WordScrambleGame from "@/pages/games/word-scramble"; // Uncomment if exists
 
 // 📝 Practices & Exercises
@@ -70,6 +72,7 @@ import Quiz from "@/components/practices/funny_practices/QuizPage";
 
 // 🏛️ Grammar & Language
 import GrammarContent from "@/pages/aurora-site/grammar-content";
+import PresentSimpleCoursePage from "@/pages/aurora-site/present-simple-course";
 
 // ✨ Question Creator
 import QuestionCreator from "@/components/practices/question-creator/question-creator";
@@ -80,7 +83,8 @@ import PublicProfile from "@/pages/public-profile/public-profile";
 import LeaderboardPage from "@/pages/aurora-site/community/leaderboard";
 import CertificatePage from "@/pages/aurora-site/certificate";
 import MyRequestsPage from "@/pages/aurora-site/my-requests";
-
+import EscrowClassesPage from "@/pages/aurora-site/escrow/classes";
+import TeacherSignupPage from "@/pages/teacher-signup";
 // Rewards System
 import RewardsSystem from "@/pages/aurora-site/rewards/page.jsx";
 
@@ -102,14 +106,15 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/course-listing" element={<CourseListing />} />
+              <Route path="/course-navigation" element={<CourseNavigation />} />
               <Route path="/my-requests" element={<MyRequestsPage />} />
+              <Route path="/escrow/classes" element={<EscrowClassesPage />} />
             </Route>
 
             {/* Protected routes with MainLayout */}
 
             {/*<Route element={<ProtectedRoute />}>*/}
             <Route element={<MainLayout />}>
-              <Route path="/learning-content" element={<LearningContent />} />
               <Route path="/wallet-connection" element={<WalletConnection />} />
               <Route
                 path="/certifications-obtained"
@@ -156,10 +161,22 @@ function App() {
                 element={<FillInTheBlanksQuizPage />}
               />
               <Route path="/grammar" element={<GrammarContent />} />
+              <Route
+                path="/present-simple-course"
+                element={<PresentSimpleCoursePage />}
+              />
               <Route path="/vocabulary" element={<VocabularyPage />} />
               <Route path="/speaking" element={<SpeakingPage />} />
               <Route path="/listening" element={<ListeningPage />} />
               <Route path="/reading" element={<ReadingContent />} />
+              <Route
+                path="/cultural-assessment"
+                element={<CulturalAssessmentPage />}
+              />
+              <Route
+                path="/conversation-assessment"
+                element={<ConversationAssessmentPage />}
+              />
               <Route path="/community" element={<CommunityInteractionPage />} />
               <Route
                 path="/teacher-directory"
@@ -174,6 +191,7 @@ function App() {
               <Route path="/team" element={<GitHubProfiles />} />
               <Route path="/nft-interact" element={<NFTInteract />} />
               <Route path="/certificate" element={<CertificatePage />} />
+              <Route path="/teacher-signup" element={<TeacherSignupPage />} />
               <Route path="/reward-system" element={<RewardsSystem />} />
 
               {/*</Route>*/}

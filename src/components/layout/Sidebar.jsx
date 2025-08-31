@@ -4,6 +4,7 @@ import {
   BookOpen,
   ChevronDown,
   ChevronRight,
+  CreditCard,
   FileText,
   Gamepad,
   GraduationCap,
@@ -13,7 +14,7 @@ import {
   MessageSquare,
   Users,
   UserCheck,
-  Award
+  Award,
 } from "lucide-react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -21,16 +22,13 @@ import Logo from "/aurora-logo.png";
 
 const Sidebar = ({ isOpen, onClose }) => {
   const [currentPage, setCurrentPage] = useState("home");
-  const [level, setLevel] = useState("Choose Your Level");
   const [isLearningExpanded, setIsLearningExpanded] = useState(false);
-  const [isCommunityExpanded, setIsCommunityExpanded] = useState(false);
 
   const navigate = useNavigate();
 
   const handleNavClick = (page) => {
     setCurrentPage(page);
-    navigate(`/${page}`);
-    if (onClose) onClose();
+    onClose();
   };
 
   const categories = [
@@ -44,34 +42,16 @@ const Sidebar = ({ isOpen, onClose }) => {
       label: "Speaking",
     },
     {
+      icon: <Award className="w-5 h-5 text-[#ced2d8]" />,
+      label: "Conversation-assessment",
+      display: "Conversation Assessment",
+    },
+    {
       icon: <Headphones className="w-5 h-5 text-[#ced2d8]" />,
       label: "Listening",
     },
     { icon: <FileText className="w-5 h-5 text-[#ced2d8]" />, label: "Reading" },
     { icon: <Gamepad className="w-5 h-5 text-[#ced2d8]" />, label: "Games" },
-  ];
-
-  const topNavItems = [
-    {
-      icon: <BarChart2 className="w-5 h-5 text-[#ced2d8]" />,
-      label: "Analytics",
-      page: "analytics",
-    },
-    {
-      icon: <Users className="w-5 h-5 text-[#ced2d8]" />,
-      label: "Community",
-      page: "community",
-    },
-    {
-      icon: <UserCheck className="w-5 h-5 text-[#ced2d8]" />,
-      label: "Teacher Directory",
-      page: "teacher-directory",
-    },
-    {
-      icon: <Award className="w-5 h-5 text-[#ced2d8]" />,
-      label: "Certification",
-      page: "certificate",
-    },
   ];
 
   return (
@@ -123,19 +103,32 @@ const Sidebar = ({ isOpen, onClose }) => {
         style={{ height: "calc(100% - 64px)" }}
       >
         <nav className="flex flex-col gap-2 flex-1 p-4">
-          <NavLink to="/">
-            <button
-              onClick={() => handleNavClick("/")}
-              style={{
-                backgroundColor:
-                  currentPage === "/" ? "#1f2937" : "transparent",
-                color: "#FFFFFF",
-              }}
-              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-            >
-              <Home className="w-5 h-5 text-[#ced2d8]" />
-              <span className="text-sm font-medium">Home</span>
-            </button>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151] ${
+                isActive ? "bg-[#1f2937]" : "bg-transparent"
+              }`
+            }
+            style={{ color: "#FFFFFF" }}
+            onClick={onClose}
+          >
+            <Home className="w-5 h-5 text-[#ced2d8]" />
+            <span className="text-sm font-medium">Home</span>
+          </NavLink>
+
+          <NavLink
+            to="/course-navigation"
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151] ${
+                isActive ? "bg-[#1f2937]" : "bg-transparent"
+              }`
+            }
+            style={{ color: "#FFFFFF" }}
+            onClick={onClose}
+          >
+            <BookOpen className="w-5 h-5 text-[#ced2d8]" />
+            <span className="text-sm font-medium">Course Navigation</span>
           </NavLink>
 
           <div className="mb-2">
@@ -157,33 +150,6 @@ const Sidebar = ({ isOpen, onClose }) => {
 
             {isLearningExpanded && (
               <div className="mt-2 ml-2">
-                <div className="px-3 mb-4">
-                  <h2
-                    className="text-xs font-semibold mb-2"
-                    style={{ color: "#e6f8fb" }}
-                  >
-                    LEVEL
-                  </h2>
-                  <select
-                    value={level}
-                    onChange={(e) => setLevel(e.target.value)}
-                    className="w-full p-2 rounded-lg border"
-                    style={{
-                      backgroundColor: "#1f2937",
-                      borderColor: "#374151",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    <option>Choose Your Level</option>
-                    <option>A1</option>
-                    <option>A2</option>
-                    <option>B1</option>
-                    <option>B2</option>
-                    <option>C1</option>
-                    <option>C2</option>
-                  </select>
-                </div>
-
                 <div className="px-3">
                   <h2
                     className="text-xs font-semibold mb-2"
@@ -193,22 +159,19 @@ const Sidebar = ({ isOpen, onClose }) => {
                   </h2>
                   <div className="flex flex-col gap-1">
                     {categories.map((item, index) => (
-                      <NavLink key={index} to={item.label.toLowerCase()}>
-                        <button
-                          onClick={() =>
-                            handleNavClick(
-                              `category-${item.label.toLowerCase()}`
-                            )
-                          }
-                          className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                          style={{
-                            backgroundColor: "#1f2937",
-                            color: "#FFFFFF",
-                          }}
-                        >
-                          {item.icon}
-                          <span className="text-sm">{item.label}</span>
-                        </button>
+                      <NavLink
+                        key={index}
+                        to={item.label.toLowerCase()}
+                        className={({ isActive }) =>
+                          `flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151] ${
+                            isActive ? "bg-[#23272f]" : "bg-[#1f2937]"
+                          }`
+                        }
+                        style={{ color: "#FFFFFF" }}
+                        onClick={onClose}
+                      >
+                        {item.icon}
+                        <span className="text-sm">{item.label}</span>
                       </NavLink>
                     ))}
                   </div>
@@ -217,99 +180,139 @@ const Sidebar = ({ isOpen, onClose }) => {
             )}
           </div>
 
-          <div className="mb-2">
+          {/* Courses */}
+          <NavLink to="course-listing">
             <button
-              onClick={() => setIsCommunityExpanded(!isCommunityExpanded)}
-              className="flex items-center justify-between w-full px-3 py-2 rounded-lg transition-colors"
+              onClick={() => handleNavClick("course-listing")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
               style={{
-                backgroundColor: isCommunityExpanded
-                  ? "#1f2937"
-                  : "transparent",
+                backgroundColor:
+                  currentPage === "course-listing" ? "#1f2937" : "transparent",
                 color: "#FFFFFF",
               }}
             >
-              <div className="flex items-center gap-3">
-                <Users className="w-5 h-5 text-[#ced2d8]" />
-                <span className="text-sm font-medium">Community</span>
-              </div>
-              {isCommunityExpanded ? (
-                <ChevronDown className="w-4 h-4 text-[#707079]" />
-              ) : (
-                <ChevronRight className="w-4 h-4 text-[#707079]" />
-              )}
+              <BookOpen className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Courses</span>
             </button>
-            {isCommunityExpanded && (
-              <div className="mt-2 ml-2 flex flex-col gap-1">
-                <NavLink to="/community">
-                  <button
-                    onClick={() => handleNavClick("community")}
-                    className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                    style={{
-                      backgroundColor:
-                        currentPage === "community" ? "#23272f" : "#1f2937",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    <span className="text-sm">Community Home</span>
-                  </button>
-                </NavLink>
-                <NavLink to="/leaderboard">
-                  <button
-                    onClick={() => handleNavClick("leaderboard")}
-                    className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                    style={{
-                      backgroundColor:
-                        currentPage === "leaderboard" ? "#23272f" : "#1f2937",
-                      color: "#FFFFFF",
-                    }}
-                  >
-                    <span className="text-sm">Leaderboard</span>
-                  </button>
-                </NavLink>
-              </div>
-            )}
-          </div>
+          </NavLink>
 
-          {/* Teacher Directory and Analytics */}
-          {topNavItems
-            .filter((item) => item.label !== "Community")
-            .map((item, index) => (
-              <NavLink key={index} to={item.page}>
-                <button
-                  onClick={() => handleNavClick(item.page)}
-                  className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
-                  style={{
-                    backgroundColor:
-                      currentPage === item.page ? "#1f2937" : "transparent",
-                    color: "#FFFFFF",
-                  }}
-                >
-                  {item.icon}
-                  <span className="text-sm font-medium">{item.label}</span>
-                </button>
-              </NavLink>
-            ))}
+          {/* Teacher Directory */}
+          <NavLink to="teacher-directory">
+            <button
+              onClick={() => handleNavClick("teacher-directory")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "teacher-directory"
+                    ? "#1f2937"
+                    : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <UserCheck className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Teacher Directory</span>
+            </button>
+          </NavLink>
+
+          {/* Escrow */}
+          <NavLink to="escrow/classes">
+            <button
+              onClick={() => handleNavClick("escrow/classes")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "escrow/classes" ? "#1f2937" : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <CreditCard className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Escrow</span>
+            </button>
+          </NavLink>
+
+          {/* Analytics */}
+          <NavLink to="analytics">
+            <button
+              onClick={() => handleNavClick("analytics")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "analytics" ? "#1f2937" : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <BarChart2 className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Analytics</span>
+            </button>
+          </NavLink>
+
+          {/* Resources */}
+          <NavLink to="resources">
+            <button
+              onClick={() => handleNavClick("resources")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "resources" ? "#1f2937" : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <FileText className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Resources</span>
+            </button>
+          </NavLink>
+
+          {/* Community */}
+          <NavLink to="community">
+            <button
+              onClick={() => handleNavClick("community")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "community" ? "#1f2937" : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <Users className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Community</span>
+            </button>
+          </NavLink>
+
+          {/* Certification */}
+          <NavLink to="certificate">
+            <button
+              onClick={() => handleNavClick("certificate")}
+              className="flex items-center gap-3 px-3 py-2 w-full text-left rounded-lg transition-colors hover:bg-[#374151]"
+              style={{
+                backgroundColor:
+                  currentPage === "certificate" ? "#1f2937" : "transparent",
+                color: "#FFFFFF",
+              }}
+            >
+              <Award className="w-5 h-5 text-[#ced2d8]" />
+              <span className="text-sm font-medium">Certification</span>
+            </button>
+          </NavLink>
         </nav>
 
         <div className="py-16 space-y-3 flex flex-col px-4">
-          <NavLink to="aurora-chat">
-            <button
-              onClick={() => handleNavClick("aurora-chat")}
-              className="flex items-center gap-3 px-4 py-2.5 w-full rounded-lg transition-colors shadow-sm"
-              style={{
-                backgroundColor: "#00b8d4",
-                color: "#FFFFFF",
-              }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.backgroundColor = "#22d3ee")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.backgroundColor = "#00b8d4")
-              }
-            >
-              <MessageSquare className="w-5 h-5" />
-              <span className="text-sm font-medium">Talk with Aurora</span>
-            </button>
+          <NavLink
+            to="aurora-chat"
+            className="flex items-center gap-3 px-4 py-2.5 w-full rounded-lg transition-colors shadow-sm"
+            style={{
+              backgroundColor: "#00b8d4",
+              color: "#FFFFFF",
+            }}
+            onMouseOver={(e) =>
+              (e.currentTarget.style.backgroundColor = "#22d3ee")
+            }
+            onMouseOut={(e) =>
+              (e.currentTarget.style.backgroundColor = "#00b8d4")
+            }
+            onClick={onClose}
+          >
+            <MessageSquare className="w-5 h-5" />
+            <span className="text-sm font-medium">Talk with Aurora</span>
           </NavLink>
         </div>
       </div>
