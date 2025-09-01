@@ -93,6 +93,8 @@ import ListeningComprehensionPage from "@/pages/aurora-site/assessment/listening
 // 👨‍🏫 Teacher Features (from main branch)
 import EscrowClassesPage from "@/pages/aurora-site/escrow/classes";
 import TeacherSignupPage from "@/pages/teacher-signup";
+// Rewards System
+import RewardsSystem from "@/pages/aurora-site/rewards/page.jsx";
 
 function App() {
   return (
@@ -212,6 +214,7 @@ function App() {
               
               {/* Teacher Routes (from main) */}
               <Route path="/teacher-signup" element={<TeacherSignupPage />} />
+              <Route path="/reward-system" element={<RewardsSystem />} />
 
               {/*</Route>*/}
             </Route>
