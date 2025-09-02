@@ -64,9 +64,9 @@ const LessonComponent = ({
 
   const isAnswerCorrect = (exerciseIndex, questionIndex) => {
     const selectedAnswer = selectedAnswers[`${exerciseIndex}-${questionIndex}`];
-    const question =
-      lessonData.exercises[exerciseIndex].questions[questionIndex];
-    return selectedAnswer === question.correctAnswer;
+    const exercise = exercises[exerciseIndex];
+    const question = exercise?.questions?.[questionIndex];
+    return selectedAnswer === question?.correctAnswer;
   };
 
   const getProgressPercentage = () => {
@@ -273,38 +273,27 @@ const LessonComponent = ({
         <div className="bg-dark-blue-4 p-6 rounded-lg">
           <div className="mb-6 text-center">
             <h3 className="text-2xl font-bold text-neutral-1 mb-2">
-              Your Score: {score}/
-              {lessonData.exercises.reduce(
-                (total, ex) => total + ex.questions.length,
-                0
-              )}
+              Your Score: {score}/{totalQuestions}
             </h3>
             <p className="text-neutral-2">
-              {score ===
-              lessonData.exercises.reduce(
-                (total, ex) => total + ex.questions.length,
-                0
-              )
+              {totalQuestions === 0
+                ? "No questions available."
+                : score === totalQuestions
                 ? "Perfect score! Excellent work!"
-                : score >=
-                  lessonData.exercises.reduce(
-                    (total, ex) => total + ex.questions.length,
-                    0
-                  ) *
-                    0.7
+                : score >= totalQuestions * 0.7
                 ? "Great job! You've got a good understanding of this topic."
                 : "Keep practicing! You're making progress."}
             </p>
           </div>
 
           <div className="space-y-6">
-            {lessonData.exercises.map((exercise, exerciseIndex) => (
+            {exercises.map((exercise, exerciseIndex) => (
               <div
                 key={exerciseIndex}
                 className="bg-dark-blue-5 p-4 rounded-lg border border-[#1f2937]"
               >
                 <h3 className="text-lg font-semibold text-neutral-1 mb-3">
-                  {exercise.title}
+                  {exercise?.title || "Exercise"}
                 </h3>
 
                 <div className="space-y-4">
@@ -437,7 +426,7 @@ const LessonComponent = ({
                 ? "bg-light-blue-1 text-white hover:bg-light-blue-2"
                 : "bg-green-600 text-white hover:bg-green-700"
             }`}
-            onClick={onNext}
+            onClick={lessonNumber < totalLessons ? onNext : onComplete}
           >
             {lessonNumber < totalLessons ? "Next Lesson" : "Complete Course"}
             <ArrowRight className="w-4 h-4 ml-2" />
